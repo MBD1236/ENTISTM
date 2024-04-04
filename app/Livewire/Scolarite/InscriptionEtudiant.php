@@ -9,6 +9,7 @@ use App\Models\AnneeUniv;
 use App\Models\Programme;
 use App\Models\Promotion;
 use App\Models\Inscription;
+use App\Models\Recu;
 use Livewire\WithFileUploads;
 use Livewire\Attributes\Layout;
 use Illuminate\Support\Facades\Storage;
@@ -61,9 +62,9 @@ class InscriptionEtudiant extends Component
             "etudiant_id" => ["required"],
             "promotion_id" => ["required"],
             "niveau_id" => ["required"],
-            "annee_universitaire_id" => ["required"],
+            "annee_univ_id" => ["required"],
             "programme_id" => ["required"],
-            "numrecu" => ["required"],
+            "numrecu" => ["required","exists:recus,numrecu"],
         ];
     }
 
@@ -92,6 +93,7 @@ class InscriptionEtudiant extends Component
     public function initialisation(Etudiant $etudiant) {
         $this->etudiant = $etudiant;
 
+        $this->etudiant_id = $etudiant->id;
         $this->nom = $etudiant->nom;
         $this->prenom= $etudiant->prenom;
         $this->telephone= $etudiant->telephone;
@@ -115,7 +117,15 @@ class InscriptionEtudiant extends Component
      */
     public function store()
     {
-        Inscription::create($this->validate());
+        
+        Inscription::create([
+            'annee_univ_id' => $this->annee_universitaire_id,
+            'promotion_id' => $this->promotion_id,
+            'niveau_id' => $this->niveau_id,
+            'programme_id' => $this->programme_id,
+            'etudiant_id' => $this->etudiant_id,
+            'reçu_id' => Recu::where('numrecu', $this->numrecu)->first()->id,
+        ]);
         /*vérifier si une nouvelle photo est chargée, car si c'est le cas la propriété $this->photo
         sera de type UploadedFile si c'est le contraire il sera de type string */
         if (!is_string($this->photo)) {
@@ -133,8 +143,8 @@ class InscriptionEtudiant extends Component
                 $this->etudiant->update([
                     'telephone' => $this->telephone,
                     'email' => $this->email,
-                    'nomtuteur' => $this->nom_tuteur,
-                    'telephonetuteur' => $this->telephone_tuteur,
+                    'nomtuteur' => $this->nomtuteur,
+                    'telephonetuteur' => $this->telephonetuteur,
                     'adresse' => $this->adresse
                 ]);
             }

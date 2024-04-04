@@ -15,6 +15,7 @@ class Recu extends Model
         'date',
         'serie',
         'somme',
+        'nature',
         'modereglement'
 
     ];

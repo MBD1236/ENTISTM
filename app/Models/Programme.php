@@ -9,5 +9,15 @@ class Programme extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['programme'];
+    protected $fillable = [
+        'programme',
+        'departement_id'
+    ];
+
+    public function departement() {
+        return $this->belongsTo(Departement::class);
+    }
+    public function inscriptions() {
+        return $this->hasMany(Inscription::class);
+    }
 }

@@ -69,6 +69,7 @@
                         <thead>
                             <tr>
                                 <th class="text-center bg-light">Programmes</th>
+                                <th class="text-center bg-light">Departement</th>
                                 <th class="text-center bg-light">Actions</th>
                             </tr>
                         </thead>
@@ -76,6 +77,7 @@
                             @forelse ($programmes as $programme)
                                 <tr>
                                     <td class="text-center">{{ $programme->programme }}</td>
+                                    <td class="text-center">{{ $programme->departement->departement }}</td>
                                     <td class="text-center">
                                         <a href="{{ route('programme.edit', $programme->id) }}"><i class="fa fa-edit btn-color-primary"></i></a>
                                         <a href="{{ route('programme.delete', $programme->id) }}" data-bs-toggle="modal" data-bs-target="#verticalycentered2{{ $programme->id }}"><i class="fa fa-trash text-danger"></i></a>
@@ -170,6 +172,12 @@
                                         @error('programme')
                                             <p class="text-danger">{{ $message }}</p>
                                         @enderror
+                                        <select name="departement_id" id="floatingdepartment_id" class="mt-1 form-select border-input @error('departement_id') is-invalid @enderror">
+                                            <option value="">Sélectionner un departement</option>
+                                            @foreach($departements as $key => $departement)
+                                                <option value="{{$departement->id}}" class="py-2">{{ $departement->departement}}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class=" btn-fermer bg-danger text-white" data-bs-dismiss="modal"><i class="fa fa-times me-1"></i>Fermer</button>

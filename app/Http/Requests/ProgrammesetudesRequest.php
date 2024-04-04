@@ -23,6 +23,7 @@ class ProgrammesetudesRequest extends FormRequest
     {
         return [
             'programme' => ['required', 'string', 'unique:programmes', 'min:2', 'max:100'],
+            'departement_id' => ['required'],
         ];
     }
 }

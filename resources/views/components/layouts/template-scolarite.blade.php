@@ -283,6 +283,11 @@
           </a>
           <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
             <li>
+              <a href="{{ route('scolarite.orientation') }}">
+                <i class="fa fa-users"></i><span>Etudiants orientés</span>
+              </a>
+            </li>
+            <li>
               <a href="{{ route('scolarite.inscription') }}">
                 <i class="fa fa-user-plus"></i><span>Inscription</span>
               </a>
@@ -292,6 +297,11 @@
                 <i class="fa fa-users"></i><span>Reinscription</span>
               </a>
             </li>
+            <li>
+              <a href="{{ route('inscriptionetreinscription.index') }}">
+                <i class="fa fa-users"></i><span>Liste des inscrits & reinscrits</span>
+              </a>
+          </li>
           </ul>
         </li><!-- End Components Nav -->
 

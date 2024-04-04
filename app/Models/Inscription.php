@@ -2,6 +2,12 @@
 
 namespace App\Models;
 
+use App\Models\AnneeUniv;
+use App\Models\Etudiant;
+use App\Models\Niveau;
+use App\Models\Programme;
+use App\Models\Promotion;
+use App\Models\Recu;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -27,7 +33,7 @@ class Inscription extends Model
     public function niveau() {
         return $this->belongsTo(Niveau::class);
     }
-    public function annee_universitaire() {
+    public function annee_univ() {
         return $this->belongsTo(AnneeUniv::class);
     }
     public function programme() {

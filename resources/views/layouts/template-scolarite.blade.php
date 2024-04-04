@@ -286,7 +286,7 @@
                 <a href="{{ route('scolarite.orientation') }}">
                   <i class="fa fa-users"></i><span>Etudiants orientés</span>
                 </a>
-              </li>
+            </li>
             <li>
               <a href="{{ route('scolarite.inscription') }}">
                 <i class="fa fa-user-plus"></i><span>Inscription</span>

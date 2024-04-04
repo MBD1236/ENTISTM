@@ -1,7 +1,24 @@
 <div class="card">
-    
+    @if($errors->any())
+<ul>
+  @foreach ($errors->all() as $item)
+      <li>{{ $item }}</li>
+  @endforeach
+</ul>
+@endif
     <div class="card-header card-head">
         <h1 class="bg-card text-center text-white card-head"><i class="fa fa-graduation-cap me-1"></i>Inscription des étudiants</h1>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            @if(session()->has('success'))
+                <div class="alert alert-success bg-success text-light border-0 alert-dismissible fade show" role="alert">
+                    <h5 class="text-center">{{ session('success') }}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    <i class="fa fa-check icon-deleted text-white"></i>
+                </div>
+            @endif
+        </div>
     </div>
     <div class="card">
         <div class="card-body">
@@ -28,22 +45,29 @@
                             <div class="col-md-4"></div>
                         </div>
                     </form>
-                   <form action="" wire:submit.prevent="store" enctype="multipart/form-data">
+                   <form action="" wire:submit="store" enctype="multipart/form-data">
                     {{--  @csrf
                     @method()  --}}
+                        <div class="row mt-3">
+                            <div class="form-floating">
+                                <input class="form-control border-input @error('etudiant_id') is-invalid @enderror" type="hidden" wire:model.defer="etudiant_id" id="floatingetudiant_id" placeholder="etudiant_id">
+                                <div class="invalid-feedback">@error('etudiant_id') {{ $message }} @enderror</div>
+                            </div>
+                        </div>
                         <div class="row mt-3">
                             <div class="col-md-9">
                                     <div class="row">
                                         <div class="col-md-4 form-floating">
                                             <div class="form-floating">
-                                                <input class="form-control border-input" type="text" wire:mode.defer="ine" id="floatingine" placeholder="ine" disabled>
+                                                <input class="form-control border-input" type="text" wire:model.defer="ine" id="floatingine" placeholder="ine" disabled>
                                                 <label for="floatingine" class="label-control label-text">INE</label>
                                             </div>
                                         </div>
                                         <div class="col-md-4 form-floating">
                                             <div class="form-floating">
-                                                <input class="form-control border-input" type="text" wire:model="numrecu" id="floatingrecu" placeholder="N° reçu">
+                                                <input class="form-control border-input @error('numrecu') is-invalid @enderror" type="text" wire:model="numrecu" id="floatingrecu" placeholder="N° reçu">
                                                 <label for="floatingrecu" class="label-control label-text">N° reçu</label>
+                                                <div class="invalid-feedback">@error('numrecu') {{ $message }} @enderror</div>
                                             </div>
                                         </div>
                                         <div class="col-md-4 form-floating">
@@ -116,48 +140,52 @@
                                     </div>
                                     <div class="col-md-4 form-floating">
                                         <div class="form-floating">
-                                            <select class="form-select border-input" wire:model="annee_universitaire_id" id="annee_universitaire_id">
+                                            <select class="form-select border-input @error('annee_universitaire_id') is-invalid @enderror" wire:model="annee_universitaire_id" id="annee_universitaire_id">
                                                 <option value="">Sélectioner une année universitaire</option>
                                                 @foreach ($annee_universitaires as $annee_universitaire)
                                                     <option value="{{ $annee_universitaire->id }}" wire:key="{{ $annee_universitaire->id }}">{{ $annee_universitaire->session }}</option>
                                                 @endforeach
                                             </select>
                                             <label for="floatinganneeuniv" class="label-control label-text">Année Univerisatire</label>
+                                            <div class="invalid-feedback">@error('annee_universitaire_id') {{ $message }} @enderror</div>
                                         </div>
                                     </div>
                                     <div class="col-md-4 form-floating">
                                         <div class="form-floating">
-                                            <select class="form-select border-input" wire:model="promotion_id" id="promotion_id">
+                                            <select class="form-select border-input @error('promotion_id') is-invalid @enderror" wire:model="promotion_id" id="promotion_id">
                                                 <option value="">Sélectioner une promotion</option>
                                                 @foreach ($promotions as $promotion)
                                                     <option value="{{ $promotion->id }}" wire:key="{{ $promotion->id }}">{{ $promotion->promotion }}</option>
                                                 @endforeach
                                             </select>
                                             <label for="floatingpromotion" class="label-control label-text">Promotion</label>
+                                            <div class="invalid-feedback">@error('promotion_id') {{ $message }} @enderror</div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row mt-3">
                                     <div class="col-md-4 form-floating">
                                         <div class="form-floating">
-                                            <select class="form-select border-input" wire:model="niveau_id" id="niveau_id">
+                                            <select class="form-select border-input @error('niveau_id') is-invalid @enderror" wire:model="niveau_id" id="niveau_id">
                                                 <option value="0">Sélectioner un niveau</option>
                                                 @foreach ($niveaux as $niveau)
                                                     <option value="{{ $niveau->id }}" wire:key="{{ $niveau->id }}">{{ $niveau->niveau }}</option>
                                                 @endforeach
                                             </select>
                                             <label for="floatingniveau" class="label-control label-text">Niveau</label>
+                                            <div class="invalid-feedback">@error('niveau_id') {{ $message }} @enderror</div>
                                         </div>
                                     </div>
                                     <div class="col-md-8 form-floating">
                                         <div class="form-floating">
-                                            <select class="form-select border-input" wire:model="programme_id" id="programme_id">
+                                            <select class="form-select border-input @error('programme_id') is-invalid @enderror" wire:model="programme_id" id="programme_id">
                                                 <option value="0">Sélectioner un programme</option>
                                                 @foreach ($programmes as $programme)
                                                     <option value="{{ $programme->id }}" wire:key="{{ $programme->id }}">{{ $programme->programme }}</option>
                                                 @endforeach
                                             </select>
                                             <label for="floatingprogramme" class="label-control label-text">Programme</label>
+                                            <div class="invalid-feedback">@error('programme_id') {{ $message }} @enderror</div>
                                         </div>
                                     </div>
                                 </div>
@@ -170,7 +198,7 @@
                                     @if ($this->inerecherche !== '' && $etudiant) 
                                         @if ($etudiant->photo !== null)
                                             <center>
-                                                <img src="/storage/{{$etudiant->photo }}" class="img-fluid" alt="Photo" width="100px" height="100px">
+                                                <img src="/storage/{{$etudiant->photo }}" class="img-photo card-photo" alt="Photo">
                                             </center> 
                                         @else
                                             <center><img class="img-photo card-photo" src="{{ asset('assets/img/téléchargement.png') }} " alt=""></center>
@@ -188,7 +216,8 @@
                                     </div>
                                     <div class="row mt-2">
                                         <div class="col">
-                                            <input class="form-control border-input mt-1" type="file" name="" id="">
+                                            <input class="form-control border-input mt-1 @error('photo') is-invalid @enderror" type="file" wire:model="photo" id="photo">
+                                            <div class="invalid-feedback">@error('photo') {{ $message }} @enderror</div>
                                         </div>
                                     </div>
                                     <div class="row mt-2">
@@ -216,8 +245,9 @@
                                         </div>
                                         <div class="col-md-4 form-floating">
                                             <div class="form-floating">
-                                                <input class="form-control border-input" type="text" name="recu" id="floatingrecu" placeholder="N° reçu">
+                                                <input class="form-control border-input @error('numrecu') is-invalid @enderror" type="text" name="recu" id="floatingrecu" placeholder="N° reçu">
                                                 <label for="floatingrecu" class="label-control label-text">N° reçu</label>
+                                                <div class="invalid-feedback">@error('numrecu') {{ $message }} @enderror</div>
                                             </div>
                                         </div>
                                         <div class="col-md-4 form-floating">

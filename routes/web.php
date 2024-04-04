@@ -10,20 +10,27 @@ use App\Http\Controllers\ProgrammesetudesController;
 use App\Http\Controllers\PromotionController;
 use App\Http\Controllers\ScolariteController;
 use App\Http\Controllers\SemestresController;
+use App\Livewire\Scolarite\EtudiantTables;
 use App\Livewire\Scolarite\InscriptionEtudiant;
-use Illuminate\Support\Facades\Route;
+use App\Livewire\Scolarite\InscriptionTables;
 
 use function Livewire\store;
+use Illuminate\Support\Facades\Route;
 
 
 /* Routes de l'interface de la scolarité */
 Route::prefix('scolarite')->group(function () {
     Route::get('/', [ScolariteController::class, 'index'])->name('scolarite.dashboard');
-    //Route::get('/inscription', InscriptionEtudiant::class)->name('scolarite.inscription');
-    Route::get('/inscription', [ScolariteController::class, 'inscription'])->name('scolarite.inscription');
+    Route::get('/inscription', InscriptionEtudiant::class)->name('scolarite.inscription');
+    Route::get('/listeinscritsetreinscrits', InscriptionTables::class)->name('inscriptionetreinscription.index');
+
+    // Route::get('/inscription', [ScolariteController::class, 'inscription'])->name('scolarite.inscription');
     Route::get('/reinscription', [ScolariteController::class, 'reinscription'])->name('scolarite.reinscription');
     Route::get('/parametre', [ScolariteController::class, 'afficherParametre'])->name('scolarite.parametre');
-    Route::get('/orientation', [ScolariteController::class, 'orientation'])->name('scolarite.orientation');
+    // Route::get('/orientation', [ScolariteController::class, 'orientation'])->name('scolarite.orientation');
+    Route::get('/etudiants', EtudiantTables::class)->name('scolarite.orientation');
+    
+
     Route::get('/inscrits', [ScolariteController::class, 'inscrits'])->name('scolarite.inscrits');
 
     Route::prefix('parametres')->group(function () {

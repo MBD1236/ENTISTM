@@ -10,4 +10,8 @@ class Departement extends Model
     use HasFactory;
 
     protected $fillable = ['departement'];
+
+    public function programmes() {
+        return $this->hasMany(Programme::class);
+    }
 }

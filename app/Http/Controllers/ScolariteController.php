@@ -6,6 +6,7 @@ use App\Models\Etudiant;
 use App\Models\Semestre;
 use App\Models\AnneeUniv;
 use App\Models\Promotion;
+use App\Models\Recu;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
 
@@ -13,7 +14,6 @@ class ScolariteController extends Controller
 {
     public function index () : View
     {
-
         return view('scolarite.dashboard');
     }
 

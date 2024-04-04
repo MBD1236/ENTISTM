@@ -24,8 +24,17 @@
                         <div class="row">
                             <div class="col">
                                 <label for="programme" class="label-control label-text">Modification du programme :</label>
-                                <input type="text" class="form-control border-input" name="programme" id="programme" value="{{ old('programme', $programme->programme) }}">
+                                <input type="text" class="form-control border-input @error('programme') is-invalid @enderror" name="programme" id="programme" value="{{ old('programme', $programme->programme) }}">
                                 @error('programme')
+                                    <p class="text-danger">{{ $message }}</p>
+                                @enderror
+                                <select name="departement_id" id="floatingdepartment_id" class="mt-1 form-select border-input @error('departement_id') is-invalid @enderror">
+                                    <option value="">Sélectionner un departement</option>
+                                    @foreach($departements as $key => $departement)
+                                        <option value="{{$departement->id}}" class="py-2">{{ $departement->departement}}</option>
+                                    @endforeach
+                                </select>
+                                @error('departement_id')
                                     <p class="text-danger">{{ $message }}</p>
                                 @enderror
                             </div>
@@ -47,6 +56,7 @@
                             <tr>
                                 <th class="text-center bg-light">N°</th>
                                 <th class="text-center bg-light">Programmes</th>
+                                <th class="text-center bg-light">Departement</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -54,6 +64,7 @@
                                 <tr>
                                     <td class="text-center">{{ $key + 1 }}</td>
                                     <td class="text-center">{{ $programme->programme }}</td>
+                                    <td class="text-center">{{ $programme->departement->departement }}</td>
                                 </tr>
                             @empty
                                 <td colspan="2" class="text-center"><p class="">Aucun programme !</p></td>
