@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Etudiant;
 use App\Models\Semestre;
-use App\Models\AnneeUniv;
+use App\Models\AnneeUniversitaire;
 use App\Models\Promotion;
 use App\Models\Recu;
 use Illuminate\Http\Request;
@@ -27,12 +27,12 @@ class ScolariteController extends Controller
         return view('scolarite.etudiants.reinscrip');
     }
 
-    public function afficherParametre (AnneeUniv $anneeUniv, Promotion $promotion, Semestre $semestre) : View
+    public function afficherParametre (AnneeUniversitaire $anneeUniv, Promotion $promotion, Semestre $semestre) : View
     {
 
 
 
-        $anneeUnivs = AnneeUniv::paginate(5);
+        $anneeUnivs = AnneeUniversitaire::paginate(5);
         $promotions = Promotion::paginate(5);
         $semestres = Semestre::paginate(5);
 

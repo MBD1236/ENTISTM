@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('annee_univs', function (Blueprint $table) {
+        Schema::create('annee_universitaires', function (Blueprint $table) {
             $table->id();
             $table->string('session')->unique();
             $table->timestamps();
@@ -23,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('annee_univs');
+        Schema::dropIfExists('annee_universitaires');
     }
 };

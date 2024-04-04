@@ -43,25 +43,18 @@
                         </thead>
                         <tbody>
                             @forelse ($inscriptions as $k => $inscription)
-                            {{-- @dd($inscription->annee_univ) --}}
                             <tr>
                                 <th>{{ $k+1 }}</th>
                                 <td>{{ $inscription->etudiant->ine}}</td>
                                 <td>{{ $inscription->etudiant->prenom}}</td>
                                 <td>{{ $inscription->etudiant->nom}}</td>
-                                <td></td>
+                                <td>{{ $inscription->programme->departement->departement}}</td>
                                 <td>{{ $inscription->programme->programme}}</td>
-                                
                                 <td>{{ $inscription->niveau->niveau}}</td>
-                                <td>{{ $inscription->annee_univ->session}}</td>
+                                <td>{{ $inscription->annee_universitaire->session}}</td>
                                 <td><img width="50px" src="{{asset('storage/'.$inscription->etudiant->photo) }}" alt="">
                                 </td>
-                                {{-- <td class="d-flex gap-2 justify-content-end w-100">
-                                    <a href="{{ route('scolarite.inscription.edit', $inscription) }}" class="btn btn-primary p-1 py-lg-0 py-0 p-lg-1 fs-4"><i
-                                            class="bi bi-pencil-square"></i></a>
-                                    
-                                    <button wire:click='delete({{ $inscription->id }})' class="btn btn-danger p-1 py-lg-0 py-0 p-lg-1 fs-4"><i class="bi bi-trash"></i></button>
-                                </td> --}}
+                                
                             </tr>
                             @empty
                             <tr>

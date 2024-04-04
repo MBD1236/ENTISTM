@@ -5,7 +5,7 @@ namespace App\Livewire\Scolarite;
 use App\Models\Niveau;
 use Livewire\Component;
 use App\Models\Etudiant;
-use App\Models\AnneeUniv;
+use App\Models\AnneeUniversitaire;
 use App\Models\Programme;
 use App\Models\Promotion;
 use App\Models\Inscription;
@@ -35,10 +35,10 @@ class InscriptionEtudiant extends Component
     public $email;
     public $photo;
     public $ine;
-    public $datenaissance;
-    public $lieunaissance;
-    public $nomtuteur;
-    public $telephonetuteur;
+    public $date_naissance;
+    public $lieu_naissance;
+    public $nom_tuteur;
+    public $telephone_tuteur;
     public $adresse;
     public $mere;
     public $pere;
@@ -49,7 +49,7 @@ class InscriptionEtudiant extends Component
     public $niveau_id;
     public $programme_id;
     public $etudiant_id;
-    public $numrecu;
+    public $recu_id;
 
 
     /**
@@ -62,9 +62,9 @@ class InscriptionEtudiant extends Component
             "etudiant_id" => ["required"],
             "promotion_id" => ["required"],
             "niveau_id" => ["required"],
-            "annee_univ_id" => ["required"],
+            "annee_universitaire_id" => ["required"],
             "programme_id" => ["required"],
-            "numrecu" => ["required","exists:recus,numrecu"],
+            "recu_id" => ["required","exists:recus,numrecu"],
         ];
     }
 
@@ -102,11 +102,11 @@ class InscriptionEtudiant extends Component
         $this->ine= $etudiant->ine;
         $this->pere= $etudiant->pere;
         $this->mere= $etudiant->mere;
-        $this->datenaissance= $etudiant->datenaissance;
-        $this->lieunaissance= $etudiant->lieunaissance;
+        $this->date_naissance= $etudiant->datenaissance;
+        $this->lieu_naissance= $etudiant->lieunaissance;
         $this->adresse= $etudiant->adresse;
-        $this->nomtuteur= $etudiant->nomtuteur;
-        $this->telephonetuteur= $etudiant->telephonetuteur;
+        $this->nom_tuteur= $etudiant->nomtuteur;
+        $this->telephone_tuteur= $etudiant->telephonetuteur;
 
     }
 
@@ -118,14 +118,15 @@ class InscriptionEtudiant extends Component
     public function store()
     {
         
-        Inscription::create([
-            'annee_univ_id' => $this->annee_universitaire_id,
+        $validatedData = $this->validate([
+            'annee_universitaire_id' => $this->annee_universitaire_id,
             'promotion_id' => $this->promotion_id,
             'niveau_id' => $this->niveau_id,
             'programme_id' => $this->programme_id,
             'etudiant_id' => $this->etudiant_id,
-            'reçu_id' => Recu::where('numrecu', $this->numrecu)->first()->id,
+            'recu_id' => Recu::where('numrecu', $this->recu_id)->first()->id,
         ]);
+        Inscription::create($validatedData);
         /*vérifier si une nouvelle photo est chargée, car si c'est le cas la propriété $this->photo
         sera de type UploadedFile si c'est le contraire il sera de type string */
         if (!is_string($this->photo)) {
@@ -143,13 +144,13 @@ class InscriptionEtudiant extends Component
                 $this->etudiant->update([
                     'telephone' => $this->telephone,
                     'email' => $this->email,
-                    'nomtuteur' => $this->nomtuteur,
-                    'telephonetuteur' => $this->telephonetuteur,
+                    'nom_tuteur' => $this->nomtuteur,
+                    'telephone_tuteur' => $this->telephonetuteur,
                     'adresse' => $this->adresse
                 ]);
             }
             $this->reset();
-            return redirect()->route('scolarite.inscription.index')->with('info', 'Inscription effectuée avec succès!');
+            return redirect()->route('inscriptionetreinscription.index')->with('success', 'Inscription effectuée avec succès!');
     }
 
 
@@ -160,7 +161,7 @@ class InscriptionEtudiant extends Component
             'promotions' => Promotion::all(),
             'niveaux' => Niveau::all(),
             'programmes'=> Programme::all(),
-            'annee_universitaires'=> AnneeUniv::orderBy('created_at','desc')->paginate(5),
+            'annee_universitaires'=> AnneeUniversitaire::orderBy('created_at','desc')->paginate(5),
         ]);
     }
 }

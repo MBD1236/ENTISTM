@@ -5,9 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class AnneeUniv extends Model
+class AnneeUniversitaire extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['session'];
+    protected $fillable = [
+        'session'
+    ];
 }

@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\AnneeUniv;
+use App\Models\AnneeUniversitaire;
 use App\Models\Niveau;
 use App\Models\Etudiant;
 use App\Models\Programme;
@@ -22,7 +23,7 @@ return new class extends Migration
             $table->foreignIdFor(Programme::class)->constrained()->cascadeOnUpdate();
             $table->foreignIdFor(Promotion::class)->constrained()->cascadeOnUpdate();
             $table->foreignIdFor(Niveau::class)->constrained()->cascadeOnUpdate();
-            $table->foreignIdFor(AnneeUniv::class)->constrained()->cascadeOnUpdate();
+            $table->foreignIdFor(AnneeUniversitaire::class)->constrained()->cascadeOnUpdate();
             $table->timestamps();
         });
     }

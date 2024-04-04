@@ -22,7 +22,7 @@ class AnneeUnivRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'session' => ['required', 'string', 'unique:annee_univs,session', 'min:9', 'max:12'],
+            'session' => ['required', 'string', 'unique:annee_universitaires,session', 'min:9', 'max:12'],
         ];
     }
 }

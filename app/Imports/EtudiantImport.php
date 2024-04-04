@@ -30,9 +30,9 @@ class EtudiantImport implements ToModel, WithHeadingRow
                 "session" => $row['session'],
                 "profil" => $row['profil'],
                 "centre" => $row['centre'],
-                "ecoleorigine" => $row['ecole_origine'],
-                "datenaissance" => $dateNaissance->toDateString(),
-                "lieunaissance" => $row['lieu_naissance'],
+                "ecole_origine" => $row['ecole_origine'],
+                "date_naissance" => $dateNaissance->toDateString(),
+                "lieu_naissance" => $row['lieu_naissance'],
                 "pere" => $row['pere'],
                 "mere" => $row['mere'],
                 "programme" => $row['programme']

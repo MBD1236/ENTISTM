@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Models\AnneeUniv;
 use App\Models\Etudiant;
 use App\Models\Niveau;
 use App\Models\Programme;
@@ -20,7 +19,7 @@ class Inscription extends Model
         "programme_id",
         "promotion_id",
         "niveau_id",
-        "annee_univ_id",
+        "annee_universitaire_id",
         "recu_id"
     ];
 
@@ -33,8 +32,8 @@ class Inscription extends Model
     public function niveau() {
         return $this->belongsTo(Niveau::class);
     }
-    public function annee_univ() {
-        return $this->belongsTo(AnneeUniv::class);
+    public function annee_universitaire() {
+        return $this->belongsTo(AnneeUniversitaire::class);
     }
     public function programme() {
         return $this->belongsTo(Programme::class);

@@ -48,10 +48,9 @@
                             </div>
                         </div>
                     </div>
-                    </div>
                     <div class="row">
                         
-                        <div class="row mt-2">
+                        <div class="row mt-3">
                             <table class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
@@ -76,7 +75,7 @@
                                         <td>{{ $etudiant->prenom}}</td>
                                         <td>{{ $etudiant->profil}}</td>
                                         <td>{{ $etudiant->session}}</td>
-                                        <td>{{ $etudiant->ecoleorigine}}</td>
+                                        <td>{{ $etudiant->ecole_origine}}</td>
                                         <td>{{ $etudiant->centre}}</td>
                                         <td>{{ $etudiant->programme}}</td>
                                         <td class="text-center">

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AnneeUnivRequest;
-use App\Models\AnneeUniv;
+use App\Models\AnneeUniversitaire;
 use Exception;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -11,30 +11,30 @@ use Illuminate\Http\Request;
 
 class AnneeUnivController extends Controller
 {
-    public function index (AnneeUniv $anneeUniv) : View
+    public function index (AnneeUniversitaire $anneeUniv) : View
     {
-        $anneeUnivs = AnneeUniv::paginate(5);
+        $anneeUnivs = AnneeUniversitaire::paginate(5);
 
         return view('scolarite.parametres.parametre', compact('anneeUnivs'));
     }
 
     public function store (AnneeUnivRequest $anneeUnivRequest) : RedirectResponse
     {
-        $anneeUniv = AnneeUniv::create($anneeUnivRequest->all());
+        $anneeUniv = AnneeUniversitaire::create($anneeUnivRequest->all());
 
         return redirect()->route('scolarite.parametre')->with('info', 'La session a été ajoutée avec succès !');
 
     }
 
-    public function edit (AnneeUniv $anneeUniv) : view
+    public function edit (AnneeUniversitaire $anneeUniv) : view
     {
-        $anneeUnivs = AnneeUniv::paginate(10);
+        $anneeUnivs = AnneeUniversitaire::paginate(10);
         return View('scolarite.parametres.sessions.edit', compact('anneeUniv', 'anneeUnivs'));
     }
 
-    public function update (AnneeUnivRequest $anneeUnivRequest, AnneeUniv $anneeUniv) : RedirectResponse
+    public function update (AnneeUnivRequest $anneeUnivRequest, AnneeUniversitaire $anneeUniv) : RedirectResponse
     {
-        $anneeUniv = AnneeUniv::find($anneeUniv->id);
+        $anneeUniv = AnneeUniversitaire::find($anneeUniv->id);
 
         $anneeUniv->session = $anneeUnivRequest->session;
         $anneeUniv->save();
@@ -42,7 +42,7 @@ class AnneeUnivController extends Controller
         return redirect()->route('session.edit', compact('anneeUniv'))->with('info', 'Modification effectuée avec succès !');
     }
 
-    public function delete (AnneeUniv $anneeUniv) : RedirectResponse
+    public function delete (AnneeUniversitaire $anneeUniv) : RedirectResponse
     {
         try {
 

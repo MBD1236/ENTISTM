@@ -1,11 +1,11 @@
 <div class="card">
-    @if($errors->any())
-<ul>
-  @foreach ($errors->all() as $item)
-      <li>{{ $item }}</li>
-  @endforeach
-</ul>
-@endif
+    {{-- @if($errors->any())
+        <ul>
+            @foreach ($errors->all() as $item)
+                <li>{{ $item }}</li>
+            @endforeach
+        </ul>
+    @endif --}}
     <div class="card-header card-head">
         <h1 class="bg-card text-center text-white card-head"><i class="fa fa-graduation-cap me-1"></i>Inscription des étudiants</h1>
     </div>
@@ -65,9 +65,9 @@
                                         </div>
                                         <div class="col-md-4 form-floating">
                                             <div class="form-floating">
-                                                <input class="form-control border-input @error('numrecu') is-invalid @enderror" type="text" wire:model="numrecu" id="floatingrecu" placeholder="N° reçu">
+                                                <input class="form-control border-input @error('recu_id') is-invalid @enderror" type="text" wire:model="recu_id" id="floatingrecu" placeholder="N° reçu">
                                                 <label for="floatingrecu" class="label-control label-text">N° reçu</label>
-                                                <div class="invalid-feedback">@error('numrecu') {{ $message }} @enderror</div>
+                                                <div class="invalid-feedback">@error('recu_id') {{ $message }} @enderror</div>
                                             </div>
                                         </div>
                                         <div class="col-md-4 form-floating">
@@ -86,13 +86,13 @@
                                         </div>
                                         <div class="col-md-4 form-floating">
                                             <div class="form-floating">
-                                                <input class="form-control border-input" type="date" wire:model.defer="datenaissance" id="floatingdatenaissance" placeholder="Date Naissance" disabled>
+                                                <input class="form-control border-input" type="date" wire:model.defer="date_naissance" id="floatingdatenaissance" placeholder="Date Naissance" disabled>
                                                 <label for="floatingdatenaissance" class="label-control label-text">Date Naissance</label>
                                             </div>
                                         </div>
                                         <div class="col-md-4 form-floating">
                                             <div class="form-floating">
-                                                <input class="form-control border-input" type="text" wire:model.defer="lieunaissance" id="floatinglieunaissance" placeholder="Lieu Naissance" disabled>
+                                                <input class="form-control border-input" type="text" wire:model.defer="lieu_naissance" id="floatinglieunaissance" placeholder="Lieu Naissance" disabled>
                                                 <label for="floatinglieunaissance" class="label-control label-text">Lieu Naissance</label>
                                             </div>
                                         </div>
@@ -126,7 +126,7 @@
                                         </div>
                                         <div class="col-md-4 form-floating">
                                             <div class="form-floating">
-                                                <input class="form-control border-input" type="tel" wire:model.defer="nomtuteur" id="floatingnomtuteur" placeholder="Nom du tuteur">
+                                                <input class="form-control border-input" type="tel" wire:model.defer="nom_tuteur" id="floatingnomtuteur" placeholder="Nom du tuteur">
                                                 <label for="floatingnomtuteur" class="label-control label-text">Nom du tuteur</label>
                                             </div>
                                         </div>
@@ -134,7 +134,7 @@
                                 <div class="row mt-3">
                                     <div class="col-md-4 form-floating">
                                         <div class="form-floating">
-                                            <input class="form-control border-input" type="tel" wire:model.defer="telephonetuteur" id="floatingteltuteur" placeholder="Téléphone du tuteur">
+                                            <input class="form-control border-input" type="tel" wire:model.defer="telephone_tuteur" id="floatingteltuteur" placeholder="Téléphone du tuteur">
                                             <label for="floatingteltuteur" class="label-control label-text">Téléphone du tuteur</label>
                                         </div>
                                     </div>
@@ -147,7 +147,7 @@
                                                 @endforeach
                                             </select>
                                             <label for="floatinganneeuniv" class="label-control label-text">Année Univerisatire</label>
-                                            <div class="invalid-feedback">@error('annee_universitaire_id') {{ $message }} @enderror</div>
+                                            <div class="invalid-feedback">@error('annee_univ_id') {{ $message }} @enderror</div>
                                         </div>
                                     </div>
                                     <div class="col-md-4 form-floating">
@@ -245,9 +245,9 @@
                                         </div>
                                         <div class="col-md-4 form-floating">
                                             <div class="form-floating">
-                                                <input class="form-control border-input @error('numrecu') is-invalid @enderror" type="text" name="recu" id="floatingrecu" placeholder="N° reçu">
+                                                <input class="form-control border-input @error('recu_id') is-invalid @enderror" type="text" name="recu" id="floatingrecu" placeholder="N° reçu">
                                                 <label for="floatingrecu" class="label-control label-text">N° reçu</label>
-                                                <div class="invalid-feedback">@error('numrecu') {{ $message }} @enderror</div>
+                                                <div class="invalid-feedback">@error('recu_id') {{ $message }} @enderror</div>
                                             </div>
                                         </div>
                                         <div class="col-md-4 form-floating">
