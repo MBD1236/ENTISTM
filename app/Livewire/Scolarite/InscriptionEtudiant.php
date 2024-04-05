@@ -64,7 +64,7 @@ class InscriptionEtudiant extends Component
             "niveau_id" => ["required"],
             "annee_universitaire_id" => ["required"],
             "programme_id" => ["required"],
-            "recu_id" => ["required","exists:recus,numrecu"],
+            "recu_id" => ["required","exists:recus,numrecu","unique:recus,numrecu"],
         ];
     }
 
@@ -117,40 +117,47 @@ class InscriptionEtudiant extends Component
      */
     public function store()
     {
-        
-        $validatedData = $this->validate([
+
+
+        $this->validate();
+
+        // Vérifier si le numéro de reçu existe et est unique
+        $recu = Recu::where('numrecu', $this->recu_id)->first()->id;
+        // Créer l'inscription en associant l'identifiant du reçu
+        Inscription::create([
             'annee_universitaire_id' => $this->annee_universitaire_id,
             'promotion_id' => $this->promotion_id,
             'niveau_id' => $this->niveau_id,
             'programme_id' => $this->programme_id,
             'etudiant_id' => $this->etudiant_id,
-            'recu_id' => Recu::where('numrecu', $this->recu_id)->first()->id,
+            'recu_id' => $recu,
         ]);
-        Inscription::create($validatedData);
-        /*vérifier si une nouvelle photo est chargée, car si c'est le cas la propriété $this->photo
-        sera de type UploadedFile si c'est le contraire il sera de type string */
+
+            /*vérifier si une nouvelle photo est chargée, car si c'est le cas la propriété $this->photo
+            sera de type UploadedFile si c'est le contraire il sera de type string */
         if (!is_string($this->photo)) {
                 if ($this->etudiant && $this->etudiant->photo) {
-                    Storage::disk('public')->delete($this->etudiant->photo);
+                        Storage::disk('public')->delete($this->etudiant->photo);
                 }
                 $nouveau_nom= $this->photo->getClientOriginalName();
                 $photoPath = $this->photo->storeAs('etudiants/etudiant', $nouveau_nom, 'public');
                 if ($this->etudiant) {
-                    $this->etudiant->update(['photo' => $photoPath]);
+                        $this->etudiant->update(['photo' => $photoPath]);
                 }
-            }
-            // Vérifier si l'étudiant existe
-            if ($this->etudiant) {
-                $this->etudiant->update([
-                    'telephone' => $this->telephone,
-                    'email' => $this->email,
-                    'nom_tuteur' => $this->nomtuteur,
-                    'telephone_tuteur' => $this->telephonetuteur,
-                    'adresse' => $this->adresse
-                ]);
-            }
-            $this->reset();
-            return redirect()->route('inscriptionetreinscription.index')->with('success', 'Inscription effectuée avec succès!');
+        }
+                // Vérifier si l'étudiant existe
+                if ($this->etudiant) {
+                    $this->etudiant->update([
+                        'telephone' => $this->telephone,
+                        'email' => $this->email,
+                        'nom_tuteur' => $this->nom_tuteur,
+                        'telephone_tuteur' => $this->telephone_tuteur,
+                        'adresse' => $this->adresse
+                    ]);
+                }
+                $this->reset();
+                return redirect()->route('inscriptionetreinscription.index')->with('success', 'Inscription effectuée avec succès!');
+       
     }
 
 

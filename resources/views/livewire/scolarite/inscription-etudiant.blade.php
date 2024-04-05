@@ -245,9 +245,9 @@
                                         </div>
                                         <div class="col-md-4 form-floating">
                                             <div class="form-floating">
-                                                <input class="form-control border-input @error('recu_id') is-invalid @enderror" type="text" name="recu" id="floatingrecu" placeholder="N° reçu">
+                                                <input class="form-control border-input @error('numrecu') is-invalid @enderror" type="text" name="recu" id="floatingrecu" placeholder="N° reçu">
                                                 <label for="floatingrecu" class="label-control label-text">N° reçu</label>
-                                                <div class="invalid-feedback">@error('recu_id') {{ $message }} @enderror</div>
+                                                <div class="invalid-feedback">@error('numrecu') {{ $message }} @enderror</div>
                                             </div>
                                         </div>
                                         <div class="col-md-4 form-floating">
