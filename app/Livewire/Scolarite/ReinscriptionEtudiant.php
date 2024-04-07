@@ -2,23 +2,20 @@
 
 namespace App\Livewire\Scolarite;
 
-use App\Models\Niveau;
-use Livewire\Component;
-use App\Models\Etudiant;
 use App\Models\AnneeUniversitaire;
+use App\Models\Etudiant;
+use App\Models\Inscription;
+use App\Models\Niveau;
 use App\Models\Programme;
 use App\Models\Promotion;
-use App\Models\Inscription;
 use App\Models\Recu;
-use Livewire\WithFileUploads;
-use Livewire\Attributes\Layout;
 use Illuminate\Support\Facades\Storage;
+use Livewire\Attributes\Layout;
+use Livewire\Component;
+use Livewire\WithFileUploads;
 
-use function PHPSTORM_META\map;
-
-class InscriptionEtudiant extends Component
+class ReinscriptionEtudiant extends Component
 {
-
     use WithFileUploads;
 
     /**
@@ -44,11 +41,6 @@ class InscriptionEtudiant extends Component
     public $adresse;
     public $mere;
     public $pere;
-    public $diplome;
-    public $releve_notes;
-    public $certificat_nationalite;
-    public $certificat_medical;
-    public $extrait_naissance;
 
     /* les propriétés de la table inscription */
     public $annee_universitaire_id;
@@ -72,17 +64,8 @@ class InscriptionEtudiant extends Component
             "annee_universitaire_id" => ["required"],
             "programme_id" => ["required"],
             "recu_id" => ["required","exists:recus,numrecu"],
-            'diplome' => ['required', 'mimes:jpeg,png,jpg,gif,svg,ico,pdf'], /* debut de la regle de validation de Etudiant */
-            'releve_notes' => ['required', 'mimes:jpg,jpeg,png,gif,svg,ico,pdf'],
-            'certificat_nationalite' => ['required', 'mimes:jpg,jpeg,svg,png,gif,ico,pdf'],
-            'certificat_medical' => ['required', 'mimes:jpg,jpeg,png,svg,gif,ico,pdf'],
-            'extrait_naissance' => ['required', 'mimes:jpg,jpeg,png,gif,svg,ico,pdf'],
-            'photo' => ['required', 'image', 'mimes:jpg,jpeg,png,gif,svg', 'max:1024'],
-            'nom_tuteur' => ['required','string', 'min:2'],
-            'telephone_tuteur' => ['required','regex:/^([0-9\s\-\+\(\)]*)$/', 'between:9,18', 'unique:etudiants'],      
         ];
     }
-   
     /**
      * la 2e règle de validation pour s'assurer que le numrecu soit unique
      */ 
@@ -128,13 +111,8 @@ class InscriptionEtudiant extends Component
         $this->date_naissance= $etudiant->datenaissance;
         $this->lieu_naissance= $etudiant->lieunaissance;
         $this->adresse= $etudiant->adresse;
-        $this->nom_tuteur= $etudiant->nom_tuteur;
+        $this->nom_tuteur= $etudiant->nomtuteur;
         $this->telephone_tuteur= $etudiant->telephonetuteur;
-        $this->diplome = $etudiant->diplome;
-        $this->releve_notes = $etudiant->releve_notes;
-        $this->certificat_nationalite = $etudiant->certificat_nationalite;
-        $this->certificat_medical = $etudiant->certificat_medical;
-        $this->extrait_naissance = $etudiant->extrait_naissance;
 
     }
 
@@ -150,8 +128,7 @@ class InscriptionEtudiant extends Component
      */
     public function store()
     {
-        $data =$this->validate($this->rules()); 
-       
+        $this->validate($this->rules());
         $recu = Recu::where('numrecu', $this->recu_id)->first()->id;
         // Créer l'inscription en associant l'identifiant du reçu
         $verif = Inscription::where('recu_id',$recu)->first(); 
@@ -168,57 +145,38 @@ class InscriptionEtudiant extends Component
             }
         };
         Inscription::create([
-            'annee_universitaire_id' => $data['annee_universitaire_id'],
-            'promotion_id' => $data['promotion_id'],
-            'niveau_id' => $data['niveau_id'],
-            'programme_id' => $data['programme_id'],
-            'etudiant_id' => $data['etudiant_id'],
+            'annee_universitaire_id' => $this->annee_universitaire_id,
+            'promotion_id' => $this->promotion_id,
+            'niveau_id' => $this->niveau_id,
+            'programme_id' => $this->programme_id,
+            'etudiant_id' => $this->etudiant_id,
             'recu_id' => $recu,
         ]);
 
-      
+            /*vérifier si une nouvelle photo est chargée, car si c'est le cas la propriété $this->photo
+            sera de type UploadedFile si c'est le contraire il sera de type string */
+        if (!is_string($this->photo)) {
+                if ($this->etudiant && $this->etudiant->photo) {
+                        Storage::disk('public')->delete($this->etudiant->photo);
+                }
+                $nouveau_nom= $this->photo->getClientOriginalName();
+                $photoPath = $this->photo->storeAs('etudiants/etudiant', $nouveau_nom, 'public');
+                if ($this->etudiant) {
+                        $this->etudiant->update(['photo' => $photoPath]);
+                }
+        }
                 // Vérifier si l'étudiant existe
-        if ($this->etudiant) {
-            if ($this->photo) {
-                $nouveau_nom = $this->photo->getClientOriginalName();
-                $data['photo'] = $this->photo->storeAs('etudiants/etudiant', $nouveau_nom, 'public');
-            }
-            if ($this->diplome) {
-                $nouveau_nom = $this->diplome->getClientOriginalName();
-                $data['diplome'] = $this->diplome->storeAs('etudiants/diplome', $nouveau_nom, 'public');
-            }
-            if ($this->releve_notes) {
-                $nouveau_nom = $this->releve_notes->getClientOriginalName();
-                $data['releve_notes'] = $this->releve_notes->storeAs('etudiants/releve_notes', $nouveau_nom, 'public');
-            }
-            if ($this->extrait_naissance) {
-                $nouveau_nom = $this->extrait_naissance->getClientOriginalName();
-                $data['extrait_naissance'] = $this->extrait_naissance->storeAs('etudiants/extrait_naissance', $nouveau_nom, 'public');
-            }
-            if ($this->certificat_nationalite) {
-                $nouveau_nom = $this->certificat_nationalite->getClientOriginalName();
-                $data['certificat_nationalite'] = $this->certificat_nationalite->storeAs('etudiants/certificat_nationalite', $nouveau_nom, 'public');
-             }
-            if ($this->certificat_medical) {
-                $nouveau_nom = $this->certificat_medical->getClientOriginalName();
-                $data['certificat_medical'] = $this->certificat_medical->storeAs('etudiants/certificat_medical', $nouveau_nom, 'public');
-            }
-            $this->etudiant->update([
-                    'telephone' => $this->telephone,
-                    'email' => $this->email,
-                    'nom_tuteur' => $data['nom_tuteur'],
-                    'telephone_tuteur' => $data['telephone_tuteur'],
-                    'adresse' => $this->adresse,
-                    'photo' => $data['photo'],
-                    'diplome' => $data['diplome'],
-                    'releve_notes' => $data['releve_notes'],
-                    'extrait_naissance' => $data['extrait_naissance'],
-                    'certificat_nationalite' => $data['certificat_nationalite'],
-                    'certificat_medical' => $data['certificat_medical']
-                ]);
-            }
-            $this->reset();
-            return redirect()->route('inscriptionetreinscription.index')->with('success', 'Inscription effectuée avec succès!');
+                if ($this->etudiant) {
+                    $this->etudiant->update([
+                        'telephone' => $this->telephone,
+                        'email' => $this->email,
+                        'nom_tuteur' => $this->nom_tuteur,
+                        'telephone_tuteur' => $this->telephone_tuteur,
+                        'adresse' => $this->adresse
+                    ]);
+                }
+                $this->reset();
+                return redirect()->route('inscriptionetreinscription.index')->with('success', 'Inscription effectuée avec succès!');
        
     }
 
@@ -226,7 +184,7 @@ class InscriptionEtudiant extends Component
     #[Layout("components.layouts.template-scolarite")]
     public function render()
     {
-        return view('livewire.scolarite.inscription-etudiant',[
+        return view('livewire.scolarite.reinscription-etudiant',[
             'promotions' => Promotion::all(),
             'niveaux' => Niveau::all(),
             'programmes'=> Programme::all(),

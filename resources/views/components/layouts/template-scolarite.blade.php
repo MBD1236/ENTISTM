@@ -271,7 +271,7 @@
       <ul class="sidebar-nav" id="sidebar-nav">
 
         <li class="nav-item">
-          <a class="nav-link" href="{{ route('scolarite.dashboard') }}">
+          <a class="nav-link" href="{{ route('scolarite.dashboard') }}" wire:navigate>
             <i class="fa fa-home"></i>
             <span class="">Tableau de bord</span>
           </a>
@@ -283,22 +283,22 @@
           </a>
           <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
             <li>
-              <a href="{{ route('scolarite.orientation') }}">
+              <a href="{{ route('scolarite.orientation') }}" wire:navigate>
                 <i class="fa fa-users"></i><span>Etudiants orientés</span>
               </a>
             </li>
             <li>
-              <a href="{{ route('scolarite.inscription') }}">
+              <a href="{{ route('scolarite.inscription') }}" wire:navigate>
                 <i class="fa fa-user-plus"></i><span>Inscription</span>
               </a>
             </li>
             <li>
-              <a href="{{ route('scolarite.reinscription') }}">
+              <a href="{{ route('scolarite.reinscription') }}" wire:navigate>
                 <i class="fa fa-users"></i><span>Reinscription</span>
               </a>
             </li>
             <li>
-              <a href="{{ route('inscriptionetreinscription.index') }}">
+              <a href="{{ route('inscriptionetreinscription.index') }}" wire:navigate>
                 <i class="fa fa-users"></i><span>Liste des inscrits & reinscrits</span>
               </a>
           </li>
@@ -352,7 +352,7 @@
         </li><!-- End Tables Nav -->
 
         <li class="nav-item">
-          <a class="nav-link collapsed" href="{{ route('scolarite.parametre') }}">
+          <a class="nav-link collapsed" href="{{ route('scolarite.parametre') }}" wire:navigate>
             <i class="fa fa-cog"></i>
             <span>Paramètres</span>
           </a>

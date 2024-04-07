@@ -80,7 +80,7 @@
                                         <td>{{ $etudiant->programme}}</td>
                                         <td class="text-center">
                                             <a href=""><i class="fa fa-edit btn-color-primary"></i></a>
-                                            <a href="" data-bs-toggle="modal" data-bs-target="#verticalycentered2{{ $etudiant->id }}" wire:click='delete({{ $etudiant->id }})'><i class="fa fa-trash text-danger"></i></a>
+                                            <a href="" data-bs-toggle="modal" data-bs-target="#verticalycentered2{{ $etudiant->id }}" wire:click='delete({{ $etudiant->id }})' wire:confirm="Est ce que vous voulez supprimé cet etudiant ?""><i class="fa fa-trash text-danger"></i></a>
                                         </td>
                                     </tr>
                                     @endforeach

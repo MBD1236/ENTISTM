@@ -13,6 +13,7 @@ use App\Http\Controllers\SemestresController;
 use App\Livewire\Scolarite\EtudiantTables;
 use App\Livewire\Scolarite\InscriptionEtudiant;
 use App\Livewire\Scolarite\InscriptionTables;
+use App\Livewire\Scolarite\ReinscriptionEtudiant;
 
 use function Livewire\store;
 use Illuminate\Support\Facades\Route;
@@ -23,9 +24,9 @@ Route::prefix('scolarite')->group(function () {
     Route::get('/', [ScolariteController::class, 'index'])->name('scolarite.dashboard');
     Route::get('/inscription', InscriptionEtudiant::class)->name('scolarite.inscription');
     Route::get('/listeinscritsetreinscrits', InscriptionTables::class)->name('inscriptionetreinscription.index');
-
+    Route::get('/reinscription', ReinscriptionEtudiant::class)->name('scolarite.reinscription');
     // Route::get('/inscription', [ScolariteController::class, 'inscription'])->name('scolarite.inscription');
-    Route::get('/reinscription', [ScolariteController::class, 'reinscription'])->name('scolarite.reinscription');
+    // Route::get('/reinscription', [ScolariteController::class, 'reinscription'])->name('scolarite.reinscription');
     Route::get('/parametre', [ScolariteController::class, 'afficherParametre'])->name('scolarite.parametre');
     // Route::get('/orientation', [ScolariteController::class, 'orientation'])->name('scolarite.orientation');
     Route::get('/etudiants', EtudiantTables::class)->name('scolarite.orientation');

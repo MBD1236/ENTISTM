@@ -45,12 +45,12 @@ class InscriptionTables extends Component
 
                 // Recherche de annee_universitaire
                 $query->orWhereHas('annee_universitaire', function ($query)  {
-                    $query->where('annee_universitaire', 'LIKE', '%' . $this->searchEtudiant . '%');
+                    $query->where('session', 'LIKE', '%' . $this->searchEtudiant . '%');
                 });
 
                 // Recherche de programme
                 $query->orWhereHas('programme', function ($query)  {
-                    $query->where('nom', 'LIKE', "%{$this->searchEtudiant}%");
+                    $query->where('programme', 'LIKE', "%{$this->searchEtudiant}%");
                 });
 
                 // Recherche de niveau
