@@ -6,7 +6,9 @@ use App\Models\Etudiant;
 use App\Models\Inscription;
 use App\Models\Recu;
 use Illuminate\Support\Facades\Storage;
+use Livewire\Attributes\Layout;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class EditInscription extends Component
 {
