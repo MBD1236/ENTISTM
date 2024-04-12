@@ -13,6 +13,7 @@ use App\Models\Recu;
 use Livewire\WithFileUploads;
 use Livewire\Attributes\Layout;
 use Illuminate\Support\Facades\Storage;
+use PhpParser\Node\Stmt\TryCatch;
 
 use function PHPSTORM_META\map;
 
@@ -29,7 +30,7 @@ class InscriptionEtudiant extends Component
     public $inerecherche = '';
 
     public Etudiant $etudiant;
-
+   
     /* les propriétés de la table etudiant */
     public $nom;
     public $prenom;
@@ -51,7 +52,7 @@ class InscriptionEtudiant extends Component
     public $extrait_naissance;
 
     /* les propriétés de la table inscription */
-    public $annee_universitaire_id;
+    public int $annee_universitaire_id;
     public $promotion_id;
     public $niveau_id;
     public $programme_id;
@@ -66,7 +67,7 @@ class InscriptionEtudiant extends Component
      */
     public function rules() {
         return [
-            "etudiant_id" => ["required"],
+            "etudiant_id" => ["required", "unique:inscriptions,etudiant_id"],
             "promotion_id" => ["required"],
             "niveau_id" => ["required"],
             "annee_universitaire_id" => ["required"],
@@ -78,8 +79,8 @@ class InscriptionEtudiant extends Component
             'certificat_medical' => ['required', 'mimes:jpg,jpeg,png,svg,gif,ico,pdf'],
             'extrait_naissance' => ['required', 'mimes:jpg,jpeg,png,gif,svg,ico,pdf'],
             'photo' => ['required', 'image', 'mimes:jpg,jpeg,png,gif,svg', 'max:1024'],
-            'nom_tuteur' => ['required','string', 'min:2'],
-            'telephone_tuteur' => ['required','regex:/^([0-9\s\-\+\(\)]*)$/', 'between:9,18', 'unique:etudiants'],      
+            'nom_tuteur' => ['string', 'min:2'],
+            'telephone_tuteur' => ['regex:/^([0-9\s\-\+\(\)]*)$/', 'between:9,18', 'unique:etudiants'],      
         ];
     }
    
@@ -99,10 +100,8 @@ class InscriptionEtudiant extends Component
      * @return void
      */
     public function init() {
-        $etudiants = Etudiant::where('ine', $this->inerecherche)->get();
-        foreach ($etudiants as $etudiant) {
-            $this->initialisation($etudiant);
-        }
+        $etudiant = Etudiant::where('ine', $this->inerecherche)->first();
+        $this->initialisation($etudiant);
     }
 
     /**
@@ -125,11 +124,11 @@ class InscriptionEtudiant extends Component
         $this->ine= $etudiant->ine;
         $this->pere= $etudiant->pere;
         $this->mere= $etudiant->mere;
-        $this->date_naissance= $etudiant->datenaissance;
-        $this->lieu_naissance= $etudiant->lieunaissance;
+        $this->date_naissance= $etudiant->date_naissance;
+        $this->lieu_naissance= $etudiant->lieu_naissance;
         $this->adresse= $etudiant->adresse;
         $this->nom_tuteur= $etudiant->nom_tuteur;
-        $this->telephone_tuteur= $etudiant->telephonetuteur;
+        $this->telephone_tuteur= $etudiant->telephone_tuteur;
         $this->diplome = $etudiant->diplome;
         $this->releve_notes = $etudiant->releve_notes;
         $this->certificat_nationalite = $etudiant->certificat_nationalite;
@@ -161,12 +160,13 @@ class InscriptionEtudiant extends Component
        NB:Pourquoi j'ai pas directement recuperer l'id parceque si le resultat est vide une erreur se soulevera
        contrairement a la premiere request sur le recu car la regle de validation d'en haut s'assure d'abord
        que le numrecu existe */
+
         if ($verif !== null) {
             $idrecu = $verif->id;
             if ($idrecu !== null) {
                 $this->validate($this->rulesRecu());
             }
-        };
+        }
         Inscription::create([
             'annee_universitaire_id' => $data['annee_universitaire_id'],
             'promotion_id' => $data['promotion_id'],
@@ -176,7 +176,6 @@ class InscriptionEtudiant extends Component
             'recu_id' => $recu,
         ]);
 
-      
                 // Vérifier si l'étudiant existe
         if ($this->etudiant) {
             if ($this->photo) {
@@ -203,6 +202,7 @@ class InscriptionEtudiant extends Component
                 $nouveau_nom = $this->certificat_medical->getClientOriginalName();
                 $data['certificat_medical'] = $this->certificat_medical->storeAs('etudiants/certificat_medical', $nouveau_nom, 'public');
             }
+            
             $this->etudiant->update([
                     'telephone' => $this->telephone,
                     'email' => $this->email,
@@ -219,6 +219,7 @@ class InscriptionEtudiant extends Component
             }
             $this->reset();
             return redirect()->route('inscriptionetreinscription.index')->with('success', 'Inscription effectuée avec succès!');
+            
        
     }
 
@@ -228,9 +229,9 @@ class InscriptionEtudiant extends Component
     {
         return view('livewire.scolarite.inscription-etudiant',[
             'promotions' => Promotion::all(),
-            'niveaux' => Niveau::all(),
+            'niveaux' => Niveau::where('niveau', 'Licence 1')->get(),
             'programmes'=> Programme::all(),
-            'annee_universitaires'=> AnneeUniversitaire::orderBy('created_at','desc')->paginate(5),
+            'annee_universitaires'=> AnneeUniversitaire::latest()->paginate(1),
         ]);
     }
 }

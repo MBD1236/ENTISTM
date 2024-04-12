@@ -2,6 +2,11 @@
     <div class="card-header card-head">
         <h1 class="bg-card text-center text-white card-head"><i class="fa fa-users me-1"></i>Etudiants inscrits & reinscrits</h1>
     </div>
+    @if(session('danger'))
+    <div class="alert alert-danger mt-2">
+        {{session('danger')}}
+    </div>
+    @endif
     <div class="card">
         <div class="card-body">
             <div class="row">
