@@ -160,7 +160,6 @@ class ReinscriptionEtudiant extends Component
         };
         if ($this->annee_universitaire_id === $this->infoEtudiantIns->annee_universitaire_id || $this->niveau_id === $this->infoEtudiantIns->niveau_id){
             return redirect()->route('inscriptionetreinscription.index')->with('success', 'erreur!');
-           
         }
         Inscription::create([
             'annee_universitaire_id' => $this->annee_universitaire_id,
@@ -195,7 +194,6 @@ class ReinscriptionEtudiant extends Component
                 }
                 $this->reset();
                 return redirect()->route('inscriptionetreinscription.index')->with('success', 'Inscription effectuée avec succès!');
-       
     }
 
 

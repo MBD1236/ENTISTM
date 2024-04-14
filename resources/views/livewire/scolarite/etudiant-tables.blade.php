@@ -67,7 +67,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ( $etudiants as $k => $etudiant)
+                                    @forelse ( $etudiants as $k => $etudiant)
                                     <tr>
                                         <th>{{ $k+1 }}</th>
                                         <th>{{ $etudiant->ine }}</th>
@@ -79,11 +79,17 @@
                                         <td>{{ $etudiant->centre}}</td>
                                         <td>{{ $etudiant->programme}}</td>
                                         <td class="text-center">
-                                            <a href=""><i class="fa fa-edit btn-color-primary"></i></a>
+                                            <a href="{{ route('scolarite.etudiant.edit', $etudiant) }}"><i class="fa fa-edit btn-color-primary"></i></a>
                                             <a href="" data-bs-toggle="modal" data-bs-target="#verticalycentered2{{ $etudiant->id }}" wire:click='delete({{ $etudiant->id }})' wire:confirm="Est ce que vous voulez supprimé cet etudiant ?""><i class="fa fa-trash text-danger"></i></a>
                                         </td>
                                     </tr>
-                                    @endforeach
+                                    @empty
+                                    <tr>
+                                        <td colspan="10">
+                                            <div class="alert alert-primary">Aucune donnée ne correspond à cette recherche !</div>
+                                        </td>
+                                    </tr>
+                                    @endforelse
                                 </tbody>
                                 <tfoot>
 
