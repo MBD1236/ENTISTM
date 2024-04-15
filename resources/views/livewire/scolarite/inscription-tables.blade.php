@@ -54,6 +54,7 @@
                                 <td><img width="50px" src="{{asset('storage/'.$inscription->etudiant->photo) }}" alt=""></td>
                                 <td class="text-center">
                                     <a href="{{ route('scolarite.inscription.edit', $inscription) }}"><i class="fa fa-edit btn-color-primary"></i></a>
+                                    <a href="{{ route('scolarite.etudiant.documents', $inscription->etudiant) }}"><i class="fa fa-eye btn-color-primary"></i></a>
                                     <a href="" data-bs-toggle="modal" data-bs-target="#verticalycentered2{{ $inscription->id }}" wire:click='delete({{ $inscription->id }})' wire:confirm="Est ce que vous voulez supprimé cette inscription ?""><i class="fa fa-trash text-danger"></i></a>
                                 </td>
                             </tr>

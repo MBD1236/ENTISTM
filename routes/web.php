@@ -17,6 +17,8 @@ use App\Livewire\Scolarite\InscriptionEtudiant;
 
 use App\Livewire\Scolarite\InscriptionTables;
 use App\Livewire\Scolarite\ReinscriptionEtudiant;
+use App\Livewire\Scolarite\ViewDocuments;
+
 use function Livewire\store;
 use Illuminate\Support\Facades\Route;
 
@@ -30,6 +32,7 @@ Route::prefix('scolarite')->group(function () {
     Route::get('/inscritption/edit/{inscription}', EditInscription::class)->name('scolarite.inscription.edit');
     Route::get('/etudiants', EtudiantTables::class)->name('scolarite.orientation');
     Route::get('/etudiant/edit/{etudiant}', EditEtudiant::class)->name('scolarite.etudiant.edit');
+    Route::get('/etudiant/documents/{etudiant}', ViewDocuments::class)->name('scolarite.etudiant.documents');
 
 
     // Route::get('/inscription', [ScolariteController::class, 'inscription'])->name('scolarite.inscription');
