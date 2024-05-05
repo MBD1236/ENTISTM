@@ -91,15 +91,21 @@ class ReinscriptionEtudiant extends Component
      */
     public function init() {
         $etudiant = Etudiant::where('ine', $this->inerecherche)->first();
-        $this->initialisation($etudiant);
-        $this->infoInscription($etudiant->id);
+        if ($etudiant) {
+            $this->initialisation($etudiant);
+            $this->infoInscription($etudiant->id);
+        }
 
     }
 
     public function infoInscription(int $id) {
-        $this->infoEtudiantIns = Inscription::where('etudiant_id', $id)->first();
-        $this->promotion_id = $this->infoEtudiantIns->promotion_id;
-        $this->programme_id = $this->infoEtudiantIns->programme_id;
+        $a = Inscription::where('etudiant_id', $id)->first() ?? '';
+        
+        if ($a !== '') {
+            $this->infoEtudiantIns = $a;
+            $this->promotion_id = $this->infoEtudiantIns->promotion_id;
+            $this->programme_id = $this->infoEtudiantIns->programme_id;
+        }
     }
 
     /**

@@ -101,7 +101,8 @@ class InscriptionEtudiant extends Component
      */
     public function init() {
         $etudiant = Etudiant::where('ine', $this->inerecherche)->first();
-        $this->initialisation($etudiant);
+        if ($etudiant)
+            $this->initialisation($etudiant);
     }
 
     /**
