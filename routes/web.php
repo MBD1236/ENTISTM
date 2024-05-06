@@ -10,15 +10,21 @@ use App\Http\Controllers\ProgrammesetudesController;
 use App\Http\Controllers\PromotionController;
 use App\Http\Controllers\ScolariteController;
 use App\Http\Controllers\SemestresController;
+use App\Livewire\Departements\GenieInformatique\EnregistrementNote;
+use App\Livewire\Departements\GenieInformatique\GiEnseignantsTables;
+use App\Livewire\Departements\GenieInformatique\GiEtudiantsTables;
+use App\Livewire\Departements\GenieInformatique\GiInscriptionsTables;
+
+use App\Livewire\Departements\GenieInformatique\GiMatieresTables;
+use App\Livewire\Departements\GenieInformatique\GiProgrammeCoursTables;
 use App\Livewire\Scolarite\EditEtudiant;
+
 use App\Livewire\Scolarite\EditInscription;
 use App\Livewire\Scolarite\EtudiantTables;
 use App\Livewire\Scolarite\InscriptionEtudiant;
-
 use App\Livewire\Scolarite\InscriptionTables;
 use App\Livewire\Scolarite\ReinscriptionEtudiant;
 use App\Livewire\Scolarite\ViewDocuments;
-
 use function Livewire\store;
 use Illuminate\Support\Facades\Route;
 
@@ -108,6 +114,27 @@ Route::prefix('etudes')->group(function () {
 
 
 Route::get('/enseignants', [EnseignantsController::class, 'index'])->name('enseignant.dashboard');
+
+/* Routes des interfaces des departements */
+Route::prefix('genieinfo')->name("genieinfo.")->group(function(){
+    Route::get("/etudiants", GiEtudiantsTables::class)->name('etudiants');
+    Route::get("/matieres", GiMatieresTables::class)->name('matieres');
+    // Route::get('/pdf', [DepartementController::class, 'pdf'])->name('pdf');
+    Route::get("/enseignants", GiEnseignantsTables::class)->name('enseignants');
+    Route::get("/enseigners", GiProgrammeCoursTables::class)->name('enseigners');
+    Route::get("/inscriptions", GiInscriptionsTables::class)->name('inscriptions');
+    Route::get('/notes', EnregistrementNote::class)->name('notes');
+
+
+    // route pour emploi
+    // Route::get('/emploi-temps', GiEmploisTables::class)->name('emploi-temps');
+    // Route::post('upload', [EmploiController::class, 'upload'])->name('upload');
+    // Route::get('/emploi', CreateEmplois::class)->name('etudiant.emploi');
+
+});
+
+
+
 
 Route::get('/', function () {
     return view('welcome');
