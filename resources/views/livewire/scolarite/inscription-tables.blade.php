@@ -44,7 +44,7 @@
                             @forelse ($inscriptions as $k => $inscription)
                             <tr>
                                 <th>{{ $k+1 }}</th>
-                                <td>{{ $inscription->etudiant->ine}}</td>
+                                <th>{{ $inscription->etudiant->ine}}</th>
                                 <td>{{ $inscription->etudiant->prenom}}</td>
                                 <td>{{ $inscription->etudiant->nom}}</td>
                                 <td>{{ $inscription->programme->departement->departement}}</td>

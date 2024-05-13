@@ -320,7 +320,7 @@
                       </a>
                   </li>
                   <li>
-                      <a href="">
+                      <a href="{{ route('genieinfo.notes.matiere') }}">
                           <i class="bi bi-circle"></i><span>Note par matiere</span>
                       </a>
                   </li>
