@@ -119,10 +119,14 @@
                         </div>
                         <div class="col-md-4 form-floating">
                             <div class="form-floating">
-                                <select class="form-select border-input @error('promotion_id') is-invalid @enderror" wire:model="promotion_id" id="promotion_id" wire:click='clearStatus'>
+                                <select class="form-select border-input @error('promotion_id') is-invalid @enderror" wire:model="promotion_id" id="promotion_id" wire:click='clearStatus' disabled>
                                     <option value="">Sélectioner une promotion</option>
                                     @foreach ($promotions as $promotion)
-                                        <option value="{{ $promotion->id }}" wire:key="{{ $promotion->id }}">{{ $promotion->promotion }}</option>
+                                        @if($this->inerecherche !== '' && $etudiant)
+                                            <option @selected($infoEtudiantIns->promotion_id == $promotion->id) value="{{ $promotion->id }}" wire:key="{{ $promotion->id }}">{{ $promotion->promotion }}</option>
+                                        @else
+                                            <option value="{{ $promotion->id }}" wire:key="{{ $promotion->id }}">{{ $promotion->promotion }}</option>
+                                        @endif
                                     @endforeach
                                 </select>
                                 <label for="floatingpromotion" class="label-control label-text">Promotion</label>
@@ -145,10 +149,14 @@
                         </div>
                         <div class="col-md-8 form-floating">
                             <div class="form-floating">
-                                <select class="form-select border-input @error('programme_id') is-invalid @enderror" wire:model="programme_id" id="programme_id" wire:click='clearStatus'>
+                                <select class="form-select border-input @error('programme_id') is-invalid @enderror" wire:model="programme_id" id="programme_id" wire:click='clearStatus' disabled>
                                     <option value="0">Sélectioner un programme</option>
                                     @foreach ($programmes as $programme)
-                                        <option value="{{ $programme->id }}" wire:key="{{ $programme->id }}">{{ $programme->programme }}</option>
+                                        @if ($this->inerecherche !== '' && $etudiant)
+                                            <option @selected($infoEtudiantIns->programme_id == $programme->id) value="{{ $infoEtudiantIns->programme_id }}" wire:key="{{ $infoEtudiantIns->programme_id }}">{{ $infoEtudiantIns->programme->programme }}</option>
+                                        @else
+                                            <option value="{{ $programme->id }}" wire:key="{{ $programme->id }}">{{ $programme->programme }}</option>
+                                        @endif
                                     @endforeach
                                 </select>
                                 <label for="floatingprogramme" class="label-control label-text">Programme</label>

@@ -4,17 +4,16 @@
     </div>
     <div class="card">
         <div class="card-body">
+            <div class="">
+                @if(session()->has('success'))
+                    <div class="alert alert-success bg-success text-light border-0 alert-dismissible fade show" role="alert">
+                        <h5 class="text-center">{{ session('success') }}</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        <i class="fa fa-check icon-deleted text-white"></i>
+                    </div>
+                @endif
+            </div>
             <div class="row">
-                <div class="col-md-6">
-                    @if(session()->has('success'))
-                        <div class="alert alert-success bg-success text-light border-0 alert-dismissible fade show" role="alert">
-                            <h5 class="text-center">{{ session('success') }}</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                            <i class="fa fa-check icon-deleted text-white"></i>
-                        </div>
-                    @endif
-                </div>
-               
                 <div class="row">
                     <h4 class="label-text"><i class="fa fa-filter me-1"></i>Filtrer la liste</h4>
                     <div class="col-md-3">
@@ -54,13 +53,14 @@
                                 <td>{{ $inscription->annee_universitaire->session}}</td>
                                 <td><img width="50px" src="{{asset('storage/'.$inscription->etudiant->photo) }}" alt=""></td>
                                 <td class="text-center">
-                                    <a href=""><i class="fa fa-edit btn-color-primary"></i></a>
+                                    <a href="{{ route('scolarite.inscription.edit', $inscription) }}"><i class="fa fa-edit btn-color-primary"></i></a>
+                                    <a href="{{ route('scolarite.etudiant.documents', $inscription->etudiant) }}"><i class="fa fa-eye btn-color-primary"></i></a>
                                     <a href="" data-bs-toggle="modal" data-bs-target="#verticalycentered2{{ $inscription->id }}" wire:click='delete({{ $inscription->id }})' wire:confirm="Est ce que vous voulez supprimé cette inscription ?""><i class="fa fa-trash text-danger"></i></a>
                                 </td>
                             </tr>
                             @empty
                             <tr>
-                                <td colspan="9">
+                                <td colspan="10">
                                     <div class="alert alert-primary">Aucune donnée ne correspond à cette recherche !</div>
                                 </td>
                             </tr>

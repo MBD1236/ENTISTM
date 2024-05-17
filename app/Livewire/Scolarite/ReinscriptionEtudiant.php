@@ -9,10 +9,13 @@ use App\Models\Niveau;
 use App\Models\Programme;
 use App\Models\Promotion;
 use App\Models\Recu;
+use Exception;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+
+use function PHPUnit\Framework\throwException;
 
 class ReinscriptionEtudiant extends Component
 {
@@ -26,6 +29,7 @@ class ReinscriptionEtudiant extends Component
     public $inerecherche = '';
 
     public Etudiant $etudiant;
+    public Inscription $infoEtudiantIns;
 
     /* les propriétés de la table etudiant */
     public $nom;
@@ -43,13 +47,16 @@ class ReinscriptionEtudiant extends Component
     public $pere;
 
     /* les propriétés de la table inscription */
-    public $annee_universitaire_id;
+    public int $annee_universitaire_id;
     public $promotion_id;
-    public $niveau_id;
+    public int $niveau_id;
     public $programme_id;
     public $etudiant_id;
     public $recu_id;
 
+
+   
+   
 
     /**
      * rules : les règles de validations
@@ -75,6 +82,7 @@ class ReinscriptionEtudiant extends Component
         ];
     }
 
+    
     /**
      * init: à l'inscription d'un etudiant on le recherche d'abord par son ine,
      * ensuite on charge ses informations grâce à la méthode initialisation()
@@ -82,10 +90,16 @@ class ReinscriptionEtudiant extends Component
      * @return void
      */
     public function init() {
-        $etudiants = Etudiant::where('ine', $this->inerecherche)->get();
-        foreach ($etudiants as $etudiant) {
-            $this->initialisation($etudiant);
-        }
+        $etudiant = Etudiant::where('ine', $this->inerecherche)->first();
+        $this->initialisation($etudiant);
+        $this->infoInscription($etudiant->id);
+
+    }
+
+    public function infoInscription(int $id) {
+        $this->infoEtudiantIns = Inscription::where('etudiant_id', $id)->first();
+        $this->promotion_id = $this->infoEtudiantIns->promotion_id;
+        $this->programme_id = $this->infoEtudiantIns->programme_id;
     }
 
     /**
@@ -108,11 +122,11 @@ class ReinscriptionEtudiant extends Component
         $this->ine= $etudiant->ine;
         $this->pere= $etudiant->pere;
         $this->mere= $etudiant->mere;
-        $this->date_naissance= $etudiant->datenaissance;
-        $this->lieu_naissance= $etudiant->lieunaissance;
+        $this->date_naissance= $etudiant->date_naissance;
+        $this->lieu_naissance= $etudiant->lieu_naissance;
         $this->adresse= $etudiant->adresse;
-        $this->nom_tuteur= $etudiant->nomtuteur;
-        $this->telephone_tuteur= $etudiant->telephonetuteur;
+        $this->nom_tuteur= $etudiant->nom_tuteur;
+        $this->telephone_tuteur= $etudiant->telephone_tuteur;
 
     }
 
@@ -144,6 +158,9 @@ class ReinscriptionEtudiant extends Component
                 $this->validate($this->rulesRecu());
             }
         };
+        if ($this->annee_universitaire_id === $this->infoEtudiantIns->annee_universitaire_id || $this->niveau_id === $this->infoEtudiantIns->niveau_id){
+            return redirect()->route('inscriptionetreinscription.index')->with('success', 'erreur!');
+        }
         Inscription::create([
             'annee_universitaire_id' => $this->annee_universitaire_id,
             'promotion_id' => $this->promotion_id,
@@ -177,7 +194,6 @@ class ReinscriptionEtudiant extends Component
                 }
                 $this->reset();
                 return redirect()->route('inscriptionetreinscription.index')->with('success', 'Inscription effectuée avec succès!');
-       
     }
 
 

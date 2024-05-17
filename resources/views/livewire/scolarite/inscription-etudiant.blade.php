@@ -9,17 +9,6 @@
     <div class="card-header card-head">
         <h1 class="bg-card text-center text-white card-head"><i class="fa fa-graduation-cap me-1"></i>Inscription des étudiants</h1>
     </div>
-    <div class="row">
-        <div class="col-md-6">
-            @if(session()->has('success'))
-                <div class="alert alert-success bg-success text-light border-0 alert-dismissible fade show" role="alert">
-                    <h5 class="text-center">{{ session('success') }}</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    <i class="fa fa-check icon-deleted text-white"></i>
-                </div>
-            @endif
-        </div>
-    </div>
     <div class="card">
         <div class="card-body">
           <!-- Début de notre Switch -->
@@ -84,7 +73,7 @@
                                         </div>
                                         <div class="col-md-4 form-floating">
                                             <div class="form-floating">
-                                                <input class="form-control border-input" type="date" wire:model.defer="date_naissance" id="floatingdatenaissance" placeholder="Date Naissance" disabled>
+                                                <input class="form-control border-input"  type="date" wire:model.defer="date_naissance" id="floatingdatenaissance" placeholder="Date Naissance" disabled>
                                                 <label for="floatingdatenaissance" class="label-control label-text">Date Naissance</label>
                                             </div>
                                         </div>

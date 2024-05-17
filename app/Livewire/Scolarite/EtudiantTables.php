@@ -4,6 +4,7 @@ namespace App\Livewire\Scolarite;
 
 use App\Imports\EtudiantImport;
 use App\Models\Etudiant;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -81,6 +82,25 @@ class EtudiantTables extends Component
      * @return void
      */
     public function delete(Etudiant $etudiant) {
+        if ($etudiant->photo) {
+            Storage::disk('public')->delete($etudiant->photo);
+        }
+        if ($etudiant->diplome) {
+            Storage::disk('public')->delete($etudiant->diplome);
+        }
+        if ($etudiant->releve_notes) {
+            Storage::disk('public')->delete($etudiant->releve_notes);
+        }
+        if ($etudiant->certificat_medical) {
+            Storage::disk('public')->delete($etudiant->certificat_medical);
+        }
+        if ($etudiant->certificat_nationalite) {
+            Storage::disk('public')->delete($etudiant->certificat_nationalite);
+        }
+        if ($etudiant->extrait_naissance) {
+            Storage::disk('public')->delete($etudiant->extrait_naissance);
+        }
+
         $etudiant->delete();
         session()->flash('success', 'Suppression effectuée avec succès!');
     }
