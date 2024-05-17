@@ -18,49 +18,50 @@
         </thead>
         <tbody>
             <tr>
-                <td class="text-center">{{ $etudiant->nom }}</td>
-                <td class="text-center">{{ $etudiant->prenom }}</td>
-                <td class="text-center">{{ $etudiant->ine }}</td>  
+                <td class="text-center fw-bold">{{ $etudiant->nom }}</td>
+                <td class="text-center fw-bold">{{ $etudiant->prenom }}</td>
+                <td class="text-center fw-bold">{{ $etudiant->ine }}</td>  
                 <td class="text-center"> 
                     @if($diplomeVisible)
-                        <button wire:click="toggleDiplomeVisibility">Fermer</button>
+                    <button title="Fermer" wire:click="toggleDiplomeVisibility" class="btn-modal" style="height:30px; width:40px; text-align:center; padding:0px 5px 0px 5px"><i class="fa fa-close  fs-5"></i></button>
                     @else
-                        <button wire:click="toggleDiplomeVisibility">Voir Diplôme</button>
+                    <button title="Afficher le diplôme" wire:click="toggleDiplomeVisibility" class="btn-modal" style="height:30px; width:40px; text-align:center; padding:0px 5px 0px 5px"><i class="fa fa-eye  fs-5"></i></button>
+
                     @endif
                 </td>
                 <td class="text-center"> 
                     @if($relevenotesVisible)
-                        <button wire:click="toggleReleveNotesVisibility">Fermer</button>
+                        <button title="Fermer" wire:click="toggleReleveNotesVisibility" class="btn-modal" style="height:30px; width:40px; text-align:center; padding:0px 5px 0px 5px"><i class="fa fa-close  fs-5"></i></button>
                     @else
-                        <button wire:click="toggleReleveNotesVisibility">Voir RN</button>
+                        <button title="Afficher le releve de note du bac" wire:click="toggleReleveNotesVisibility" class="btn-modal" style="height:30px; width:40px; text-align:center; padding:0px 5px 0px 5px"><i class="fa fa-eye  fs-5"></i></button>
                     @endif
                 </td>
                 <td class="text-center"> 
                     @if($certificatnationaliteVisible)
-                        <button wire:click="toggleCertificatNationaliteVisibility">Fermer</button>
+                        <button title="Fermer" wire:click="toggleCertificatNationaliteVisibility" class="btn-modal" style="height:30px; width:40px; text-align:center; padding:0px 5px 0px 5px"><i class="fa fa-close  fs-5"></i></button>
                     @else
-                        <button wire:click="toggleCertificatNationaliteVisibility">Voir CN</button>
+                        <button title="Afficher le certificat de nationalite" wire:click="toggleCertificatNationaliteVisibility" class="btn-modal" style="height:30px; width:40px; text-align:center; padding:0px 5px 0px 5px"><i class="fa fa-eye  fs-5"></i></button>
                     @endif
                 </td>
                 <td class="text-center"> 
                     @if($certificatmedicalVisible)
-                        <button wire:click="toggleCertificatMedicalVisibility">Fermer</button>
+                        <button title="Fermer" wire:click="toggleCertificatMedicalVisibility" class="btn-modal" style="height:30px; width:40px; text-align:center; padding:0px 5px 0px 5px"><i class="fa fa-close  fs-5"></i></button>
                     @else
-                        <button wire:click="toggleCertificatMedicalVisibility">Voir CM</button>
+                        <button title="Afficher le certificat medical" wire:click="toggleCertificatMedicalVisibility" class="btn-modal" style="height:30px; width:40px; text-align:center; padding:0px 5px 0px 5px"><i class="fa fa-eye fs-5"></i></button>
                     @endif
                 </td>
                 <td class="text-center"> 
                     @if($extraitnaissanceVisible)
-                        <button wire:click="toggleExtraitNaissanceVisibility">Fermer</button>
+                        <button title="Fermer" wire:click="toggleExtraitNaissanceVisibility" class="btn-modal" style="height:30px; width:40px; text-align:center; padding:0px 5px 0px 5px"><i class="fa fa-close  fs-5"></i></button>
                     @else
-                        <button wire:click="toggleExtraitNaissanceVisibility">Voir EN</button>
+                        <button title="Afficher l'extrait de naissance" wire:click="toggleExtraitNaissanceVisibility" class="btn-modal" style="height:30px; width:40px; text-align:center; padding:0px 5px 0px 5px"><i class="fa fa-eye  fs-5"></i></button>
                     @endif
                 </td>
                 <td class="text-center"> 
                     @if($photoVisible)
-                        <button wire:click="togglephotoVisibility">Fermer</button>
+                        <button title="Fermer" wire:click="togglephotoVisibility" class="btn-modal" style="height:30px; width:40px; text-align:center; padding:0px 5px 0px 5px"><i class="fa fa-close  fs-5"></i></button>
                     @else
-                        <button wire:click="togglephotoVisibility">Voir Photo</button>
+                        <button title="Afficher la photo" wire:click="togglephotoVisibility" class="btn-modal" style="height:30px; width:40px; text-align:center; padding:0px 5px 0px 5px"><i class="fa fa-eye  fs-5"></i></button>
                     @endif
                 </td>
             </tr>

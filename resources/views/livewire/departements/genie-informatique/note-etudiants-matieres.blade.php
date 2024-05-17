@@ -35,44 +35,46 @@
 
         </form>
 
-        <div class="table-responsive-sm">
-            <table id="tableau" class="table table-hover table-centered table-bordered mb-0 mt-4">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>INE</th>
-                        <th>Nom</th>
-                        <th>Prénom</th>
-                        <th>Matière</th>
-                        <th>Note 1</th>
-                        <th>Note 2</th>
-                        <th>Note 3</th>
-                        <th>Moyenne Générale</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @forelse ($notes as $k => $note)
-                        <tr wire:key="{{ $note->id }}">
-                            <th>{{ $k+1 }}</th>
-                            <th>{{ $note->inscription->etudiant->ine}}</th>
-                            <td>{{ $note->inscription->etudiant->nom}}</td>
-                            <td>{{ $note->inscription->etudiant->prenom}}</td>
-                            <td>{{ $note->matiere->matiere}}</td>
-                            <td>{{ $note->note1}}</td>
-                            <td>{{ $note->note2}}</td>
-                            <td>{{ $note->note3}}</td>
-                            <td>{{ $note->moyenne_generale}}</td>
-                        </tr>
-                    @empty
+       <div class="card-body">
+            <div class="table-responsive-sm">
+                <table id="tableau" class="table table-hover table-centered table-bordered mb-0 mt-4">
+                    <thead>
                         <tr>
-                           <td colspan="9">
-                                <div class="alert alert-info text-center fw-bold">Aucune donnée ne correspond à cette recherche !</div>
-                           </td>
+                            <th>#</th>
+                            <th>INE</th>
+                            <th>Nom</th>
+                            <th>Prénom</th>
+                            <th>Matière</th>
+                            <th>Note 1</th>
+                            <th>Note 2</th>
+                            <th>Note 3</th>
+                            <th>Moyenne Générale</th>
                         </tr>
-                    @endforelse
-                </tbody>
-            </table>
-        </div>
+                    </thead>
+                    <tbody>
+                        @forelse ($notes as $k => $note)
+                            <tr wire:key="{{ $note->id }}">
+                                <td class="fw-bold">{{ $k+1 }}</th>
+                                <td class="fw-bold">{{ $note->inscription->etudiant->ine}}</th>
+                                <td>{{ $note->inscription->etudiant->nom}}</td>
+                                <td>{{ $note->inscription->etudiant->prenom}}</td>
+                                <td>{{ $note->matiere->matiere}}</td>
+                                <td>{{ $note->note1}}</td>
+                                <td>{{ $note->note2}}</td>
+                                <td>{{ $note->note3}}</td>
+                                <td class="fw-bold">{{ $note->moyenne_generale}}</td>
+                            </tr>
+                        @empty
+                            <tr>
+                            <td colspan="9">
+                                    <div class="alert alert-info text-center fw-bold">Aucune donnée à afficher !</div>
+                            </td>
+                            </tr>
+                        @endforelse
+                    </tbody>
+                </table>
+            </div>
+       </div>
     </div>
 
 </div>

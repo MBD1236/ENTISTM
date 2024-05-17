@@ -16,18 +16,20 @@ class NoteEtudiantsMatieres extends Component
     public $notes = [];
 
     public function afficherNotes() {
-        $this->notes = Note::where('matiere_id', $this->matiere_id)
-                ->where(function ($e) {
-                    $e->orWhereHas('inscription', function ($e) {
-                        $e->where('niveau_id', 'LIKE', "%{$this->niveau_id}%");
-                    });
-                    $e->orWhereHas('inscription', function ($e) {
-                        $e->orWhereHas('promotion', function($e) {
-                            $e->where('promotion', 'LIKE', "%{$this->promotion}%");
+        if (!empty($this->matiere_id) && !empty($this->niveau_id)) {
+            $this->notes = Note::where('matiere_id', $this->matiere_id)
+                    ->where(function ($e) {
+                        $e->orWhereHas('inscription', function ($e) {
+                            $e->where('niveau_id', 'LIKE', "%{$this->niveau_id}%");
                         });
-                    });
-                })
-                ->get();
+                        $e->orWhereHas('inscription', function ($e) {
+                            $e->orWhereHas('promotion', function($e) {
+                                $e->where('promotion', 'LIKE', "%{$this->promotion}%");
+                            });
+                        });
+                    })
+                    ->get();
+        }
     }
 
 

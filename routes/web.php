@@ -18,6 +18,7 @@ use App\Livewire\Departements\GenieInformatique\GiInscriptionsTables;
 use App\Livewire\Departements\GenieInformatique\GiMatieresTables;
 use App\Livewire\Departements\GenieInformatique\GiProgrammeCoursTables;
 use App\Livewire\Departements\GenieInformatique\NoteEtudiantsMatieres;
+use App\Livewire\Departements\GenieInformatique\NotesEtudiantsSemestre;
 use App\Livewire\Scolarite\EditEtudiant;
 
 use App\Livewire\Scolarite\EditInscription;
@@ -126,6 +127,7 @@ Route::prefix('genieinfo')->name("genieinfo.")->group(function(){
     Route::get("/inscriptions", GiInscriptionsTables::class)->name('inscriptions');
     Route::get('/notes', EnregistrementNote::class)->name('notes');
     Route::get('/notes/matiere', NoteEtudiantsMatieres::class)->name('notes.matiere');
+    Route::get('/notes/semestre', NotesEtudiantsSemestre::class)->name('notes.semestre');
 
 
     // route pour emploi

@@ -325,8 +325,8 @@
                       </a>
                   </li>
                    <li>
-                      <a href="">
-                          <i class="bi bi-circle"></i><span>Note semestrielle</span>
+                      <a href="{{ route('genieinfo.notes.semestre') }}">
+                          <i class="bi bi-circle"></i><span>Notes semestrielles</span>
                       </a>
                   </li>
               </ul>
