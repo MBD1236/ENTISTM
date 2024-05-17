@@ -1,11 +1,216 @@
 :root {
   scroll-behavior: smooth;
 }
+
 body {
   font-family: "Open Sans", sans-serif;
   background: #f6f9ff;
   color: #0000;
 }
+
+
+
+
+
+
+/* impression */
+.btnprn  {
+  color: blue;
+  padding: 20px 40px;
+}
+
+.parti2{
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+}
+
+.ist {
+  border-radius: 0px 0px 20px 20px;
+}
+
+.info{
+  font-size: 13px;
+}
+.link {
+  border-radius: 20px 20px 0px 0px;
+  font-size: 11px;
+}
+
+.photo {
+  border-radius: 0px 10px 0px 10px;
+}
+
+.qrcode {
+  border-radius: 10px 0px 10px 0px;
+}
+.year {
+  font-size: 11px;
+}
+.devise {
+  font-size: 11px;
+  margin-top: 0;
+}
+
+/* attestation */
+.scolarite {
+  margin-right : 90px;
+}
+
+.ref {
+  margin-top: -10px;
+}
+
+.mesrsi {
+  font-size: 1.1em;
+}
+
+.attestion-footer {
+  font-size: 0.8em;
+}
+
+.contenu {
+  line-height: 25px;
+}
+/* emploi  */
+.options {
+  font-family:sans-serif;
+}
+
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: 'century Gothic';
+}
+
+html {
+  font-family: 'century Gothic';
+  font-size: 15px;
+  background: #f6f9ff;
+  color: #444444;
+}
+
+
+.h{
+  display: flex;
+  flex-direction: row;
+ 
+  display: block;
+  
+}
+
+/* pour matiere */
+.licence a {
+  border: 1px solid rgb(9, 10, 24);
+  color: white;
+}
+
+.licence a:hover{
+  border: 2px solid rgb(255, 255, 255);
+  color: white;
+  background: rgb(0, 68, 136);
+}
+
+/* pagetitle */
+.surete {
+  color: blue;
+}
+.surete:hover {
+  background: blue;
+  color: white;
+  padding: 9px;
+}
+
+
+/* pour l'emplois de temps */
+.emplois button:hover{
+  background: rgb(22, 22, 68);
+  color: white;
+}
+
+/* search boutton */
+.bntSearch {
+  margin-left: -30px;
+  margin-top: 8px;
+}
+
+/* liens */
+.lien-a a{
+  font-size: 13px !important;
+}
+
+a {
+  color: #4154f1;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #717ff5;
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Yu Gothic", sans-serif;
+}
+
+
+
+/* thd */
+.cprimary {
+  color: #012970;
+  font-size: 21px;
+}
+
+.cdanger {
+  color: rgb(220, 53, 69);
+  font-size: 21px;
+}
+
+.btn-afficher {
+  padding: 7px 30px !important;
+  color: #18d26e;
+}
+
+.non:hover {
+  background: #0b773d;
+}
+
+.non {
+  background: #012970;
+}
+
+
+
+.modal-header {
+  background: #012970;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  
+  background: #f6f9ff;
+  color: #0000;
+}
+
+/* fin */
 *{
     font-family: 'century Gothic';
 }
@@ -57,6 +262,7 @@ h6 {
   font-weight: 600;
   color: #012970;
 }
+
 
 /*--------------------------------------------------------------
 # Back to top button
@@ -1231,7 +1437,7 @@ h6 {
     font-weight: bold;
     text-transform: uppercase;
 }
-..sidebar-nav .nav-link{
+.sidebar-nav .nav-link{
     background-color: #012970;
 }
 .navbar-text-color{

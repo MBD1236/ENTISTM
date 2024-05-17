@@ -42,14 +42,11 @@ class PromotionController extends Controller
         return redirect()->route('promotion.edit', compact('promotion'))->with('info', 'Modification effectuée avec succès !');
     }
 
-    public function delete (Promotion $promotion) : RedirectResponse
+    public function delete(Promotion $promotion) : RedirectResponse
     {
         try {
-
             $promotion->delete();
-
             return redirect()->route('scolarite.parametre')->with('info', 'La promotion a été supprimée avec succès !');
-
         } catch (Exception $e) {
             dd($e);
         }

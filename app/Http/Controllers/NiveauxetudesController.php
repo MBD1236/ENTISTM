@@ -13,7 +13,7 @@ class NiveauxetudesController extends Controller
 {
     public function index (Niveau $niveau) : View
     {
-        $Niveaux = Niveau::paginate(10);
+        $Niveaux = Niveau::orderBy('created_at', 'desc')->paginate(10);
 
         return view('etudes.parametres.parametre', compact('niveaux'));
     }
