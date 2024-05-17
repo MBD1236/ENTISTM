@@ -14,19 +14,22 @@ use App\Http\Controllers\ProgrammesetudesController;
 use App\Http\Controllers\PromotionController;
 use App\Http\Controllers\ScolariteController;
 use App\Http\Controllers\SemestresController;
-use App\Livewire\Scolarite\EditEtudiant;
-
-use App\Livewire\Scolarite\EditInscription;
-=======
 use App\Http\Controllers\ServiceController;
->>>>>>> Stashed changes
+use App\Livewire\Departements\GenieInformatique\EnregistrementNote;
+use App\Livewire\Departements\GenieInformatique\GiEnseignantsTables;
+use App\Livewire\Departements\GenieInformatique\GiEtudiantsTables;
+use App\Livewire\Departements\GenieInformatique\GiInscriptionsTables;
+use App\Livewire\Departements\GenieInformatique\GiMatieresTables;
+use App\Livewire\Departements\GenieInformatique\GiProgrammeCoursTables;
+use App\Livewire\Departements\GenieInformatique\NoteEtudiantsMatieres;
+use App\Livewire\Departements\GenieInformatique\NotesEtudiantsSemestre;
+use App\Livewire\Scolarite\EditEtudiant;
+use App\Livewire\Scolarite\EditInscription;
 use App\Livewire\Scolarite\EtudiantTables;
 use App\Livewire\Scolarite\InscriptionEtudiant;
 use App\Livewire\Scolarite\InscriptionTables;
 use App\Livewire\Scolarite\ReinscriptionEtudiant;
-<<<<<<< Updated upstream
 use App\Livewire\Scolarite\ViewDocuments;
-
 use function Livewire\store;
 use Illuminate\Support\Facades\Route;
 
