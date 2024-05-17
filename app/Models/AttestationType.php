@@ -5,15 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class AnneeUniversitaire extends Model
+class AttestationType extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'session'
+        "type",
     ];
 
-    public function attestations() {
+    public function attestations()
+    {
         return $this->hasMany(Attestation::class);
     }
 }

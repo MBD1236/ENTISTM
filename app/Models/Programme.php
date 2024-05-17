@@ -20,4 +20,8 @@ class Programme extends Model
     public function inscriptions() {
         return $this->hasMany(Inscription::class);
     }
+
+    public function attestations() {
+        return $this->hasMany(Attestation::class);
+    }
 }

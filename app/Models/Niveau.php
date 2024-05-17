@@ -10,4 +10,8 @@ class Niveau extends Model
     use HasFactory;
 
     protected $fillable = ['niveau'];
+
+    public function attestations() {
+        return $this->hasMany(Attestation::class);
+    }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Etudiant;
 use App\Models\Semestre;
 use App\Models\AnneeUniversitaire;
+use App\Models\AttestationType;
 use App\Models\Promotion;
 use App\Models\Recu;
 use Illuminate\Http\Request;
@@ -29,15 +30,14 @@ class ScolariteController extends Controller
 
     public function afficherParametre (AnneeUniversitaire $anneeUniv, Promotion $promotion, Semestre $semestre) : View
     {
+        $anneeUnivs = AnneeUniversitaire::orderBy('created_at', 'desc')->paginate(5);
+        $promotions = Promotion::orderBy('created_at', 'desc')->paginate(5);
+        $semestres = Semestre::orderBy('created_at', 'desc')->paginate(5);
+        $attestationTypes = AttestationType::orderBy('created_at', 'desc')->paginate(5);
 
-
-
-        $anneeUnivs = AnneeUniversitaire::paginate(5);
-        $promotions = Promotion::paginate(5);
-        $semestres = Semestre::paginate(5);
-
-        return view('scolarite.parametres.parametre', compact('anneeUnivs', 'promotions', 'semestres'));
+        return view('scolarite.parametres.parametre', compact('anneeUnivs', 'promotions', 'semestres', 'attestationTypes'));
     }
+
 
     public function orientation () : View
     {

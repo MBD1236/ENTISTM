@@ -17,26 +17,49 @@
                     @endif
                 </div>
                 <div class="col-md-3"></div>
+
             </div>
+            {{-- message d'erreur ou de success --}}
+            <div class="row px-4">
+                @if(session('success'))
+                    <div class="alert alert-success">
+                        {{session('success')}}
+                    </div>
+                @endif
+                @if(session('danger'))
+                    <div class="alert alert-danger">
+                        {{session('danger')}}
+                    </div>
+                @endif
+            </div>           
+            {{-- fin --}}
             <div class="row">
-                <div class="col-md-4 bg-card-button">
+                <div class="col-md-3 bg-card-button">
                     <a class="bg-card-button-a" data-bs-toggle="modal" data-bs-target="#smallModal1">
                         <h4 class="text-center bg-card-button-a"><i class="fa fa-calendar"></i><br>Sessions</h4>
                     </a>
                 </div>
-                <div class="col-md-4 bg-card-button">
+                <div class="col-md-3 bg-card-button">
                     <a class="bg-card-button-a" data-bs-toggle="modal" data-bs-target="#smallModal2">
                         <h4 class="text-center bg-card-button-a"><i class="fa fa-graduation-cap"></i><br>Promotions</h4>
                     </a>
                 </div>
-                <div class="col-md-4 bg-card-button">
+                <div class="col-md-3 bg-card-button">
                     <a class="bg-card-button-a" data-bs-toggle="modal" data-bs-target="#smallModal3">
                         <h4 class="text-center bg-card-button-a"><i class="fa fa-clone"></i><br>Semestres</h4>
                     </a>
                 </div>
+                <div class="col-md-3 bg-card-button px-1">
+                    <a class="bg-card-button-a" data-bs-toggle="modal" data-bs-target="#smallModal4">
+                        <h5 class="text-center bg-card-button-a d-flex flex-column gap-2 p-0">
+                            <i class="bi bi-layout-text-window-reverse"></i>
+                            <span>Type d'attestation</span>
+                        </h5>
+                    </a>
+                </div>
             </div>
             <div class="row mt-2">
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <table class="table table-bordered">
                         <thead>
                             <tr>
@@ -64,7 +87,7 @@
                         </footer>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <table class="table table-bordered">
                         <thead>
                             <tr>
@@ -92,7 +115,7 @@
                         </footer>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <table class="table table-bordered">
                         <thead>
                             <tr>
@@ -120,13 +143,41 @@
                         </footer>
                     </div>
                 </div>
+                <div class="col-md-3">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th class="text-center bg-light">Type d'attestation</th>
+                                <th class="text-center bg-light">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @forelse ($attestationTypes as $attestationType)
+                                <tr>
+                                    <td class="">{{ ucwords(strtolower($attestationType->type)) }}</td>
+                                    <td class="text-center">
+                                        <a href="{{ route('attestationType.edit', $attestationType->id) }}"><i class="fa fa-edit btn-color-primary"></i></a>
+                                        <a href="{{ route('attestationType.destroy', $attestationType->id) }}" data-bs-toggle="modal" data-bs-target="#verticalycentered4{{ $attestationType->id }}"><i class="fa fa-trash text-danger"></i></a>
+                                    </td>
+                                </tr>
+                            @empty
+                                <td colspan="2" class="text-center"><p class="">Aucun type attestation !</p></td>
+                            @endforelse
+                        </tbody>
+                    </table>
+                    <div>
+                        <footer class="card-footer">
+                            {{ $attestationTypes->links() }}
+                        </footer>
+                    </div>
+                </div>
             </div>
             <!-- Ajout sesion -->
             <div class="modal fade" id="smallModal1" tabindex="-1">
                 <div class="modal-dialog modal-sm">
-                    <div class="modal-content">
+                    <div class="modal-content row">
                         <div class="modal-header bg-card-modal">
-                            <h3 class="modal-title">Ajout d'une session</h3>
+                            <h4 class="modal-title">Ajout d'une session</h4>
                             <button type="button" class="bg-btn-close-modal" data-bs-dismiss="modal" aria-label="Close"><i class="fa fa-times"></i></button>
                         </div>
                         <div class="modal-body">
@@ -156,7 +207,7 @@
                 <div class="modal-dialog modal-sm">
                     <div class="modal-content">
                         <div class="modal-header bg-card-modal">
-                            <h3 class="modal-title">Ajout d'une promotion</h3>
+                            <h4 class="modal-title">Ajout d'une promotion</h4>
                             <button type="button" class="bg-btn-close-modal" data-bs-dismiss="modal" aria-label="Close"><i class="fa fa-times"></i></button>
                         </div>
                         <div class="modal-body">
@@ -186,7 +237,7 @@
                 <div class="modal-dialog modal-sm">
                     <div class="modal-content">
                         <div class="modal-header bg-card-modal">
-                            <h3 class="modal-title">Ajout d'un semestre</h3>
+                            <h4 class="modal-title">Ajout d'un semestre</h4>
                             <button type="button" class="bg-btn-close-modal" data-bs-dismiss="modal" aria-label="Close"><i class="fa fa-times"></i></button>
                         </div>
                         <div class="modal-body">
@@ -211,13 +262,43 @@
                     </div>
                 </div>
             </div> <!-- Fin ajout semestre-->
+             <!-- Ajout type d'attestation -->
+            <div class="modal fade" id="smallModal4" tabindex="-1">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+                        <div class="modal-header bg-card-modal">
+                            <h4 class="modal-title">Ajout d'un autre type</h4>
+                            <button type="button" class="bg-btn-close-modal" data-bs-dismiss="modal" aria-label="Close"><i class="fa fa-times"></i></button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="{{ route('attestationType.store') }}" method="POST">
+                                @csrf
+                                @method('POST')
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-floating">
+                                            <input class="form-control border-input @error('type') is-invalid  @enderror" type="text" name="type" id="floatingtype" placeholder="type" value="{{ old('semestre') }}">
+                                            <label for="floatingtype" class="label-control label-text">Type d'attestation</label>  
+                                            <div class="invalid-feedback">@error('type') {{ $message }} @enderror</div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class=" btn-fermer bg-danger text-white" data-bs-dismiss="modal"><i class="fa fa-times me-1"></i>Fermer</button>
+                                        <button type="submit" class="btn-modal"><i class="fa fa-check me-1"></i>Enregistrer</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- Fin ajout semestre-->
             <!-- Suppression session-->
             @foreach ($anneeUnivs as $anneeUniv)
                 <div class="modal fade" id="verticalycentered1{{ $anneeUniv->id }}" tabindex="-1">
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
                             <div class="modal-header bg-danger text-white">
-                                <h5 class="modal-title"><i class="fa fa-trash"></i> Suppression</h5>
+                                <h5 class="modal-title"><i class="fa fa-trash me-2"></i> Confirmez la suppression !!</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
@@ -238,7 +319,7 @@
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
                             <div class="modal-header bg-danger text-white">
-                                <h5 class="modal-title"><i class="fa fa-trash"></i> Suppression</h5>
+                                <h5 class="modal-title"><i class="fa fa-trash me-2"></i> Confirmez la suppression !!</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
@@ -259,7 +340,7 @@
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
                             <div class="modal-header bg-danger text-white">
-                                <h5 class="modal-title"><i class="fa fa-trash"></i> Suppression</h5>
+                                <h5 class="modal-title"><i class="fa fa-trash me-2"></i> Confirmez la suppression !!</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
@@ -274,6 +355,32 @@
                     </div>
                 </div>
             @endforeach<!-- Fin supression semestre -->
+             <!-- Suppression attestation type-->
+            @foreach ($attestationTypes as $attestationType)
+                <div class="modal fade" id="verticalycentered4{{ $attestationType->id }}" tabindex="-1">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header bg-danger text-white">
+                                <h5 class="modal-title"><i class="fa fa-trash me-2"></i>Confirmez la suppression !!</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p class="text-center message-deleted">Voulez-vous vraiment effectuer la suppression du {{ $attestationType->type }} ???</p>
+                                <i class="fa fa-trash icon-deleted text-danger"></i>
+                            </div>
+                            <div class="modal-footer">
+                                <form action="{{ route('attestationType.destroy', $attestationType)}}" method="post">
+                                    @method('delete')
+                                    @csrf
+                                    <button type="submit" class="btn btn-danger">Oui</button>
+                                </form>
+                                {{-- <a href="{{ route('attestationType.destroy', $attestationType->id) }}" class="btn btn-danger">Oui</a> --}}
+                                <button type="button" class="non-btn" data-bs-dismiss="modal">Non</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endforeach<!-- Fin supression attestation type -->
         </div>
     </div>
 @endsection

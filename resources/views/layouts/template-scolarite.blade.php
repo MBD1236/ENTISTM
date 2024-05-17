@@ -329,7 +329,13 @@
           </a>
           <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
             <li>
-              <a href="tables-general.html">
+              <a href="{{route('scolarite.attestation.index')}}">
+                <i class="fa fa-list"></i><span>Tous les attestations</span>
+              </a>
+            </li>
+            
+            <li>
+              <a href="{{route('scolarite.attestation.inscription')}}">
                 <i class="fa fa-user-plus"></i><span>Inscription</span>
               </a>
             </li>
@@ -347,12 +353,25 @@
         </li><!-- End Tables Nav -->
 
         <li class="nav-item">
+          <a class="nav-link collapsed" href="{{ route('scolarite.print') }}">
+            <i class="fa fa-id-badge"></i>
+            <span>Badges</span>
+          </a>
+        </li><!-- End badge Nav -->
+
+        <li class="nav-item">
           <a class="nav-link collapsed" href="{{ route('scolarite.parametre') }}">
             <i class="fa fa-cog"></i>
             <span>Paramètres</span>
           </a>
-        </li><!-- End F.A.Q Page Nav -->
+        </li><!-- End params Page Nav -->
 
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="{{ route('scolarite.service.index') }}">
+            <i class="fa fa-cog"></i>
+            <span>Services</span>
+          </a>
+        </li><!-- End service Page Nav -->
       </ul>
 
     </aside><!-- End Sidebar-->

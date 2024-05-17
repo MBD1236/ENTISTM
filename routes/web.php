@@ -1,35 +1,52 @@
 <?php
 
 use App\Http\Controllers\AnneeUnivController;
+use App\Http\Controllers\AttestationController;
+use App\Http\Controllers\AttestationTypeController;
 use App\Http\Controllers\DepartementsetudesController;
 use App\Http\Controllers\EmploisController;
 use App\Http\Controllers\EnseignantsController;
 use App\Http\Controllers\EtudesController;
 use App\Http\Controllers\NiveauxetudesController;
+use App\Http\Controllers\PrintAttestationController;
+use App\Http\Controllers\PrintBadgeController;
 use App\Http\Controllers\ProgrammesetudesController;
 use App\Http\Controllers\PromotionController;
 use App\Http\Controllers\ScolariteController;
 use App\Http\Controllers\SemestresController;
-use App\Livewire\Departements\GenieInformatique\EnregistrementNote;
-use App\Livewire\Departements\GenieInformatique\GiEnseignantsTables;
-use App\Livewire\Departements\GenieInformatique\GiEtudiantsTables;
-use App\Livewire\Departements\GenieInformatique\GiInscriptionsTables;
-
-use App\Livewire\Departements\GenieInformatique\GiMatieresTables;
-use App\Livewire\Departements\GenieInformatique\GiProgrammeCoursTables;
-use App\Livewire\Departements\GenieInformatique\NoteEtudiantsMatieres;
-use App\Livewire\Departements\GenieInformatique\NotesEtudiantsSemestre;
 use App\Livewire\Scolarite\EditEtudiant;
 
 use App\Livewire\Scolarite\EditInscription;
+=======
+use App\Http\Controllers\ServiceController;
+>>>>>>> Stashed changes
 use App\Livewire\Scolarite\EtudiantTables;
 use App\Livewire\Scolarite\InscriptionEtudiant;
 use App\Livewire\Scolarite\InscriptionTables;
 use App\Livewire\Scolarite\ReinscriptionEtudiant;
+<<<<<<< Updated upstream
 use App\Livewire\Scolarite\ViewDocuments;
+
 use function Livewire\store;
 use Illuminate\Support\Facades\Route;
 
+/* Routes added by thd */
+// scolarite
+Route::name("scolarite.")->group(function () {
+    Route::resource("attestation", AttestationController::class)->except(["show"]);
+    Route::resource("attestationType", AttestationTypeController::class)->except(["show"]);
+    Route::resource("service", ServiceController::class)->except(["show"]);
+    Route::get("attestation/inscription", [PrintAttestationController::class, 'attestationInscription' ])->name("attestation.inscription");
+    Route::post('/fetch-students', [PrintAttestationController::class,'fetchStudents' ])->name('fetchStudents');
+    Route::post('/print-attestation', [PrintAttestationController::class, 'printAttestation'])->name('printAttestation');
+    // badge
+    Route::get('/indexBadge', [PrintBadgeController::class, 'index'])->name('print');
+    Route::post('/printBadge', [PrintBadgeController::class, 'printBadge'])->name('printBadge');
+});
+
+
+
+/* fin */
 
 /* Routes de l'interface de la scolarité */
 Route::prefix('scolarite')->group(function () {
@@ -73,6 +90,9 @@ Route::prefix('scolarite')->group(function () {
             Route::put('/update/{semestre}', [SemestresController::class, 'update'])->name('semestre.update');
             Route::get('/delete/{semestre}', [SemestresController::class, 'delete'])->name('semestre.delete');
         });
+
+        // thd
+        Route::resource("attestationType", AttestationTypeController::class)->except(["show"]);
     });
 });
 
