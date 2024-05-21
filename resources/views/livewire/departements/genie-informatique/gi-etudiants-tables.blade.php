@@ -4,7 +4,7 @@
             <h1 class="bg-card text-center text-white card-head"><i class="fa fa-users me-3"></i>Liste des étudiants</h1>
         </div>
         <div class="card-body">
-            <div class="row ">               
+            <div class="row ">
                 <div class="col-md-6 col-lg-3 col-sm-12 my-2 d-flex flex-row">
                     <input  type="text" class="form-control" placeholder="Research by session..." wire:model.debounce.900ms.live="session">
                 </div>
@@ -56,7 +56,7 @@
             <div class="row">
                 <div class="col-sm-12 col-md-12">
                     <ul class="pagination-rounded">
-                        {{-- {{$etudiants->links()}} --}}
+                        {{$etudiants->links('vendor.livewire.bootstrap')}}
                     </ul>
                 </div>
             </div>

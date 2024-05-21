@@ -4,37 +4,31 @@
         <div class="card-header card-head">
             <h1 class="bg-card text-center text-white card-head"><i class="bi bi-journal-richtext me-3"></i>Liste des notes par matière</h1>
         </div>
-        <form action="" wire:submit.prevent='afficherNotes'>
-            <div class="row">
-                <div class="col-md-1">
+        <div class="row">
+            <div class="col-md-1">
+            </div>
+            <div class="col-md-4">
+                <select wire:model="niveau_id" id="niveau_id" class="form-select @error('matiere_id') is-invalid @enderror">
+                    <option value="0">Selectionner un niveau</option>
+                    @foreach ($niveaux as $niveau)
+                        <option value="{{ $niveau->id }}" wire:key="{{ $niveau->id }}">{{ $niveau->niveau }}</option>
+                    @endforeach
+                </select>
 
-                </div>
-                <div class="col-md-4">
-                    <select wire:model="niveau_id" id="niveau_id" class="form-select @error('matiere_id') is-invalid @enderror">
-                        <option value="0">Selectionner un niveau</option>
-                        @foreach ($niveaux as $niveau)
-                            <option value="{{ $niveau->id }}" wire:key="{{ $niveau->id }}">{{ $niveau->niveau }}</option>
-                        @endforeach
-                    </select>
-
-                </div>
-
-                <div class="col-md-4">
-                    <select wire:model="matiere_id" id="matiere_id" class="form-select @error('matiere_id') is-invalid @enderror">
-                        <option value="0">Selectionner la matiere</option>
-                        @foreach ($matieres as $matiere)
-                            <option value="{{ $matiere->id }}" wire:key="{{ $matiere->id }}">{{ $matiere->matiere }}</option>
-                        @endforeach
-                    </select>
-                </div>
-                    
-                <div class="col-md-2">
-                    <button type="submit" class="btn-modal" style="height:40px; text-align:center; padding:0 5px 5px 5px"><i class="fa fa-eye me-2 mt-2"></i>Afficher</button>
-                </div>
             </div>
 
-        </form>
-
+            <div class="col-md-4">
+                <select wire:model="matiere_id" id="matiere_id" class="form-select @error('matiere_id') is-invalid @enderror">
+                    <option value="0">Selectionner la matiere</option>
+                    @foreach ($matieres as $matiere)
+                        <option value="{{ $matiere->id }}" wire:key="{{ $matiere->id }}">{{ $matiere->matiere }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="col-md-2">
+                <input type="text" wire:model.live='promotion' class="form-control" placeholder="Entrer la promotion">
+            </div>
+        </div>
        <div class="card-body">
             <div class="table-responsive-sm">
                 <table id="tableau" class="table table-hover table-centered table-bordered mb-0 mt-4">
@@ -75,6 +69,15 @@
                 </table>
             </div>
        </div>
+    </div>
+    <div class="card-footer mt-1">
+        <div class="row">
+            <div class="col-sm-12 col-md-12">
+                <ul class="pagination-rounded">
+                    {{$notes->links('vendor.livewire.bootstrap')}}
+                </ul>
+            </div>
+        </div>
     </div>
 
 </div>

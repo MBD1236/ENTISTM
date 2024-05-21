@@ -297,6 +297,11 @@
                 <i class="fa fa-users"></i><span>Reinscription</span>
               </a>
             </li>
+            <li>
+              <a href="{{ route('inscriptionetreinscription.index') }}">
+                <i class="fa fa-users"></i><span>Liste des inscrits & reinscrits</span>
+              </a>
+            </li>
           </ul>
         </li><!-- End Components Nav -->
 

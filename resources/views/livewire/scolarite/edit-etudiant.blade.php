@@ -12,6 +12,7 @@
     <div class="card-body">
         
        <form action=""  enctype="multipart/form-data">
+        @csrf
             <div class="row mt-3">
                 <div class="col-md-9">
                         <div class="row">

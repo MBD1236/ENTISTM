@@ -104,6 +104,7 @@ class InscriptionEtudiant extends Component
         if ($etudiant) {
             $this->initialisation($etudiant);
         }
+
     }
 
     /**

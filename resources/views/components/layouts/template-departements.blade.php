@@ -277,12 +277,12 @@
               <ul id="etudiants-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                   <li>
                       <a href="{{ route('genieinfo.etudiants') }}">
-                          <i class="bi bi-circle"></i><span>Etudiants</span>
+                          <i class="fa fa-users"></i><span>Etudiants</span>
                       </a>
                   </li>
                   <li>
                       <a href="{{ route('genieinfo.inscriptions') }}">
-                          <i class="bi bi-circle"></i><span>Inscrits</span>
+                          <i class="fa fa-user-plus"></i><span>Inscrits</span>
                       </a>
                   </li>
               </ul>
@@ -316,17 +316,17 @@
               <ul id="note-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                   <li>
                       <a href="{{ route('genieinfo.notes') }}">
-                          <i class="bi bi-circle"></i><span>Enrégistrement des notes</span>
+                          <i class="bi bi-plus"></i><span>Enrégistrement des notes</span>
                       </a>
                   </li>
                   <li>
                       <a href="{{ route('genieinfo.notes.matiere') }}">
-                          <i class="bi bi-circle"></i><span>Note par matiere</span>
+                          <i class="bi bi-book"></i><span>Note par matiere</span>
                       </a>
                   </li>
                    <li>
                       <a href="{{ route('genieinfo.notes.semestre') }}">
-                          <i class="bi bi-circle"></i><span>Notes semestrielles</span>
+                          <i class="fa fa-clone"></i><span>Notes semestrielles</span>
                       </a>
                   </li>
               </ul>

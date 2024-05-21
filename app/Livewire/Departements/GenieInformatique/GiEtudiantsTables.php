@@ -7,9 +7,11 @@ use App\Models\Niveau;
 use App\Models\Programme;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class GiEtudiantsTables extends Component
 {
+   use WithPagination;
     public string $session = '';
     public $niveau = 0;
     public $searchProgramme = 0;
@@ -32,6 +34,7 @@ class GiEtudiantsTables extends Component
              $etudiant->where(function ($query) {
                  $query->where('session', 'like', '%'.$this->session. '%');
              });
+            //  $this->resetPage();
          }
  
          // Ajoutez cette condition pour la recherche globale
@@ -44,6 +47,7 @@ class GiEtudiantsTables extends Component
                  ->orWhere('programme', 'like', '%' . $this->search . '%')
                  ->orWhere('ine', 'like', '%' . $this->search . '%');
              });
+
          }
  
          $etudiants = $etudiant->paginate(25);

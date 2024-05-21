@@ -35,6 +35,7 @@
                         </div>
                     </form>
                    <form action="" wire:submit="store" enctype="multipart/form-data">
+                    @csrf
                         <div class="row mt-3">
                             <div class="form-floating">
                                 <input class="form-control border-input @error('etudiant_id') is-invalid @enderror" type="hidden" wire:model.defer="etudiant_id" id="floatingetudiant_id" placeholder="etudiant_id">
@@ -257,6 +258,7 @@
             <div class="tab-pane fade" id="bordered-justified-profile" role="tabpanel" aria-labelledby="profile-tab">
                 <div class="card-body">
                    <form action="" method="">
+                    @csrf
                     {{--  @csrf
                     @method()  --}}
                         <div class="row mt-3">

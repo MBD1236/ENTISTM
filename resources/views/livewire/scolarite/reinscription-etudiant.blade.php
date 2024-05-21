@@ -4,6 +4,7 @@
     </div>
     <div class="card-body">
         <form action="" wire:submit.prevent="init">
+        @csrf
             <div class="row">
                 <div class="col-md-4 mt-1">
                     <input class="form-control border-input" type="search" wire:model="inerecherche" id="floatinginerecherche" placeholder="Entrez l'INE de l'étudiant">
@@ -15,6 +16,7 @@
             </div>
         </form>
        <form action="" wire:submit="store" enctype="multipart/form-data">
+        @csrf
             <div class="row mt-3">
                 <div class="form-floating">
                     <input class="form-control border-input @error('etudiant_id') is-invalid @enderror" type="hidden" wire:model.defer="etudiant_id" id="floatingetudiant_id" placeholder="etudiant_id">
@@ -122,7 +124,8 @@
                                 <select class="form-select border-input @error('promotion_id') is-invalid @enderror" wire:model="promotion_id" id="promotion_id" wire:click='clearStatus' disabled>
                                     <option value="">Sélectioner une promotion</option>
                                     @foreach ($promotions as $promotion)
-                                        @if($this->inerecherche !== '' && $etudiant)
+                                    
+                                        @if($this->inerecherche !== '' && $etudiant && $infoEtudiantIns !== null)
                                             <option @selected($infoEtudiantIns->promotion_id == $promotion->id) value="{{ $promotion->id }}" wire:key="{{ $promotion->id }}">{{ $promotion->promotion }}</option>
                                         @else
                                             <option value="{{ $promotion->id }}" wire:key="{{ $promotion->id }}">{{ $promotion->promotion }}</option>
@@ -152,7 +155,7 @@
                                 <select class="form-select border-input @error('programme_id') is-invalid @enderror" wire:model="programme_id" id="programme_id" wire:click='clearStatus' disabled>
                                     <option value="0">Sélectioner un programme</option>
                                     @foreach ($programmes as $programme)
-                                        @if ($this->inerecherche !== '' && $etudiant)
+                                        @if ($this->inerecherche !== '' && $etudiant && $infoEtudiantIns !== null)
                                             <option @selected($infoEtudiantIns->programme_id == $programme->id) value="{{ $infoEtudiantIns->programme_id }}" wire:key="{{ $infoEtudiantIns->programme_id }}">{{ $infoEtudiantIns->programme->programme }}</option>
                                         @else
                                             <option value="{{ $programme->id }}" wire:key="{{ $programme->id }}">{{ $programme->programme }}</option>
@@ -170,7 +173,7 @@
                         <h6 class="text-center bg-card text-white p-3 label-text">PHOTO</h6>
                     </div>
                     <div class="row">
-                        @if ($this->inerecherche !== '' && $etudiant) 
+                        @if ($this->inerecherche !== '' && $etudiant && $infoEtudiantIns !== null) 
                             @if ($etudiant->photo !== null)
                                 <center>
                                     <img src="/storage/{{$etudiant->photo }}" class="img-photo card-photo" alt="Photo">
