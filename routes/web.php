@@ -15,6 +15,7 @@ use App\Http\Controllers\PromotionController;
 use App\Http\Controllers\ScolariteController;
 use App\Http\Controllers\SemestresController;
 use App\Http\Controllers\ServiceController;
+use App\Livewire\Departements\GenieInformatique\EditNotes;
 use App\Livewire\Departements\GenieInformatique\EnregistrementNote;
 use App\Livewire\Departements\GenieInformatique\GiEnseignantsTables;
 use App\Livewire\Departements\GenieInformatique\GiEtudiantsTables;
@@ -150,6 +151,7 @@ Route::prefix('genieinfo')->name("genieinfo.")->group(function(){
     Route::get("/inscriptions", GiInscriptionsTables::class)->name('inscriptions');
     Route::get('/notes', EnregistrementNote::class)->name('notes');
     Route::get('/notes/matiere', NoteEtudiantsMatieres::class)->name('notes.matiere');
+    Route::get('/notes/matiere/{note}', EditNotes::class)->name('notes.edit');
     Route::get('/notes/semestre', NotesEtudiantsSemestre::class)->name('notes.semestre');
 
 

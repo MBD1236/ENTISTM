@@ -24,17 +24,12 @@ class NoteEtudiantsMatieres extends Component
         $notes = Note::paginate(1);
         if (!empty($this->matiere_id) && !empty($this->niveau_id) && !empty($this->promotion)) {
             $notes = Note::where('matiere_id', $this->matiere_id)
-                    ->where(function ($e) {
-                        $e->orWhereHas('inscription', function ($e) {
+                    ->whereHas('inscription', function ($e) {
                             $e->where('niveau_id', 'LIKE', "%{$this->niveau_id}%");
-                        });
-                        $e->orWhereHas('inscription', function ($e) {
-                            $e->orWhereHas('promotion', function($e) {
+                            $e->whereHas('promotion', function($e) {
                                 $e->where('promotion', 'LIKE', "%{$this->promotion}%");
                             });
-                        });
-                    })
-                    ->paginate(25);
+                    })->paginate(25);
         }
         return view('livewire.departements.genie-informatique.note-etudiants-matieres',[
             'notes' => $notes,

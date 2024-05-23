@@ -276,29 +276,29 @@
               </a>
               <ul id="etudiants-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                   <li>
-                      <a href="{{ route('genieinfo.etudiants') }}">
+                      <a href="{{ route('genieinfo.etudiants') }}" wire:navigate>
                           <i class="fa fa-users"></i><span>Etudiants</span>
                       </a>
                   </li>
                   <li>
-                      <a href="{{ route('genieinfo.inscriptions') }}">
+                      <a href="{{ route('genieinfo.inscriptions') }}" wire:navigate>
                           <i class="fa fa-user-plus"></i><span>Inscrits</span>
                       </a>
                   </li>
               </ul>
           </li>
           <li class="nav-item">
-              <a class="nav-link collapsed" href="{{ route('genieinfo.enseignants') }}">
+              <a class="nav-link collapsed" href="{{ route('genieinfo.enseignants') }}" wire:navigate>
                   <i class="bi bi-person"></i><span>Enseignants</span>
               </a>
           </li>
           <li class="nav-item">
-              <a class="nav-link collapsed" href="{{ route('genieinfo.matieres') }}">
+              <a class="nav-link collapsed" href="{{ route('genieinfo.matieres') }}" wire:navigate>
                    <i class="bi bi-book"></i><span>Matieres</span>
               </a>
           </li>
           <li class="nav-item">
-              <a class="nav-link collapsed" href="{{ route('genieinfo.enseigners') }}">
+              <a class="nav-link collapsed" href="{{ route('genieinfo.enseigners') }}" wire:navigate>
                    <i class="bi bi-body-text"></i><span>Planification cours</span>
               </a>
           </li>
@@ -315,17 +315,17 @@
               </a>
               <ul id="note-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                   <li>
-                      <a href="{{ route('genieinfo.notes') }}">
+                      <a href="{{ route('genieinfo.notes') }}" wire:navigate>
                           <i class="bi bi-plus"></i><span>Enrégistrement des notes</span>
                       </a>
                   </li>
                   <li>
-                      <a href="{{ route('genieinfo.notes.matiere') }}">
+                      <a href="{{ route('genieinfo.notes.matiere') }}" wire:navigate>
                           <i class="bi bi-book"></i><span>Note par matiere</span>
                       </a>
                   </li>
                    <li>
-                      <a href="{{ route('genieinfo.notes.semestre') }}">
+                      <a href="{{ route('genieinfo.notes.semestre') }}" wire:navigate>
                           <i class="fa fa-clone"></i><span>Notes semestrielles</span>
                       </a>
                   </li>

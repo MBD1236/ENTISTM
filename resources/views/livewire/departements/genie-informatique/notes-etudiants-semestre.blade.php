@@ -4,31 +4,31 @@
             <h1 class="bg-card text-center text-white card-head">
                 <i class="bi bi-journal-richtext me-3"></i>Liste des notes semestrielle
             </h1>
+            <div class="row mt-2">
+                <div class="col-md-1"></div>
+                <div class="col-md-4">
+                    <select wire:model.live="niveau_id" id="niveau_id" class="form-select @error('niveau_id') is-invalid @enderror">
+                        <option value="">Sélectionner un niveau</option>
+                        @foreach ($niveaux as $niveau)
+                            <option value="{{ $niveau->id }}" wire:key="{{ $niveau->id }}">{{ $niveau->niveau }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <select wire:model.live="semestre_id" id="semestre_id" class="form-select @error('semestre_id') is-invalid @enderror">
+                        <option value="">Sélectionner le semestre</option>
+                        @foreach ($semestres as $semestre)
+                            <option value="{{ $semestre->id }}" wire:key="{{ $semestre->id }}">{{ $semestre->semestre }}</option>
+                        @endforeach
+                    </select>
+                </div>
+    
+                <div class="col-md-2">
+                    <input type="text" wire:model.live.debounce.1000ms='promotion' class="form-control" placeholder="Entrer la promotion">
+                </div>
+            </div>
         </div>
         
-        <div class="row m-3">
-            <div class="col-md-1"></div>
-            <div class="col-md-4">
-                <select wire:model.live="niveau_id" id="niveau_id" class="form-select @error('niveau_id') is-invalid @enderror">
-                    <option value="">Sélectionner un niveau</option>
-                    @foreach ($niveaux as $niveau)
-                        <option value="{{ $niveau->id }}" wire:key="{{ $niveau->id }}">{{ $niveau->niveau }}</option>
-                    @endforeach
-                </select>
-            </div>
-            <div class="col-md-4">
-                <select wire:model.live="semestre_id" id="semestre_id" class="form-select @error('semestre_id') is-invalid @enderror">
-                    <option value="">Sélectionner le semestre</option>
-                    @foreach ($semestres as $semestre)
-                        <option value="{{ $semestre->id }}" wire:key="{{ $semestre->id }}">{{ $semestre->semestre }}</option>
-                    @endforeach
-                </select>
-            </div>
-
-            <div class="col-md-2">
-                <input type="text" wire:model.live.debounce.1000ms='promotion' class="form-control" placeholder="Entrer la promotion">
-            </div>
-        </div>
 
        <div class="card-body">
             <div class="table-responsive-sm">
