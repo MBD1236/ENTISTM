@@ -3,10 +3,11 @@
 @section('title', $service->exists ? 'Editer un service': 'Ajouter un service')
 
 @section('content')
-<div class="pagetitle">
-    <h1>@yield('title')</h1>
-</div>
+
 <div class="card mt-2">
+    <div class="card-header card-head">
+        <h1 class="bg-card text-center text-white card-head"><i class="fa fa-plus me-3"></i>Ajouter un service</h1>
+    </div>
     <div class="card-body col-lg-10 m-auto">
         <form class="vstack mt-4  gap-2" action="{{ route($service->exists ? 'scolarite.service.update': 'scolarite.service.store', $service) }}" method="post" enctype="multipart/form-data">
 
