@@ -24,7 +24,8 @@ class PrintAttestationController extends Controller
         // recuperer les matricules
         $matricules = $request->input('matricules', []);
 
-        return view('scolarite.attestations.inscriptionForm', [
+        return view('scolarite.printAttestation.form' , [
+            // return view('scolarite.attestations.inscriptionForm', [
             'attestations' => $attestations,
             'annee_universitaires' => AnneeUniversitaire::orderBy('created_at', 'desc')->paginate(5),
             'attestation_types' => AttestationType::all(),
@@ -65,7 +66,7 @@ class PrintAttestationController extends Controller
                              ->select('id as etudiant_id', 'ine', 'prenom', 'nom')
                              ->get();
 
-        return view('scolarite.attestations.inscriptionForm' , [
+        return view('scolarite.printAttestation.form' , [
             'matricules' => $etudiants,
             'attestations' => $attestations,
             'annee_universitaires'=> AnneeUniversitaire::orderBy('created_at', 'desc')->paginate(5),

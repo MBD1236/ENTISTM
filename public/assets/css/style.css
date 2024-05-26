@@ -2,16 +2,9 @@
   scroll-behavior: smooth;
 }
 
-body {
-  font-family: "Open Sans", sans-serif;
-  background: #f6f9ff;
-  color: #0000;
+a {
+  text-decoration: none !important;
 }
-
-
-
-
-
 
 /* impression */
 .btnprn  {
@@ -186,7 +179,7 @@ h6 {
 }
 
 .non:hover {
-  background: #0b773d;
+  background: #012970;
 }
 
 .non {
@@ -274,7 +267,7 @@ h6 {
   right: 15px;
   bottom: 15px;
   z-index: 99999;
-  background: #4154f1;
+  background: #120a5c;
   width: 40px;
   height: 40px;
   border-radius: 4px;
@@ -288,7 +281,7 @@ h6 {
 }
 
 .back-to-top:hover {
-  background: #6776f4;
+  background: #120a5c;
   color: #fff;
 }
 

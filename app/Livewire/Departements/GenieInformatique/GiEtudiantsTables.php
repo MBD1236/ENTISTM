@@ -46,7 +46,7 @@ class GiEtudiantsTables extends Component
              });
          }
  
-         $etudiants = $etudiant->paginate(25);
+        $etudiants = $etudiant->paginate(25);
         return view('livewire.departements.genie-informatique.gi-etudiants-tables',[
             'etudiants' => $etudiants,
             'niveaux' => Niveau::all(),

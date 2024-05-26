@@ -178,7 +178,7 @@ class InscriptionEtudiant extends Component
             'recu_id' => $recu,
         ]);
 
-                // Vérifier si l'étudiant existe
+        // Vérifier si l'étudiant existe
         if ($this->etudiant) {
             if ($this->photo) {
                 $nouveau_nom = $this->photo->getClientOriginalName();

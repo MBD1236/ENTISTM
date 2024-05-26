@@ -15,12 +15,24 @@ use App\Http\Controllers\PromotionController;
 use App\Http\Controllers\ScolariteController;
 use App\Http\Controllers\SemestresController;
 use App\Http\Controllers\ServiceController;
+use App\Livewire\Departements\GenieInformatique\DepartementInformation;
 use App\Livewire\Departements\GenieInformatique\EnregistrementNote;
+use App\Livewire\Departements\GenieInformatique\EnseignantCreate;
+use App\Livewire\Departements\GenieInformatique\EnseignantEdit;
+use App\Livewire\Departements\GenieInformatique\EnseignantShow;
+use App\Livewire\Departements\GenieInformatique\EnseignantTable;
+use App\Livewire\Departements\GenieInformatique\EnseignatCreate;
+use App\Livewire\Departements\GenieInformatique\EnseignatEdit;
+use App\Livewire\Departements\GenieInformatique\EnseignatTable;
 use App\Livewire\Departements\GenieInformatique\GiEnseignantsTables;
 use App\Livewire\Departements\GenieInformatique\GiEtudiantsTables;
 use App\Livewire\Departements\GenieInformatique\GiInscriptionsTables;
 use App\Livewire\Departements\GenieInformatique\GiMatieresTables;
 use App\Livewire\Departements\GenieInformatique\GiProgrammeCoursTables;
+use App\Livewire\Departements\GenieInformatique\InformationDepartementCreate;
+use App\Livewire\Departements\GenieInformatique\InformationDepartementEdit;
+use App\Livewire\Departements\GenieInformatique\InformationDepartementList;
+use App\Livewire\Departements\GenieInformatique\InformationDepartementShow;
 use App\Livewire\Departements\GenieInformatique\NoteEtudiantsMatieres;
 use App\Livewire\Departements\GenieInformatique\NotesEtudiantsSemestre;
 use App\Livewire\Scolarite\EditEtudiant;
@@ -30,6 +42,8 @@ use App\Livewire\Scolarite\InscriptionEtudiant;
 use App\Livewire\Scolarite\InscriptionTables;
 use App\Livewire\Scolarite\ReinscriptionEtudiant;
 use App\Livewire\Scolarite\ViewDocuments;
+use App\Models\Enseignant;
+
 use function Livewire\store;
 use Illuminate\Support\Facades\Route;
 
@@ -151,7 +165,17 @@ Route::prefix('genieinfo')->name("genieinfo.")->group(function(){
     Route::get('/notes', EnregistrementNote::class)->name('notes');
     Route::get('/notes/matiere', NoteEtudiantsMatieres::class)->name('notes.matiere');
     Route::get('/notes/semestre', NotesEtudiantsSemestre::class)->name('notes.semestre');
-
+    // pour les details des departement
+    Route::get('/information', InformationDepartementList::class)->name('information.list');
+    Route::get('/information/create', InformationDepartementCreate::class)->name('information.create');
+    Route::get('/information/edit/{information}', InformationDepartementEdit::class)->name('information.edit');
+    Route::get('/information/show/{information}', InformationDepartementShow::class)->name('information.show');
+    // pour les details des enseignant
+    Route::get('/enseignant', EnseignantTable::class)->name('enseignant.list');
+    Route::get('/enseignant/create', EnseignantCreate::class)->name('enseignant.create');
+    Route::get('/enseignant/edit/{enseignant}', EnseignantEdit::class)->name('enseignant.edit');
+    Route::get('/enseignant/show/{enseignant}', EnseignantShow::class)->name('enseignant.show');
+    Route::delete('/enseignant/destroy/{enseignant}', [EnseignantShow::class, 'destroy'])->name('enseignant.destroy');
 
     // route pour emploi
     // Route::get('/emploi-temps', GiEmploisTables::class)->name('emploi-temps');

@@ -9,7 +9,7 @@
                     <span>Les types d'attestation</span>
                 </div>
                 <div>
-                    <a href="{{ route('scolarite.attestationType.create')}}" class="btn-modal pb-2 pt-1 ">
+                    <a href="{{ route('scolarite.attestationType.create')}}" class="btn-modal">
                         <i class="fa fa-plus me-1"></i>
                         <span>Add a new type</span>
                     </a>

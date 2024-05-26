@@ -9,9 +9,18 @@
   <meta content="" name="description">
   <meta content="" name="keywords">
 
+  
+  <!-- Template Main CSS File -->
+  <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
+  
   <!-- Favicons -->
   <link href="{{ asset('assets/img/logo-ent-trans.png') }}" rel="icon">
   <link href="{{ asset('assets/img/logo-ent-trans.png') }}" rel="apple-touch-icon">
+
+
+  <!-- pour le select2 -->
+  <script src="{{asset('assets/js/jquery-3.6.3.min.js')}}"></script>
+  <link href="{{ asset('assets/css/select2.css') }}" rel="stylesheet">
 
   <!-- Google Fonts -->
   <link href="https://fonts.gstatic.com" rel="preconnect">
@@ -26,9 +35,7 @@
   <link href="{{ asset('assets/vendor/remixicon/remixicon.css') }}" rel="stylesheet">
   <link href="{{ asset('assets/vendor/simple-datatables/style.css') }}" rel="stylesheet">
   <link href="{{ asset('assets/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
-
-  <!-- Template Main CSS File -->
-  <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
+  
 
 </head>
 
@@ -336,17 +343,7 @@
             
             <li>
               <a href="{{route('scolarite.attestation.inscription')}}">
-                <i class="fa fa-user-plus"></i><span>Inscription</span>
-              </a>
-            </li>
-            <li>
-              <a href="tables-data.html">
-                <i class="fa fa-users"></i><span>Reinscription</span>
-              </a>
-            </li>
-            <li>
-              <a href="tables-data.html">
-                <i class="fa fa-university"></i><span>Niveau</span>
+                <i class="fa fa-print"></i><span>Impressions</span>
               </a>
             </li>
           </ul>
@@ -368,7 +365,7 @@
 
         <li class="nav-item">
           <a class="nav-link collapsed" href="{{ route('scolarite.service.index') }}">
-            <i class="fa fa-cog"></i>
+            <i class="fa fa-desktop"></i>
             <span>Services</span>
           </a>
         </li><!-- End service Page Nav -->
@@ -405,6 +402,13 @@
   <script src="{{ asset('assets/vendor/tinymce/tinymce.min.js') }}"></script>
   <script src="{{ asset('assets/vendor/php-email-form/validate.js') }}"></script>
 
+  <!-- Template Main JS File -->
+  <script src="{{ asset('assets/js/select2.js') }}"></script>
+  <script>
+    // $(document).ready(function() {
+    //     $('#matricules').select2(); // Initialiser Select2
+    // });
+  </script>
   <!-- Template Main JS File -->
   <script src="{{ asset('assets/js/main.js') }}"></script>
 
