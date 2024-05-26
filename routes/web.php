@@ -108,7 +108,7 @@ Route::prefix('scolarite')->group(function () {
             Route::get('/delete/{semestre}', [SemestresController::class, 'delete'])->name('semestre.delete');
         });
 
-        // thd
+        // thd 
         Route::resource("attestationType", AttestationTypeController::class)->except(["show"]);
     });
 });
