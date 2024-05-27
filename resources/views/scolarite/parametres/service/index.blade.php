@@ -10,19 +10,17 @@
     </div>
 @endif
 
-<div class="d-flex flex-row justify-content-between mt-3">
-    <div class="pagetitle">
-        <h1>@yield('title')</h1>
-    </div>
-</div>
 
 <div class="card mt-2">
+    <div class="card-header card-head">
+        <h1 class="bg-card text-center text-white card-head"><i class="fa fa-cog me-3"></i>Services</h1>
+    </div>
     <div class="card-body py-4 px-2">
         <div class="d-flex flex-row justify-content-end mb-2">
             <div class="mb-3">
                 <a href="{{ route('scolarite.service.create') }}" class="btn-modal">
                     <i class="bi bi-plus-lg"></i>
-                    <span>Ajouter un nouvelle service</span>
+                    <span>Ajouter un nouveau service</span>
                 </a>
             </div>
         </div>

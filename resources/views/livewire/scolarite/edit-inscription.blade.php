@@ -5,6 +5,7 @@
     <div class="card-body">
         
        <form action=""  enctype="multipart/form-data">
+        @csrf
             <div class="row mt-3">
                 <div class="form-floating">
                     <input class="form-control border-input @error('etudiant_id') is-invalid @enderror" type="hidden" wire:model.defer="etudiant_id" id="floatingetudiant_id" placeholder="etudiant_id">

@@ -211,7 +211,7 @@
         <li class="nav-item dropdown pe-3">
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+            <img src="{{ asset('assets/img/profile-img.jpg') }}" alt="Profile" class="rounded-circle">
             <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
           </a><!-- End Profile Iamge Icon -->
 
@@ -295,13 +295,23 @@
                 </a>
             </li>
             <li>
-              <a href="{{ route('scolarite.inscription') }}">
-                <i class="fa fa-user-plus"></i><span>Inscription</span>
+              <a href="{{ route('scolarite.inscription') }}" wire:navigate>
+                <i class="fa fa-user-plus"></i><span>Inscription (orienté)</span>
+              </a>
+            </li>
+            <li>
+              <a href="{{ route('scolarite.inscriptionnonOriente') }}" wire:navigate>
+                <i class="fa fa-user-plus"></i><span>Inscription (non orienté)</span>
               </a>
             </li>
             <li>
               <a href="{{ route('scolarite.reinscription') }}">
                 <i class="fa fa-users"></i><span>Reinscription</span>
+              </a>
+            </li>
+            <li>
+              <a href="{{ route('inscriptionetreinscription.index') }}">
+                <i class="fa fa-users"></i><span>Liste des inscrits & reinscrits</span>
               </a>
             </li>
           </ul>

@@ -10,7 +10,6 @@
         <h1 class="bg-card text-center text-white card-head"><i class="fa fa-graduation-cap me-1"></i>Modification de cet enregistrement</h1>
     </div>
     <div class="card-body">
-        
        <form action=""  enctype="multipart/form-data">
             <div class="row mt-3">
                 <div class="col-md-9">

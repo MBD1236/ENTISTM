@@ -276,60 +276,355 @@
               </a>
               <ul id="etudiants-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                   <li>
-                      <a href="{{ route('genieinfo.etudiants') }}">
-                          <i class="bi bi-circle"></i><span>Etudiants</span>
+                      <a href="{{ route('genieinfo.etudiants') }}" wire:navigate>
+                          <i class="fa fa-users"></i><span>Etudiants</span>
                       </a>
                   </li>
                   <li>
-                      <a href="{{ route('genieinfo.inscriptions') }}">
-                          <i class="bi bi-circle"></i><span>Inscrits</span>
+                      <a href="{{ route('genieinfo.inscriptions') }}" wire:navigate>
+                          <i class="fa fa-user-plus"></i><span>Inscrits</span>
                       </a>
                   </li>
               </ul>
           </li>
           <li class="nav-item">
-              <a class="nav-link collapsed" href="{{ route('genieinfo.enseignant.list') }}">
+              <a class="nav-link collapsed" href="{{ route('genieinfo.enseignant.list') }}" wire:navigate>
+
+             
                   <i class="bi bi-person"></i><span>Enseignants</span>
               </a>
           </li>
           <li class="nav-item">
-              <a class="nav-link collapsed" href="{{ route('genieinfo.matieres') }}">
+              <a class="nav-link collapsed" href="{{ route('genieinfo.matieres') }}" wire:navigate>
                    <i class="bi bi-book"></i><span>Matieres</span>
               </a>
           </li>
           <li class="nav-item">
-              <a class="nav-link collapsed" href="{{ route('genieinfo.enseigners') }}">
+              <a class="nav-link collapsed" href="{{ route('genieinfo.planification') }}" wire:navigate>
                    <i class="bi bi-body-text"></i><span>Planification cours</span>
               </a>
           </li>
-          
           <li class="nav-item">
               <a class="nav-link collapsed" data-bs-target="#note-nav" data-bs-toggle="collapse" href="#">
                   <i class="bi bi-journal-richtext"></i><span>Notes</span><i class="bi bi-chevron-down ms-auto"></i>
               </a>
               <ul id="note-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                   <li>
-                      <a href="{{ route('genieinfo.notes') }}">
-                          <i class="bi bi-circle"></i><span>Enrégistrement des notes</span>
+                      <a href="{{ route('genieinfo.notes') }}" wire:navigate>
+                          <i class="bi bi-plus"></i><span>Enrégistrement des notes</span>
                       </a>
                   </li>
                   <li>
-                      <a href="{{ route('genieinfo.notes.matiere') }}">
-                          <i class="bi bi-circle"></i><span>Note par matiere</span>
+                      <a href="{{ route('genieinfo.notes.matiere') }}" wire:navigate>
+                          <i class="bi bi-book"></i><span>Note par matiere</span>
                       </a>
                   </li>
                    <li>
-                      <a href="{{ route('genieinfo.notes.semestre') }}">
-                          <i class="bi bi-circle"></i><span>Notes semestrielles</span>
+                      <a href="{{ route('genieinfo.notes.semestre') }}" wire:navigate>
+                          <i class="fa fa-clone"></i><span>Notes semestrielles</span>
+                      </a>
+                  </li>
+              </ul>
+          </li>
+          {{-- @endcan --}}
+
+          {{-- @can('science_energie') --}}
+          <li class="nav-heading">Science des Energies</li>
+          <li class="nav-item">
+              <a class="nav-link collapsed" data-bs-target="#etudiants-nav" data-bs-toggle="collapse" href="#">
+                  <i class="bi bi-person"></i><span>Etudiants</span><i class="bi bi-chevron-down ms-auto"></i>
+              </a>
+              <ul id="etudiants-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                  <li>
+                      <a href="{{ route('scienceenergie.etudiants') }}" wire:navigate>
+                          <i class="fa fa-users"></i><span>Etudiants</span>
+                      </a>
+                  </li>
+                  <li>
+                      <a href="{{ route('scienceenergie.inscriptions') }}" wire:navigate>
+                          <i class="fa fa-user-plus"></i><span>Inscrits</span>
                       </a>
                   </li>
               </ul>
           </li>
           <li class="nav-item">
+              <a class="nav-link collapsed" href="{{ route('scienceenergie.enseignants') }}" wire:navigate>
+                  <i class="bi bi-person"></i><span>Enseignants</span>
+              </a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link collapsed" href="{{ route('scienceenergie.matieres') }}" wire:navigate>
+                   <i class="bi bi-book"></i><span>Matieres</span>
+              </a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link collapsed" href="{{ route('scienceenergie.planification') }}" wire:navigate>
+                   <i class="bi bi-body-text"></i><span>Planification cours</span>
+              </a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link collapsed" data-bs-target="#note-nav" data-bs-toggle="collapse" href="#">
+                  <i class="bi bi-journal-richtext"></i><span>Notes</span><i class="bi bi-chevron-down ms-auto"></i>
+              </a>
+              <ul id="note-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                  <li>
+                      <a href="{{ route('scienceenergie.notes') }}" wire:navigate>
+                          <i class="bi bi-plus"></i><span>Enrégistrement des notes</span>
+                      </a>
+                  </li>
+                  <li>
+                      <a href="{{ route('scienceenergie.notes.matiere') }}" wire:navigate>
+                          <i class="bi bi-book"></i><span>Note par matiere</span>
+                      </a>
+                  </li>
+                   <li>
+                      <a href="{{ route('scienceenergie.notes.semestre') }}" wire:navigate>
+                          <i class="fa fa-clone"></i><span>Notes semestrielles</span>
+                      </a>
+                  </li>
+              </ul>
+          </li>
+          {{-- @endcan --}}
+
+          {{-- @can('imp') --}}
+          <li class="nav-heading">Instrumentation et Mesures Physiques</li>
+          <li class="nav-item">
+              <a class="nav-link collapsed" data-bs-target="#etudiants-nav" data-bs-toggle="collapse" href="#">
+                  <i class="bi bi-person"></i><span>Etudiants</span><i class="bi bi-chevron-down ms-auto"></i>
+              </a>
+              <ul id="etudiants-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                  <li>
+                      <a href="{{ route('imp.etudiants') }}" wire:navigate>
+                          <i class="fa fa-users"></i><span>Etudiants</span>
+                      </a>
+                  </li>
+                  <li>
+                      <a href="{{ route('imp.inscriptions') }}" wire:navigate>
+                          <i class="fa fa-user-plus"></i><span>Inscrits</span>
+                      </a>
+                  </li>
+              </ul>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link collapsed" href="{{ route('imp.enseignants') }}" wire:navigate>
+                  <i class="bi bi-person"></i><span>Enseignants</span>
+              </a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link collapsed" href="{{ route('imp.matieres') }}" wire:navigate>
+                   <i class="bi bi-book"></i><span>Matieres</span>
+              </a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link collapsed" href="{{ route('imp.planification') }}" wire:navigate>
+                   <i class="bi bi-body-text"></i><span>Planification cours</span>
+              </a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link collapsed" data-bs-target="#note-nav" data-bs-toggle="collapse" href="#">
+                  <i class="bi bi-journal-richtext"></i><span>Notes</span><i class="bi bi-chevron-down ms-auto"></i>
+              </a>
+              <ul id="note-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                  <li>
+                      <a href="{{ route('imp.notes') }}" wire:navigate>
+                          <i class="bi bi-plus"></i><span>Enrégistrement des notes</span>
+                      </a>
+                  </li>
+                  <li>
+                      <a href="{{ route('imp.notes.matiere') }}" wire:navigate>
+                          <i class="bi bi-book"></i><span>Note par matiere</span>
+                      </a>
+                  </li>
+                   <li>
+                      <a href="{{ route('imp.notes.semestre') }}" wire:navigate>
+                          <i class="fa fa-clone"></i><span>Notes semestrielles</span>
+                      </a>
+                  </li>
+              </ul>
+          </li>
+          {{-- @endcan --}}
+
+          {{-- @can('genie_info') --}}
+          <li class="nav-heading">Conception et Fabrication Mécanique</li>
+          <li class="nav-item">
+              <a class="nav-link collapsed" data-bs-target="#etudiants-nav" data-bs-toggle="collapse" href="#">
+                  <i class="bi bi-person"></i><span>Etudiants</span><i class="bi bi-chevron-down ms-auto"></i>
+              </a>
+              <ul id="etudiants-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                  <li>
+                      <a href="{{ route('cfm.etudiants') }}" wire:navigate>
+                          <i class="fa fa-users"></i><span>Etudiants</span>
+                      </a>
+                  </li>
+                  <li>
+                      <a href="{{ route('cfm.inscriptions') }}" wire:navigate>
+                          <i class="fa fa-user-plus"></i><span>Inscrits</span>
+                      </a>
+                  </li>
+              </ul>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link collapsed" href="{{ route('cfm.enseignants') }}" wire:navigate>
+                  <i class="bi bi-person"></i><span>Enseignants</span>
+              </a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link collapsed" href="{{ route('cfm.matieres') }}" wire:navigate>
+                   <i class="bi bi-book"></i><span>Matieres</span>
+              </a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link collapsed" href="{{ route('cfm.planification') }}" wire:navigate>
+                   <i class="bi bi-body-text"></i><span>Planification cours</span>
+              </a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link collapsed" data-bs-target="#note-nav" data-bs-toggle="collapse" href="#">
+                  <i class="bi bi-journal-richtext"></i><span>Notes</span><i class="bi bi-chevron-down ms-auto"></i>
+              </a>
+              <ul id="note-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                  <li>
+                      <a href="{{ route('cfm.notes') }}" wire:navigate>
+                          <i class="bi bi-plus"></i><span>Enrégistrement des notes</span>
+                      </a>
+                  </li>
+                  <li>
+                      <a href="{{ route('cfm.notes.matiere') }}" wire:navigate>
+                          <i class="bi bi-book"></i><span>Note par matiere</span>
+                      </a>
+                  </li>
+                   <li>
+                      <a href="{{ route('cfm.notes.semestre') }}" wire:navigate>
+                          <i class="fa fa-clone"></i><span>Notes semestrielles</span>
+                      </a>
+                  </li>
+              </ul>
+          </li>
+          {{-- @endcan --}}
+
+          {{-- @can('genie_info') --}}
+          <li class="nav-heading">Technologie des Equipements Biomédicaux</li>
+          <li class="nav-item">
+              <a class="nav-link collapsed" data-bs-target="#etudiants-nav" data-bs-toggle="collapse" href="#">
+                  <i class="bi bi-person"></i><span>Etudiants</span><i class="bi bi-chevron-down ms-auto"></i>
+              </a>
+              <ul id="etudiants-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                  <li>
+                      <a href="{{ route('teb.etudiants') }}" wire:navigate>
+                          <i class="fa fa-users"></i><span>Etudiants</span>
+                      </a>
+                  </li>
+                  <li>
+                      <a href="{{ route('teb.inscriptions') }}" wire:navigate>
+                          <i class="fa fa-user-plus"></i><span>Inscrits</span>
+                      </a>
+                  </li>
+              </ul>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link collapsed" href="{{ route('teb.enseignants') }}" wire:navigate>
+                  <i class="bi bi-person"></i><span>Enseignants</span>
+              </a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link collapsed" href="{{ route('teb.matieres') }}" wire:navigate>
+                   <i class="bi bi-book"></i><span>Matieres</span>
+              </a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link collapsed" href="{{ route('teb.planification') }}" wire:navigate>
+                   <i class="bi bi-body-text"></i><span>Planification cours</span>
+              </a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link collapsed" data-bs-target="#note-nav" data-bs-toggle="collapse" href="#">
+                  <i class="bi bi-journal-richtext"></i><span>Notes</span><i class="bi bi-chevron-down ms-auto"></i>
+              </a>
+              <ul id="note-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                  <li>
+                      <a href="{{ route('teb.notes') }}" wire:navigate>
+                          <i class="bi bi-plus"></i><span>Enrégistrement des notes</span>
+                      </a>
+                  </li>
+                  <li>
+                      <a href="{{ route('teb.notes.matiere') }}" wire:navigate>
+                          <i class="bi bi-book"></i><span>Note par matiere</span>
+                      </a>
+                  </li>
+                   <li>
+                      <a href="{{ route('teb.notes.semestre') }}" wire:navigate>
+                          <i class="fa fa-clone"></i><span>Notes semestrielles</span>
+                      </a>
+                  </li>
+              </ul>
+          </li>
+          {{-- @endcan --}}
+          
+          {{-- @can('genie_info') --}}
+          <li class="nav-heading">Techniques de Laboratoires</li>
+          <li class="nav-item">
+              <a class="nav-link collapsed" data-bs-target="#etudiants-nav" data-bs-toggle="collapse" href="#">
+                  <i class="bi bi-person"></i><span>Etudiants</span><i class="bi bi-chevron-down ms-auto"></i>
+              </a>
+              <ul id="etudiants-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                  <li>
+                      <a href="{{ route('tl.etudiants') }}" wire:navigate>
+                          <i class="fa fa-users"></i><span>Etudiants</span>
+                      </a>
+                  </li>
+                  <li>
+                      <a href="{{ route('tl.inscriptions') }}" wire:navigate>
+                          <i class="fa fa-user-plus"></i><span>Inscrits</span>
+                      </a>
+                  </li>
+              </ul>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link collapsed" href="{{ route('tl.enseignants') }}" wire:navigate>
+                  <i class="bi bi-person"></i><span>Enseignants</span>
+              </a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link collapsed" href="{{ route('tl.matieres') }}" wire:navigate>
+                   <i class="bi bi-book"></i><span>Matieres</span>
+              </a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link collapsed" href="{{ route('tl.planification') }}" wire:navigate>
+                   <i class="bi bi-body-text"></i><span>Planification cours</span>
+              </a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link collapsed" data-bs-target="#note-nav" data-bs-toggle="collapse" href="#">
+                  <i class="bi bi-journal-richtext"></i><span>Notes</span><i class="bi bi-chevron-down ms-auto"></i>
+              </a>
+              <ul id="note-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                  <li>
+                      <a href="{{ route('tl.notes') }}" wire:navigate>
+                          <i class="bi bi-plus"></i><span>Enrégistrement des notes</span>
+                      </a>
+                  </li>
+                  <li>
+                      <a href="{{ route('tl.notes.matiere') }}" wire:navigate>
+                          <i class="bi bi-book"></i><span>Note par matiere</span>
+                      </a>
+                  </li>
+                   <li>
+                      <a href="{{ route('tl.notes.semestre') }}" wire:navigate>
+                          <i class="fa fa-clone"></i><span>Notes semestrielles</span>
+                      </a>
+                  </li>
+              </ul>
+          </li>
+
+          <li class="nav-item">
             <a class="nav-link collapsed" href="{{ route('genieinfo.information.list') }}">
                 <i class="bi bi-info-circle-fill"></i><span>Infos département</span>
             </a>
           </li>
+
+          {{-- @endcan --}}
+
       </ul>
   
   </aside>
