@@ -3,19 +3,14 @@
 }
 
 body {
-  font-family: "Open Sans", sans-serif;
+  font-family: "Century Gothic";
   background: #f6f9ff;
   color: #0000;
 }
 
-
-
-
-
-
 /* impression */
 .btnprn  {
-  color: blue;
+  color: #120A5C;
   padding: 20px 40px;
 }
 
@@ -274,7 +269,7 @@ h6 {
   right: 15px;
   bottom: 15px;
   z-index: 99999;
-  background: #4154f1;
+  background: #120A5C;
   width: 40px;
   height: 40px;
   border-radius: 4px;
@@ -288,7 +283,7 @@ h6 {
 }
 
 .back-to-top:hover {
-  background: #6776f4;
+  background: #1807afa3;
   color: #fff;
 }
 
@@ -433,8 +428,9 @@ h6 {
   padding: 20px 0 15px 0;
   font-size: 18px;
   font-weight: 500;
-  color: #012970;
-  font-family: "Poppins", sans-serif;
+  color: #120A5C;
+  font-family: "Century Gothic";
+  font-weight: bold;
 }
 
 .card-title span {

@@ -1,12 +1,15 @@
 <?php
 
+use App\Http\Controllers\AccueilController;
 use App\Http\Controllers\AnneeUnivController;
+use App\Http\Controllers\ArticlesController;
 use App\Http\Controllers\AttestationController;
 use App\Http\Controllers\AttestationTypeController;
 use App\Http\Controllers\DepartementsetudesController;
 use App\Http\Controllers\EmploisController;
 use App\Http\Controllers\EnseignantsController;
 use App\Http\Controllers\EtudesController;
+use App\Http\Controllers\FrontAdminController;
 use App\Http\Controllers\NiveauxetudesController;
 use App\Http\Controllers\PrintAttestationController;
 use App\Http\Controllers\PrintBadgeController;
@@ -36,6 +39,22 @@ use Illuminate\Support\Facades\Route;
 
 /* Routes added by thd */
 // scolarite
+
+Route::prefix('front')->group(function () {
+    Route::get('/accueil', [AccueilController::class, 'accueil'])->name('front.accueil');
+    Route::get('/admin', [FrontAdminController::class, 'index'])->name('front.admin');
+
+    Route::prefix('articles')->group(function () {
+        Route::get('/', [ArticlesController::class, 'index'])->name('articles.index');
+        Route::post('/', [ArticlesController::class, 'store'])->name('articles.store');
+        Route::get('/show', [ArticlesController::class, 'show'])->name('articles.show');
+        Route::get('/edit/{article}', [ArticlesController::class, 'edit'])->name('articles.edit');
+        Route::put('/update/{article}', [ArticlesController::class, 'update'])->name('articles.update');
+        Route::get('/delete/{article}', [ArticlesController::class, 'delete'])->name('articles.delete');
+    });
+});
+
+
 Route::name("scolarite.")->group(function () {
     Route::resource("attestation", AttestationController::class)->except(["show"]);
     Route::resource("attestationType", AttestationTypeController::class)->except(["show"]);
@@ -68,7 +87,7 @@ Route::prefix('scolarite')->group(function () {
     // Route::get('/reinscription', [ScolariteController::class, 'reinscription'])->name('scolarite.reinscription');
     Route::get('/parametre', [ScolariteController::class, 'afficherParametre'])->name('scolarite.parametre');
     // Route::get('/orientation', [ScolariteController::class, 'orientation'])->name('scolarite.orientation');
-    
+
 
     Route::get('/inscrits', [ScolariteController::class, 'inscrits'])->name('scolarite.inscrits');
 

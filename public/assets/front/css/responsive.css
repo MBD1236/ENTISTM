@@ -1,0 +1,222 @@
+/* Normal desktop :1200px. */
+@media (min-width: 1200px) and (max-width: 1500px) {
+
+
+}
+
+/* Normal desktop :992px. */
+@media (max-width: 1200px) {
+.mean-menu ul li {
+	margin-left: 10px;
+}
+.subscribe-form input {
+	width: 66%;
+}
+.subscribe-social ul li {
+	margin: 0px 1px;
+}
+.subscribe-content span {
+	font-size: 20px;
+}
+.mean-menu {
+	display: block;
+}
+}
+ 
+/* Tablet desktop :768px. */
+@media  (max-width: 991px) {
+.mean-menu {
+	display: none;
+}
+.top-login {
+	text-align: center;
+}
+.hero-content h2 {
+	font-size: 30px;
+}
+.hero-content h5 {
+	font-size: 14px;
+}
+.f-btn {
+	padding: 15px 30px;
+	font-size: 14px;
+}
+.divider-contact span {
+	font-size: 17px;
+}
+.section-title .sec-left::before {
+	left: 27%;
+}
+.courses-img img {
+	width: 100%;
+}
+.blog-img img {
+	width: 100%;
+}
+.subscribe-content {
+	text-align: center;
+	margin-bottom: 20px;
+}
+.subscribe-form {
+	margin-bottom: 20px;
+}
+.subscribe-form input {
+	width: 75%;
+}
+.subscribe-form button {
+	padding: 15px 35px;
+}
+.subscribe-social ul {
+	float: none;
+}
+.subscribe-social ul li {
+	float: none;
+}
+.subscribe-social {
+	text-align: center;
+}
+.md-mb-20{
+	margin-bottom: 20px;
+}
+.mb-pagination {
+	margin-bottom: 40px;
+}
+.embed-responsive-item {
+	height: 300px;
+}
+.sidebar-tag {
+	margin-bottom: 30px;
+}
+.comment-btn {
+	width: 25%;
+}
+}
+ 
+/* small mobile :320px. */
+@media (max-width: 767px) {
+.top-left {
+	text-align: center;
+	margin-bottom: 12px;
+}
+.top-right {
+	text-align: center;
+	float: none;
+}
+.search-form input {
+	width: 296px;
+	height: 64px;
+}
+.transparent-ico {
+	line-height: 67px;
+}
+.canvas_open {
+	float: right;
+}
+.top-login a {
+	width: 100%;
+}
+.hero-content {
+	padding: 130px 0px;
+}
+.hero-area .owl-nav div {
+	bottom: 11px;
+	right: 18px;
+}
+.view-all {
+	display: none;
+}
+.section-title .sec-left::before {
+	left: 38%;
+}
+.col-sm-6 {
+	width: 50%;
+	float: left;
+}
+.col-sm-12{
+	width: 100%;
+}
+.testimonial-img {
+	margin-bottom: 20px;
+}
+.testimonial-content {
+	text-align: center;
+}
+.testimonial-img img {
+	width: 95%;
+}
+.subscribe-form input {
+	width: 66%;
+}
+.subscribe-form button {
+	padding: 16px 10px;
+	font-size: 14px;
+}
+.section-title {
+	text-align: center;
+}
+.sevaider-sm::before {
+	position: absolute;
+	bottom: 20px;
+	left: 50%;
+	width: 213px;
+	height: 2px;
+	background: var(--button-colur);
+	content: "";
+	transform: translateX(-50%);
+	z-index: -2;
+	transition: all.3s;
+}
+.section-title .sec-left::before {
+	left: 50%;
+}
+.section-title .sec-left i {
+	margin-left: 0;
+}
+.read-about{
+	margin-top: 20px;
+}
+.ml-50 {
+	margin-left: 0px;
+}
+.comment-btn {
+	width: 40%;
+	padding: 10px;
+}
+.eror-bold h1 {
+	font-size: 180px;
+	line-height: 180px;
+}
+.eror-bold h2 {
+	font-size: 30px;
+}
+.go-back a {
+	font-size: 14px;
+}
+.col-sm-3 {
+	width: 25%;
+	float: left;
+	display: inline-block;
+}
+.col-sm-6 {
+	width: 50%;
+	float: left;
+	display: inline-block;
+}
+}
+ 
+/* Large Mobile :480px. */
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+.container {width:450px}
+.search-form input {
+	width: 414px;
+}
+.subscribe-form input {
+	width: 75%;
+}
+.section-title .sec-left::before {
+	left: 50%;
+}
+.section-title .sec-left i {
+	margin-left: 0;
+}
+}
