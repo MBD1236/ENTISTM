@@ -3,6 +3,7 @@
 namespace App\Livewire\Departements\GI;
 
 use App\Models\InformationDepartement;
+use Illuminate\Http\Request;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -57,7 +58,26 @@ class GIInformationsCreate extends Component
      */
     public function store()
     {
-        $data = $this->validate();
+        // Récupérer les données du formulaire
+        $existe = InformationDepartement::where('departement', $this->departement)
+                                        ->orWhere('code', $this->code)
+                                        ->orWhere('telephone', $this->telephone)
+                                        ->orWhere('email', $this->email)
+                                        ->exists();
+
+        if ($existe) {
+            return redirect()->route('genieinfo.information.list')->with('error', 'Un département avec ces informations existe déjà. Vous ne pouvez pas en créer un autre. Vous pouvez cliquer sur le bouton modifier en bas pour modifier les infomations');
+        }
+        // Valider les données après avoir vérifié leur existence
+        $validatedData = $this->validate([
+            "departement" => ["required", "unique:information_departements,departement"],
+            "code" => ["required", "unique:information_departements,code"],
+            "telephone" => ['required', 'regex:/^([0-9\s\-\+\(\)]*)$/', 'between:9,18', 'unique:information_departements,telephone'],   
+            "email" => ["required", "email", "unique:information_departements,email"],
+            "adresse" => ["required"],
+            "description" => ['required', 'min:8'],
+            "photo" => ["required", 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:5000'],
+        ]);
 
         /** @var \Illuminate\Http\UploadedFile|null $photo */
         $photo = $this->photo;
@@ -66,10 +86,10 @@ class GIInformationsCreate extends Component
             $photoSansExt = pathinfo($photo->getClientOriginalName(), PATHINFO_FILENAME);
             $nouveauNom = $photoSansExt . '_' . now()->format('YmdHis') . '.' . $photo->getClientOriginalExtension();
             $photo->storeAs('public/informations', $nouveauNom);
-            $data['photo'] = $nouveauNom;
+            $validatedData['photo'] = $nouveauNom;
         }
-
-        InformationDepartement::create($data);
+    
+        InformationDepartement::create($validatedData);
 
         $this->reset();
         return redirect()->route('genieinfo.information.list')->with('success', 'Département enregistré avec succès!');

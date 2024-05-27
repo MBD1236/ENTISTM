@@ -1,7 +1,14 @@
 <div> 
     <div class="card">
         <div class="card-header card-head">
-            <h1 class="bg-card text-center text-white card-head"><i class="fa fa-users me-3"></i>Les details des informations du département</h1>
+            <h1 class="bg-card text-center text-white card-head"><i class="fa fa-users me-3"></i>
+                Les details des informations du département
+                @foreach ($informations as $k => $information)
+                    @if ($information->departement == "Genie Informatique" || $information->departement === "Génie Informatique" )
+                        {{$information->departement}}
+                    @endif
+                @endforeach
+            </h1>
         </div>
         <div class="d-flex flex-row justify-content-end px-2">
             <a href="{{ route('genieinfo.information.create')}}" class="btn-modal">
@@ -10,41 +17,50 @@
             </a>
         </div>
         @if(session('success'))
-            <div class="alert alert-success text-center">
+            <div class="alert alert-success text-center mt-2">
                 {{session('success')}}
             </div>
         @endif
-        <div class="card-body">
+        @if(session('error'))
+            <div class="alert alert-danger text-center mt-2 fs-5 fw-bold">
+                {{session('error')}}
+            </div>
+        @endif
+        <div class="card-body mt-5">
             <div class="table-responsive-sm">
                 <table id="tableau" class="table table-hover mb-0 mt-4">
                     @foreach ($informations as $k => $information)
+                    @if ($information->departement == "Genie Informatique" || $information->departement === "Génie Informatique" )
                     <tr wire:key="{{ $information->id }}">
                        <div class="d-flex flex-row justify-content-between">
-                            <div class="d-flex flex-row justify-content-between">
-                                <h4>Département {{$information->departement}} </h4>
-                                <p>Code du département {{$information->code}} </p>
+                            <div class="d-flex flex-row justify-content-between fw-bold">
+                                <h2 class="fw-bold">Département {{$information->departement}} </h2>
                             </div>
-                            <div>
-                                <a href="{{ route('genieinfo.information.show', $information) }}" ><i class="bi bi-eye-fill cprimary"></i></a>
-                                <a href="{{ route('genieinfo.information.edit', $information) }}" ><i class="bi bi-pencil-square cprimary"></i></a>
+                            <div class="d-flex flex-row gap-2">
+                                <a href="{{ route('genieinfo.information.show', $information) }}" ><i class="bi bi-eye-fill cprimary fs-1"></i></a>
+                                <a href="{{ route('genieinfo.information.edit', $information) }}" ><i class="bi bi-pencil-square cprimary fs-1"></i></a>
                             </div>
                        </div>
                        <div class="row fw-bold">
-                            <div class="col-4 text-start">
-                                <span>Téléphone: {{ $information->telephone }}</span>
+                           <div class="col-4 text-start">
+                               <p>Code du département: {{$information->code}} </p>
                             </div>
                             <div class="col-4 text-center">
-                                <span>Email: {{ $information->email }}</span>
+                                <span>Téléphone: {{ $information->telephone }}</span>
                             </div>
                             <div class="col-4 text-end">
-                                <span>Adresse: {{ $information->adresse }}</span>
+                                <span>Email: {{ $information->email }}</span>
                             </div>
                         </div>
                         <div class="my-4">
-                            <img width="370px" height="300px" src="{{asset('storage/informations/'.$information->photo) }}" alt="PHOTO" align="left" style="margin:0px 10px 10px 0px">
-                            <p>{{$information->description}} </p>
+                            <img width="450px" height="350px" src="{{asset('storage/informations/'.$information->photo) }}" alt="PHOTO" align="left" style="margin:0px 10px 10px 0px">
+                            <p> 
+                                {{substr($information->description, 0, 1300)}}.....
+                                <a href="{{ route('genieinfo.information.show', $information) }}" ><i class="bi bi-eye-fill cprimary fs-3"></i><span class="fs-5 mx-2" style="color: #120a5c">Voir plus</span></a>
+                            </p>
                         </div>
                     </tr>
+                    @endif
                     @endforeach 
                 </table>
             </div> <!-- end table-responsive-->

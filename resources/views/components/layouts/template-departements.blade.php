@@ -326,6 +326,12 @@
                   </li>
               </ul>
           </li>
+          <li class="nav-item">
+            <a class="nav-link collapsed" href="{{ route('genieinfo.information.list') }}">
+                <i class="bi bi-info-circle-fill"></i><span>Infos département</span>
+            </a>
+          </li>
+
           {{-- @endcan --}}
 
           {{-- @can('science_energie') --}}

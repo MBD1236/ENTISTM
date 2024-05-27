@@ -1,11 +1,11 @@
 <div> 
     <div class="card">
         <div class="card-header card-head">
-            <h1 class="bg-card text-center text-white card-head"><i class="fa fa-users me-3"></i>Les details des informations du département</h1>
+            <h1 class="bg-card text-center text-white card-head"><i class="fa fa-users me-3"></i>Les details des informations du département {{ $information->departement }}</h1>
         </div>
 
         <div class="card-body">
-            <div class="d-flex flex-row justify-content-between">
+            <div class="d-flex flex-row justify-content-between my-2">
                 <h3 class="my-2 fw-bold">Département {{ $information->departement }} </h3>
                 <p class="my-2 fw-bold">Code : {{ $information->code }}</p>
             </div>
