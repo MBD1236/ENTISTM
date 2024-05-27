@@ -83,7 +83,6 @@ class EditEtudiant extends Component
     
     /**
      * edit: initialise les propriétés
-     *
      * @param  Etudiant $etudiant
      * @return void
      */

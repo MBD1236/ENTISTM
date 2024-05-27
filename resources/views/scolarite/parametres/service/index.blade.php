@@ -28,14 +28,12 @@
             <table class="table table-hover table-bordered mb-0">
                 <thead>
                     <tr>
-                        <th>#</th>
+                        <th>N°</th>
                         <th>Matricule</th>
                         <th>Prénom et Nom</th>
                         <th>Email</th>
                         <th>Téléphone</th>
-                        <th>Fonction</th>
-                        <th>Nom du service</th>
-                        <th>Sigle</th>
+                        <th>Service </th>
                         <th class="text-end">Actions</th>
                     </tr>
                 </thead>
@@ -47,15 +45,13 @@
                         <td>{{ $service->nom }}</td>
                         <td>{{ $service->email }}</td>
                         <td>{{ $service->telephone }}</td>
-                        <td>{{ $service->fonction }}</td>
                         <td>{{ $service->nomservice }}</td>
-                        <td>{{ $service->sigle }}</td>
-                        <td class="d-flex gap-1 justify-content-end ">
-                            <a href="{{ route('scolarite.service.edit', $service) }}" class="btn btn-light"><i class="bi bi-pencil-square"></i></a>
+                        <td class="d-flex gap-1 justify-content-end align-items-center ">
+                            <a href="{{ route('scolarite.service.edit', $service) }}" class="btn btn-modal p-1 px-2"><i class="bi bi-pencil-square"></i></a>
                             <form action="{{ route('scolarite.service.destroy', $service)}}" method="post">
                                 @method('delete')
                                 @csrf
-                                <button class="btn btn-danger p-1 py-0 fs-4"><i class="bi bi-trash"></i></button>
+                                <button class="btn btn-danger p-1 px-2 "><i class="bi bi-trash"></i></button>
                             </form>
                         </td>
                     </tr>

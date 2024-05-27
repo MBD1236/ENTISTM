@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Models\Departement;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -17,8 +16,8 @@ class Enseignant extends Model
         'telephone',
         'email',
         'adresse',
-        'departement_id',
         'photo',
+        'departement_id',
     ];
 
     public function departement() {

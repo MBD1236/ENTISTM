@@ -64,3 +64,142 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+
+<!-- excel -->
+composer require maatwebsite/excel
+
+<!-- fin -->
+
+### la localisation ou l'internationnalisation
+# php artisan lang:publish (pour publier l'anglais)
+# composer require laravel-lang/common --dev --ignore-platform-reqs (pour installer le package)
+# php artisan lang:add fr (pour ajouter une langue)
+# et puis dans le fichier config/app.php on modifie le locale = fr
+
+php artisan make:migration CreatePromotionsTable
+php artisan make:migration CreateNiveauxTable
+php artisan make:migration CreateSemestresTable
+php artisan make:migration CreateSessionsTable
+php artisan make:migration CreateDepartementsTable
+php artisan make:migration CreateMatieresTable
+
+php artisan make:model Promotion
+
+php artisan make:controller ModuleEtudiant/PromotionController -r
+
+
+<!-- DEPARTEMENT -->
+php artisan make:model Departement -m
+php artisan make:controller ModuleEtudiant/DepartementController -r
+php artisan make:request ModuleEtudiant/DepartementResquest
+<!-- ENSEIGNANT -->
+php artisan make:model Enseignant -m
+php artisan make:controller ModuleEtudiant/EnseignantController -r
+php artisan make:request ModuleEtudiant/EnseignantResquest
+
+
+<!-- resolution des problemes -->
+<!-- supprimer le dossier vendor -->
+#   rmdir /s /q vendor 
+<!-- réinstallez les dépendances Composer -->
+#   composer install
+<!-- apres relancer -->
+#   php artisan serve
+<!-- effacer la cache -->
+#   composer clear-cache
+<!-- si le probleme persiste metre a jour le composer vers la derniers version -->
+#   composer self-update
+
+
+<!-- pour installer livewire -->
+##  composer require livewire/livewire
+##  php artisan livewire:publish
+#   apres ajouter ce qui est en dessous dans le fichier config/app.php
+'providers' => [
+    ...
+    \Livewire\LivewireServiceProvider::class,
+],
+
+
+<!-- pour installer breeze -->
+##  composer require laravel/breeze
+##  php artisan breeze:install blade
+##  configuration de l'authentification
+APP_URL=http://localhost:8000
+FRONTEND_URL=http://localhost:3000
+
+
+## ALTER TABLE departements ADD COLUMN photo VARCHAR(256) NOT NULL AFTER description;
+## ALTER TABLE utilisateurs CHANGE nom_prenom nom_complet VARCHAR(255);
+## RENAME TABLE clients TO utilisateurs;
+
+<!-- pour l'import des notes -->
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Models\Etudiant;
+use App\Models\Matiere;
+use App\Models\Programme;
+use App\Models\Note;
+
+class NoteController extends Controller
+{
+    public function index()
+    {
+        return view('notes.index');
+    }
+
+    public function upload(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|mimes:xlsx,xls',
+        ]);
+
+        $path = $request->file('file')->getRealPath();
+        $data = Excel::load($path)->get();
+
+        foreach ($data as $row) {
+            $etudiant = Etudiant::firstOrCreate(['nom' => $row->etudiant]);
+            $matiere = Matiere::firstOrCreate(['nom' => $row->matiere]);
+            $programme = Programme::firstOrCreate(['nom' => $row->programme]);
+
+            // Utilisez les identifiants pour insérer les données dans la table principale
+            $note = new Note();
+            $note->etudiant_id = $etudiant->id;
+            $note->matiere_id = $matiere->id;
+            $note->programme_id = $programme->id;
+            $note->note = $row->note;
+            $note->save();
+        }
+
+        return 'Les notes ont été importées avec succès.';
+    }
+}
+
+## Alimantations(nom, dateCreation, dateExpiration, reff, photo) et produit cosmetiques (nom, dateCreation, dateExpiration, reff, type(rouge a levre, teint))
+
+## Pieces(nom, type, dateAchat) et Engein roulants(nom, type, model, dateAchat et etatActuel )
+
+## shoping/matelas/lits/fotaille(nom, model, taille, dateAchat et photo) et outils electroniques (nom, model, dateCreation, categorie(pc, smart phone) et une table lie a outils electronique qui outils technique(RAM, autonomie, capacite, ecran))
+
+## frigot et librairie(nom et type)
+
+## outil de construciton(nom, type(beton, boit, acier),dimension)
+
+## fourniture(nom, type, model)
+
+
+## pour la creations des lien symboliques (php artisan storage:link)
+
+{{-- {{asset('storage/'.$information->photo) }} --}}
+{{-- {{ dd(Storage::url($information->photo)) }} --}}
+<!-- les deux facon de recuperer la photo -->
+<img width="40px" height="30px" src="{{asset('storage/informations/'.$information->photo) }}" alt="PHOTO">
+<img src="{{ Storage::url($information->photo) }}" alt="Photo du département" srcset="">
+
+
+#120a5c

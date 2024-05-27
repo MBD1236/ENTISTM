@@ -289,7 +289,12 @@
             </li>
             <li>
               <a href="{{ route('scolarite.inscription') }}" wire:navigate>
-                <i class="fa fa-user-plus"></i><span>Inscription</span>
+                <i class="fa fa-user-plus"></i><span>Inscription (orienté)</span>
+              </a>
+            </li>
+            <li>
+              <a href="{{ route('scolarite.inscriptionnonOriente') }}" wire:navigate>
+                <i class="fa fa-user-plus"></i><span>Inscription (non orienté)</span>
               </a>
             </li>
             <li>

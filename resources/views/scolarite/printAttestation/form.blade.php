@@ -1,8 +1,7 @@
 @extends('layouts.template-scolarite')
 
-
 @section('content')
-    <div class="card">
+    <div class="card b">
         <div class="card-header card-head">
             <h1 class="bg-card text-white card-head d-flex flex-row justify-content-between">
                 <div> 
@@ -31,7 +30,7 @@
 
        <div class="card-body mt-4">
             <h2 class="label-text text-center"><i class="fa fa-print me-1"></i>Impression des attestations d'inscription </h2>
-            <div class="row d-flex flex-row justify-content-center gap-1 px-0">   
+            <div class="row d-flex flex-row justify-content-center gap-1 ">   
                 {{--form1 pour l'annee universitaire  --}}
                 <div class="col-md-4 col-sm-12">
                     <div class="row">
@@ -42,8 +41,7 @@
                                 <div class="d-flex flex-row justify-content-between gap-1">
                                     <div>
                                         <div class="form-group">   
-                                            <select name="annee_universitaire_id" class="form-select border-input @error('annee_universitaire_id') is-invalid  @enderror" id="floatingannee" style="height: 40px;">
-                                                <option value="0">Année Univer...</option>
+                                            <select name="annee_universitaire_id" class="select2  form-select border-input @error('annee_universitaire_id') is-invalid  @enderror" id="floatingannee" style="width: 130px;">
                                                 @foreach ($annee_universitaires as $annee_universitaire)
                                                     <option  @selected(old('annee_universitaire_id', $annee_universitaire->session)) value="{{ $annee_universitaire->id }}">{{ $annee_universitaire->session }}</option>
                                                 @endforeach
@@ -65,7 +63,7 @@
                                 </div>
                                 <button type="submit" class="btn-modal btn-afficher mt-1 ">
                                     <i class="fa fa-eye fs-5 me-1"></i>
-                                    <span>Afficher les matricules</span>
+                                    <span>Afficher le.s matricule.s</span>
                                 </button>
                             </div>
                         </form>
@@ -79,10 +77,10 @@
                         <div class="row">
                             <div class="col-md-9 col-sm-12 p-1">
                                 <div class="form-group">                        
-                                    <select id="matricules" class="select2 js-states form-select border-input @error('matricules') is-invalid @enderror" name="matricules[]" style="height: 90px;" multiple>
+                                    <select id="matricules" class="select2 custom-select2 form-control border-input @error('matricules') is-invalid @enderror" name="matricules[]" style="height: 120px;" multiple>
                                         <option value="">Sélectionner le(s) matricule(s)</option>
                                         @foreach($matricules as $matricule)
-                                            <option value="{{ $matricule->etudiant_id }}">{{ $matricule->ine }}  - {{ $matricule->prenom }} {{ $matricule->nom }}</option>
+                                            <option value="{{ $matricule->etudiant_id }}">{{ $matricule->ine }} - {{ $matricule->prenom }} {{ $matricule->nom }}</option>
                                         @endforeach
                                     </select>
                                     @error('matricules')
@@ -90,6 +88,7 @@
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
+
                                 </div>
                             </div>
                             <div class="col-md-3 col-sm-12 d-flex justify-content-end p-1">
@@ -150,4 +149,15 @@
         </div>
 
     </div>
+
+    <script>
+        // pour l'initialisation de select2
+        $(document).ready(function() {
+            $('.select2').select2({
+                placeholder: 'Le.s matricule.s séléctionnés...',
+                allowClear: true 
+            });
+        });
+    </script>
+
 @endsection

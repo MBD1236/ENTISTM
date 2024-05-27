@@ -2,15 +2,13 @@
   scroll-behavior: smooth;
 }
 
-body {
-  font-family: "Century Gothic";
-  background: #f6f9ff;
-  color: #0000;
+a {
+  text-decoration: none !important;
 }
 
 /* impression */
 .btnprn  {
-  color: #120A5C;
+  color: blue;
   padding: 20px 40px;
 }
 
@@ -98,9 +96,9 @@ html {
 .h{
   display: flex;
   flex-direction: row;
- 
+
   display: block;
-  
+
 }
 
 /* pour matiere */
@@ -181,7 +179,7 @@ h6 {
 }
 
 .non:hover {
-  background: #0b773d;
+  background: #012970;
 }
 
 .non {
@@ -200,7 +198,7 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  
+
   background: #f6f9ff;
   color: #0000;
 }
@@ -269,7 +267,7 @@ h6 {
   right: 15px;
   bottom: 15px;
   z-index: 99999;
-  background: #120A5C;
+  background: #120a5c;
   width: 40px;
   height: 40px;
   border-radius: 4px;
@@ -283,7 +281,7 @@ h6 {
 }
 
 .back-to-top:hover {
-  background: #1807afa3;
+  background: #120a5c;
   color: #fff;
 }
 
@@ -428,9 +426,8 @@ h6 {
   padding: 20px 0 15px 0;
   font-size: 18px;
   font-weight: 500;
-  color: #120A5C;
-  font-family: "Century Gothic";
-  font-weight: bold;
+  color: #012970;
+  font-family: "Poppins", sans-serif;
 }
 
 .card-title span {

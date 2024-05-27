@@ -14,4 +14,9 @@ class Departement extends Model
     public function programmes() {
         return $this->hasMany(Programme::class);
     }
+
+    public function enseignants() {
+        return $this->hasMany(Enseignant::class);
+    }
+
 }
