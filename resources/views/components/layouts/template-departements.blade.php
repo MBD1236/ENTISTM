@@ -8,7 +8,12 @@
   <title>Dashboard - NiceAdmin Bootstrap Template</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
+  <!-- pour le select2 -->
+  <link href="{{ asset('assets/css/select2.min.css') }}" rel="stylesheet">
+  <script src="{{asset('assets/js/jquery-3.6.0.js')}}"></script>
 
+  <!-- Template Main JS File -->
+  <script src="{{ asset('assets/js/select2.min.js') }}"></script>
   <!-- Favicons -->
   <link href="{{ asset('assets/img/logo-ent-trans.png') }}" rel="icon">
   <link href="{{ asset('assets/img/logo-ent-trans.png') }}" rel="apple-touch-icon">
@@ -29,7 +34,7 @@
 
   <!-- Template Main CSS File -->
   <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
-
+ 
 </head>
 
 <body>
@@ -253,10 +258,8 @@
                 <span>Sign Out</span>
               </a>
             </li>
-
           </ul><!-- End Profile Dropdown Items -->
         </li><!-- End Profile Nav -->
-
       </ul>
     </nav><!-- End Icons Navigation -->
 
@@ -303,6 +306,11 @@
               <a class="nav-link collapsed" href="{{ route('genieinfo.planification') }}" wire:navigate>
                    <i class="bi bi-body-text"></i><span>Planification cours</span>
               </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link collapsed" href="{{ route('genieinfo.emploitemps') }}" wire:navigate>
+                <i class="bi bi-calendar-range"></i><span>Emploi de Temps</span>
+            </a>
           </li>
           <li class="nav-item">
               <a class="nav-link collapsed" data-bs-target="#note-nav" data-bs-toggle="collapse" href="#">
@@ -364,10 +372,11 @@
               </a>
           </li>
           <li class="nav-item">
-              <a class="nav-link collapsed" href="{{ route('scienceenergie.planification') }}" wire:navigate>
-                   <i class="bi bi-body-text"></i><span>Planification cours</span>
-              </a>
+            <a class="nav-link collapsed" href="{{ route('scienceenergie.planification') }}" wire:navigate>
+                  <i class="bi bi-body-text"></i><span>Planification cours</span>
+            </a>
           </li>
+          
           <li class="nav-item">
               <a class="nav-link collapsed" data-bs-target="#note-nav" data-bs-toggle="collapse" href="#">
                   <i class="bi bi-journal-richtext"></i><span>Notes</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -666,6 +675,13 @@
 
   <!-- Template Main JS File -->
   <script src="{{ asset('assets/js/main.js') }}"></script>
+
+  <!-- pour le select2 -->
+  <link href="{{ asset('assets/css/select2.min.css') }}" rel="stylesheet">
+  <script src="{{asset('assets/js/jquery-3.6.0.js')}}"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{{ asset('assets/js/select2.min.js') }}"></script>
 
 </body>
 

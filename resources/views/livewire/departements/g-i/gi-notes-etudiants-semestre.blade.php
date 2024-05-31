@@ -30,7 +30,7 @@
         </div>
         
 
-       <div class="card-body">
+        <div class="card-body">
             <div class="table-responsive-sm">
                 <table id="tableau" class="table table-hover table-centered table-bordered mb-0 mt-4">
                     <thead>
@@ -97,4 +97,5 @@
                 </div>
             </div>
         </div>
+    </div>
 </div>

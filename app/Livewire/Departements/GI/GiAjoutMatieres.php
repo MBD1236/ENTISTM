@@ -39,7 +39,7 @@ class GiAjoutMatieres extends Component
         Matiere::create($this->validate());
         $this->reset();
         session()->flash('success', 'Ajout effectué avec succès!');
-        return redirect()->route('genieinfo.matiereS');
+        return redirect()->route('genieinfo.matieres');
     }
     
     #[Layout("components.layouts.template-departements")]

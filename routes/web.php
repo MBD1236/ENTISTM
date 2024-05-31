@@ -32,6 +32,8 @@ use App\Livewire\Departements\CFM\CfmPlanificationCoursTables;
 use App\Livewire\Departements\GI\GiAjoutMatieres;
 use App\Livewire\Departements\GI\GiEditMatieres;
 use App\Livewire\Departements\GI\GiEditNotes;
+use App\Livewire\Departements\GI\GIEmploiImport;
+use App\Livewire\Departements\GI\GIEmploiTemps;
 use App\Livewire\Departements\GI\GiEnregistrementNote;
 use App\Livewire\Departements\GI\GiEnseignantsTables;
 use App\Livewire\Departements\GI\GiEtudiantsTables;
@@ -238,7 +240,9 @@ Route::prefix('genieinfo')->name("genieinfo.")->group(function(){
     Route::get('/notes/matiere', GiNoteEtudiantsMatieres::class)->name('notes.matiere');
     Route::get('/notes/matiere/{note}', GiEditNotes::class)->name('notes.edit');
     Route::get('/notes/semestre', GiNotesEtudiantsSemestre::class)->name('notes.semestre');
-
+    // pour l'empoi de temps
+    Route::get('/emploiTemps', GIEmploiTemps::class)->name('emploitemps');
+    Route::get('/emploiTemps/import', GIEmploiImport::class)->name('emploitemps.import');
     // pour les details des departement
     Route::get('/information', GIInformationsList::class)->name('information.list');
     Route::get('/information/create', GIInformationsCreate::class)->name('information.create');

@@ -5,9 +5,16 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Dashboard - NiceAdmin Bootstrap Template</title>
+  <title>Scolarite Dahasbord</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
+
+  <!-- pour le select2 -->
+  <link href="{{ asset('assets/css/select2.min.css') }}" rel="stylesheet">
+  <script src="{{asset('assets/js/jquery-3.6.0.js')}}"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{{ asset('assets/js/select2.min.js') }}"></script>
 
   <!-- Favicons -->
   <link href="{{ asset('assets/img/logo-ent-trans.png') }}" rel="icon">
