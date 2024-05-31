@@ -14,11 +14,11 @@ return new class extends Migration
     {
         Schema::create('enseignants', function (Blueprint $table) {
             $table->id();
-            $table->string('matricule')->unique();
+            $table->string('matricule');
             $table->string('nom');
             $table->string('prenom');
-            $table->string('telephone')->unique();
-            $table->string('email')->unique();
+            $table->string('telephone');
+            $table->string('email');
             $table->string('adresse');
             $table->string('photo');
             $table->foreignIdFor(Departement::class)->constrained()->cascadeOnUpdate()->cascadeOnDelete();

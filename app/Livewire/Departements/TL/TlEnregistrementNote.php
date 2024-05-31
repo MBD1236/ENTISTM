@@ -55,7 +55,7 @@ class TlEnregistrementNote extends Component
             "matieres"=> Matiere::whereHas('programme', function($p){
                 $p->where('programme', 'Technique de Laboratoire Biologie');
                 $p->orWhere('programme', 'Technique de Laboratoire Chimie');
-            }),
+            })->get(),
         ]);
     }
 }

@@ -8,7 +8,7 @@
                 <div class="col-md-4 form-floating">
                     <div class="form-floating">
                         <input class="form-control border-input @error('matiere') is-invalid @enderror" type="text" wire:model="matiere" id="floatingmatiere" placeholder="Matière" wire:click='clearStatus'>
-                        <label for="floatingmatiere" class="label-control label-text">Matière</label>
+                        <label for="floatingmatiere" class="label-control label-text">Matière<span class="text-danger">*</span></label>
                         <div class="invalid-feedback">@error('matiere') {{ $message }} @enderror</div>
                     </div>
                 </div>
@@ -20,7 +20,7 @@
                                 <option value="{{ $programme->id }}" wire:key="{{ $programme->id }}">{{ $programme->programme }}</option>
                             @endforeach
                         </select>
-                        <label for="floatingprogramme" class="label-control label-text">Programme</label>
+                        <label for="floatingprogramme" class="label-control label-text">Programme<span class="text-danger">*</span></label>
                         <div class="invalid-feedback">@error('programme_id') {{ $message }} @enderror</div>
                     </div>
                 </div>
@@ -32,7 +32,7 @@
                                 <option value="{{ $semestre->id }}" wire:key="{{ $semestre->id }}">{{ $semestre->semestre }}</option>
                             @endforeach
                         </select>
-                        <label for="floatingsemestre" class="label-control label-text">Semestre</label>
+                        <label for="floatingsemestre" class="label-control label-text">Semestre<span class="text-danger">*</span></label>
                         <div class="invalid-feedback">@error('semestre_id') {{ $message }} @enderror</div>
                     </div>
                 </div>

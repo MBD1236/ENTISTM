@@ -120,14 +120,9 @@ class ImpPlanificationCoursTables extends Component
         $planifications = $query->paginate(10);
 
 
-        $matieres = Matiere::query()
-            ->when($this->searchProgramme !== 0, function ($query) {
-                $query->whereHas('programme', function ($subquery) {
-                    $subquery->where('programme', 'Instrumentation et Mesures Physiques');
-                });
-            })
-            ->orderBy('created_at', 'asc') // Tri par ordre ascendant
-            ->get();
+        $matieres = Matiere::whereHas('programme', function ($subquery) {
+            $subquery->where('programme', 'Instrumentation et Mesures Physiques');
+        })->orderBy('created_at', 'asc')->get();
         return view('livewire.departements.i-m-p.imp-planification-cours-tables',[
             'planifications' => $planifications,
             'matieres' => $matieres,

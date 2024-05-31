@@ -119,14 +119,9 @@ class CfmPlanificationCoursTables extends Component
         $planifications = $query->paginate(10);
 
 
-        $matieres = Matiere::query()
-            ->when($this->searchProgramme !== 0, function ($query) {
-                $query->whereHas('programme', function ($subquery) {
-                    $subquery->where('programme', 'Conception et Fabrication Mécanique');
-                });
-            })
-            ->orderBy('created_at', 'asc') // Tri par ordre ascendant
-            ->get();
+        $matieres = Matiere::whereHas('programme', function ($subquery) {
+            $subquery->where('programme', 'Conception et Fabrication Mécanique');
+        })->orderBy('created_at', 'asc')->get();
         return view('livewire.departements.c-f-m.cfm-planification-cours-tables',[
             'planifications' => $planifications,
             'matieres' => $matieres,

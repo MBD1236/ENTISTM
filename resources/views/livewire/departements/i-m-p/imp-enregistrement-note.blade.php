@@ -11,13 +11,6 @@
     </div>
     @endif
 
-    @if($errors->any())
-        <ul>
-        @foreach ($errors->all() as $item)
-            <li>{{ $item }}</li>
-        @endforeach
-        </ul>
-    @endif
 
     <div class="card">
         <div class="card-header card-head">

@@ -120,14 +120,10 @@ class SePlanificationCoursTables extends Component
         $planifications = $query->paginate(10);
 
 
-        $matieres = Matiere::query()
-            ->when($this->searchProgramme !== 0, function ($query) {
-                $query->whereHas('programme', function ($subquery) {
+        $matieres = Matiere::whereHas('programme', function ($subquery) {
                     $subquery->where('programme', 'Energétique');
-                });
-            })
-            ->orderBy('created_at', 'asc') // Tri par ordre ascendant
-            ->get();
+                })->orderBy('created_at', 'asc')->get();
+                
         return view('livewire.departements.s-e.se-planification-cours-tables',[
             'planifications' => $planifications,
             'matieres' => $matieres,

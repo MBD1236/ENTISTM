@@ -28,6 +28,9 @@ class ImpNoteEtudiantsMatieres extends Component
         if (!empty($this->matiere_id) && !empty($this->niveau_id) && !empty($this->promotion)) {
             $notes = Note::where('matiere_id', $this->matiere_id)
                     ->whereHas('inscription', function ($e) {
+                            $e->whereHas('programme', function($e){
+                                $e->where('programme', 'Instrumentation et Mesures Physiques');
+                            });
                             $e->where('niveau_id', 'LIKE', "%{$this->niveau_id}%");
                             $e->whereHas('promotion', function($e) {
                                 $e->where('promotion', 'LIKE', "%{$this->promotion}%");

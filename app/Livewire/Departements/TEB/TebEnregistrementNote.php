@@ -53,7 +53,7 @@ class TebEnregistrementNote extends Component
         return view('livewire.departements.t-e-b.teb-enregistrement-note',[
             "matieres"=> Matiere::whereHas('programme', function($p){
                 $p->where('programme', 'Technologie des Equipements Biomédicaux');
-            }),
+            })->get(),
         ]);
     }
 }

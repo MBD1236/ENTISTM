@@ -35,7 +35,7 @@
                             <div class="col-md-4 form-floating">
                                 <div class="form-floating">
                                     <input class="form-control border-input @error('recu_id') is-invalid @enderror" type="text" wire:model="recu_id" wire:click='clearStatus' id="floatingrecu" placeholder="N° reçu">
-                                    <label for="floatingrecu" class="label-control label-text">N° reçu</label>
+                                    <label for="floatingrecu" class="label-control label-text">N° reçu<span class="text-danger">*</span></label>
                                     <div class="invalid-feedback">@error('recu_id') {{ $message }} @enderror</div>
                                 </div>
                             </div>
@@ -115,7 +115,7 @@
                                         <option value="{{ $annee_universitaire->id }}" wire:key="{{ $annee_universitaire->id }}">{{ $annee_universitaire->session }}</option>
                                     @endforeach
                                 </select>
-                                <label for="floatinganneeuniv" class="label-control label-text">Année Univerisatire</label>
+                                <label for="floatinganneeuniv" class="label-control label-text">Année Univerisataire<span class="text-danger">*</span></label>
                                 <div class="invalid-feedback">@error('annee_univ_id') {{ $message }} @enderror</div>
                             </div>
                         </div>
@@ -132,7 +132,7 @@
                                         @endif
                                     @endforeach
                                 </select>
-                                <label for="floatingpromotion" class="label-control label-text">Promotion</label>
+                                <label for="floatingpromotion" class="label-control label-text">Promotion<span class="text-danger">*</span></label>
                                 <div class="invalid-feedback">@error('promotion_id') {{ $message }} @enderror</div>
                             </div>
                         </div>
@@ -146,7 +146,7 @@
                                         <option value="{{ $niveau->id }}" wire:key="{{ $niveau->id }}">{{ $niveau->niveau }}</option>
                                     @endforeach
                                 </select>
-                                <label for="floatingniveau" class="label-control label-text">Niveau</label>
+                                <label for="floatingniveau" class="label-control label-text">Niveau<span class="text-danger">*</span>   </label>
                                 <div class="invalid-feedback">@error('niveau_id') {{ $message }} @enderror</div>
                             </div>
                         </div>
@@ -162,7 +162,7 @@
                                         @endif
                                     @endforeach
                                 </select>
-                                <label for="floatingprogramme" class="label-control label-text">Programme</label>
+                                <label for="floatingprogramme" class="label-control label-text">Programme<span class="text-danger">*</span></label>
                                 <div class="invalid-feedback">@error('programme_id') {{ $message }} @enderror</div>
                             </div>
                         </div>

@@ -207,7 +207,7 @@ class ReinscriptionEtudiant extends Component
     {
         return view('livewire.scolarite.reinscription-etudiant',[
             'promotions' => Promotion::all(),
-            'niveaux' => Niveau::all(),
+            'niveaux' => Niveau::where('niveau','Licence 2')->orWhere('niveau', 'Licence 3')->orWhere('niveau', 'Licence 4')->get(),
             'programmes'=> Programme::all(),
             'annee_universitaires'=> AnneeUniversitaire::orderBy('created_at','desc')->paginate(5),
         ]);

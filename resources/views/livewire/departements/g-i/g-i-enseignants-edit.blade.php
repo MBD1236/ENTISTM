@@ -7,56 +7,56 @@
             <div class="row mt-3">
                 <div class="col-md-9 m-auto">
                     <div class="row">
-                        <div class="my-2">
+                        <div class="col-md-6 my-2">
                             <div class="form-floating">
                                 <input class="form-control border-input @error('matricule') is-invalid @enderror" type="text" wire:model="matricule" id="floatingmatricule" name="matricule" placeholder="Matricule" value="{{ old('matricule', $matricule) }}" wire:click='clearStatus'>
                                 <div class="invalid-feedback">@error('matricule') {{ $message }} @enderror</div>
-                                <label for="floatingmatricule" class="label-control label-text">Matricule</label>
+                                <label for="floatingmatricule" class="label-control label-text">Matricule<span class="text-danger">*</span></label>
                             </div>
                         </div>
-                        <div class="my-2">
+                        <div class="col-md-6 my-2">
                             <div class="form-floating">
                                 <input class="form-control border-input @error('prenom') is-invalid @enderror" type="text" wire:model.defer="prenom" id="floatingprenom" name="prenom" placeholder="prenom" value="{{ old('prenom', $prenom) }}" wire:click='clearStatus'>
-                                <label for="floatingprenom" class="label-control label-text">Prénom</label>
+                                <label for="floatingprenom" class="label-control label-text">Prénom<span class="text-danger">*</span></label>
                                 <div class="invalid-feedback">@error('prenom') {{ $message }} @enderror</div>
                             </div>
                         </div>
-                        <div class="my-2">
+                        <div class="col-md-6 my-2">
                             <div class="form-floating">
                                 <input class="form-control border-input @error('nom') is-invalid @enderror" type="text" wire:model.defer="nom" id="floatingnom" name="nom" placeholder="nom" value="{{ old('nom', $nom) }}" wire:click='clearStatus'>
-                                <label for="floatingnom" class="label-control label-text">Nom</label>
+                                <label for="floatingnom" class="label-control label-text">Nom<span class="text-danger">*</span></label>
                                 <div class="invalid-feedback">@error('nom') {{ $message }} @enderror</div>
                             </div>
                         </div>
-                        <div class="my-2">
+                        <div class="col-md-6 my-2">
                             <div class="form-floating">
                                 <input class="form-control border-input @error('telephone') is-invalid @enderror" type="tel" wire:model.defer="telephone" id="floatingtelephone" name="telephone" placeholder="Téléphone" value="{{ old('telephone', $telephone) }}" wire:click='clearStatus'>
-                                <label for="floatingtelephone" class="label-control label-text">Téléphone</label>
+                                <label for="floatingtelephone" class="label-control label-text">Téléphone<span class="text-danger">*</span></label>
                                 <div class="invalid-feedback">@error('telephone') {{ $message }} @enderror</div>
                             </div>
                         </div>
-                        <div class="my-2">
+                        <div class="col-md-6 my-2">
                             <div class="form-floating">
                                 <input class="form-control border-input @error('email') is-invalid @enderror" type="email" wire:model.defer="email" id="floatingemail" name="email" placeholder="Adresse email" value="{{ old('email', $email) }}" wire:click='clearStatus'>
-                                <label for="floatingemail" class="label-control label-text">Adresse email</label>
+                                <label for="floatingemail" class="label-control label-text">Adresse email<span class="text-danger">*</span></label>
                                 <div class="invalid-feedback">@error('email') {{ $message }} @enderror</div>
                             </div>
                         </div>
-                        <div class="my-2">
+                        <div class="col-md-6 my-2">
                             <div class="form-floating">
                                 <input class="form-control border-input @error('adresse') is-invalid @enderror" type="text" wire:model.defer="adresse" id="floatingadresse" name="adresse" placeholder="Adresse" value="{{ old('adresse', $adresse) }}" wire:click='clearStatus'>
-                                <label for="floatingadresse" class="label-control label-text">Adresse/Quartier</label>
+                                <label for="floatingadresse" class="label-control label-text">Adresse/Quartier<span class="text-danger">*</span></label>
                                 <div class="invalid-feedback">@error('adresse') {{ $message }} @enderror</div>
                             </div>
                         </div>
-                        <div class="my-2">
+                        <div class="col-md-6 my-2">
                             <div class="form-floating">
                                 <input class="form-control border-input @error('photo') is-invalid @enderror" type="file" wire:model.defer="photo" id="floatingphoto" name="photo" placeholder="PHOTO" wire:click='clearStatus'>
-                                <label for="floatingphoto" class="label-control label-text">PHOTO</label>
+                                <label for="floatingphoto" class="label-control label-text">PHOTO<span class="text-danger">*</span></label>
                                 <div class="invalid-feedback">@error('photo') {{ $message }} @enderror</div>
                             </div>
                         </div>
-                        <div class="my-2">
+                        <div class="col-md-6 my-2">
                             <div class="form-floating">
                                 <select class="form-select border-input @error('departement_id') is-invalid @enderror" wire:model="departement_id" id="departement_id" wire:click='clearStatus'>
                                     <option value="">Séléctionner un département</option>

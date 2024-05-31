@@ -24,7 +24,7 @@
                 </div>
     
                 <div class="col-md-2">
-                    <input type="text" wire:model.live.debounce.1000ms='promotion' class="form-control" placeholder="Entrer la promotion">
+                    <input type="text" wire:model.live.debounce.30000ms='promotion' class="form-control" placeholder="Entrer la promotion">
                 </div>
             </div>
         </div>

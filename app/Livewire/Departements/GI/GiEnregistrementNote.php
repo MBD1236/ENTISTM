@@ -52,7 +52,7 @@ class GiEnregistrementNote extends Component
         return view('livewire.departements.g-i.gi-enregistrement-note',[
             "matieres"=> Matiere::whereHas('programme', function($p){
                 $p->where('programme', 'Génie Informatique');
-            }),
+            })->get(),
         ]);
     }
 }

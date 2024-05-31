@@ -37,7 +37,7 @@ class ImpAjoutMatieres extends Component
         Matiere::create($this->validate());
         $this->reset();
         session()->flash('success', 'Ajout effectué avec succès!');
-        return redirect()->route('imp.matiereS');
+        return redirect()->route('imp.matieres');
     }
    
     #[Layout("components.layouts.template-departements")]

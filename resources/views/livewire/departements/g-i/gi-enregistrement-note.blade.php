@@ -11,14 +11,6 @@
     </div>
     @endif
 
-    @if($errors->any())
-        <ul>
-        @foreach ($errors->all() as $item)
-            <li>{{ $item }}</li>
-        @endforeach
-        </ul>
-    @endif
-
     <div class="card">
         <div class="card-header card-head">
             <h1 class="bg-card text-center text-white card-head"><i class="bi bi-journal-richtext me-3"></i>Enrégistrement des notes</h1>

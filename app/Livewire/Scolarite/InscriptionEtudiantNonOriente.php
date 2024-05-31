@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Symfony\Polyfill\Intl\Idn\Resources\unidata\Regex;
 
 class InscriptionEtudiantNonOriente extends Component
 {
@@ -57,9 +58,9 @@ class InscriptionEtudiantNonOriente extends Component
    
     public function rulesEtudiant() {
         return [
-            "nom" => ["required", "string"],
-            "prenom" => ["required", "string"],
-            "telephone" => ["required", "string"],
+            "nom" => ["required", "string", 'regex:([a-z])'],
+            "prenom" => ["required", "string",'regex:([a-z])'],
+            "telephone" => ["required", "string",'regex:/^([0-9\s\-\+\(\)]*)$/', 'between:9,18'],
             "email" => ["required", "string"],
             "pv" => ["required", "integer"],
             "ine" => ["required", "max:15"],
@@ -69,12 +70,12 @@ class InscriptionEtudiantNonOriente extends Component
             "ecole_origine" => ["required", "string"],
             "date_naissance" => ["required", "date"],
             "lieu_naissance" => ["required", "string"],
-            "pere" => ["required", "string"],
-            "mere" => ["required", "string"],
-            "programme" => ["required", "string"],
-            'nom_tuteur' => ['required','string', 'min:2'],
+            "pere" => ["required", "string",'regex:([a-z])'],
+            "mere" => ["required", "string",'regex:([a-z])'],
+            "programme" => ["required", "string",'regex:([a-z])'],
+            'nom_tuteur' => ['required','string', 'min:2','regex:([a-z])'],
             'telephone_tuteur' => ['required','regex:/^([0-9\s\-\+\(\)]*)$/', 'between:9,18'],
-            "adresse" => ["required"],
+            "adresse" => ["required",'regex:([a-z])'],
             'photo' => ['required', 'image', 'mimes:jpg,jpeg,png,gif,svg', 'max:1024'],
             'diplome' => ['required', 'mimes:jpeg,png,jpg,gif,svg,ico,pdf'],
             'releve_notes' => ['required', 'mimes:jpg,jpeg,png,gif,svg,ico,pdf'],

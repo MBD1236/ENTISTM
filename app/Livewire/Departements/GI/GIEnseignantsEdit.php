@@ -41,22 +41,6 @@ class GIEnseignantsEdit extends Component
     }
 
 
-    /**
-     * edit: initialise les propriétés
-     * @param  Enseignant $enseignant
-     * @return void
-     */
-    public function edit(Enseignant $enseignant) {
-        $this->enseignant = $enseignant;
-        $this->matricule = $enseignant->matricule;
-        $this->prenom = $enseignant->prenom;
-        $this->nom = $enseignant->nom;
-        $this->telephone = $enseignant->telephone;
-        $this->email = $enseignant->email;
-        $this->adresse = $enseignant->adresse;
-        $this->departement_id = $enseignant->departement_id;
-        $this->photo= $enseignant->photo;
-    }
     
     /**
     * rules : les règles de validations
@@ -65,13 +49,13 @@ class GIEnseignantsEdit extends Component
     */
     protected function rules() {
         return [
-            "matricule" => ["required", "unique:enseignants,id"],
+            "matricule" => ["required"],
             "nom" => ["required", "min:2"],
             "prenom" => ["required", "min:2"],
-            "telephone" => ["required", "regex:/^([0-9\s\-\+\(\)]*)$/", "between:9,18", "unique:enseignants,telephone," . $this->enseignant->id],
-            "email" => ["required", "email", "unique:enseignants,id"],
+            "telephone" => ["required", "regex:/^([0-9\s\-\+\(\)]*)$/", "between:9,18"],
+            "email" => ["required", "email"],
             "adresse" => ["required"],
-            "departement_id" => ['required', 'exists:enseignants,id'],
+            "departement_id" => ["required"],
             'photo' => !is_string($this->photo) ? ['nullable','image', 'mimes:jpg,jpeg,png,gif,svg', 'max:5000'] : [],
         ];
     }
