@@ -24,7 +24,7 @@
                 </div>
     
                 <div class="col-md-2">
-                    <input type="text" wire:model.live.debounce.30000ms='promotion' class="form-control" placeholder="Entrer la promotion">
+                    <input type="text" wire:model.live.debounce.1000ms='promotion' class="form-control" placeholder="Entrer la promotion">
                 </div>
             </div>
         </div>
@@ -73,7 +73,7 @@
                                     <td>{{ $noteMatiere ?? '-' }}</td>
                                 @endforeach
                                 @php
-                                    $noteSemestrielle = ($nombreMatieres > 0) ? ($totalNotes / $nombreMatieres) : '-';
+                                    $noteSemestrielle = ($nombreMatieres > 0) ? number_format($totalNotes / $nombreMatieres, 2) : '-';
                                 @endphp
                                 <td class="fw-bold">{{ $noteSemestrielle }}</td>
                             </tr>
