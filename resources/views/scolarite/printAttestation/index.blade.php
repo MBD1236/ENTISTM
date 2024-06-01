@@ -127,11 +127,11 @@
                 <i class="fw-bold attestion-footer">Cette etudiant ne doit contenir ni rature, ni surcharge</i>
             </div>
             
-            {{-- <script>
+            <script>
                 window.onload = function() {
                     window.print();
                 }
-            </script> --}}
+            </script>
         
         </div>   
     </div>

@@ -10,7 +10,7 @@ use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
 class NoteImport implements ToModel, WithHeadingRow
 {
-        /**
+    /**
      * @var int
      */
     private $matiere_id;
@@ -19,7 +19,7 @@ class NoteImport implements ToModel, WithHeadingRow
      * NoteImport constructor.
      *
      * @param int $matiereId
-     */
+    */
     public function __construct(int $matiereId)
     {
         $this->matiere_id = $matiereId;
@@ -31,7 +31,6 @@ class NoteImport implements ToModel, WithHeadingRow
     */
     public function model(array $row)
     {
-
         $notes = [];
         // Trouver les etudiants en fonction du matricule
         $etudiants = Etudiant::where('ine', $row['matricule'])->get();
