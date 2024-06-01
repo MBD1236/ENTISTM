@@ -153,7 +153,7 @@ Route::prefix('front')->group(function () {
 });
 
 
-Route::name("scolarite.")->group(function () {
+Route::prefix('scolarite')->name("scolarite.")->group(function () {
     Route::resource("attestation", AttestationController::class)->except(["show"]);
     Route::resource("attestationType", AttestationTypeController::class)->except(["show"]);
     Route::resource("service", ServiceController::class)->except(["show"]);
@@ -163,6 +163,7 @@ Route::name("scolarite.")->group(function () {
     // badge
     Route::get('/indexBadge', [PrintBadgeController::class, 'index'])->name('print');
     Route::post('/printBadge', [PrintBadgeController::class, 'printBadge'])->name('printBadge');
+
 });
 
 

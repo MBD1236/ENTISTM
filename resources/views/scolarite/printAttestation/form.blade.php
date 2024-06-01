@@ -76,7 +76,7 @@
                         @method('post')
                         <div class="row">
                             <div class="col-md-9 col-sm-12 p-1">
-                                <div class="form-group">                        
+                                <div class="form-group">
                                     <select id="matricules" class="select2 custom-select2 form-control border-input @error('matricules') is-invalid @enderror" name="matricules[]" style="height: 120px;" multiple>
                                         <option value="">Sélectionner le(s) matricule(s)</option>
                                         @foreach($matricules as $matricule)

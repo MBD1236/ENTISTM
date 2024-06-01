@@ -11,7 +11,7 @@
     }
 </style>
     @foreach($etudiants as $etudiant)
-        <div class="cotainer">
+        <div class="container">
             <div class="row px-0">
                 <div class="card col-sm-11 col-md-11 col-lg-6 p-0 carte text-dark" >
                     <div class="card-body border border-2 p-0">

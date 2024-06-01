@@ -31,7 +31,7 @@
                                     <div class="invalid-feedback">@error('reff') {{ $message }} @enderror</div>
                                 </div>
                             </div>
-                            
+
                             <div class="col-md-8 form-floating mt-2">
                                 <div class="form-floating">
                                     <select class="form-select border-input @error('etudiant_id') is-invalid @enderror" name="etudiant_id" id="etudiant_id">
