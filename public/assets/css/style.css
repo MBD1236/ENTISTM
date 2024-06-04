@@ -2,6 +2,15 @@
   scroll-behavior: smooth;
 }
 
+/* pour les recus */
+.pp {
+  line-height: 10px;
+}
+
+.p {
+  line-height: 20px;
+}
+/* fin */
 a {
   text-decoration: none !important;
 }

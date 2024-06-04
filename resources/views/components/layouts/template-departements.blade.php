@@ -292,8 +292,6 @@
           </li>
           <li class="nav-item">
               <a class="nav-link collapsed" href="{{ route('genieinfo.enseignant.list') }}" wire:navigate>
-
-
                   <i class="bi bi-person"></i><span>Enseignants</span>
               </a>
           </li>

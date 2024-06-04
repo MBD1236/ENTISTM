@@ -5,11 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Promotion extends Model
+class NatureRecu extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['promotion'];
+    protected $fillable = [
+        'nature',
+    ];
 
     // 
     public function recus() {

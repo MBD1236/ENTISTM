@@ -19,4 +19,8 @@ class Departement extends Model
         return $this->hasMany(Enseignant::class);
     }
 
+    // 
+    public function recus() {
+        return $this->hasMany(Recu::class);
+    }
 }

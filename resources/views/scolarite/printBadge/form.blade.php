@@ -31,9 +31,10 @@
                             </div>
                         </div>
                         
-                        <div class="form-group row mb-0">
+                        <div class="form-group mb-3">
                             <div class="col-md-6 offset-md-4 mt-3">
-                                <button type="submit" class="btn btn-modal">
+                                <button type="submit" class="btn btn-modal text-white fs-5 " style="background: #120a5c">
+                                    <i class="fa fa-print me-1" ></i>
                                     Imprimer le.s badge.s
                                 </button>
                             </div>

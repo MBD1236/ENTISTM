@@ -92,7 +92,7 @@
                                 </div>
                             </div>
                             <div class="col-md-3 col-sm-12 d-flex justify-content-end p-1">
-                                <button type="submit" class="btn-modal pb-2 px-3 pt-1">
+                                <button type="submit" class="btn-modal pb-2 px-3 pt-1  text-white fs-5 " style="background: #120a5c">
                                     <i class="fa fa-print fs-5 me-1"></i>
                                     <span>Imprimer</span>
                                 </button>

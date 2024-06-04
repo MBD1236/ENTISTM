@@ -5,6 +5,9 @@ use App\Http\Controllers\AnneeUnivController;
 use App\Http\Controllers\ArticlesController;
 use App\Http\Controllers\AttestationController;
 use App\Http\Controllers\AttestationTypeController;
+use App\Http\Controllers\ComptabiliteController;
+use App\Http\Controllers\ComptabiliteParametreController;
+use App\Http\Controllers\ComptabiliteRecuController;
 use App\Http\Controllers\DepartementsetudesController;
 use App\Http\Controllers\EmploisController;
 use App\Http\Controllers\EnseignantsController;
@@ -16,8 +19,13 @@ use App\Http\Controllers\PrintBadgeController;
 use App\Http\Controllers\ProgrammesetudesController;
 use App\Http\Controllers\PromotionController;
 use App\Http\Controllers\ScolariteController;
+use App\Http\Controllers\ScolaritePrintEtudiantListController;
 use App\Http\Controllers\SemestresController;
 use App\Http\Controllers\ServiceController;
+use App\Livewire\Billeterie\BilleterieCreate;
+use App\Livewire\Billeterie\BilleterieEdit;
+use App\Livewire\Billeterie\BilleterieList;
+use App\Livewire\Billeterie\BilleteriePrint;
 use App\Livewire\Departements\CFM\CfmAjoutMatieres;
 use App\Livewire\Departements\CFM\CfmEditMatieres;
 use App\Livewire\Departements\CFM\CfmEditNotes;
@@ -124,6 +132,23 @@ Route::prefix('front')->group(function () {
     });
 });
 
+// pour la billeterie
+Route::name('billeterie.')->group(function() {
+    Route::get('billeterie/dashboard', [ ComptabiliteController::class, 'dashboard'])->name('dashboard');
+    Route::resource("billeterie/parametre", ComptabiliteParametreController::class)->except(["show"]);
+    // pour les details des departement
+    Route::get('/billeterie/list', BilleterieList::class)->name('list');
+    Route::get('/billeterie/create', BilleterieCreate::class)->name('create');
+    Route::get('/billeterie/edit/{recu}', BilleterieEdit::class)->name('edit');
+    Route::delete('/billeterie/destroy/{recu}', [BilleterieList::class, 'destroy'])->name('destroy');
+    Route::get('/billeterie/print', BilleteriePrint::class)->name('print');
+    Route::get('/billeterie/printRecu/{recu}', [ComptabiliteController::class, 'printRecu'])->name('printRecu');
+    Route::get('/billeterie/form', [ComptabiliteRecuController::class, 'form'])->name('form');
+    Route::post('/billeterie/index', [ComptabiliteRecuController::class, 'index'])->name('index');
+    
+});
+
+
 
 Route::name("scolarite.")->group(function () {
     Route::resource("attestation", AttestationController::class)->except(["show"]);
@@ -154,9 +179,12 @@ Route::prefix('scolarite')->group(function () {
     Route::get('/etudiant/documents/{etudiant}', ViewDocuments::class)->name('scolarite.etudiant.documents');
 
     Route::get('/parametre', [ScolariteController::class, 'afficherParametre'])->name('scolarite.parametre');
-
-
     Route::get('/inscrits', [ScolariteController::class, 'inscrits'])->name('scolarite.inscrits');
+
+    // pour l'impression
+    Route::post('/print/index', [ScolaritePrintEtudiantListController::class, 'index'])->name('scolarite.print.index');
+    Route::get('/print/form', [ScolaritePrintEtudiantListController::class, 'form'])->name('scolarite.print.form');
+
 
     Route::prefix('parametres')->group(function () {
         Route::prefix('session')->group(function () {

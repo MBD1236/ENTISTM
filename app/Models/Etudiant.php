@@ -44,4 +44,9 @@ class Etudiant extends Model
     public function attestations() {
         return $this->hasMany(Attestation::class);
     }
+
+    // 
+    public function recus() {
+        return $this->hasMany(Recu::class);
+    }
 }

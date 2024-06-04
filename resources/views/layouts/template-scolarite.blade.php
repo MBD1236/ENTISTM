@@ -353,7 +353,7 @@
             
             <li>
               <a href="{{route('scolarite.attestation.inscription')}}">
-                <i class="fa fa-print"></i><span>Impressions</span>
+                <i class="fa fa-user-plus"></i><span>Imprimer les attestations</span>
               </a>
             </li>
           </ul>
