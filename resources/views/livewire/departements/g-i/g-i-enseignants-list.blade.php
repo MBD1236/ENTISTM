@@ -44,7 +44,7 @@
                                 
                                 <!-- Bouton pour déclencher le modal de confirmation -->
                                 <a href="" type="button" data-bs-toggle="modal" data-bs-target="#verticalycentered{{$k}}">
-                                    <i class="bi bi-trash cdanger"></i>
+                                    <i class="bi bi-trash danger"></i>
                                 </a>
                                 <!-- Modale de confirmation -->
                                 <div class="modal fade" id="verticalycentered{{$k}}" tabindex="-1" aria-labelledby="confirmationModalLabel{{$k}}" aria-hidden="true">

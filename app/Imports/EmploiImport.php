@@ -43,7 +43,6 @@ class EmploiImport implements ToModel, WithHeadingRow
             return null;
         }
 
-        dd($enseignant);
 
         $matiere = Matiere::where('matiere', $row['matiere'])->first();
         if (!$matiere) {
