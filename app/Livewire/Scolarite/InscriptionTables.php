@@ -15,7 +15,7 @@ class InscriptionTables extends Component
 
     public $searchEtudiant = '';
     public $promotion_id = null;
-    public $annee_id = null;
+    public $annee_universitaire_id = null;
 
     /**
      * delete: la méthode de suppression d'une inscription
@@ -63,9 +63,9 @@ class InscriptionTables extends Component
                     $query->where('id', $this->promotion_id);
                 });
             })
-            ->when($this->annee_id, function ($query) {
+            ->when($this->annee_universitaire_id, function ($query) {
                 $query->whereHas('annee_universitaire', function ($query) {
-                    $query->where('id', $this->annee_id);
+                    $query->where('id', $this->annee_universitaire_id);
                 });
             })
             ->orderBy('created_at','desc');

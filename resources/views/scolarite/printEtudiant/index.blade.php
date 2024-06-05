@@ -3,13 +3,13 @@
 @section('content')
     <div class="card">
         <div class="card-header card-head">
-            <h4 class="bg-card text-center text-white card-head">
-                Liste des étudiants inscrits en "{{ $programme->programme }}" 
-                session "{{ $annee_universitaire->session }}"
+            <h6 class="bg-card text-center text-white card-head">
+                Liste des étudiants inscrits en {{ $programme->programme }}
+                Session {{ $annee_universitaire->session }}
                 @if($promotion) 
-                    promotion "{{ $promotion->promotion }}"
+                     {{ $promotion->promotion }}
                 @endif
-            </h4>
+            </h6>
         </div>
         <div class="card">
             <div class="card-body">
@@ -28,16 +28,17 @@
                             </tr>
                         </thead>
                         <tbody>
+                            {{-- @dd($etudiants) --}}
                             @forelse ($etudiants as $k => $etudiant)
                             <tr>
-                                <th>{{ $k+1 }}</th>
-                                <th>{{ $etudiant->etudiant->ine }}</th>
+                                <td>{{ $k+1 }}</td>
+                                <td>{{ $etudiant->etudiant->ine }}</td>
                                 <td>{{ $etudiant->etudiant->prenom }}</td>
                                 <td>{{ $etudiant->etudiant->nom }}</td>
                                 <td>{{ $etudiant->promotion->promotion }}</td>
                                 <td>{{ $etudiant->programme->programme }}</td>
                                 <td>{{ $etudiant->annee_universitaire->session }}</td>
-                                <td><img width="50px" src="{{ asset('storage/'.$etudiant->etudiant->photo) }}" alt=""></td>
+                                <td><img style="object-fit: cover;" width="40px" height="40px" src="{{ asset('storage/'.$etudiant->etudiant->photo) }}" alt=""></td>
                             </tr>
                             @empty
                             <tr>

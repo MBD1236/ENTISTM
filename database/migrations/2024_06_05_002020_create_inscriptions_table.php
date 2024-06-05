@@ -1,14 +1,14 @@
 <?php
 
-use App\Models\AnneeUniv;
 use App\Models\AnneeUniversitaire;
-use App\Models\Niveau;
 use App\Models\Etudiant;
+use App\Models\Niveau;
 use App\Models\Programme;
 use App\Models\Promotion;
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
+use App\Models\Recu;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
@@ -24,6 +24,7 @@ return new class extends Migration
             $table->foreignIdFor(Promotion::class)->constrained()->cascadeOnUpdate();
             $table->foreignIdFor(Niveau::class)->constrained()->cascadeOnUpdate();
             $table->foreignIdFor(AnneeUniversitaire::class)->constrained()->cascadeOnUpdate();
+            $table->foreignIdFor(Recu::class)->nullable()->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }

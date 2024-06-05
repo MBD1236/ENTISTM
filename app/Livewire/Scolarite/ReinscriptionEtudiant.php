@@ -70,7 +70,7 @@ class ReinscriptionEtudiant extends Component
             "niveau_id" => ["required"],
             "annee_universitaire_id" => ["required"],
             "programme_id" => ["required"],
-            "recu_id" => ["required","exists:recus,numrecu"],
+            "recu_id" => ["required","exists:recus,numerorecu"],
         ];
     }
     /**
@@ -78,7 +78,7 @@ class ReinscriptionEtudiant extends Component
      */ 
     public function rulesRecu() {
         return [
-            'recu_id' => ["unique:recus,numrecu"]
+            'recu_id' => ["unique:recus,numerorecu"]
         ];
     }
 
@@ -148,7 +148,7 @@ class ReinscriptionEtudiant extends Component
     public function store()
     {
         $this->validate($this->rules());
-        $recu = Recu::where('numrecu', $this->recu_id)->first()->id;
+        $recu = Recu::where('numerorecu', $this->recu_id)->first()->id;
         // Créer l'inscription en associant l'identifiant du reçu
         $verif = Inscription::where('recu_id',$recu)->first(); 
        /*je recupere l'id du recu ensuite je verifie si ce id se trouve dans inscription 
@@ -163,8 +163,8 @@ class ReinscriptionEtudiant extends Component
                 $this->validate($this->rulesRecu());
             }
         };
-        if ($this->annee_universitaire_id === $this->infoEtudiantIns->annee_universitaire_id || $this->niveau_id === $this->infoEtudiantIns->niveau_id){
-            return redirect()->route('inscriptionetreinscription.index')->with('success', 'erreur!');
+        if ($this->annee_universitaire_id === $this->infoEtudiantIns->annee_universitaire_id){
+            return redirect()->route('inscriptionetreinscription.index')->with("error", "L'étudiant est déjà inscrit au compte de cette année universitaire !");
         }
         Inscription::create([
             'annee_universitaire_id' => $this->annee_universitaire_id,
@@ -209,7 +209,7 @@ class ReinscriptionEtudiant extends Component
             'promotions' => Promotion::all(),
             'niveaux' => Niveau::where('niveau','Licence 2')->orWhere('niveau', 'Licence 3')->orWhere('niveau', 'Licence 4')->get(),
             'programmes'=> Programme::all(),
-            'annee_universitaires'=> AnneeUniversitaire::orderBy('created_at','desc')->paginate(5),
+            'annee_universitaires'=> AnneeUniversitaire::orderBy('created_at','desc')->paginate(1),
         ]);
     }
 }
