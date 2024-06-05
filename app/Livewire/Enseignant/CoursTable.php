@@ -143,10 +143,7 @@ class CoursTable extends Component
     }
 
     public function resetChamps(){
-        $this->reset([
-            'titre',
-            'contenu',
-        ]);
+        $this->reset();
         $this->resetError();
     }
 

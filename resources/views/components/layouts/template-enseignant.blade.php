@@ -309,12 +309,12 @@
             </a>
             <ul id="components-nav2" class="nav-content collapse " data-bs-parent="#sidebar-nav">
               <li>
-                <a href="{{ route('scolarite.orientation') }}" wire:navigate>
-                  <i class="fa fa-users"></i><span>Ajout de devoirs</span>
+                <a href="{{ route('enseignant.devoirs') }}" wire:navigate>
+                  <i class="fa fa-users"></i><span>Devoirs</span>
                 </a>
               </li>
               <li>
-                <a href="{{ route('scolarite.inscription') }}" wire:navigate>
+                <a href="" wire:navigate>
                   <i class="fa fa-user-plus"></i><span>Correction et notation</span>
                 </a>
               </li>
