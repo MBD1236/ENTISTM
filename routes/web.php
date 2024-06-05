@@ -132,6 +132,11 @@ use App\Livewire\Departements\TL\TlMatieresTables;
 use App\Livewire\Departements\TL\TlNoteEtudiantsMatieres;
 use App\Livewire\Departements\TL\TlNotesEtudiantsSemestre;
 use App\Livewire\Departements\TL\TlPlanificationCoursTables;
+use App\Livewire\Enseignant\VoirCours;
+use App\Livewire\Enseignant\CoursTable;
+use App\Livewire\Enseignant\DevoirsTable;
+use App\Livewire\Enseignant\PublicationsTable;
+use App\Livewire\Enseignant\VoirDevoir;
 use App\Livewire\Scolarite\EditEtudiant;
 use App\Livewire\Scolarite\EditInscription;
 use App\Livewire\Scolarite\EtudiantsNotes;
@@ -141,11 +146,23 @@ use App\Livewire\Scolarite\InscriptionEtudiantNonOriente;
 use App\Livewire\Scolarite\InscriptionTables;
 use App\Livewire\Scolarite\ReinscriptionEtudiant;
 use App\Livewire\Scolarite\ViewDocuments;
-use App\Models\Enseignant;
-use function Livewire\store;
 use Illuminate\Support\Facades\Route;
 
 /* Routes added by thd */
+
+
+/* Route de l'enseignant */
+Route::prefix('enseignant')->name("enseignant.")->group(function () {
+    Route::get('/cours', CoursTable::class)->name('cours');
+    Route::get('/cours/{cour}', VoirCours::class)->name('cours.voir');
+    Route::get('/publications', PublicationsTable::class)->name('publications');
+    Route::get('/devoirs', DevoirsTable::class)->name('devoirs');
+    Route::get('/devoir/{devoir}', VoirDevoir::class)->name('voir.devoir');
+
+});
+
+
+
 // scolarite
 
 Route::prefix('front')->group(function () {

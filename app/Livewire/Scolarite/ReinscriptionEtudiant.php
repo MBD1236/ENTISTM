@@ -82,7 +82,7 @@ class ReinscriptionEtudiant extends Component
         ];
     }
 
-    
+
     /**
      * init: à l'inscription d'un etudiant on le recherche d'abord par son ine,
      * ensuite on charge ses informations grâce à la méthode initialisation()

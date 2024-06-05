@@ -5,9 +5,10 @@ namespace App\Imports;
 use App\Models\EmploiTemps;
 use App\Models\Enseignant;
 use App\Models\Matiere;
+use Maatwebsite\Excel\Concerns\ToModel;
+use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-
-class EmploiImport implements ToModo, WithHeadingRow
+class EmploiImport implements ToModel, WithHeadingRow
 {
     /**
      * @var int
@@ -40,6 +41,7 @@ class EmploiImport implements ToModo, WithHeadingRow
         if (!$enseignant) {
             return null;
         }
+
 
         $matiere = Matiere::where('matiere', $row['matiere'])->first();
         if (!$matiere) {

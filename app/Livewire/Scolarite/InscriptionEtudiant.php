@@ -65,11 +65,11 @@ class InscriptionEtudiant extends Component
             "annee_universitaire_id" => ["required"],
             "programme_id" => ["required"],
             "recu_id" => ["required","exists:recus,numerorecu"],
-            'diplome' => ['required', 'mimes:jpeg,png,jpg,gif,svg,ico,pdf'],
-            'releve_notes' => ['required', 'mimes:jpg,jpeg,png,gif,svg,ico,pdf'],
-            'certificat_nationalite' => ['required', 'mimes:jpg,jpeg,svg,png,gif,ico,pdf'],
-            'certificat_medical' => ['required', 'mimes:jpg,jpeg,png,svg,gif,ico,pdf'],
-            'extrait_naissance' => ['required', 'mimes:jpg,jpeg,png,gif,svg,ico,pdf'],
+            'diplome' => ['required', 'mimes:jpeg,png,jpg,gif,svg,ico,pdf','max:10240'],
+            'releve_notes' => ['required', 'mimes:jpg,jpeg,png,gif,svg,ico,pdf','max:10240'],
+            'certificat_nationalite' => ['required', 'mimes:jpg,jpeg,svg,png,gif,ico,pdf','max:10240'],
+            'certificat_medical' => ['required', 'mimes:jpg,jpeg,png,svg,gif,ico,pdf','max:10240'],
+            'extrait_naissance' => ['required', 'mimes:jpg,jpeg,png,gif,svg,ico,pdf','max:10240'],
             'photo' => ['required', 'image', 'mimes:jpg,jpeg,png,gif,svg', 'max:10240'],
             'nom_tuteur' => ['string', 'min:2'],
             'telephone_tuteur' => ['regex:/^([0-9\s\-\+\(\)]*)$/', 'between:9,18', 'unique:etudiants'],      
@@ -121,7 +121,6 @@ class InscriptionEtudiant extends Component
         $data = $this->validate($this->rules());
         $recu = Recu::where('numerorecu', $this->recu_id)->first()->id;
         $verif = Inscription::where('recu_id', $recu)->first(); 
-
         if ($verif !== null) {
             $idrecu = $verif->id;
             if ($idrecu !== null) {

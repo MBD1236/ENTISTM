@@ -92,7 +92,7 @@
                             @endforelse
                         </tbody>
                         <tfoot>
-
+            
                         </tfoot>
                     </table>
                 </div>

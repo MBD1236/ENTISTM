@@ -153,7 +153,6 @@
                                             <input class="form-control border-input @error('programme') is-invalid @enderror" type="text" wire:model.defer="programme" id="floatingprogramme" placeholder="Programme">
                                             <label for="floatingprogramme" class="label-control label-text">Programme<span class="text-danger">*</span></label>
                                             <div class="invalid-feedback">@error('programme') {{ $message }} @enderror</div>
-
                                         </div>
                                     </div>
                                 </div>
