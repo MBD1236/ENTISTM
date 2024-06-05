@@ -395,8 +395,13 @@
                           <i class="fa fa-clone"></i><span>Notes semestrielles</span>
                       </a>
                   </li>
-              </ul>
-          </li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link collapsed" href="{{ route('scienceenergie.information.list') }}">
+                    <i class="bi bi-info-circle-fill"></i><span>Infos département</span>
+                </a>
+              </li>
           {{-- @endcan --}}
 
           {{-- @can('imp') --}}
@@ -453,8 +458,13 @@
                           <i class="fa fa-clone"></i><span>Notes semestrielles</span>
                       </a>
                   </li>
-              </ul>
-          </li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link collapsed" href="{{ route('imp.information.list') }}">
+                    <i class="bi bi-info-circle-fill"></i><span>Infos département</span>
+                </a>
+              </li>
           {{-- @endcan --}}
 
           {{-- @can('genie_info') --}}
@@ -511,8 +521,13 @@
                           <i class="fa fa-clone"></i><span>Notes semestrielles</span>
                       </a>
                   </li>
-              </ul>
-          </li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link collapsed" href="{{ route('cfm.information.list') }}">
+                    <i class="bi bi-info-circle-fill"></i><span>Infos département</span>
+                </a>
+              </li>
           {{-- @endcan --}}
 
           {{-- @can('genie_info') --}}
@@ -569,8 +584,13 @@
                           <i class="fa fa-clone"></i><span>Notes semestrielles</span>
                       </a>
                   </li>
-              </ul>
-          </li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link collapsed" href="{{ route('teb.information.list') }}">
+                    <i class="bi bi-info-circle-fill"></i><span>Infos département</span>
+                </a>
+              </li>
           {{-- @endcan --}}
 
           {{-- @can('genie_info') --}}
@@ -631,7 +651,7 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link collapsed" href="{{ route('genieinfo.information.list') }}">
+            <a class="nav-link collapsed" href="{{ route('tl.information.list') }}">
                 <i class="bi bi-info-circle-fill"></i><span>Infos département</span>
             </a>
           </li>

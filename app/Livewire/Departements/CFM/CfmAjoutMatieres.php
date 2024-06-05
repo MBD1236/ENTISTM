@@ -37,7 +37,7 @@ class CfmAjoutMatieres extends Component
         Matiere::create($this->validate());
         $this->reset();
         session()->flash('success', 'Ajout effectué avec succès!');
-        return redirect()->route('cfm.matiereS');
+        return redirect()->route('cfm.matieres');
     }
    
     #[Layout("components.layouts.template-departements")]

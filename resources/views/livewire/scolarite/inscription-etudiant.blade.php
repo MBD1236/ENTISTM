@@ -50,7 +50,7 @@
                                         <div class="col-md-4 form-floating">
                                             <div class="form-floating">
                                                 <input class="form-control border-input @error('recu_id') is-invalid @enderror" type="text" wire:model="recu_id" wire:click='clearStatus' id="floatingrecu" placeholder="N° reçu">
-                                                <label for="floatingrecu" class="label-control label-text">N° reçu</label>
+                                                <label for="floatingrecu" class="label-control label-text">N° reçu<span class="text-danger">*</span></label>
                                                 <div class="invalid-feedback">@error('recu_id') {{ $message }} @enderror</div>
                                             </div>
                                         </div>
@@ -130,7 +130,7 @@
                                                     <option value="{{ $annee_universitaire->id }}" wire:key="{{ $annee_universitaire->id }}">{{ $annee_universitaire->session }}</option>
                                                 @endforeach
                                             </select>
-                                            <label for="floatinganneeuniv" class="label-control label-text">Année Univerisatire</label>
+                                            <label for="floatinganneeuniv" class="label-control label-text">Année Univerisatire<span class="text-danger">*</span></label>
                                             <div class="invalid-feedback">@error('annee_univ_id') {{ $message }} @enderror</div>
                                         </div>
                                     </div>
@@ -142,7 +142,7 @@
                                                     <option value="{{ $promotion->id }}" wire:key="{{ $promotion->id }}">{{ $promotion->promotion }}</option>
                                                 @endforeach
                                             </select>
-                                            <label for="floatingpromotion" class="label-control label-text">Promotion</label>
+                                            <label for="floatingpromotion" class="label-control label-text">Promotion<span class="text-danger">*</span></label>
                                             <div class="invalid-feedback">@error('promotion_id') {{ $message }} @enderror</div>
                                         </div>
                                     </div>
@@ -154,7 +154,7 @@
                                                     <option value="{{ $niveau->id }}" wire:key="{{ $niveau->id }}">{{ $niveau->niveau }}</option>
                                                 @endforeach
                                             </select>
-                                            <label for="floatingniveau" class="label-control label-text">Niveau</label>
+                                            <label for="floatingniveau" class="label-control label-text">Niveau<span class="text-danger">*</span></label>
                                             <div class="invalid-feedback">@error('niveau_id') {{ $message }} @enderror</div>
                                         </div>
                                     </div>
@@ -168,21 +168,21 @@
                                                     <option value="{{ $programme->id }}" wire:key="{{ $programme->id }}">{{ $programme->programme }}</option>
                                                 @endforeach
                                             </select>
-                                            <label for="floatingprogramme" class="label-control label-text">Programme</label>
+                                            <label for="floatingprogramme" class="label-control label-text">Programme<span class="text-danger">*</span></label>
                                             <div class="invalid-feedback">@error('programme_id') {{ $message }} @enderror</div>
                                         </div>
                                     </div>
                                     <div class="col-md-4 form-floating">
                                         <div class="form-floating">
                                             <input class="form-control border-input @error('diplome') is-invalid @enderror" type="file" wire:model="diplome" id="floatingdiplome" placeholder="diplome">
-                                            <label for="floatingdiplome">Diplome du BAC</label>
+                                            <label for="floatingdiplome">Diplome du BAC<span class="text-danger">*</span></label>
                                             <div class="invalid-feedback">@error('diplome') {{ $message }} @enderror</div>
                                         </div>
                                     </div>
                                     <div class="col-md-4 form-floating">
                                         <div class="form-floating">
                                             <input class="form-control border-input @error('extrait_naissance') is-invalid @enderror" type="file" wire:model="extrait_naissance" id="floatingextrait_naissance" placeholder="extrait_naissance">
-                                            <label for="floatingextrait_naissance">Extrait de Naissance</label>
+                                            <label for="floatingextrait_naissance">Extrait de Naissance<span class="text-danger">*</span></label>
                                             <div class="invalid-feedback">@error('extrait_naissance') {{ $message }} @enderror</div>
                                         </div>
                                     </div>
@@ -191,21 +191,21 @@
                                     <div class="col-md-4 form-floating">
                                         <div class="form-floating">
                                             <input class="form-control border-input @error('releve_notes') is-invalid @enderror" type="file" wire:model="releve_notes" id="floatingreleve_notes" placeholder="releve_notes">
-                                            <label for="floatingreleve_notes">Releve de notes BAC</label>
+                                            <label for="floatingreleve_notes">Releve de notes BAC<span class="text-danger">*</span></label>
                                             <div class="invalid-feedback">@error('releve_notes') {{ $message }} @enderror</div>
                                         </div>
                                     </div>
                                     <div class="col-md-4 form-floating">
                                         <div class="form-floating">
                                             <input class="form-control border-input @error('certificat_nationalite') is-invalid @enderror" type="file" wire:model="certificat_nationalite" id="floatingcertificat_nationalite" placeholder="certificat_nationalite">
-                                            <label for="floatingcertificat_nationalite">Certificat de Nationnalite</label>
+                                            <label for="floatingcertificat_nationalite">Certificat de Nationnalite<span class="text-danger">*</span></label>
                                             <div class="invalid-feedback">@error('certificat_nationalite') {{ $message }} @enderror</div>
                                         </div>
                                     </div>
                                     <div class="col-md-4 form-floating">
                                         <div class="form-floating">
                                             <input class="form-control border-input @error('certificat_medical') is-invalid @enderror" type="file" wire:model="certificat_medical" id="floatingcertificat_medical" placeholder="certificat_medical">
-                                            <label for="floatingcertificat_medical">Certificat Medical</label>
+                                            <label for="floatingcertificat_medical">Certificat Medical<span class="text-danger">*</span></label>
                                             <div class="invalid-feedback">@error('certificat_medical') {{ $message }} @enderror</div>
                                         </div>
                                     </div>

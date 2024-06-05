@@ -37,7 +37,7 @@ class TebAjoutMatieres extends Component
         Matiere::create($this->validate());
         $this->reset();
         session()->flash('success', 'Ajout effectué avec succès!');
-        return redirect()->route('teb.matiereS');
+        return redirect()->route('teb.matieres');
     }
    
     

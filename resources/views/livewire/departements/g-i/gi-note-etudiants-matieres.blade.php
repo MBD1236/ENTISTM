@@ -6,7 +6,7 @@
                 <div class="col-md-1">
                 </div>
                 <div class="col-md-4">
-                    <select wire:model="niveau_id" id="niveau_id" class="form-select @error('matiere_id') is-invalid @enderror">
+                    <select wire:model.live="niveau_id" id="niveau_id" class="form-select @error('matiere_id') is-invalid @enderror">
                         <option value="0">Selectionner un niveau</option>
                         @foreach ($niveaux as $niveau)
                             <option value="{{ $niveau->id }}" wire:key="{{ $niveau->id }}">{{ $niveau->niveau }}</option>
@@ -16,7 +16,7 @@
                 </div>
     
                 <div class="col-md-4">
-                    <select wire:model="matiere_id" id="matiere_id" class="form-select @error('matiere_id') is-invalid @enderror">
+                    <select wire:model.live="matiere_id" id="matiere_id" class="form-select @error('matiere_id') is-invalid @enderror">
                         <option value="0">Selectionner la matiere</option>
                         @foreach ($matieres as $matiere)
                             <option value="{{ $matiere->id }}" wire:key="{{ $matiere->id }}">{{ $matiere->matiere }}</option>

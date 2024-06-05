@@ -54,7 +54,7 @@ class SeEnregistrementNote extends Component
         return view('livewire.departements.s-e.se-enregistrement-note',[
             "matieres"=> Matiere::whereHas('programme', function($p){
                 $p->where('programme', 'Energétique');
-            }),
+            })->get(),
         ]);
     }
 }

@@ -54,7 +54,7 @@ class ImpEnregistrementNote extends Component
         return view('livewire.departements.i-m-p.imp-enregistrement-note',[
             "matieres"=> Matiere::whereHas('programme', function($p){
                 $p->where('programme', 'Instrumentation et Mesures Physiques');
-            }),
+            })->get(),
         ]);
     }
 }

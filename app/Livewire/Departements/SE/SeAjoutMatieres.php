@@ -37,7 +37,7 @@ class SeAjoutMatieres extends Component
         Matiere::create($this->validate());
         $this->reset();
         session()->flash('success', 'Ajout effectué avec succès!');
-        return redirect()->route('scienceenergie.matiereS');
+        return redirect()->route('scienceenergie.matieres');
     }
    
     #[Layout("components.layouts.template-departements")] 

@@ -30,7 +30,9 @@ class CfmNotesEtudiantsSemestre extends Component
 
         if (!empty($this->niveau_id) && !empty($this->semestre_id) && !empty($this->promotion)) {
             $idmatieres = Note::whereHas('matiere', function ($mat) {
-                $mat->where('semestre_id', $this->semestre_id);
+                $mat->where('semestre_id', $this->semestre_id)->whereHas('programme', function($m){
+                    $m->where('programme', 'Conception et Fabrication Mécanique');
+                });
             })->pluck('matiere_id')->unique();
 
             $idinscriptions = Note::whereHas('matiere', function ($mat) {
@@ -41,13 +43,18 @@ class CfmNotesEtudiantsSemestre extends Component
                 $p->where('promotion', 'LIKE',  '%'.$this->promotion. '%');
             })->whereHas('programme', function($p){
                 $p->where('programme', 'Conception et Fabrication Mécanique');
-            })->paginate(4); // Appliquer la pagination
+            })->paginate(25); // Appliquer la pagination
 
             $this->matieres = Matiere::whereIn('id', $idmatieres)->get();
 
+            //je recupere toutes les notes en fonction des 3champs de filtre a la vue on verifiera 
+            //la note correspondate pour chaque etudiant
             $this->notes = Note::query()
                 ->whereHas('inscription', function ($e) {
                     $e->where('niveau_id', 'like', "%{$this->niveau_id}%");
+                    $e->whereHas('promotion', function($p){
+                        $p->where('promotion', $this->promotion);
+                    });
                 })
                 ->whereHas('matiere', function ($e) {
                     $e->where('semestre_id','like', '%'.$this->semestre_id. '%');

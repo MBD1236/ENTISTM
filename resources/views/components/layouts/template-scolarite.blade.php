@@ -211,13 +211,13 @@
         <li class="nav-item dropdown pe-3">
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            <img src="{{ asset('assets/img/profile-img.jpg') }}" alt="Profile" class="rounded-circle">
-            <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
+            <img src="{{ asset('assets/img/téléchargement.png') }}" alt="Profile" class="rounded-circle">
+            <span class="d-none d-md-block dropdown-toggle ps-2">Service Scolarité</span>
           </a><!-- End Profile Iamge Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
-              <h6>Kevin Anderson</h6>
+              <h6>Service Scolarité</h6>
               <span>Web Designer</span>
             </li>
             <li>
@@ -316,6 +316,13 @@
           </li>
           </ul>
         </li><!-- End Components Nav -->
+        
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="{{ route('scolarite.notes') }}" wire:navigate>
+            <i class="bi bi-journal-richtext"></i>
+            <span>Notes</span>
+          </a>
+        </li>
 
         <li class="nav-item">
           <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
@@ -346,8 +353,8 @@
           </a>
           <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
             <li>
-              <a href="{{route('scolarite.attestation.index')}}" wire:navigate>
-                <i class="fa fa-list"></i><span>Tous les attestations</span>
+              <a href="{{route('scolarite.attestation.index')}}">
+                <i class="fa fa-list"></i><span>Toutes les attestations</span>
               </a>
             </li>
             
@@ -385,10 +392,10 @@
 
         <li class="nav-item">
           <a class="nav-link collapsed" href="{{ route('scolarite.service.index') }}" wire:navigate>
-            <i class="fa fa-cog"></i>
+            <i class="fa fa-desktop"></i>
             <span>Services</span>
           </a>
-        </li><!
+        </li>
 
       </ul>
 

@@ -34,13 +34,12 @@ class NoteImport implements ToModel, WithHeadingRow
         $notes = [];
         // Trouver les etudiants en fonction du matricule
         $etudiants = Etudiant::where('ine', $row['matricule'])->get();
-
         //parcourir ces etudiants pour trouver les id
         foreach ($etudiants as $etudiant) {
-
+            
             // Trouver l'inscription de l'étudiant pour la matière donnée
             $inscription = Inscription::where('etudiant_id', $etudiant->id)->first();
-
+    
             if (!$inscription) {
                 // Si l'inscription n'est pas trouvée, ne rien faire ou gérer l'erreur selon vos besoins
                 return null;
