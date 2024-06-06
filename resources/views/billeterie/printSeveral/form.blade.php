@@ -1,4 +1,4 @@
-@extends('layouts/template-scolarite')
+@extends('layouts.templete-guichet')
 
 @section('content')
 

@@ -30,21 +30,31 @@ class ScolaritePrintEtudiantListController extends Controller
         $programme_id = $request->input('programme_id');
         $annee_universitaire_id = $request->input('annee_universitaire_id');
         $promotion_id = $request->input('promotion_id');
+       
+        // dd($programme_id);
+        // $programme = Programme::find($programme_id);
+        $programme = Programme::where('programme', $programme_id)->first();
+        $annee_universitaire = AnneeUniversitaire::where('session', $annee_universitaire_id)->first();
+        $promotion = Promotion::where('promotion', $promotion_id)->first();
 
-        $programme = Programme::find($programme_id);
-        $annee_universitaire = AnneeUniversitaire::find($annee_universitaire_id);
-        $promotion = Promotion::find($promotion_id);
-
+        
         // Construire la requête pour filtrer les inscriptions
-        $query = Inscription::with('etudiant', 'promotion', 'programme', 'niveau', 'annee_universitaire')
-            ->where('programme_id', $programme_id)
-            ->where('annee_universitaire_id', $annee_universitaire_id);
+    
+        $query = Inscription::query()->whereHas('programme', function($q) use($programme_id) {
+            $q->where('programme', $programme_id);
+        })->whereHas('annee_universitaire', function($q) use($annee_universitaire_id) {
+            $q->where('session', $annee_universitaire_id);
+        });
 
-        if ($promotion_id) {
-            $query->where('promotion_id', $promotion_id);
+        
+        if ($promotion_id !== null) {
+            $query->whereHas('promotion', function($q) use ($promotion_id){
+                $q->where('promotion', $promotion_id);
+            });
         }
 
         $etudiants = $query->get();
+        // dd($etudiants);
 
         return view('scolarite.printEtudiant.index', [
             'etudiants' => $etudiants,

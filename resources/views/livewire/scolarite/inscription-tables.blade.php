@@ -1,6 +1,6 @@
 <div class="card">
     <div class="card-header card-head">
-        <h1 class="bg-card text-center text-white card-head"><i class="fa fa-users me-1"></i>Etudiants inscrits & reinscrits</h1>
+        <h1 class="bg-card text-center text-white card-head"><i class="fa fa-users me-2"></i>Etudiants inscrits & reinscrits</h1>
     </div>
     <div class="card">
         <div class="card-body">
@@ -16,7 +16,7 @@
                     <div class="alert alert-danger bg-danger text-light border-0 alert-dismissible fade show" role="alert">
                         <h5 class="text-center">{{ session('error') }}</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        <i class="fa fa-check icon-deleted text-white"></i>
+                        <i class="fa fa-times icon-deleted text-white"></i>
                     </div>
                 @endif
             </div>
@@ -28,7 +28,7 @@
                     </div>
                     <div class="col-md-3">
                         <h4 class="label-text"><i class="fa fa-filter me-1"></i>Filtrer par</h4>
-                        <select class="form-select border-input @error('promotion_id') is-invalid @enderror" wire:model="promotion_id" id="promotion_id">
+                        <select class="form-select border-input @error('promotion_id') is-invalid @enderror" wire:model.live="promotion_id" id="promotion_id">
                             <option value="">Promotion</option>
                             @foreach ($promotions as $promotion)
                                 <option value="{{ $promotion->id }}">{{ $promotion->promotion }}</option>
@@ -37,7 +37,7 @@
                     </div>
                     <div class="col-md-2 d-flex flex-column align-items-start">
                         <h4 class="label-text"><i class="fa fa-filter me-1"></i>Filtrer par</h4>
-                        <select class="form-select border-input @error('annee_universitaire_id') is-invalid @enderror" wire:model="annee_universitaire_id" id="annee_universitaire_id">
+                        <select class="form-select border-input @error('annee_universitaire_id') is-invalid @enderror" wire:model.live="annee_universitaire_id" id="annee_universitaire_id">
                             <option value="">Année Univ</option>
                             @foreach ($annee_universitaires as $annee_universitaire)
                                 <option value="{{ $annee_universitaire->id }}">{{ $annee_universitaire->session }}</option>
@@ -70,7 +70,6 @@
                             @forelse ($inscriptions as $k => $inscription)
                             <tr>
                                 <th>{{ $k+1 }}</th>
-<<<<<<< HEAD
                                 <th>{{ $inscription->etudiant->ine}}</th>
                                 <td>{{ $inscription->etudiant->prenom}}</td>
                                 <td>{{ $inscription->etudiant->nom}}</td>
@@ -80,7 +79,6 @@
                                 <td>{{ $inscription->promotion->promotion}}</td>
                                 <td>{{ $inscription->annee_universitaire->session}}</td>
                                 <td><img width="50px" src="{{asset('storage/'.$inscription->etudiant->photo) }}" alt=""></td>
-=======
                                 <th>{{ $inscription->etudiant->ine }}</th>
                                 <td>{{ $inscription->etudiant->prenom }}</td>
                                 <td>{{ $inscription->etudiant->nom }}</td>
@@ -89,7 +87,7 @@
                                 <td>{{ $inscription->niveau->niveau }}</td>
                                 <td>{{ $inscription->annee_universitaire->session }}</td>
                                 <td><img width="50px" src="{{ asset('storage/'.$inscription->etudiant->photo) }}" alt=""></td>
->>>>>>> 318bb8b (thd 4th commit)
+                                <td><img style="object-fit: cover;" width="40px" height="40px" src="{{ asset('storage/'.$inscription->etudiant->photo) }}" alt=""></td>
                                 <td class="text-center">
                                     <a href="{{ route('scolarite.inscription.edit', $inscription) }}"><i class="fa fa-edit btn-color-primary"></i></a>
                                     <a href="{{ route('scolarite.etudiant.documents', $inscription->etudiant) }}"><i class="fa fa-eye btn-color-primary"></i></a>

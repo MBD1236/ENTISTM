@@ -19,7 +19,7 @@
                         <div class="form-group row">
                             <label for="matricules" class="col-md-4 col-form-label text-md-right">Matricules des étudiants</label>
                             <div class="col-md-7">
-                                <select id="matricules" class="bg-black select2 custom-select2 form-control @error('matricules') is-invalid @enderror" name="matricules[]" multiple style="height: 100px;">
+                                <select id="matricules" class="select2 custom-select2 form-control @error('matricules') is-invalid @enderror" name="matricules[]" multiple style="height: 100px;">
                                     <option value="">Sélectionner les matricules</option>
                                     @foreach($etudiants as $etudiant)
                                         <option value="{{ $etudiant->ine }}">{{ $etudiant->ine }}</option>
