@@ -9,18 +9,9 @@
   <meta content="" name="description">
   <meta content="" name="keywords">
 
-  
-  <!-- Template Main CSS File -->
-  <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
-  
   <!-- Favicons -->
   <link href="{{ asset('assets/img/logo-ent-trans.png') }}" rel="icon">
   <link href="{{ asset('assets/img/logo-ent-trans.png') }}" rel="apple-touch-icon">
-
-
-  <!-- pour le select2 -->
-  <script src="{{asset('assets/js/jquery-3.6.3.min.js')}}"></script>
-  <link href="{{ asset('assets/css/select2.css') }}" rel="stylesheet">
 
   <!-- Google Fonts -->
   <link href="https://fonts.gstatic.com" rel="preconnect">
@@ -35,7 +26,9 @@
   <link href="{{ asset('assets/vendor/remixicon/remixicon.css') }}" rel="stylesheet">
   <link href="{{ asset('assets/vendor/simple-datatables/style.css') }}" rel="stylesheet">
   <link href="{{ asset('assets/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
-  
+
+  <!-- Template Main CSS File -->
+  <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
 
 </head>
 
@@ -45,7 +38,7 @@
   <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
-      <a href="{{ route('scolarite.dashboard') }}" class="logo d-flex align-items-center">
+      <a href="{{ route('billeterie.dashboard') }}" class="logo d-flex align-items-center">
         <img src="{{ asset('assets/img/logo-ent-trans.png') }}" alt="">
         <span class="d-none d-lg-block">Espace<br> Numérique de Travail</span>
       </a>
@@ -54,7 +47,7 @@
 
     <div class="row">
         <div class="col">
-            <h3 class="d-none d-lg-block ms-3 mt-2 title-top-bar ">Service Scolarité</h3>
+            <h3 class="d-none d-lg-block ms-3 mt-2 title-top-bar ">Service Billeterie</h3>
         </div>
     </div>
 
@@ -211,8 +204,8 @@
         <li class="nav-item dropdown pe-3">
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            <img src="{{ asset('assets/img/profile-img.jpg') }}" alt="Profile" class="rounded-circle">
-            <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
+            <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+            <span class="d-none d-md-block dropdown-toggle ps-2">M. THD</span>
           </a><!-- End Profile Iamge Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
@@ -278,7 +271,7 @@
       <ul class="sidebar-nav" id="sidebar-nav">
 
         <li class="nav-item">
-          <a class="nav-link" href="{{ route('scolarite.dashboard') }}">
+          <a class="nav-link" href="{{ route('billeterie.dashboard') }}">
             <i class="fa fa-home"></i>
             <span class="">Tableau de bord</span>
           </a>
@@ -286,106 +279,33 @@
 
         <li class="nav-item">
           <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
-            <i class="fa fa-graduation-cap"></i><span>Etudiants</span><i class="bi bi-chevron-down ms-auto"></i>
+            <i class="fa fa-calendar"></i><span>Récus</span><i class="bi bi-chevron-down ms-auto"></i>
           </a>
           <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
             <li>
-                <a href="{{ route('scolarite.orientation') }}">
-                  <i class="fa fa-users"></i><span>Etudiants orientés</span>
-                </a>
-            </li>
-            <li>
-              <a href="{{ route('scolarite.inscription') }}" wire:navigate>
-                <i class="fa fa-user-plus"></i><span>Inscription (orienté)</span>
+              <a href="{{ route('billeterie.create') }}">
+                <i class="fa fa-plus-circle"></i><span>Nouveau reçu</span>
               </a>
             </li>
             <li>
-              <a href="{{ route('scolarite.inscriptionnonOriente') }}" wire:navigate>
-                <i class="fa fa-user-plus"></i><span>Inscription (non orienté)</span>
+              <a href="{{ route('billeterie.list') }}">
+                <i class="fa fa-list"></i><span>Liste des reçus</span>
               </a>
             </li>
             <li>
-              <a href="{{ route('scolarite.reinscription') }}">
-                <i class="fa fa-users"></i><span>Reinscription</span>
-              </a>
-            </li>
-            <li>
-              <a href="{{ route('inscriptionetreinscription.index') }}">
-                <i class="fa fa-users"></i><span>Liste des inscrits & reinscrits</span>
+              <a href="{{route('billeterie.print')}} ">
+                <i class="fa fa-print"></i><span>Imprimer les reçus</span>
               </a>
             </li>
           </ul>
         </li><!-- End Components Nav -->
 
         <li class="nav-item">
-          <a class="nav-link collapsed" href="{{ route('scolarite.notes') }}" wire:navigate>
-            <i class="bi bi-journal-richtext"></i>
-            <span>Notes</span>
-          </a>
-        </li>
-        
-        <li class="nav-item">
-          <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
-            <i class="bi bi-journal-text"></i><span>Rélévé de notes</span><i class="bi bi-chevron-down ms-auto"></i>
-          </a>
-          <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-            <li>
-              <a href="forms-elements.html">
-                <i class="fa fa-clone"></i><span>Semestriel</span>
-              </a>
-            </li>
-            <li>
-              <a href="forms-layouts.html">
-                <i class="fa fa-calendar"></i><span>Annuel</span>
-              </a>
-            </li>
-            <li>
-              <a href="forms-editors.html">
-                <i class="fa fa-clipboard"></i><span>Bulletin de notes</span>
-              </a>
-            </li>
-          </ul>
-        </li><!-- End Forms Nav -->
-
-        <li class="nav-item">
-          <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
-            <i class="bi bi-layout-text-window-reverse"></i><span>Attestations</span><i class="bi bi-chevron-down ms-auto"></i>
-          </a>
-          <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-            <li>
-              <a href="{{route('scolarite.attestation.index')}}">
-                <i class="fa fa-list"></i><span>Toutes les attestations</span>
-              </a>
-            </li>
-            
-            <li>
-              <a href="{{route('scolarite.attestation.inscription')}}">
-                <i class="fa fa-user-plus"></i><span>Imprimer les attestations</span>
-              </a>
-            </li>
-          </ul>
-        </li><!-- End Tables Nav -->
-
-        <li class="nav-item">
-          <a class="nav-link collapsed" href="{{ route('scolarite.print') }}">
-            <i class="fa fa-id-badge"></i>
-            <span>Badges</span>
-          </a>
-        </li><!-- End badge Nav -->
-
-        <li class="nav-item">
-          <a class="nav-link collapsed" href="{{ route('scolarite.parametre') }}">
+          <a class="nav-link collapsed" href="{{ route('billeterie.parametre.index') }}">
             <i class="fa fa-cog"></i>
             <span>Paramètres</span>
           </a>
-        </li><!-- End params Page Nav -->
-
-        <li class="nav-item">
-          <a class="nav-link collapsed" href="{{ route('scolarite.service.index') }}">
-            <i class="fa fa-desktop"></i>
-            <span>Services</span>
-          </a>
-        </li><!-- End service Page Nav -->
+        </li><!-- End F.A.Q Page Nav -->
       </ul>
 
     </aside><!-- End Sidebar-->
@@ -393,7 +313,7 @@
 
     <!-- ======= Main ======= -->
     <main id="main" class="main">
-        @yield('content')
+      {{ $slot }}
     </main>
 
 
@@ -419,13 +339,6 @@
   <script src="{{ asset('assets/vendor/tinymce/tinymce.min.js') }}"></script>
   <script src="{{ asset('assets/vendor/php-email-form/validate.js') }}"></script>
 
-  <!-- Template Main JS File -->
-  <script src="{{ asset('assets/js/select2.js') }}"></script>
-  <script>
-    // $(document).ready(function() {
-    //     $('#matricules').select2(); // Initialiser Select2
-    // });
-  </script>
   <!-- Template Main JS File -->
   <script src="{{ asset('assets/js/main.js') }}"></script>
 

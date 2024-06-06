@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Scolarite Dahasbord</title>
+  <title>Scolarite Dashboard</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -359,8 +359,23 @@
             </li>
             
             <li>
+<<<<<<< HEAD
               <a href="{{route('scolarite.attestation.inscription')}}">
                 <i class="fa fa-print"></i><span>Impressions</span>
+=======
+              <a href="{{route('scolarite.attestation.inscription')}}" wire:navigate>
+                <i class="fa fa-user-plus"></i><span>Imprimer les attestations</span>
+              </a>
+            </li>
+            <li>
+              <a href="tables-data.html">
+                <i class="fa fa-users"></i><span>Reinscription</span>
+              </a>
+            </li>
+            <li>
+              <a href="tables-data.html">
+                <i class="fa fa-university"></i><span>Niveau</span>
+>>>>>>> 318bb8b (thd 4th commit)
               </a>
             </li>
           </ul>

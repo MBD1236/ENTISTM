@@ -2,11 +2,6 @@
 
 namespace App\Models;
 
-use App\Models\Etudiant;
-use App\Models\Niveau;
-use App\Models\Programme;
-use App\Models\Promotion;
-use App\Models\Recu;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 

@@ -9,18 +9,38 @@ class Recu extends Model
 {
     use HasFactory;
 
-
     protected $fillable = [
-        'numrecu',
-        'date',
+        'numerorecu',
         'serie',
+        'modereglement',
         'somme',
-        'nature',
-        'modereglement'
-
+        'estVisible',
+        'etudiant_id',
+        'nature_recu_id',
+        'departement_id',
+        'promotion_id',
     ];
 
     public function inscriptions() {
         return $this->hasMany(Inscription::class);
     }
+
+    // 
+    public function etudiant() {
+        return $this->belongsTo(Etudiant::class);
+    }
+    // 
+    public function natureRecu() {
+        return $this->belongsTo(NatureRecu::class);
+    }
+    // 
+    public function departement() {
+        return $this->belongsTo(Departement::class);
+    }
+    // 
+    public function promotion() {
+        return $this->belongsTo(Promotion::class);
+    }
+
+    
 }

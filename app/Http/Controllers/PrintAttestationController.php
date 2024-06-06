@@ -90,10 +90,8 @@ class PrintAttestationController extends Controller
                                     ->where('attestation_type_id', $typeAttes)
                                     ->whereIn('etudiant_id', $request->input('matricules'))
                                     ->get();
-        // dd($attestations);
         // Récupérer les étudiants correspondants aux attestations filtrées
         $etudiants = Etudiant::whereIn('id', $attestations->pluck('etudiant_id'))->get();
-        // dd($etudiants);
         $annee_universitaires = AnneeUniversitaire::all();
         $niveaux = Niveau::all();
         $services = Service::all();
