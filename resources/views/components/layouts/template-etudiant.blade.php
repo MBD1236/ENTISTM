@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Enseignant Dahasbord</title>
+  <title>Etudiant Dashboard</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -54,7 +54,7 @@
 
     <div class="row">
         <div class="col">
-            <h3 class="d-none d-lg-block ms-3 mt-2 title-top-bar ">Espace Enseignant</h3>
+            <h3 class="d-none d-lg-block ms-3 mt-2 title-top-bar ">Espace Etudiant</h3>
         </div>
     </div>
 
@@ -212,12 +212,12 @@
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
             <img src="{{ asset('assets/img/téléchargement.png') }}" alt="Profile" class="rounded-circle">
-            <span class="d-none d-md-block dropdown-toggle ps-2">Espace Enseignant</span>
+            <span class="d-none d-md-block dropdown-toggle ps-2">Espace Etudiant</span>
           </a><!-- End Profile Iamge Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
-              <h6>Espace Enseignant</h6>
+              <h6>Espace Etudiant</h6>
               <span>Web Designer</span>
             </li>
             <li>
@@ -278,39 +278,50 @@
       <ul class="sidebar-nav" id="sidebar-nav">
 
         <li class="nav-item">
-          <a class="nav-link" href="" wire:navigate>
+          <a class="nav-link" href="{{ route('etudiant.accueil') }}" wire:navigate>
             <i class="fa fa-home"></i>
-            <span class="">Tableau de bord</span>
+            <span class="">Accueil</span>
           </a>
         </li><!-- End Dashboard Nav -->
 
         <li class="nav-item">
           <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
-            <i class="fa fa-graduation-cap"></i><span>Gestion des cours</span><i class="bi bi-chevron-down ms-auto"></i>
+            <i class="fa fa-graduation-cap"></i><span>Inscriptions</span><i class="bi bi-chevron-down ms-auto"></i>
           </a>
           <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
             <li>
-              <a href="{{ route('enseignant.cours') }}" wire:navigate>
-                <i class="fa fa-users"></i><span>Cours</span>
+              <a href="{{ route('etudiant.inscription') }}" wire:navigate>
+                <i class="fa fa-users"></i><span>Inscription</span>
               </a>
             </li>
             <li>
-              <a href="{{ route('enseignant.publications') }}" wire:navigate>
-                <i class="fa fa-user-plus"></i><span>Publications</span>
+              <a href="{{ route('etudiant.reinscription') }}" wire:navigate>
+                <i class="fa fa-user-plus"></i><span>Reinscription</span>
               </a>
             </li>
           </ul>
         </li><!-- End Components Nav -->
        
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="" wire:navigate>
+              <i class="bi bi-journal"></i>
+              <span>Notes</span>
+            </a>
+        </li>
 
         <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#components-nav2" data-bs-toggle="collapse" href="#">
-              <i class="fa fa-graduation-cap"></i><span>Gestion des devoirs</span><i class="bi bi-chevron-down ms-auto"></i>
+              <i class="bi bi-browser-chrome"></i><span>Apprentissage</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
             <ul id="components-nav2" class="nav-content collapse " data-bs-parent="#sidebar-nav">
               <li>
-                <a href="{{ route('enseignant.devoirs') }}" wire:navigate>
-                  <i class="fa fa-users"></i><span>Devoirs</span>
+                <a href="" wire:navigate>
+                  <i class="bi bi-book"></i><span>Cours</span>
+                </a>
+              </li>
+              <li>
+                <a href="" wire:navigate>
+                  <i class="bi bi-phone-flip"></i><span>E-learning</span>
                 </a>
               </li>
             </ul>

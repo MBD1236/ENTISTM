@@ -129,6 +129,10 @@ use App\Livewire\Enseignant\CoursTable;
 use App\Livewire\Enseignant\DevoirsTable;
 use App\Livewire\Enseignant\PublicationsTable;
 use App\Livewire\Enseignant\VoirDevoir;
+use App\Livewire\Enseignant\VoirEtudiants;
+use App\Livewire\Etudiant\CreateInscription;
+use App\Livewire\Etudiant\CreateReinscription;
+use App\Livewire\Etudiant\InformationsTable;
 use App\Livewire\Scolarite\EditEtudiant;
 use App\Livewire\Scolarite\EditInscription;
 use App\Livewire\Scolarite\EtudiantsNotes;
@@ -143,11 +147,18 @@ use Illuminate\Support\Facades\Route;
 /* Routes added by thd */
 
 
+Route::prefix('etudiant')->name('etudiant.')->group(function () {
+    Route::get('/accueil', InformationsTable::class)->name('accueil');
+    Route::get('/inscription', CreateInscription::class)->name('inscription');
+    Route::get('/reinscription', CreateReinscription::class)->name('reinscription');
+});
+
 /* Route de l'enseignant */
 Route::prefix('enseignant')->name("enseignant.")->group(function () {
     Route::get('/cours', CoursTable::class)->name('cours');
     Route::get('/cours/{cour}', VoirCours::class)->name('cours.voir');
     Route::get('/publications', PublicationsTable::class)->name('publications');
+    Route::get('/publication/{publication}', VoirEtudiants::class)->name('voir.etudiant');
     Route::get('/devoirs', DevoirsTable::class)->name('devoirs');
     Route::get('/devoir/{devoir}', VoirDevoir::class)->name('voir.devoir');
 

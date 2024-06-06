@@ -12,6 +12,13 @@
                         <i class="fa fa-check icon-deleted text-white"></i>
                     </div>
                 @endif
+                @if(session()->has('error'))
+                    <div class="alert alert-danger bg-danger text-light border-0 alert-dismissible fade show" role="alert">
+                        <h5 class="text-center">{{ session('error') }}</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        <i class="fa fa-check icon-deleted text-white"></i>
+                    </div>
+                @endif
             </div>
             <div class="row">
                 <div class="row">
@@ -24,7 +31,7 @@
                         <a href="" class="btn-modal"><i class="fa fa-print me-1"></i>Imprimer</a>
                     </div>
                 </div>
-                <div class="row mt-4">
+                <div class="row mt-4 table-responsive">
                     <table class="table table-bordered table-hover">
                         <thead>
                             <tr>
@@ -35,6 +42,7 @@
                                 <th>Departement</th>
                                 <th>Programme</th>
                                 <th>Niveau</th>
+                                <th>Promotion</th>
                                 <th>Année Universitaire</th>
                                 <th>Photo</th>
                                 <th>Actions</th>
@@ -50,6 +58,7 @@
                                 <td>{{ $inscription->programme->departement->departement}}</td>
                                 <td>{{ $inscription->programme->programme}}</td>
                                 <td>{{ $inscription->niveau->niveau}}</td>
+                                <td>{{ $inscription->promotion->promotion}}</td>
                                 <td>{{ $inscription->annee_universitaire->session}}</td>
                                 <td><img width="50px" src="{{asset('storage/'.$inscription->etudiant->photo) }}" alt=""></td>
                                 <td class="text-center">

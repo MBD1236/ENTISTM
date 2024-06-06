@@ -50,7 +50,7 @@
                     </div>
                     <div class="row">
                         
-                        <div class="row mt-3">
+                        <div class="row mt-3 table-responsive">
                             <table class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
