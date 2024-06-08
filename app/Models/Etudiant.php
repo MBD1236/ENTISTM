@@ -45,8 +45,12 @@ class Etudiant extends Model
         return $this->hasMany(Attestation::class);
     }
 
-    // 
+    // pour les recus
     public function recus() {
+        return $this->hasMany(Recu::class);
+    }
+    // pour les programmes
+    public function programmes() {
         return $this->hasMany(Recu::class);
     }
 }

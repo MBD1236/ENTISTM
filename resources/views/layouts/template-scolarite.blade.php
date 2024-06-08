@@ -291,7 +291,7 @@
           <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
             <li>
                 <a href="{{ route('scolarite.orientation') }}">
-                  <i class="fa fa-users"></i><span>Etudiants orientés</span>
+                  <i class="fa fa-list"></i><span>Etudiants orientés</span>
                 </a>
             </li>
             <li>
@@ -305,13 +305,13 @@
               </a>
             </li>
             <li>
-              <a href="{{ route('scolarite.reinscription') }}">
-                <i class="fa fa-users"></i><span>Reinscription</span>
+              <a href="{{ route('inscriptionetreinscription.index') }}">
+                <i class="fa fa-list"></i><span>Etudiants inscrits & reinscrits</span>
               </a>
             </li>
             <li>
-              <a href="{{ route('inscriptionetreinscription.index') }}">
-                <i class="fa fa-users"></i><span>Liste des inscrits & reinscrits</span>
+              <a href="{{ route('scolarite.reinscription') }}">
+                <i class="fa fa-users"></i><span>Reinscription</span>
               </a>
             </li>
           </ul>
@@ -329,6 +329,12 @@
             <i class="bi bi-journal-text"></i><span>Rélévé de notes</span><i class="bi bi-chevron-down ms-auto"></i>
           </a>
           <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+            <li>
+              <a href="{{route('scolarite.releve.index')}}">
+                <i class="fa fa-list"></i><span>Les relevés</span>
+              </a>
+            </li>
+            
             <li>
               <a href="forms-elements.html">
                 <i class="fa fa-clone"></i><span>Semestriel</span>

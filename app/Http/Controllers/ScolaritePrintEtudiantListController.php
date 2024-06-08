@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\AnneeUnivRequest;
 use App\Models\AnneeUniversitaire;
+use App\Models\Etudiant;
 use App\Models\Inscription;
 use App\Models\Programme;
 use App\Models\Promotion;
@@ -11,7 +12,7 @@ use Illuminate\Http\Request;
 
 class ScolaritePrintEtudiantListController extends Controller
 {
-    // the form
+    // la form  pour les etudiants inscrits et reinscrits
     public function form() {
         return view('scolarite.printEtudiant.form', [
             'programmes' => Programme::all(),
@@ -20,30 +21,28 @@ class ScolaritePrintEtudiantListController extends Controller
         ]);
     }
 
+    // la view  pour les etudiants inscrits et reinscrits
     public function index(Request $request) {
         $request->validate([
-            'programme_id' => ['required'],
-            'annee_universitaire_id' => ['required'],
+            'programme' => ['required'],
+            'annee_universitaire' => ['required'],
             'promotion_id' => ['nullable'],
         ]);
 
-        $programme_id = $request->input('programme_id');
-        $annee_universitaire_id = $request->input('annee_universitaire_id');
+        $programme = $request->input('programme');
+        $annee_universitaire = $request->input('annee_universitaire');
         $promotion_id = $request->input('promotion_id');
        
-        // dd($programme_id);
-        // $programme = Programme::find($programme_id);
-        $programme = Programme::where('programme', $programme_id)->first();
-        $annee_universitaire = AnneeUniversitaire::where('session', $annee_universitaire_id)->first();
+        $programme = Programme::where('programme', $programme)->first();
+        $annee_universitaire = AnneeUniversitaire::where('session', $annee_universitaire)->first();
         $promotion = Promotion::where('promotion', $promotion_id)->first();
 
         
         // Construire la requête pour filtrer les inscriptions
-    
-        $query = Inscription::query()->whereHas('programme', function($q) use($programme_id) {
-            $q->where('programme', $programme_id);
-        })->whereHas('annee_universitaire', function($q) use($annee_universitaire_id) {
-            $q->where('session', $annee_universitaire_id);
+        $query = Inscription::query()->whereHas('programme', function($q) use($programme) {
+            $q->where('programme', $programme);
+        })->whereHas('annee_universitaire', function($q) use($annee_universitaire) {
+            $q->where('session', $annee_universitaire);
         });
 
         
@@ -61,6 +60,41 @@ class ScolaritePrintEtudiantListController extends Controller
             'programme' => $programme,
             'annee_universitaire' => $annee_universitaire,
             'promotion' => $promotion,
+        ]);
+    }
+
+    // la form  pour les etudiants orientes
+    public function forms() {
+        return view('scolarite.printEtudiantOriente.form', [
+            'programmes' => Programme::all(),
+            'annee_universitaires' => AnneeUniversitaire::all(),
+        ]);
+    }
+
+    // la view  pour les etudiants inscrits et reinscrits
+    public function oriente(Request $request) {
+        $request->validate([
+            'programme' => ['required'],
+            'annee_universitaire' => ['required'],
+        ]);
+
+        $programme = $request->input('programme');
+        $annee_universitaire = $request->input('annee_universitaire');
+       
+        $programme = Programme::where('programme', $programme)->first();
+        $annee_universitaire = AnneeUniversitaire::where('session', $annee_universitaire)->first();
+        
+        // Construire la requête pour filtrer les inscriptions
+        
+        $query = Etudiant::whereIn('programme', $programme)
+                        ->whereIn('session', $annee_universitaire);
+
+        $etudiants = $query->get();
+
+        return view('scolarite.printEtudiantOriente.index', [
+            'etudiants' => $etudiants,
+            'programme' => $programme,
+            'annee_universitaire' => $annee_universitaire,
         ]);
     }
 }

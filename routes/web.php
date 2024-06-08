@@ -20,6 +20,7 @@ use App\Http\Controllers\ProgrammesetudesController;
 use App\Http\Controllers\PromotionController;
 use App\Http\Controllers\ScolariteController;
 use App\Http\Controllers\ScolaritePrintEtudiantListController;
+use App\Http\Controllers\ScolariteReleveNoteController;
 use App\Http\Controllers\SemestresController;
 use App\Http\Controllers\ServiceController;
 use App\Livewire\Billeterie\BilleterieCreate;
@@ -145,6 +146,7 @@ use App\Livewire\Scolarite\InscriptionEtudiant;
 use App\Livewire\Scolarite\InscriptionEtudiantNonOriente;
 use App\Livewire\Scolarite\InscriptionTables;
 use App\Livewire\Scolarite\ReinscriptionEtudiant;
+use App\Livewire\Scolarite\ReleveNote;
 use App\Livewire\Scolarite\ViewDocuments;
 use Illuminate\Support\Facades\Route;
 
@@ -230,10 +232,19 @@ Route::prefix('scolarite')->group(function () {
     Route::get('/parametre', [ScolariteController::class, 'afficherParametre'])->name('scolarite.parametre');
     Route::get('/inscrits', [ScolariteController::class, 'inscrits'])->name('scolarite.inscrits');
 
-    // pour l'impression
+    // pour l'impression des etudiants inscrits et reinscrit
     Route::post('/print/index', [ScolaritePrintEtudiantListController::class, 'index'])->name('scolarite.print.index');
     Route::get('/print/form', [ScolaritePrintEtudiantListController::class, 'form'])->name('scolarite.print.form');
+    // pour l'impression des etudiants oriente
+    Route::post('/etudiant/oriente', [ScolaritePrintEtudiantListController::class, 'oriente'])->name('scolarite.print.oriente');
+    Route::get('/etudiant/forms', [ScolaritePrintEtudiantListController::class, 'forms'])->name('scolarite.print.forms');
+    // pour les releves de notes
+    // Route::get('/releve/index', [ReleveNote::class])->name('scolarite.releve.index');
+    // Route::get('/releve/create', [ReleveNote::class])->name('scolarite.releve.create');
 
+    Route::name("scolarite.")->group(function () {
+        Route::resource("releve", ScolariteReleveNoteController::class)->except(["show"]);
+    });
 
     Route::prefix('parametres')->group(function () {
         Route::prefix('session')->group(function () {

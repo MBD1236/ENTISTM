@@ -14,14 +14,23 @@ class Programme extends Model
         'departement_id'
     ];
 
+    // pour les departements
     public function departement() {
         return $this->belongsTo(Departement::class);
     }
+
+    // pour les inscription
     public function inscriptions() {
         return $this->hasMany(Inscription::class);
     }
 
-    public function attestations() {
-        return $this->hasMany(Attestation::class);
+    // pour les attestations
+    public function attestation() {
+        return $this->belongsTo(Attestation::class);
+    }
+
+    // pour les etudiant
+    public function etudiant() {
+        return $this->belongsTo(Etudiant::class);
     }
 }

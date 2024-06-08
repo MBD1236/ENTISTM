@@ -23,12 +23,12 @@ class AttestationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "reff" => ["required","string"],
-            "attestation_type_id" => ["required","exists:attestation_types,id"],
-            "etudiant_id" => ["required","exists:etudiants,id"],
-            "niveau_id" => ["required","exists:niveaux,id"],
-            "annee_universitaire_id" => ["required","exists:annee_universitaires,id"],
-            "programme_id" => ["required","exists:programmes,id"],
+            'reference_id' => 'required|string',
+            'attestation_type_id' => 'required|integer|exists:attestation_types,id',
+            'etudiant_id' => 'required|integer|exists:etudiants,id',
+            'niveau_id' => 'required|integer|exists:niveaux,id',
+            'annee_universitaire_id' => 'required|integer|exists:annee_universitaires,id',
+            'programme_id' => 'required|integer|exists:programmes,id',
         ];
     }
 
@@ -40,7 +40,6 @@ class AttestationRequest extends FormRequest
 
             // request de verification
             $existingAttestation = Attestation::where('etudiant_id', $data['etudiant_id'])
-                ->where('niveau_id', $data['niveau_id'])
                 ->where('niveau_id', $data['niveau_id'])
                 ->where('annee_universitaire_id', $data['annee_universitaire_id'])
                 ->where('id', '!=', $this->attestation ? $this->attestation->id : null)

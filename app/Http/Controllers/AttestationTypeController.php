@@ -101,7 +101,7 @@ class AttestationTypeController extends Controller
      */
     public function destroy(AttestationType $attestationType)
     {
-    $attestationType->delete();
+        $attestationType->delete();
         return redirect()->route('scolarite.parametre')->with('danger', 'Suppression effectuée avec succès !');
     }
 }

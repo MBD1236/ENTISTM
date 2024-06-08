@@ -6,9 +6,6 @@
             <h6 class="bg-card text-center text-white card-head">
                 Liste des étudiants inscrits en {{ $programme->programme }}
                 Session {{ $annee_universitaire->session }}
-                @if($promotion) 
-                     {{ $promotion->promotion }}
-                @endif
             </h6>
         </div>
         <div class="card">
@@ -21,7 +18,7 @@
                                 <th>INE</th>
                                 <th>Prénoms</th>
                                 <th>Nom</th>
-                                <th>Promotion</th>
+                                <th>Téléphone</th>
                                 <th>Programme</th>
                                 <th>Session</th>
                                 <th>Photo</th>
@@ -32,13 +29,13 @@
                             @forelse ($etudiants as $k => $etudiant)
                             <tr>
                                 <td>{{ $k+1 }}</td>
-                                <td>{{ $etudiant->etudiant->ine }}</td>
-                                <td>{{ $etudiant->etudiant->prenom }}</td>
-                                <td>{{ $etudiant->etudiant->nom }}</td>
-                                <td>{{ $etudiant->promotion->promotion }}</td>
-                                <td>{{ $etudiant->programme->programme }}</td>
-                                <td>{{ $etudiant->annee_universitaire->session }}</td>
-                                <td><img style="object-fit: cover;" width="40px" height="40px" src="{{ asset('storage/'.$etudiant->etudiant->photo) }}" alt=""></td>
+                                <td>{{ $etudiant->ine }}</td>
+                                <td>{{ $etudiant->prenom }}</td>
+                                <td>{{ $etudiant->nom }}</td>
+                                <td>{{ $etudiant->telephone }}</td>
+                                <td>{{ $etudiant->programme }}</td>
+                                <td>{{ $etudiant->session }}</td>
+                                <td><img style="object-fit: cover;" width="40px" height="40px" src="{{ asset('storage/'.$etudiant->photo) }}" alt="PHOTO"></td>
                             </tr>
                             @empty
                             <tr>
