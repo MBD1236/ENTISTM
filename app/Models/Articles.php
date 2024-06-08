@@ -8,7 +8,8 @@ class Articles extends Model
 {
     protected $fillable = [
         'titre',
-        'media_path',
+        'image_path',
+        'video_path',
         'media_type',
         'description',
         'texte',

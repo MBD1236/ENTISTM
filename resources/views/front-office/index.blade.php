@@ -9,7 +9,7 @@
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
+<link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/img/logo-ent-trans.png') }}">
 <!-- Place favicon.ico in the root directory -->
 <!-- CSS here -->
 <link rel="stylesheet" href="{{ asset('assets/front/css/bootstrap.min.css') }}">
@@ -120,7 +120,7 @@
                     </div>
                     <div class="col-lg-2 col-md-3 col-sm-3">
                         <div class="top-login">
-                            <a href="my-acount.html">login</a>
+                            <a href="{{ route('login.index') }}">login</a>
                         </div>
                     </div>
                 </div>
@@ -270,7 +270,7 @@
         <div class="row">
             <div class="col-lg-8 col-md-8">
                 <div class="divider-content">
-                    <h2>Nous aviez besoin d'aide ?</h2>
+                    <h2>Vous aviez besoin d'aide ?</h2>
                     <p>Besoin d'assistance ou d'informations supplémentaires ? Notre équipe est à votre disposition pour répondre à toutes vos questions et vous offrir le support dont vous avez besoin.</p>
                 </div>
             </div>
@@ -297,57 +297,32 @@
           </div>
         </div>
         <div class="row">
-            <div class="col-lg-4 col-md-6 mb-20">
-                <div class="single-blog">
-                    <div class="blog-img">
-                        <img class="img-fluid" src="{{ asset('assets/front/img/blog/1.jpg') }}" alt="">
-                        <div class="blog-date">
-                            <a href="#"><i class="fa-regular fa-clock"></i> 4 april 2023</a>
-                            <span><i class="fa-solid fa-eye"></i> 220</span>
-                            <a href="#"><i class="fa-regular fa-comment"></i> 220</a>
+            @foreach ($articles as $article)
+                <div class="col-lg-4 col-md-6 mb-20">
+                    <div class="single-blog">
+                        <div class="blog-img">
+                            @if ($article->media_type === 'image' && $article->image_path)
+                                <img class="img-fluid" src="{{ Storage::url($article->image_path) }}" alt="Image de l'article">
+                            @elseif ($article->media_type === 'video' && $article->video_path)
+                                <video class="img-fluid" controls>
+                                    <source src="{{ Storage::url($article->video_path) }}" type="video/mp4">
+                                    Votre navigateur ne supporte pas la balise vidéo.
+                                </video>
+                            @else
+                                <img class="img-fluid" src="{{ asset('assets/front/img/blog/') }}" alt="Image par défaut">
+                            @endif
+                            <div class="blog-date">
+                                <a href="#"><i class="fa-regular fa-clock me-2"></i>{{ \Carbon\Carbon::parse($article->created_at)->locale('fr')->isoFormat('LLLL') }}</a>
+                            </div>
+                        </div>
+                        <div class="blog-text courses-text text-center">
+                            <a href="#" class="sys-title" title="">{{ $article->titre}}</a>
+                            <p>{{ Str::limit($article->description, 150, '...') }}</p>
+                            <a class="f-btn s-btn" href="#">Lire la suite</a>
                         </div>
                     </div>
-                    <div class="blog-text courses-text text-center">
-                        <a href="#" class="sys-title" title="">system of education</a>
-                        <p>Lorem ipsum dolor sit amet consecteturadip sicing elit. Quas doloremque voluptas essed ectus repellat assumenda, sequi itaqutempl</p>
-                        <a class="f-btn s-btn" href="#">read more</a>
-                    </div>
                 </div>
-            </div>
-            <div class="col-lg-4 col-md-6 mb-20">
-                <div class="single-blog">
-                    <div class="blog-img">
-                        <img class="img-fluid" src="{{ asset('assets/front/img/blog/2.jpg') }}" alt="">
-                        <div class="blog-date">
-                            <a href="#"><i class="fa-regular fa-clock"></i> 4 april 2023</a>
-                            <span><i class="fa-solid fa-eye"></i> 220</span>
-                            <a href="#"><i class="fa-regular fa-comment"></i> 220</a>
-                        </div>
-                    </div>
-                    <div class="blog-text courses-text text-center">
-                        <a href="#" class="sys-title" title="">system of education</a>
-                        <p>Lorem ipsum dolor sit amet consecteturadip sicing elit. Quas doloremque voluptas essed ectus repellat assumenda, sequi itaqutempl</p>
-                        <a class="f-btn s-btn" href="#">read more</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 mb-20">
-                <div class="single-blog">
-                    <div class="blog-img">
-                        <img class="img-fluid" src="{{ asset('assets/front/img/blog/3.jpg') }}" alt="">
-                        <div class="blog-date">
-                            <a href="#"><i class="fa-regular fa-clock"></i> 4 april 2023</a>
-                            <span><i class="fa-solid fa-eye"></i> 220</span>
-                            <a href="#"><i class="fa-regular fa-comment"></i> 220</a>
-                        </div>
-                    </div>
-                    <div class="blog-text courses-text text-center">
-                        <a href="#" class="sys-title" title="">system of education</a>
-                        <p>Lorem ipsum dolor sit amet consecteturadip sicing elit. Quas doloremque voluptas essed ectus repellat assumenda, sequi itaqutempl</p>
-                        <a class="f-btn s-btn" href="#">read more</a>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 </section>
@@ -370,66 +345,28 @@
           </div>
         </div>
         <div class="row">
-            <div class="col-lg-4 col-md-6 mb-20">
-                <div class="single-courses">
-                    <div class="courses-img">
-                        <img class="img-fluid" src="{{ asset('assets/front/img/courses/2.jpg') }}" alt="">
-                        <div class="courses-content">
-                            <span>2:00pm</span>
-                            <span>6:00pm</span>
+            @foreach ($frontProgrammes as $frontProgramme)
+                <div class="col-lg-4 col-md-6 mb-20">
+                    <div class="single-courses">
+                        <div class="courses-img">
+                            <img class="img-fluid" src="{{ $frontProgramme->image_path ? asset('storage/' . $frontProgramme->image_path) : asset('assets/front/img/courses/2.jpg') }}" alt="Image du programme">
+                            <div class="courses-content">
+                                <span><i class="fa fa-graduation-cap me-2"></i>{{ $frontProgramme->type_programme }}</span>
+                                <span><i class="fa-regular fa-calendar-days me-2"></i>{{ $frontProgramme->duree }}</span>
+                            </div>
+                            <div class="total-price">
+                                <span><i class="fa fa-graduation-cap me-2"></i>{{ $frontProgramme->type_programme }}</span>
+                                <span><i class="fa-regular fa-calendar-days me-2"></i>{{ $frontProgramme->duree }}</span>
+                            </div>
                         </div>
-                        <div class="total-price">
-                            <span><i class="fa-regular fa-calendar-days"></i> 4 yrars</span>
-                            <span>$ 420</span>
+                        <div class="courses-text">
+                            <a href="#" class="courses-title" title="">{{ $frontProgramme->intitule_programme }}</a>
+                            <p>{{ $frontProgramme->description }}</p>
+                            <a class="f-btn s-btn" href="#">Lire la suite</a>
                         </div>
-                    </div>
-                    <div class="courses-text">
-                        <a href="#" class="courses-title" title="">Computer Science</a>
-                        <p>Lorem ipsum dolor sit amet consecteturadip sicing elit. Quas doloremque voluptas essed ectus repellat assumenda, sequi itaqutempl</p>
-                        <a class="f-btn s-btn" href="#">read more</a>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-4 col-md-6 mb-20">
-                <div class="single-courses">
-                    <div class="courses-img">
-                        <img class="img-fluid" src="{{ asset('assets/front/img/courses/1.jpg') }}" alt="">
-                        <div class="courses-content">
-                            <span>1:00pm</span>
-                            <span>5:00pm</span>
-                        </div>
-                        <div class="total-price">
-                            <span><i class="fa-regular fa-calendar-days"></i> 4 yrars</span>
-                            <span>$ 520</span>
-                        </div>
-                    </div>
-                    <div class="courses-text">
-                        <a href="#" class="courses-title" title="">medical science</a>
-                        <p>Lorem ipsum dolor sit amet consecteturadip sicing elit. Quas doloremque voluptas essed ectus repellat assumenda, sequi itaqutempl</p>
-                        <a class="f-btn s-btn" href="#">read more</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 mb-20">
-                <div class="single-courses">
-                    <div class="courses-img">
-                        <img class="img-fluid" src="{{ asset('assets/front/img/courses/3.jpg') }}" alt="">
-                        <div class="courses-content">
-                            <span>9:00am</span>
-                            <span>1:00pm</span>
-                        </div>
-                        <div class="total-price">
-                            <span><i class="fa-regular fa-calendar-days"></i> 4 yrars</span>
-                            <span>$ 220</span>
-                        </div>
-                    </div>
-                    <div class="courses-text">
-                        <a href="#" class="courses-title" title="">Geometry Course</a>
-                        <p>Lorem ipsum dolor sit amet consecteturadip sicing elit. Quas doloremque voluptas essed ectus repellat assumenda, sequi itaqutempl</p>
-                        <a class="f-btn s-btn" href="#">read more</a>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 </section>
@@ -441,28 +378,28 @@
             <div class="col-lg-3 col-md-6 col-sm-6 mb-20">
                 <div class="single-counter text-center">
                     <i class="fa-solid fa-people-roof"></i>
-                    <span class="counter">43</span>
+                    <span class="counter">80</span>
                     <h4>Enseignants</h4>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-6 mb-20">
                 <div class="single-counter text-center">
                     <i class="fa-solid fa-flask-vial"></i>
-                    <span class="counter">35</span>
+                    <span class="counter">19</span>
                     <h4>EXPERIENCES</h4>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-6 mb-20">
                 <div class="single-counter text-center">
                     <i class="fa-solid fa-children"></i>
-                    <span class="counter">2053</span>
+                    <span class="counter">800</span>
                     <h4>étudiants</h4>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-6 mb-20">
                 <div class="single-counter text-center">
                     <i class="fa-solid fa-book-open-reader"></i>
-                    <span class="counter">22</span>
+                    <span class="counter">7</span>
                     <h4>programmes</h4>
                 </div>
             </div>
@@ -482,83 +419,28 @@
               </div>
           </div>
         </div>
-        <div class="row">
-            <div class="col-lg-5 col-md-6 offset-lg-1 mb-20">
-                <div class="single-ticher">
-                    <div class="single-img-techer">
-                        <img class="img-fluid" src="{{ asset('assets/front/img/teacher/1.jpg') }}" alt="">
-                    </div>
-                    <div class="teacher-social">
-                        <ul>
-                            <li><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
-                            <li><a href="#"><i class="fa-brands fa-twitter"></i></a></li>
-                            <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
-                            <li><a href="#"><i class="fa-brands fa-linkedin-in"></i></a></li>
-                        </ul>
-                    </div>
-                    <div class="intructor text-center">
-                        <a href="#">Rosi Jqulin</a>
-                        <h4>math teacher</h4>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-5 col-md-6 mb-20">
-                <div class="single-ticher">
-                    <div class="single-img-techer">
-                        <img class="img-fluid" src="{{ asset('assets/front/img/teacher/2.jpg') }}" alt="">
-                    </div>
-                    <div class="teacher-social">
-                        <ul>
-                            <li><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
-                            <li><a href="#"><i class="fa-brands fa-twitter"></i></a></li>
-                            <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
-                            <li><a href="#"><i class="fa-brands fa-linkedin-in"></i></a></li>
-                        </ul>
-                    </div>
-                    <div class="intructor text-center">
-                        <a href="#">yah Taylor</a>
-                        <h4>english teacher</h4>
+        <div class="row g-0">
+            @foreach ($frontenseignants as $frontenseignant)
+                <div class="col-lg-5 col-md-6 offset-lg-1 mb-20">
+                    <div class="single-ticher">
+                        <div class="single-img-techer">
+                            <img class="img-fluid" src="{{ Storage::url($frontenseignant->image_path) }}" alt="">
+                        </div>
+                        <div class="teacher-social">
+                            <ul>
+                                <li><a href="mailto:{{ $frontenseignant->email }}"><i class="fa fa-envelope"></i></a></li>
+                                <li><a href="tel:{{ $frontenseignant->tel }}"><i class="fa fa-phone"></i></a></li>
+                                <li><a href="https://www.linkedin.com/{{ $frontenseignant->link_in }}" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a></li>
+                                <li><a href="https://www.facebook.com/{{ $frontenseignant->link_fb }}" target="_blank"><i class="fa-brands fa-facebook-f"></i></a></li>
+                            </ul>
+                        </div>
+                        <div class="intructor text-center">
+                            <a href="#">{{ $frontenseignant->prenom }} {{ $frontenseignant->nom }}</a>
+                            <h4>{{ $frontenseignant->cours }}</h4>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-5 col-md-6 offset-lg-1 mb-20">
-                <div class="single-ticher">
-                    <div class="single-img-techer">
-                        <img class="img-fluid" src="{{ asset('assets/front/img/teacher/3.jpg') }}" alt="">
-                    </div>
-                    <div class="teacher-social">
-                        <ul>
-                            <li><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
-                            <li><a href="#"><i class="fa-brands fa-twitter"></i></a></li>
-                            <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
-                            <li><a href="#"><i class="fa-brands fa-linkedin-in"></i></a></li>
-                        </ul>
-                    </div>
-                    <div class="intructor text-center">
-                        <a href="#">heary borun</a>
-                        <h4>chemistry teacher</h4>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-5 col-md-6 mb-20">
-                <div class="single-ticher">
-                    <div class="single-img-techer">
-                        <img class="img-fluid" src="{{ asset('assets/front/img/teacher/4.jpg') }}" alt="">
-                    </div>
-                    <div class="teacher-social">
-                        <ul>
-                            <li><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
-                            <li><a href="#"><i class="fa-brands fa-twitter"></i></a></li>
-                            <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
-                            <li><a href="#"><i class="fa-brands fa-linkedin-in"></i></a></li>
-                        </ul>
-                    </div>
-                    <div class="intructor text-center">
-                        <a href="#">randy david</a>
-                        <h4>history teacher</h4>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 </section>
@@ -581,67 +463,18 @@
           </div>
         </div>
        <div class="row no-gutters">
-           <div class="col-lg-4 col-md-6 col-sm-12">
-               <div class="gellary-wraper mb-20">
-                   <div class="gallery">
-                        <a href="{{ asset('assets/front/img/gallary/1.jpg') }}"><i class="fa-solid fa-eye"></i><img class="img-fluid" src="{{ asset('assets/front/img/gallary/2.jpg') }}" alt=""></a>
-                        <a href="{{ asset('assets/front/img/gallary/2.jpg') }}"></a>
-                        <a href="{{ asset('assets/front/img/gallary/3.jpg') }}"></a>
-                        <a href="{{ asset('assets/front/img/gallary/4.jpg') }}"></a>
+           @foreach ($photos as $photo)
+            <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="gellary-wraper mb-20">
+                        <div class="gallery">
+                            <a href="{{ asset($photo->file_path) }}"><i class="fa-solid fa-eye"></i><img class="img-fluid" src="{{ asset($photo->file_path) }}" alt=""></a>
+                            @foreach ($all_photos as $all_photo)
+                                <a href="{{ asset($all_photo->file_path) }}"></a>
+                            @endforeach
+                        </div>
                     </div>
-               </div>
-           </div>
-           <div class="col-lg-4 col-md-6 col-sm-12">
-               <div class="gellary-wraper mb-20">
-                   <div class="gallery">
-                        <a href="{{ asset('assets/front/img/gallary/1.jpg') }}"><i class="fa-solid fa-eye"></i><img class="img-fluid" src="{{ asset('assets/front/img/gallary/3.jpg') }}" alt=""></a>
-                        <a href="{{ asset('assets/front/img/gallary/2.jpg') }}"></a>
-                        <a href="{{ asset('assets/front/img/gallary/3.jpg') }}"></a>
-                        <a href="{{ asset('assets/front/img/gallary/4.jpg') }}"></a>
-                    </div>
-               </div>
-           </div>
-           <div class="col-lg-4 col-md-6 col-sm-12">
-               <div class="gellary-wraper mb-20">
-                   <div class="gallery">
-                        <a href="{{ asset('assets/front/img/gallary/1.jpg') }}"><i class="fa-solid fa-eye"></i><img class="img-fluid" src="{{ asset('assets/front/img/gallary/4.jpg') }}" alt=""></a>
-                        <a href="{{ asset('assets/front/img/gallary/2.jpg') }}"></a>
-                        <a href="{{ asset('assets/front/img/gallary/3.jpg') }}"></a>
-                        <a href="{{ asset('assets/front/img/gallary/4.jpg') }}"></a>
-                    </div>
-               </div>
-           </div>
-           <div class="col-lg-4 col-md-6 col-sm-12">
-               <div class="gellary-wraper mb-20">
-                   <div class="gallery">
-                        <a href="{{ asset('assets/front/img/gallary/1.jpg') }}"><i class="fa-solid fa-eye"></i><img class="img-fluid" src="{{ asset('assets/front/img/gallary/5.jpg') }}" alt=""></a>
-                        <a href="{{ asset('assets/front/img/gallary/2.jpg') }}"></a>
-                        <a href="{{ asset('assets/front/img/gallary/3.jpg') }}"></a>
-                        <a href="{{ asset('assets/front/img/gallary/4.jpg') }}"></a>
-                    </div>
-               </div>
-           </div>
-           <div class="col-lg-4 col-md-6 col-sm-12">
-               <div class="gellary-wraper mb-20">
-                   <div class="gallery">
-                        <a href="{{ asset('assets/front/img/gallary/1.jpg') }}"><i class="fa-solid fa-eye"></i><img class="img-fluid" src="{{ asset('assets/front/img/gallary/2.jpg') }}" alt=""></a>
-                        <a href="{{ asset('assets/front/img/gallary/2.jpg') }}"></a>
-                        <a href="{{ asset('assets/front/img/gallary/3.jpg') }}"></a>
-                        <a href="{{ asset('assets/front/img/gallary/4.jpg') }}"></a>
-                    </div>
-               </div>
-           </div>
-           <div class="col-lg-4 col-md-6 col-sm-12">
-               <div class="gellary-wraper mb-20">
-                   <div class="gallery">
-                        <a href="{{ asset('assets/front/img/gallary/1.jpg') }}"><i class="fa-solid fa-eye"></i><img class="img-fluid" src="{{ asset('assets/front/img/gallary/3.jpg') }}" alt=""></a>
-                        <a href="{{ asset('assets/front/img/gallary/2.jpg') }}"></a>
-                        <a href="{{ asset('assets/front/img/gallary/3.jpg') }}"></a>
-                        <a href="{{ asset('assets/front/img/gallary/4.jpg') }}"></a>
-                    </div>
-               </div>
-           </div>
-           </div>
+                </div>
+           @endforeach
        </div>
    </div>
 </section>
@@ -651,57 +484,25 @@
     <div class="container">
         <div class="col-lg-8 offset-lg-2">
             <div class="testimonial-wrapper owl-carousel">
-                <div class="full-slide">
-                    <div class="row align-items-center">
-                        <div class="col-lg-5 col-md-5 col-sm-12">
-                            <div class="testimonial-img">
-                                <a href="#"><img class="img-fluid" src="{{ asset('assets/front/img/testimonial/1.jpg') }}" alt=""></a>
-                                <i class="fa-solid fa-quote-right"></i>
+                @foreach ($temoignages as $temoignage )
+                    <div class="full-slide">
+                        <div class="row align-items-center">
+                            <div class="col-lg-5 col-md-5 col-sm-12">
+                                <div class="testimonial-img">
+                                    <a href="#"><img class="img-fluid" src="{{ $temoignage->image_path && str_contains($temoignage->image_path, 'image') ? asset('storage/' . $temoignage->image_path) : asset('assets/img/téléchargement.png') }}" alt=""></a>
+                                    <i class="fa-solid fa-quote-right"></i>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-lg-7 col-md-7 col-sm-12">
-                            <div class="testimonial-content">
-                                <p>Eget nunc lobortis mattis aliquam faucibus purus in massa tempor. Sed viverra tellus in hac habitasse. Et egestas quis ipsum suspendisse ultrices gravida dictu.Nisi est sit amet facilisis magna  risus in hendrer.</p>
-                                <h4>juleo jusus</h4>
-                                <h5>principal,  eco  collage</h5>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="full-slide">
-                    <div class="row align-items-center">
-                        <div class="col-lg-5 col-md-5 col-sm-12">
-                            <div class="testimonial-img">
-                                <a href="#"><img class="img-fluid" src="{{ asset('assets/front/img/testimonial/2.jpg') }}" alt=""></a>
-                                <i class="fa-solid fa-quote-right"></i>
-                            </div>
-                        </div>
-                        <div class="col-lg-7 col-md-7 col-sm-12">
-                            <div class="testimonial-content">
-                                <p>Eget nunc lobortis mattis aliquam faucibus purus in massa tempor. Sed viverra tellus in hac habitasse. Et egestas quis ipsum suspendisse ultrices gravida dictu.Nisi est sit amet facilisis magna  risus in hendrer.</p>
-                                <h4>jems yadev</h4>
-                                <h5>principal,  eco  collage</h5>
+                            <div class="col-lg-7 col-md-7 col-sm-12">
+                                <div class="testimonial-content">
+                                    <p>{{ $temoignage->texte }}</p>
+                                    <h4>{{ $temoignage->prenom}} {{ $temoignage->nom }}</h4>
+                                    <h5>{{ $temoignage->fonction }}</h5>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="full-slide">
-                    <div class="row align-items-center">
-                        <div class="col-lg-5 col-md-5 col-sm-12">
-                            <div class="testimonial-img">
-                                <a href="#"><img class="img-fluid" src="{{ asset('assets/front/img/testimonial/3.jpg') }}" alt=""></a>
-                                <i class="fa-solid fa-quote-right"></i>
-                            </div>
-                        </div>
-                        <div class="col-lg-7 col-md-7 col-sm-12">
-                            <div class="testimonial-content">
-                                <p>Eget nunc lobortis mattis aliquam faucibus purus in massa tempor. Sed viverra tellus in hac habitasse. Et egestas quis ipsum suspendisse ultrices gravida dictu.Nisi est sit amet facilisis magna  risus in hendrer.</p>
-                                <h4>rock john</h4>
-                                <h5>principal,  eco  collage</h5>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>
@@ -720,47 +521,27 @@
           </div>
         </div>
         <div class="row">
-            <div class="col-lg-4 col-md-6">
-                <div class="single-wrapper mb-20 border10 bg-overly">
-                    <div class="uvb-img">
-                        <img class="img-fluid" src="{{ asset('assets/front/img/about/1.jpg') }}" alt="">
-                    </div>
-                    <div class="about-content">
-                        <h4>modern campus</h4>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat eveniet tenetur reprehenderit molestias earum quae?</p>
-                        <a class="f-btn" href="#">read more</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="single-wrapper mb-20 border10 bg-overly">
-                    <div class="uvb-img">
-                        <img class="img-fluid" src="{{ asset('assets/front/img/about/2.jpg') }}" alt="">
-                    </div>
-                    <div class="about-content">
-                        <h4>graduate university</h4>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat eveniet tenetur reprehenderit molestias earum quae?</p>
-                        <a class="f-btn" href="#">read more</a>
+            @foreach ($frontservices as $frontservice)
+                <div class="col-lg-4 col-md-6">
+                    <div class="single-wrapper mb-20 border10 bg-overly">
+                        <div class="uvb-img">
+                            <img class="img-fluid" src="{{ $frontservice->image_path && str_contains($frontservice->image_path, 'image') ? asset('storage/' . $frontservice->image_path) : asset('assets/img/téléchargement.png') }}" alt="">
+                        </div>
+                        <div class="about-content">
+                            <h4>{{ $frontservice->nomservice }}</h4>
+                            <p>{{ $frontservice->texte }}</p>
+                            <a class="f-btn" href="mailto:{{ $frontservice->email }}"><i class="fa fa-envelope me-2"></i>{{ $frontservice->email }}</a><br>
+                            <a class="f-btn" href="tel:{{ $frontservice->tel }}"><i class="fa fa-phone me-2"></i>{{ $frontservice->tel }}</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="single-wrapper mb-20 border10 bg-overly">
-                    <div class="uvb-img">
-                        <img class="img-fluid" src="{{ asset('assets/front/img/about/4.jpg') }}" alt="">
-                    </div>
-                    <div class="about-content">
-                        <h4>bus service</h4>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat eveniet tenetur reprehenderit molestias earum quae?</p>
-                        <a class="f-btn" href="#">read more</a>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 </section>
 <!-- about-us-end -->
 <!-- Subscribe Our Newsletter-area -->
+
 <div class="Subscribe-area section-bg pt-30 pb-30">
     <div class="container">
         <div class="row align-items-center">
@@ -769,11 +550,12 @@
                     <i class="fa-regular fa-envelope"></i>
                     <span>S'inscrire à la Newsletter</span>
                 </div>
-            </div>
+            </div>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      </p>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 </p>
             <div class="col-lg-5 col-md-12">
                 <div class="subscribe-form">
-                    <form action="#">
-                        <input type="text" name="user email" placeholder="entrer votre email">
+                    <form action="{{ route('subscribe') }}" method="POST">
+                        @csrf
+                        <input type="email" name="email" placeholder="entrer votre email" required>
                         <button class="f-btn" type="submit">S'inscrire</button>
                     </form>
                 </div>

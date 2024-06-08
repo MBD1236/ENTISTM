@@ -50,7 +50,7 @@
             <h3 class="d-none d-lg-block ms-3 mt-2 title-top-bar">Service Communication et information</h3>
         </div>
     </div>
-    
+
     <nav class="header-nav ms-auto">
       <ul class="d-flex align-items-center">
 
@@ -204,43 +204,23 @@
         <li class="nav-item dropdown pe-3">
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-            <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
+            <img src="https://ui-avatars.com/api/?name={{ auth()->user()->name }}" alt="Profile" class="rounded-circle">
+            <span class="d-none d-md-block dropdown-toggle ps-2">{{ auth()->user()->name }}</span>
           </a><!-- End Profile Iamge Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
-              <h6>Kevin Anderson</h6>
-              <span>Web Designer</span>
+              <h6>{{ auth()->user()->name }}</h6>
+              <span>{{ auth()->user()->email }}</span>
             </li>
             <li>
               <hr class="dropdown-divider">
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+              <a class="dropdown-item d-flex align-items-center" href="#">
                 <i class="bi bi-person"></i>
-                <span>My Profile</span>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li>
-              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
-                <i class="bi bi-gear"></i>
-                <span>Account Settings</span>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li>
-              <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
-                <i class="bi bi-question-circle"></i>
-                <span>Need Help?</span>
+                <span>Mon profil</span>
               </a>
             </li>
             <li>
@@ -249,9 +229,26 @@
 
             <li>
               <a class="dropdown-item d-flex align-items-center" href="#">
-                <i class="bi bi-box-arrow-right"></i>
-                <span>Sign Out</span>
+                <i class="bi bi-gear"></i>
+                <span>Paramètres</span>
               </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li>
+                <form action="{{ route('logout') }}" method="POST" style="display: inline;">
+                    @csrf
+                    <button type="submit" class="dropdown-item d-flex align-items-center" style="border: none; background: none; cursor: pointer;">
+                        <i class="bi bi-box-arrow-right"></i>
+                        <span>Déconnexion</span>
+                    </button>
+                </form>
             </li>
 
           </ul><!-- End Profile Dropdown Items -->
@@ -308,19 +305,77 @@
             </ul>
           </li><!-- End Components Nav -->
 
-        <li class="nav-item">
-          <a class="nav-link collapsed" href="{{ route('etudes.parametre') }}">
-            <i class="fa fa-photo"></i>
-            <span>Galéries</span>
-          </a>
-        </li>
+          <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-target="#components-nav4" data-bs-toggle="collapse" href="#">
+              <i class="fa fa-photo"></i><span>Galéries</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="components-nav4" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+              <li>
+                  <a href="{{ route('photos.index') }}">
+                    <i class="fa fa-plus"></i><span>Ajouter une photo</span>
+                  </a>
+              </li>
+              <li>
+                  <a href="{{ route('photos.show') }}">
+                    <i class="fa fa-photo"></i><span>Album photos</span>
+                  </a>
+              </li>
+            </ul>
+          </li><!-- End Components Nav -->
 
-        <li class="nav-item">
-          <a class="nav-link collapsed" href="{{ route('etudes.parametre') }}">
-            <i class="fa fa-university"></i>
-            <span>Services</span>
-          </a>
-        </li>
+          <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-target="#components-nav6" data-bs-toggle="collapse" href="#">
+              <i class="fa fa-user"></i><span>Enseignants</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="components-nav6" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+              <li>
+                  <a href="{{ route('frontenseignants.index') }}">
+                    <i class="fa fa-plus"></i><span>Ajouter un profil Enseignant</span>
+                  </a>
+              </li>
+              <li>
+                  <a href="{{ route('frontenseignants.show') }}">
+                    <i class="fa fa-user"></i><span>Tous les enseignants ajoutés</span>
+                  </a>
+              </li>
+            </ul>
+          </li><!-- End Components Nav -->
+
+          <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-target="#components-nav7" data-bs-toggle="collapse" href="#">
+              <i class="fa fa-square"></i><span>Programmes</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="components-nav7" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+              <li>
+                  <a href="{{ route('frontprogramme.index') }}">
+                    <i class="fa fa-send"></i><span>Publier un programme</span>
+                  </a>
+              </li>
+              <li>
+                  <a href="{{ route('frontprogramme.show') }}">
+                    <i class="fa fa-square"></i><span>Les programmes publiés</span>
+                  </a>
+              </li>
+            </ul>
+          </li><!-- End Components Nav -->
+
+          <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-target="#components-nav5" data-bs-toggle="collapse" href="#">
+              <i class="fa fa-university"></i><span>Services</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="components-nav5" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+              <li>
+                  <a href="{{ route('frontservice.index') }}">
+                    <i class="fa fa-plus"></i><span>Ajouter un service</span>
+                  </a>
+              </li>
+              <li>
+                  <a href="{{ route('frontservice.show') }}">
+                    <i class="fa fa-university"></i><span>Tous les services </span>
+                  </a>
+              </li>
+            </ul>
+          </li><!-- End Components Nav -->
 
         <li class="nav-item">
           <a class="nav-link collapsed" href="{{ route('etudes.parametre') }}">
@@ -337,18 +392,54 @@
         </li>
 
         <li class="nav-item">
-          <a class="nav-link collapsed" href="{{ route('etudes.parametre') }}">
-            <i class="fa fa-comment"></i>
-            <span>Témoignages</span>
-          </a>
-        </li>
+            <a class="nav-link collapsed" data-bs-target="#components-nav3" data-bs-toggle="collapse" href="#">
+              <i class="fa fa-comment"></i><span>Témoignages</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="components-nav3" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+              <li>
+                  <a href="{{ route('temoignages.index') }}">
+                    <i class="fa fa-plus"></i><span>Publier un témoignage</span>
+                  </a>
+              </li>
+              <li>
+                  <a href="{{ route('temoignages.show') }}">
+                    <i class="fa fa-comment"></i><span>Les témoignages publiés</span>
+                  </a>
+              </li>
+            </ul>
+          </li><!-- End Components Nav -->
 
         <li class="nav-item">
-          <a class="nav-link collapsed" href="{{ route('etudes.parametre') }}">
-            <i class="fa fa-phone"></i>
-            <span>Contacts</span>
-          </a>
-        </li>
+            <a class="nav-link collapsed" data-bs-target="#components-nav8" data-bs-toggle="collapse" href="#">
+              <i class="fa fa-envelope"></i><span>Newsletter</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="components-nav8" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+              <li>
+                  <a href="{{ route('create.newsletter') }}">
+                    <i class="fa fa-send"></i><span>Envoyer une newsletter</span>
+                  </a>
+              </li>
+              <li>
+                  <a href="{{ route('show.newsletter') }}">
+                    <i class="fa fa-envelope"></i><span>Les abonnés à la newsletter</span>
+                  </a>
+              </li>
+            </ul>
+          </li><!-- End Components Nav -->
+
+          <li class="nav-item">
+            <a class="nav-link collapsed" href="{{ route('etudes.parametre') }}">
+              <i class="fa fa-phone"></i>
+              <span>Contacts</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link collapsed" href="#">
+              <i class="fa fa-cog"></i>
+              <span>Paramètres</span>
+            </a>
+          </li>
 
       </ul>
 

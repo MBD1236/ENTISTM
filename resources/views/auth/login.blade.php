@@ -1,8 +1,14 @@
 <x-guest-layout>
     <x-authentication-card>
-        <x-slot name="logo">
-            <x-authentication-card-logo />
-        </x-slot>
+        <div class="card-header">
+            <x-slot name="logo">
+                <div class="col-lg-3 col-md-5 col-sm-6">
+                    <div class="logo">
+                        <a href="{{ route('front.accueil') }}"><img class="img-fluid" src="{{ asset('assets/front/img/logo/logo-5-entistmamou.png') }}" alt="logo"></a>
+                    </div>
+                </div>
+            </x-slot>
+        </div>
 
         <x-validation-errors class="mb-4" />
 
