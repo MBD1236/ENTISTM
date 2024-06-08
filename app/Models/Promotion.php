@@ -10,4 +10,9 @@ class Promotion extends Model
     use HasFactory;
 
     protected $fillable = ['promotion'];
+
+    // 
+    public function recus() {
+        return $this->hasMany(Recu::class);
+    }
 }

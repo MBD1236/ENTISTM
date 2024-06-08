@@ -28,13 +28,13 @@ class GIEnseignantsCreate extends Component
     */
     protected function rules() {
         return [
-            "matricule" => ["required", "unique:enseignants,id"],
+            "matricule" => ["required"],
             "nom" => ["required", "min:2"],
             "prenom" => ["required", "min:2"],
-            "telephone" => ['required', 'regex:/^([0-9\s\-\+\(\)]*)$/', 'between:9,18', 'unique:enseignants,telephone'],
-            "email" => ["required", "email", "unique:enseignants,id"],
+            "telephone" => ['required', 'regex:/^([0-9\s\-\+\(\)]*)$/', 'between:9,18'],
+            "email" => ["required", "email"],
             "adresse" => ["required"],
-            "departement_id" => ['required', 'exists:departements,id'],
+            "departement_id" => ['required'],
             "photo" => ["required", 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:5000'],
         ];
     }
@@ -61,28 +61,33 @@ class GIEnseignantsCreate extends Component
     public function store()
     {
         $data = $this->validate();
-
-        /** @var \Illuminate\Http\UploadedFile|null $photo */
-        $photo = $this->photo;
-
-        if ($photo !== null && !$photo->getError()) {
-            $photoSansExt = pathinfo($photo->getClientOriginalName(), PATHINFO_FILENAME);
-            $nouveauNom = $photoSansExt . '_' . now()->format('YmdHis') . '.' . $photo->getClientOriginalExtension();
-            $photo->storeAs('public/enseignants', $nouveauNom);
-            $data['photo'] = $nouveauNom;
+        $mat = $data['matricule'];
+        $departement = $data['departement_id'];
+        $verify_enseignant = Enseignant::where('matricule', $mat)->where('departement_id', $departement)->get();
+        if ($verify_enseignant === 0) {
+            /** @var \Illuminate\Http\UploadedFile|null $photo */
+            $photo = $this->photo;
+    
+            if ($photo !== null && !$photo->getError()) {
+                $photoSansExt = pathinfo($photo->getClientOriginalName(), PATHINFO_FILENAME);
+                $nouveauNom = $photoSansExt . '_' . now()->format('YmdHis') . '.' . $photo->getClientOriginalExtension();
+                $photo->storeAs('public/enseignants', $nouveauNom);
+                $data['photo'] = $nouveauNom;
+            }
+    
+            Enseignant::create($data);
+    
+            $this->reset();
+            return redirect()->route('genieinfo.enseignant.list')->with('success', 'Enseignant enregistré avec succès!');
         }
 
-        Enseignant::create($data);
-
-        $this->reset();
-        return redirect()->route('genieinfo.enseignant.list')->with('success', 'Enseignant enregistré avec succès!');
-    }
+        }
 
     #[Layout("components.layouts.template-departements")]
     public function render()
     {
         return view('livewire.departements.g-i.g-i-enseignants-create',[
-            'departements' => Departement::all()
+            'departements' => Departement::where('departement', 'Génie Informatique')->get()
         ]);
     }
 }

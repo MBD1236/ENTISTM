@@ -37,7 +37,7 @@ class TlAjoutMatieres extends Component
         Matiere::create($this->validate());
         $this->reset();
         session()->flash('success', 'Ajout effectué avec succès!');
-        return redirect()->route('tl.matiereS');
+        return redirect()->route('tl.matieres');
     }
    
     #[Layout("components.layouts.template-departements")]

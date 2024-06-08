@@ -53,7 +53,7 @@ class CfmEnregistrementNote extends Component
         return view('livewire.departements.c-f-m.cfm-enregistrement-note',[
             "matieres"=> Matiere::whereHas('programme', function($p){
                 $p->where('programme', 'Conception et Fabrication Mécanique');
-            }),
+            })->get(),
         ]);
     }
 }

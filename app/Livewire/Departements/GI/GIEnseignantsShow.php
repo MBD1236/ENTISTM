@@ -36,7 +36,7 @@ class GIEnseignantsShow extends Component
         $this->departement_id = $enseignant->departement_id;
         $this->photo= $enseignant->photo;
     }
-    
+
     // methode de suppression
     public function destroy($id)
     {
@@ -47,9 +47,9 @@ class GIEnseignantsShow extends Component
         $enseignant->delete();
         return redirect()->route('genieinfo.enseignant.list')->with('success','Enseignant supprimé avec succès');
     }
-    
 
-    #[Layout("components.layouts.template-departements")]    
+
+    #[Layout("components.layouts.template-departements")]
     public function render()
     {
         return view('livewire.departements.g-i.g-i-enseignants-show');

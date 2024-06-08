@@ -76,7 +76,7 @@
                         @method('post')
                         <div class="row">
                             <div class="col-md-9 col-sm-12 p-1">
-                                <div class="form-group">                        
+                                <div class="form-group">
                                     <select id="matricules" class="select2 custom-select2 form-control border-input @error('matricules') is-invalid @enderror" name="matricules[]" style="height: 120px;" multiple>
                                         <option value="">Sélectionner le(s) matricule(s)</option>
                                         @foreach($matricules as $matricule)
@@ -92,7 +92,7 @@
                                 </div>
                             </div>
                             <div class="col-md-3 col-sm-12 d-flex justify-content-end p-1">
-                                <button type="submit" class="btn-modal pb-2 px-3 pt-1">
+                                <button type="submit" class="btn-modal pb-2 px-3 pt-1  text-white fs-5 " style="background: #120a5c">
                                     <i class="fa fa-print fs-5 me-1"></i>
                                     <span>Imprimer</span>
                                 </button>

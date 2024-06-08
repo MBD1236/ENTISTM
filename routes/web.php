@@ -6,6 +6,9 @@ use App\Http\Controllers\ArticlesController;
 use App\Http\Controllers\AttestationController;
 use App\Http\Controllers\AttestationTypeController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\ComptabiliteController;
+use App\Http\Controllers\ComptabiliteParametreController;
+use App\Http\Controllers\ComptabiliteRecuController;
 use App\Http\Controllers\DepartementsetudesController;
 use App\Http\Controllers\EmploisController;
 use App\Http\Controllers\EnseignantsController;
@@ -23,15 +26,26 @@ use App\Http\Controllers\ProgrammesetudesController;
 use App\Http\Controllers\PromotionController;
 use App\Http\Controllers\RegisterController as ControllersRegisterController;
 use App\Http\Controllers\ScolariteController;
+use App\Http\Controllers\ScolaritePrintEtudiantListController;
 use App\Http\Controllers\SemestresController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\TemoignagesController;
+use App\Livewire\Billeterie\BilleterieCreate;
+use App\Livewire\Billeterie\BilleterieEdit;
+use App\Livewire\Billeterie\BilleterieList;
+use App\Livewire\Billeterie\BilleteriePrint;
 use App\Livewire\Departements\CFM\CfmAjoutMatieres;
 use App\Livewire\Departements\CFM\CfmEditMatieres;
 use App\Livewire\Departements\CFM\CfmEditNotes;
 use App\Livewire\Departements\CFM\CfmEnregistrementNote;
+use App\Livewire\Departements\CFM\CfmEnseignantsCreate;
+use App\Livewire\Departements\CFM\CfmEnseignantsEdit;
 use App\Livewire\Departements\CFM\CfmEnseignantsTables;
 use App\Livewire\Departements\CFM\CfmEtudiantsTables;
+use App\Livewire\Departements\CFM\CfmInformationsCreate;
+use App\Livewire\Departements\CFM\CfmInformationsEdit;
+use App\Livewire\Departements\CFM\CfmInformationsList;
+use App\Livewire\Departements\CFM\CfmInformationsShow;
 use App\Livewire\Departements\CFM\CfmInscriptionsTables;
 use App\Livewire\Departements\CFM\CfmMatieresTables;
 use App\Livewire\Departements\CFM\CfmNoteEtudiantsMatieres;
@@ -40,9 +54,18 @@ use App\Livewire\Departements\CFM\CfmPlanificationCoursTables;
 use App\Livewire\Departements\GI\GiAjoutMatieres;
 use App\Livewire\Departements\GI\GiEditMatieres;
 use App\Livewire\Departements\GI\GiEditNotes;
+use App\Livewire\Departements\GI\GIEmploiImport;
+use App\Livewire\Departements\GI\GIEmploiTemps;
 use App\Livewire\Departements\GI\GiEnregistrementNote;
-use App\Livewire\Departements\GI\GiEnseignantsTables;
+use App\Livewire\Departements\GI\GIEnseignantsCreate;
+use App\Livewire\Departements\GI\GIEnseignantsEdit;
+use App\Livewire\Departements\GI\GIEnseignantsList;
+use App\Livewire\Departements\GI\GIEnseignantsShow;
 use App\Livewire\Departements\GI\GiEtudiantsTables;
+use App\Livewire\Departements\GI\GIInformationsCreate;
+use App\Livewire\Departements\GI\GIInformationsEdit;
+use App\Livewire\Departements\GI\GIInformationsList;
+use App\Livewire\Departements\GI\GIInformationsShow;
 use App\Livewire\Departements\GI\GiInscriptionsTables;
 use App\Livewire\Departements\GI\GiMatieresTables;
 use App\Livewire\Departements\GI\GiNoteEtudiantsMatieres;
@@ -52,8 +75,14 @@ use App\Livewire\Departements\IMP\ImpAjoutMatieres;
 use App\Livewire\Departements\IMP\ImpEditMatieres;
 use App\Livewire\Departements\IMP\ImpEditNotes;
 use App\Livewire\Departements\IMP\ImpEnregistrementNote;
+use App\Livewire\Departements\IMP\ImpEnseignantsCreate;
+use App\Livewire\Departements\IMP\ImpEnseignantsEdit;
 use App\Livewire\Departements\IMP\ImpEnseignantsTables;
 use App\Livewire\Departements\IMP\ImpEtudiantsTables;
+use App\Livewire\Departements\IMP\ImpInformationsCreate;
+use App\Livewire\Departements\IMP\ImpInformationsEdit;
+use App\Livewire\Departements\IMP\ImpInformationsList;
+use App\Livewire\Departements\IMP\ImpInformationsShow;
 use App\Livewire\Departements\IMP\ImpInscriptionsTables;
 use App\Livewire\Departements\IMP\ImpMatieresTables;
 use App\Livewire\Departements\IMP\ImpNoteEtudiantsMatieres;
@@ -63,8 +92,14 @@ use App\Livewire\Departements\SE\SeAjoutMatieres;
 use App\Livewire\Departements\SE\SeEditMatieres;
 use App\Livewire\Departements\SE\SeEditNotes;
 use App\Livewire\Departements\SE\SeEnregistrementNote;
+use App\Livewire\Departements\SE\SeEnseignantsCreate;
+use App\Livewire\Departements\SE\SeEnseignantsEdit;
 use App\Livewire\Departements\SE\SeEnseignantsTables;
 use App\Livewire\Departements\SE\SeEtudiantsTables;
+use App\Livewire\Departements\SE\SeInformationsCreate;
+use App\Livewire\Departements\SE\SeInformationsEdit;
+use App\Livewire\Departements\SE\SeInformationsList;
+use App\Livewire\Departements\SE\SeInformationsShow;
 use App\Livewire\Departements\SE\SeInscriptionsTables;
 use App\Livewire\Departements\SE\SeMatieresTables;
 use App\Livewire\Departements\SE\SeNoteEtudiantsMatieres;
@@ -74,8 +109,14 @@ use App\Livewire\Departements\TEB\TebAjoutMatieres;
 use App\Livewire\Departements\TEB\TebEditMatieres;
 use App\Livewire\Departements\TEB\TebEditNotes;
 use App\Livewire\Departements\TEB\TebEnregistrementNote;
+use App\Livewire\Departements\TEB\TebEnseignantsCreate;
+use App\Livewire\Departements\TEB\TebEnseignantsEdit;
 use App\Livewire\Departements\TEB\TebEnseignantsTables;
 use App\Livewire\Departements\TEB\TebEtudiantsTables;
+use App\Livewire\Departements\TEB\TebInformationsCreate;
+use App\Livewire\Departements\TEB\TebInformationsEdit;
+use App\Livewire\Departements\TEB\TebInformationsList;
+use App\Livewire\Departements\TEB\TebInformationsShow;
 use App\Livewire\Departements\TEB\TebInscriptionsTables;
 use App\Livewire\Departements\TEB\TebMatieresTables;
 use App\Livewire\Departements\TEB\TebNoteEtudiantsMatieres;
@@ -85,35 +126,34 @@ use App\Livewire\Departements\TL\TlAjoutMatieres;
 use App\Livewire\Departements\TL\TlEditMatieres;
 use App\Livewire\Departements\TL\TlEditNotes;
 use App\Livewire\Departements\TL\TlEnregistrementNote;
+use App\Livewire\Departements\TL\TlEnseignantsCreate;
+use App\Livewire\Departements\TL\TlEnseignantsEdit;
 use App\Livewire\Departements\TL\TlEnseignantsTables;
 use App\Livewire\Departements\TL\TlEtudiantsTables;
+use App\Livewire\Departements\TL\TlInformationsCreate;
+use App\Livewire\Departements\TL\TlInformationsEdit;
+use App\Livewire\Departements\TL\TlInformationsList;
+use App\Livewire\Departements\TL\TlInformationsShow;
 use App\Livewire\Departements\TL\TlInscriptionsTables;
 use App\Livewire\Departements\TL\TlMatieresTables;
 use App\Livewire\Departements\TL\TlNoteEtudiantsMatieres;
 use App\Livewire\Departements\TL\TlNotesEtudiantsSemestre;
 use App\Livewire\Departements\TL\TlPlanificationCoursTables;
-use App\Livewire\Departements\GI\GIEnseignantsCreate;
-use App\Livewire\Departements\GI\GIEnseignantsEdit;
-use App\Livewire\Departements\GI\GIEnseignantsList;
-use App\Livewire\Departements\GI\GIEnseignantsShow;
-use App\Livewire\Departements\GI\GIInformationsCreate;
-use App\Livewire\Departements\GI\GIInformationsEdit;
-use App\Livewire\Departements\GI\GIInformationsList;
-use App\Livewire\Departements\GI\GIInformationsShow;
+use App\Livewire\Enseignant\VoirCours;
+use App\Livewire\Enseignant\CoursTable;
+use App\Livewire\Enseignant\DevoirsTable;
+use App\Livewire\Enseignant\PublicationsTable;
+use App\Livewire\Enseignant\VoirDevoir;
 use App\Livewire\Scolarite\EditEtudiant;
 use App\Livewire\Scolarite\EditInscription;
+use App\Livewire\Scolarite\EtudiantsNotes;
 use App\Livewire\Scolarite\EtudiantTables;
 use App\Livewire\Scolarite\InscriptionEtudiant;
 use App\Livewire\Scolarite\InscriptionEtudiantNonOriente;
 use App\Livewire\Scolarite\InscriptionTables;
 use App\Livewire\Scolarite\ReinscriptionEtudiant;
 use App\Livewire\Scolarite\ViewDocuments;
-use App\Models\Enseignant;
-
-use function Livewire\store;
 use Illuminate\Support\Facades\Route;
-
-
 use App\Http\Controllers\Auth\CreerCompteController;
 
 Route::get('/register', [CreerCompteController::class, 'showRegistrationForm'])->name('register.index');
@@ -121,6 +161,22 @@ Route::post('/register', [CreerCompteController::class, 'register'])->name('regi
 Route::get('/login', [CreerCompteController::class, 'showLoginForm'])->name('login.index');
 Route::post('/login', [CreerCompteController::class, 'login'])->name('login.store');
 Route::post('/logout', [CreerCompteController::class, 'logout'])->name('logout');
+
+
+/* Routes added by thd */
+
+
+/* Route de l'enseignant */
+Route::prefix('enseignant')->name("enseignant.")->group(function () {
+    Route::get('/cours', CoursTable::class)->name('cours');
+    Route::get('/cours/{cour}', VoirCours::class)->name('cours.voir');
+    Route::get('/publications', PublicationsTable::class)->name('publications');
+    Route::get('/devoirs', DevoirsTable::class)->name('devoirs');
+    Route::get('/devoir/{devoir}', VoirDevoir::class)->name('voir.devoir');
+
+});
+
+
 
 
 Route::prefix('front')->group(function () {
@@ -191,8 +247,25 @@ Route::prefix('front')->group(function () {
     });
 });
 
+// pour la billeterie
+Route::name('billeterie.')->group(function() {
+    Route::get('billeterie/dashboard', [ ComptabiliteController::class, 'dashboard'])->name('dashboard');
+    Route::resource("billeterie/parametre", ComptabiliteParametreController::class)->except(["show"]);
+    // pour les details des departement
+    Route::get('/billeterie/list', BilleterieList::class)->name('list');
+    Route::get('/billeterie/create', BilleterieCreate::class)->name('create');
+    Route::get('/billeterie/edit/{recu}', BilleterieEdit::class)->name('edit');
+    Route::delete('/billeterie/destroy/{recu}', [BilleterieList::class, 'destroy'])->name('destroy');
+    Route::get('/billeterie/print', BilleteriePrint::class)->name('print');
+    Route::get('/billeterie/printRecu/{recu}', [ComptabiliteController::class, 'printRecu'])->name('printRecu');
+    Route::get('/billeterie/form', [ComptabiliteRecuController::class, 'form'])->name('form');
+    Route::post('/billeterie/index', [ComptabiliteRecuController::class, 'index'])->name('index');
 
-Route::name("scolarite.")->group(function () {
+});
+
+
+
+Route::prefix('scolarite')->name("scolarite.")->group(function () {
     Route::resource("attestation", AttestationController::class)->except(["show"]);
     Route::resource("attestationType", AttestationTypeController::class)->except(["show"]);
     Route::resource("service", ServiceController::class)->except(["show"]);
@@ -202,6 +275,7 @@ Route::name("scolarite.")->group(function () {
     // badge
     Route::get('/indexBadge', [PrintBadgeController::class, 'index'])->name('print');
     Route::post('/printBadge', [PrintBadgeController::class, 'printBadge'])->name('printBadge');
+
 });
 
 
@@ -219,11 +293,15 @@ Route::prefix('scolarite')->group(function () {
     Route::get('/etudiants', EtudiantTables::class)->name('scolarite.orientation');
     Route::get('/etudiant/edit/{etudiant}', EditEtudiant::class)->name('scolarite.etudiant.edit');
     Route::get('/etudiant/documents/{etudiant}', ViewDocuments::class)->name('scolarite.etudiant.documents');
+    Route::get('/etudiants/notes', EtudiantsNotes::class)->name('scolarite.notes');
 
     Route::get('/parametre', [ScolariteController::class, 'afficherParametre'])->name('scolarite.parametre');
-
-
     Route::get('/inscrits', [ScolariteController::class, 'inscrits'])->name('scolarite.inscrits');
+
+    // pour l'impression
+    Route::post('/print/index', [ScolaritePrintEtudiantListController::class, 'index'])->name('scolarite.print.index');
+    Route::get('/print/form', [ScolaritePrintEtudiantListController::class, 'form'])->name('scolarite.print.form');
+
 
     Route::prefix('parametres')->group(function () {
         Route::prefix('session')->group(function () {
@@ -300,14 +378,15 @@ Route::prefix('genieinfo')->name("genieinfo.")->group(function(){
     Route::get("/matieres", GiMatieresTables::class)->name('matieres');
     Route::get("/matieres/ajout", GiAjoutMatieres::class)->name('matiere.ajout');
     Route::get("/matieres/edit/{matiere}", GiEditMatieres::class)->name('matiere.edit');
-    Route::get("/enseignants", GiEnseignantsTables::class)->name('enseignants');
     Route::get("/planification", GiPlanificationCoursTables::class)->name('planification');
     Route::get("/inscriptions", GiInscriptionsTables::class)->name('inscriptions');
     Route::get('/notes', GiEnregistrementNote::class)->name('notes');
     Route::get('/notes/matiere', GiNoteEtudiantsMatieres::class)->name('notes.matiere');
     Route::get('/notes/matiere/{note}', GiEditNotes::class)->name('notes.edit');
     Route::get('/notes/semestre', GiNotesEtudiantsSemestre::class)->name('notes.semestre');
-
+    // pour l'empoi de temps
+    Route::get('/emploiTemps', GIEmploiTemps::class)->name('emploitemps');
+    Route::get('/emploiTemps/import', GIEmploiImport::class)->name('emploitemps.import');
     // pour les details des departement
     Route::get('/information', GIInformationsList::class)->name('information.list');
     Route::get('/information/create', GIInformationsCreate::class)->name('information.create');
@@ -334,6 +413,17 @@ Route::prefix('scienceenergie')->name("scienceenergie.")->group(function(){
     Route::get('/notes/matiere', SeNoteEtudiantsMatieres::class)->name('notes.matiere');
     Route::get('/notes/matiere/{note}', SeEditNotes::class)->name('notes.edit');
     Route::get('/notes/semestre', SeNotesEtudiantsSemestre::class)->name('notes.semestre');
+
+    Route::get('/enseignant/create', SeEnseignantsCreate::class)->name('enseignant.create');
+    Route::get('/enseignant/edit/{enseignant}', SeEnseignantsEdit::class)->name('enseignant.edit');
+    Route::get('/enseignant/show/{enseignant}', GIEnseignantsShow::class)->name('enseignant.show');
+    Route::delete('/enseignant/destroy/{enseignant}', [GIEnseignantsShow::class, 'destroy'])->name('enseignant.destroy');
+
+    Route::get('/information', SeInformationsList::class)->name('information.list');
+    Route::get('/information/create', SeInformationsCreate::class)->name('information.create');
+    Route::get('/information/edit/{information}', SeInformationsEdit::class)->name('information.edit');
+    Route::get('/information/show/{information}', SeInformationsShow::class)->name('information.show');
+
 });
 
 Route::prefix('imp')->name("imp.")->group(function(){
@@ -348,6 +438,17 @@ Route::prefix('imp')->name("imp.")->group(function(){
     Route::get('/notes/matiere', ImpNoteEtudiantsMatieres::class)->name('notes.matiere');
     Route::get('/notes/matiere/{note}', ImpEditNotes::class)->name('notes.edit');
     Route::get('/notes/semestre', ImpNotesEtudiantsSemestre::class)->name('notes.semestre');
+
+    Route::get('/enseignant/create', ImpEnseignantsCreate::class)->name('enseignant.create');
+    Route::get('/enseignant/edit/{enseignant}', ImpEnseignantsEdit::class)->name('enseignant.edit');
+    Route::get('/enseignant/show/{enseignant}', GIEnseignantsShow::class)->name('enseignant.show');
+    Route::delete('/enseignant/destroy/{enseignant}', [GIEnseignantsShow::class, 'destroy'])->name('enseignant.destroy');
+
+
+    Route::get('/information', ImpInformationsList::class)->name('information.list');
+    Route::get('/information/create', ImpInformationsCreate::class)->name('information.create');
+    Route::get('/information/edit/{information}', ImpInformationsEdit::class)->name('information.edit');
+    Route::get('/information/show/{information}', ImpInformationsShow::class)->name('information.show');
 });
 
 Route::prefix('teb')->name("teb.")->group(function(){
@@ -362,6 +463,17 @@ Route::prefix('teb')->name("teb.")->group(function(){
     Route::get('/notes/matiere', TebNoteEtudiantsMatieres::class)->name('notes.matiere');
     Route::get('/notes/matiere/{note}', TebEditNotes::class)->name('notes.edit');
     Route::get('/notes/semestre', TebNotesEtudiantsSemestre::class)->name('notes.semestre');
+
+    Route::get('/enseignant/edit/{enseignant}', TebEnseignantsEdit::class)->name('enseignant.edit');
+    Route::get('/enseignant/create', TebEnseignantsCreate::class)->name('enseignant.create');
+    Route::get('/enseignant/show/{enseignant}', GIEnseignantsShow::class)->name('enseignant.show');
+    Route::delete('/enseignant/destroy/{enseignant}', [GIEnseignantsShow::class, 'destroy'])->name('enseignant.destroy');
+
+    Route::get('/information', TebInformationsList::class)->name('information.list');
+    Route::get('/information/create', TebInformationsCreate::class)->name('information.create');
+    Route::get('/information/edit/{information}', TebInformationsEdit::class)->name('information.edit');
+    Route::get('/information/show/{information}', TebInformationsShow::class)->name('information.show');
+
 });
 
 Route::prefix('cfm')->name("cfm.")->group(function(){
@@ -376,6 +488,17 @@ Route::prefix('cfm')->name("cfm.")->group(function(){
     Route::get('/notes/matiere', CfmNoteEtudiantsMatieres::class)->name('notes.matiere');
     Route::get('/notes/matiere/{note}', CfmEditNotes::class)->name('notes.edit');
     Route::get('/notes/semestre', CfmNotesEtudiantsSemestre::class)->name('notes.semestre');
+
+    Route::get('/enseignant/create', CfmEnseignantsCreate::class)->name('enseignant.create');
+    Route::get('/enseignant/edit/{enseignant}', CfmEnseignantsEdit::class)->name('enseignant.edit');
+    Route::get('/enseignant/show/{enseignant}', GIEnseignantsShow::class)->name('enseignant.show');
+    Route::delete('/enseignant/destroy/{enseignant}', [GIEnseignantsShow::class, 'destroy'])->name('enseignant.destroy');
+
+    Route::get('/information', CfmInformationsList::class)->name('information.list');
+    Route::get('/information/create', CfmInformationsCreate::class)->name('information.create');
+    Route::get('/information/edit/{information}', CfmInformationsEdit::class)->name('information.edit');
+    Route::get('/information/show/{information}', CfmInformationsShow::class)->name('information.show');
+
 });
 
 Route::prefix('techniquelaboratoire')->name("tl.")->group(function(){
@@ -390,6 +513,17 @@ Route::prefix('techniquelaboratoire')->name("tl.")->group(function(){
     Route::get('/notes/matiere', TlNoteEtudiantsMatieres::class)->name('notes.matiere');
     Route::get('/notes/matiere/{note}', TlEditNotes::class)->name('notes.edit');
     Route::get('/notes/semestre', TlNotesEtudiantsSemestre::class)->name('notes.semestre');
+
+    Route::get('/enseignant/create', TlEnseignantsCreate::class)->name('enseignant.create');
+    Route::get('/enseignant/edit/{enseignant}', TlEnseignantsEdit::class)->name('enseignant.edit');
+    Route::get('/enseignant/show/{enseignant}', GIEnseignantsShow::class)->name('enseignant.show');
+    Route::delete('/enseignant/destroy/{enseignant}', [GIEnseignantsShow::class, 'destroy'])->name('enseignant.destroy');
+
+
+    Route::get('/information', TlInformationsList::class)->name('information.list');
+    Route::get('/information/create', TlInformationsCreate::class)->name('information.create');
+    Route::get('/information/edit/{information}', TlInformationsEdit::class)->name('information.edit');
+    Route::get('/information/show/{information}', TlInformationsShow::class)->name('information.show');
 });
 // /* FIN Routes des interfaces des departements */
 

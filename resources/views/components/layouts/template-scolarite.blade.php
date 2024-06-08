@@ -5,9 +5,16 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Dashboard - NiceAdmin Bootstrap Template</title>
+  <title>Scolarite Dahasbord</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
+
+  <!-- pour le select2 -->
+  <link href="{{ asset('assets/css/select2.min.css') }}" rel="stylesheet">
+  <script src="{{asset('assets/js/jquery-3.6.0.js')}}"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{{ asset('assets/js/select2.min.js') }}"></script>
 
   <!-- Favicons -->
   <link href="{{ asset('assets/img/logo-ent-trans.png') }}" rel="icon">
@@ -204,13 +211,13 @@
         <li class="nav-item dropdown pe-3">
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            <img src="{{ asset('assets/img/profile-img.jpg') }}" alt="Profile" class="rounded-circle">
-            <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
+            <img src="{{ asset('assets/img/téléchargement.png') }}" alt="Profile" class="rounded-circle">
+            <span class="d-none d-md-block dropdown-toggle ps-2">Service Scolarité</span>
           </a><!-- End Profile Iamge Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
-              <h6>Kevin Anderson</h6>
+              <h6>Service Scolarité</h6>
               <span>Web Designer</span>
             </li>
             <li>
@@ -309,6 +316,13 @@
           </li>
           </ul>
         </li><!-- End Components Nav -->
+        
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="{{ route('scolarite.notes') }}" wire:navigate>
+            <i class="bi bi-journal-richtext"></i>
+            <span>Notes</span>
+          </a>
+        </li>
 
         <li class="nav-item">
           <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
@@ -339,14 +353,14 @@
           </a>
           <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
             <li>
-              <a href="{{route('scolarite.attestation.index')}}" wire:navigate>
-                <i class="fa fa-list"></i><span>Tous les attestations</span>
+              <a href="{{route('scolarite.attestation.index')}}">
+                <i class="fa fa-list"></i><span>Toutes les attestations</span>
               </a>
             </li>
             
             <li>
               <a href="{{route('scolarite.attestation.inscription')}}" wire:navigate>
-                <i class="fa fa-user-plus"></i><span>Inscription</span>
+                <i class="fa fa-user-plus"></i><span>Imprimer les attestations</span>
               </a>
             </li>
             <li>
@@ -378,10 +392,10 @@
 
         <li class="nav-item">
           <a class="nav-link collapsed" href="{{ route('scolarite.service.index') }}" wire:navigate>
-            <i class="fa fa-cog"></i>
+            <i class="fa fa-desktop"></i>
             <span>Services</span>
           </a>
-        </li><!
+        </li>
 
       </ul>
 

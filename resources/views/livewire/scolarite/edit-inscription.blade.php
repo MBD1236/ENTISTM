@@ -139,7 +139,7 @@
                                 <select class="form-select border-input @error('programme_id') is-invalid @enderror" wire:model="programme_id" id="programme_id" wire:click='clearStatus'>
                                     <option value="0">Sélectioner un programme</option>
                                     @foreach ($programmes as $programme)
-                                            <option value="{{ $inscription->programme_id }}" wire:key="{{ $inscription->programme_id }}">{{ $inscription->programme->programme }}</option>
+                                            <option value="{{ $programme->id }}" wire:key="{{ $programme->id }}">{{ $programme->programme }}</option>
                                     @endforeach
                                 </select>
                                 <label for="floatingprogramme" class="label-control label-text">Programme</label>

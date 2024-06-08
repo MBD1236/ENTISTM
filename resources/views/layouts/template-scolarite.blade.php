@@ -318,6 +318,13 @@
         </li><!-- End Components Nav -->
 
         <li class="nav-item">
+          <a class="nav-link collapsed" href="{{ route('scolarite.notes') }}" wire:navigate>
+            <i class="bi bi-journal-richtext"></i>
+            <span>Notes</span>
+          </a>
+        </li>
+        
+        <li class="nav-item">
           <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
             <i class="bi bi-journal-text"></i><span>Rélévé de notes</span><i class="bi bi-chevron-down ms-auto"></i>
           </a>
@@ -347,13 +354,13 @@
           <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
             <li>
               <a href="{{route('scolarite.attestation.index')}}">
-                <i class="fa fa-list"></i><span>Tous les attestations</span>
+                <i class="fa fa-list"></i><span>Toutes les attestations</span>
               </a>
             </li>
             
             <li>
               <a href="{{route('scolarite.attestation.inscription')}}">
-                <i class="fa fa-print"></i><span>Impressions</span>
+                <i class="fa fa-user-plus"></i><span>Imprimer les attestations</span>
               </a>
             </li>
           </ul>

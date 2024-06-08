@@ -115,11 +115,11 @@ class EtudiantTables extends Component
     public function render()
     {
         $query = Etudiant::query();
-        $query->where(function ($query) {
-            $query->where('ine', 'LIKE', "%{$this->searchIne}%")
+        $query->where('ine', 'LIKE', "%{$this->searchIne}%")
             ->orWhere('session', 'LIKE', "%{$this->searchIne}%")
+            ->orWhere('nom', 'LIKE', "%{$this->searchIne}%")
             ->orWhere('programme', 'LIKE', "%{$this->searchIne}%");
-        });
+
         return view('livewire.scolarite.etudiant-tables',[
             "etudiants"=> $query->paginate(10),
         ]);

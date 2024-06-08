@@ -33,7 +33,10 @@ class TlNotesEtudiantsSemestre extends Component
 
         if (!empty($this->niveau_id) && !empty($this->semestre_id) && !empty($this->promotion)) {
             $idmatieres = Note::whereHas('matiere', function ($mat) {
-                $mat->where('semestre_id', $this->semestre_id);
+                $mat->where('semestre_id', $this->semestre_id)->whereHas('programme', function($m){
+                    $m->where('programme', 'Technique de Laboratoire Biologie');
+                    $m->orWhere('programme', 'Technique de Laboratoire Chimie');
+                });
             })->pluck('matiere_id')->unique();
 
             $idinscriptions = Note::whereHas('matiere', function ($mat) {
@@ -52,6 +55,9 @@ class TlNotesEtudiantsSemestre extends Component
             $this->notes = Note::query()
                 ->whereHas('inscription', function ($e) {
                     $e->where('niveau_id', 'like', "%{$this->niveau_id}%");
+                    $e->whereHas('promotion', function($p) {
+                        $p->where('promotion', $this->promotion);
+                    });
                 })
                 ->whereHas('matiere', function ($e) {
                     $e->where('semestre_id','like', '%'.$this->semestre_id. '%');

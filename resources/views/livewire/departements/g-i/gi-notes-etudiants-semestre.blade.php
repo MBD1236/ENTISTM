@@ -30,7 +30,7 @@
         </div>
         
 
-       <div class="card-body">
+        <div class="card-body">
             <div class="table-responsive-sm">
                 <table id="tableau" class="table table-hover table-centered table-bordered mb-0 mt-4">
                     <thead>
@@ -73,7 +73,7 @@
                                     <td>{{ $noteMatiere ?? '-' }}</td>
                                 @endforeach
                                 @php
-                                    $noteSemestrielle = ($nombreMatieres > 0) ? ($totalNotes / $nombreMatieres) : '-';
+                                    $noteSemestrielle = ($nombreMatieres > 0) ? number_format($totalNotes / $nombreMatieres, 2) : '-';
                                 @endphp
                                 <td class="fw-bold">{{ $noteSemestrielle }}</td>
                             </tr>
@@ -97,4 +97,5 @@
                 </div>
             </div>
         </div>
+    </div>
 </div>

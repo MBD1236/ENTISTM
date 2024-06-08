@@ -19,7 +19,7 @@
                         <div class="form-group row">
                             <label for="matricules" class="col-md-4 col-form-label text-md-right">Matricules des étudiants</label>
                             <div class="col-md-7">
-                                <select id="matricules" class="bg-black select2 custom-select2 form-control @error('matricules') is-invalid @enderror" name="matricules[]" multiple style="height: 100px;">
+                                <select id="matricules" class="select2 custom-select2 form-control @error('matricules') is-invalid @enderror" name="matricules[]" multiple style="height: 100px;">
                                     <option value="">Sélectionner les matricules</option>
                                     @foreach($etudiants as $etudiant)
                                         <option value="{{ $etudiant->ine }}">{{ $etudiant->ine }}</option>
@@ -31,9 +31,10 @@
                             </div>
                         </div>
                         
-                        <div class="form-group row mb-0">
+                        <div class="form-group mb-3">
                             <div class="col-md-6 offset-md-4 mt-3">
-                                <button type="submit" class="btn btn-modal">
+                                <button type="submit" class="btn btn-modal text-white fs-5 " style="background: #120a5c">
+                                    <i class="fa fa-print me-1" ></i>
                                     Imprimer le.s badge.s
                                 </button>
                             </div>

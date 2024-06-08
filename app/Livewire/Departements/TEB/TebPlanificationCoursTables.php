@@ -120,14 +120,9 @@ class TebPlanificationCoursTables extends Component
         $planifications = $query->paginate(10);
 
 
-        $matieres = Matiere::query()
-            ->when($this->searchProgramme !== 0, function ($query) {
-                $query->whereHas('programme', function ($subquery) {
-                    $subquery->where('programme', 'Technologie des Equipements Biomédicaux');
-                });
-            })
-            ->orderBy('created_at', 'asc') // Tri par ordre ascendant
-            ->get();
+        $matieres = Matiere::whereHas('programme', function ($subquery) {
+            $subquery->where('programme', 'Technologies des Equipements Biomédicaux');
+        })->orderBy('created_at', 'asc')->get();
         return view('livewire.departements.t-e-b.teb-planification-cours-tables',[
             'planifications' => $planifications,
             'matieres' => $matieres,
