@@ -78,15 +78,6 @@
                                 <td>{{ $inscription->niveau->niveau}}</td>
                                 <td>{{ $inscription->promotion->promotion}}</td>
                                 <td>{{ $inscription->annee_universitaire->session}}</td>
-                                <td><img width="50px" src="{{asset('storage/'.$inscription->etudiant->photo) }}" alt=""></td>
-                                <th>{{ $inscription->etudiant->ine }}</th>
-                                <td>{{ $inscription->etudiant->prenom }}</td>
-                                <td>{{ $inscription->etudiant->nom }}</td>
-                                <td>{{ $inscription->promotion->promotion }}</td>
-                                <td>{{ $inscription->programme->programme }}</td>
-                                <td>{{ $inscription->niveau->niveau }}</td>
-                                <td>{{ $inscription->annee_universitaire->session }}</td>
-                                <td><img width="50px" src="{{ asset('storage/'.$inscription->etudiant->photo) }}" alt=""></td>
                                 <td><img style="object-fit: cover;" width="40px" height="40px" src="{{ asset('storage/'.$inscription->etudiant->photo) }}" alt=""></td>
                                 <td class="text-center">
                                     <a href="{{ route('scolarite.inscription.edit', $inscription) }}"><i class="fa fa-edit btn-color-primary"></i></a>
