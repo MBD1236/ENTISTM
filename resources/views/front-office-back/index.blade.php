@@ -27,7 +27,7 @@
                             <i class="fa fa-book"></i>
                         </div>
                         <div class="ps-3">
-                            <h6>145</h6>
+                            <h6>{{ $nombre_article }}</h6>
                         </div>
                     </div>
                 </div>
@@ -44,7 +44,7 @@
                             <i class="fa fa-photo"></i>
                         </div>
                         <div class="ps-3">
-                            <h6>45</h6>
+                            <h6>{{ $nombre_photo }}</h6>
                         </div>
                     </div>
                 </div>
@@ -56,13 +56,13 @@
 
             <div class="card info-card customers-card">
                 <div class="card-body">
-                    <h5 class="card-title">Alumni</h5>
+                    <h5 class="card-title">Abonnés</h5>
                     <div class="d-flex align-items-center">
                         <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                             <i class="fa fa-users"></i>
                         </div>
                         <div class="ps-3">
-                            <h6>24</h6>
+                            <h6>{{ $nombre_abonne }}</h6>
                         </div>
                     </div>
                 </div>
@@ -80,7 +80,7 @@
                             <i class="fa fa-comment"></i>
                         </div>
                         <div class="ps-3">
-                            <h6>145</h6>
+                            <h6>{{ $nombre_temoignage }}</h6>
                         </div>
                     </div>
                 </div>
@@ -101,13 +101,13 @@
                     document.addEventListener("DOMContentLoaded", () => {
                     new ApexCharts(document.querySelector("#reportsChart"), {
                         series: [{
-                        name: 'Sales',
+                        name: 'abonnés',
                         data: [31, 40, 28, 51, 42, 82, 56],
                         }, {
-                        name: 'Revenue',
+                        name: 'Témoignage',
                         data: [11, 32, 45, 32, 34, 52, 41]
                         }, {
-                        name: 'Customers',
+                        name: 'Galérie',
                         data: [15, 11, 32, 18, 9, 24, 11]
                         }],
                         chart: {

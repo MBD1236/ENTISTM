@@ -743,6 +743,7 @@ z-index: 99;
 .about-content a {
 	padding: 10px 28px;
 	font-size: 12px;
+    text-transform: lowercase;
 }
 .bold {
 	color: var(--text-colur);
