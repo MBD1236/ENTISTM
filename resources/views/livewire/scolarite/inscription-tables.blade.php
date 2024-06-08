@@ -88,7 +88,7 @@
                             @empty
                             <tr>
                                 <td colspan="10">
-                                    <div class="alert alert-primary">Aucune donnée ne correspond à cette recherche !</div>
+                                    <div class="alert bg-card text-center fw-bold text-white fs-4">Aucune donnée ne correspond à cette recherche !</div>
                                 </td>
                             </tr>
                             @endforelse

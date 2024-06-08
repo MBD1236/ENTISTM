@@ -5,6 +5,7 @@ use App\Http\Controllers\AnneeUnivController;
 use App\Http\Controllers\ArticlesController;
 use App\Http\Controllers\AttestationController;
 use App\Http\Controllers\AttestationTypeController;
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\ComptabiliteController;
 use App\Http\Controllers\ComptabiliteParametreController;
 use App\Http\Controllers\ComptabiliteRecuController;
@@ -13,15 +14,23 @@ use App\Http\Controllers\EmploisController;
 use App\Http\Controllers\EnseignantsController;
 use App\Http\Controllers\EtudesController;
 use App\Http\Controllers\FrontAdminController;
+use App\Http\Controllers\FrontenseignantController;
+use App\Http\Controllers\FrontProgrammeController;
+use App\Http\Controllers\FrontserviceController;
+use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\NiveauxetudesController;
+use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\PrintAttestationController;
 use App\Http\Controllers\PrintBadgeController;
 use App\Http\Controllers\ProgrammesetudesController;
 use App\Http\Controllers\PromotionController;
+use App\Http\Controllers\RegisterController as ControllersRegisterController;
 use App\Http\Controllers\ScolariteController;
 use App\Http\Controllers\ScolaritePrintEtudiantListController;
+use App\Http\Controllers\ScolariteReleveNoteController;
 use App\Http\Controllers\SemestresController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\TemoignagesController;
 use App\Livewire\Billeterie\BilleterieCreate;
 use App\Livewire\Billeterie\BilleterieEdit;
 use App\Livewire\Billeterie\BilleterieList;
@@ -116,7 +125,6 @@ use App\Livewire\Departements\TEB\TebNotesEtudiantsSemestre;
 use App\Livewire\Departements\TEB\TebPlanificationCoursTables;
 use App\Livewire\Departements\TL\TlAjoutMatieres;
 use App\Livewire\Departements\TL\TlEditMatieres;
-
 use App\Livewire\Departements\TL\TlEditNotes;
 use App\Livewire\Departements\TL\TlEnregistrementNote;
 use App\Livewire\Departements\TL\TlEnseignantsCreate;
@@ -149,8 +157,17 @@ use App\Livewire\Scolarite\InscriptionEtudiant;
 use App\Livewire\Scolarite\InscriptionEtudiantNonOriente;
 use App\Livewire\Scolarite\InscriptionTables;
 use App\Livewire\Scolarite\ReinscriptionEtudiant;
+use App\Livewire\Scolarite\ReleveNote;
 use App\Livewire\Scolarite\ViewDocuments;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\CreerCompteController;
+
+Route::get('/register', [CreerCompteController::class, 'showRegistrationForm'])->name('register.index');
+Route::post('/register', [CreerCompteController::class, 'register'])->name('register.store');
+Route::get('/login', [CreerCompteController::class, 'showLoginForm'])->name('login.index');
+Route::post('/login', [CreerCompteController::class, 'login'])->name('login.store');
+Route::post('/logout', [CreerCompteController::class, 'logout'])->name('logout');
+
 
 /* Routes added by thd */
 
@@ -174,7 +191,6 @@ Route::prefix('enseignant')->name("enseignant.")->group(function () {
 
 
 
-// scolarite
 
 Route::prefix('front')->group(function () {
     Route::get('/accueil', [AccueilController::class, 'accueil'])->name('front.accueil');
@@ -187,6 +203,60 @@ Route::prefix('front')->group(function () {
         Route::get('/edit/{article}', [ArticlesController::class, 'edit'])->name('articles.edit');
         Route::put('/update/{article}', [ArticlesController::class, 'update'])->name('articles.update');
         Route::get('/delete/{article}', [ArticlesController::class, 'delete'])->name('articles.delete');
+    });
+
+    Route::prefix('newsletter')->group(function () {
+        Route::post('/subscribe', [NewsletterController::class, 'subscribe'])->name('subscribe');
+        Route::get('/unsubscribe/{email}', [NewsletterController::class, 'unsubscribe'])->name('unsubscribe');
+        Route::get('/create-newsletter', [NewsletterController::class, 'create'])->name('create.newsletter');
+        Route::get('/show-newsletter', [NewsletterController::class, 'show'])->name('show.newsletter');
+        Route::post('/send-newsletter', [NewsletterController::class, 'sendNewsletter'])->name('send.newsletter');
+    });
+
+    Route::prefix('services')->group(function () {
+        Route::get('/', [FrontserviceController::class, 'index'])->name('frontservice.index');
+        Route::post('/', [FrontserviceController::class, 'store'])->name('frontservice.store');
+        Route::get('/show', [FrontserviceController::class, 'show'])->name('frontservice.show');
+        Route::get('/edit/{frontservice}', [FrontserviceController::class, 'edit'])->name('frontservice.edit');
+        Route::put('/update/{frontservice}', [FrontserviceController::class, 'update'])->name('frontservice.update');
+        Route::get('/delete/{frontservice}', [FrontserviceController::class, 'delete'])->name('frontservice.delete');
+    });
+
+    Route::prefix('programmes')->group(function () {
+        Route::get('/', [FrontProgrammeController::class, 'index'])->name('frontprogramme.index');
+        Route::post('/', [FrontProgrammeController::class, 'store'])->name('frontprogramme.store');
+        Route::get('/show', [FrontProgrammeController::class, 'show'])->name('frontprogramme.show');
+        Route::get('/edit/{frontProgramme}', [FrontProgrammeController::class, 'edit'])->name('frontprogramme.edit');
+        Route::put('/update/{frontProgramme}', [FrontProgrammeController::class, 'update'])->name('frontprogramme.update');
+        Route::get('/delete/{frontProgramme}', [FrontProgrammeController::class, 'delete'])->name('frontprogramme.delete');
+    });
+
+    Route::prefix('enseignants')->group(function () {
+        Route::get('/', [FrontenseignantController::class, 'index'])->name('frontenseignants.index');
+        Route::post('/', [FrontenseignantController::class, 'store'])->name('frontenseignants.store');
+        Route::get('/show', [FrontenseignantController::class, 'show'])->name('frontenseignants.show');
+        Route::get('/edit/{frontenseignant}', [FrontenseignantController::class, 'edit'])->name('frontenseignants.edit');
+        Route::put('/update/{frontenseignant}', [FrontenseignantController::class, 'update'])->name('frontenseignants.update');
+        Route::get('/delete/{frontenseignant}', [FrontenseignantController::class, 'delete'])->name('frontenseignants.delete');
+    });
+
+    Route::prefix('galeries')->group(function () {
+        Route::get('/', [PhotoController::class, 'index'])->name('photos.index');
+        Route::post('/', [PhotoController::class, 'store'])->name('photos.store');
+        Route::get('/show', [PhotoController::class, 'show'])->name('photos.show');
+        Route::get('/edit/{photo}', [PhotoController::class, 'edit'])->name('photos.edit');
+        Route::put('/update/{photo}', [PhotoController::class, 'update'])->name('photos.update');
+        Route::get('/delete/{photo}', [PhotoController::class, 'delete'])->name('photos.delete');
+        Route::delete('/photos/deleteAll', [PhotoController::class, 'deleteAll'])->name('photos.deleteAll');
+    });
+
+    Route::prefix('temoignages')->group(function () {
+        Route::get('/', [TemoignagesController::class, 'index'])->name('temoignages.index');
+        Route::post('/', [TemoignagesController::class, 'store'])->name('temoignages.store');
+        Route::get('/show', [TemoignagesController::class, 'show'])->name('temoignages.show');
+        Route::get('/edit/{temoignage}', [TemoignagesController::class, 'edit'])->name('temoignages.edit');
+        Route::put('/update/{temoignage}', [TemoignagesController::class, 'update'])->name('temoignages.update');
+        Route::get('/delete/{temoignage}', [TemoignagesController::class, 'delete'])->name('temoignages.delete');
     });
 });
 
@@ -203,7 +273,7 @@ Route::name('billeterie.')->group(function() {
     Route::get('/billeterie/printRecu/{recu}', [ComptabiliteController::class, 'printRecu'])->name('printRecu');
     Route::get('/billeterie/form', [ComptabiliteRecuController::class, 'form'])->name('form');
     Route::post('/billeterie/index', [ComptabiliteRecuController::class, 'index'])->name('index');
-    
+
 });
 
 
@@ -241,10 +311,19 @@ Route::prefix('scolarite')->group(function () {
     Route::get('/parametre', [ScolariteController::class, 'afficherParametre'])->name('scolarite.parametre');
     Route::get('/inscrits', [ScolariteController::class, 'inscrits'])->name('scolarite.inscrits');
 
-    // pour l'impression
+    // pour l'impression des etudiants inscrits et reinscrit
     Route::post('/print/index', [ScolaritePrintEtudiantListController::class, 'index'])->name('scolarite.print.index');
     Route::get('/print/form', [ScolaritePrintEtudiantListController::class, 'form'])->name('scolarite.print.form');
+    // pour l'impression des etudiants oriente
+    Route::post('/etudiant/oriente', [ScolaritePrintEtudiantListController::class, 'oriente'])->name('scolarite.print.oriente');
+    Route::get('/etudiant/forms', [ScolaritePrintEtudiantListController::class, 'forms'])->name('scolarite.print.forms');
+    // pour les releves de notes
+    // Route::get('/releve/index', [ReleveNote::class])->name('scolarite.releve.index');
+    // Route::get('/releve/create', [ReleveNote::class])->name('scolarite.releve.create');
 
+    Route::name("scolarite.")->group(function () {
+        Route::resource("releve", ScolariteReleveNoteController::class)->except(["show"]);
+    });
 
     Route::prefix('parametres')->group(function () {
         Route::prefix('session')->group(function () {

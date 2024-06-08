@@ -4,10 +4,10 @@
 
 <style>
     .attesta { 
-         overflow-x: hidden;
-         overflow-y: hidden;
-         background: linear-gradient(to left, rgb(255, 255, 255, 0.9), rgba(255, 255, 255, 0.8)), url({{asset('assets/img/ist2.png')}}) center / cover no-repeat;  
-         /* background: linear-gradient(to left, rgba(199, 94, 94, 0.9), rgba(255, 255, 255, 0.9)), url({{asset('backend/assets/img/ist3.png')}}) center / cover no-repeat;   */
+        overflow-x: hidden;
+        overflow-y: hidden;
+        background: linear-gradient(to left, rgb(255, 255, 255, 0.9), rgba(255, 255, 255, 0.8)), url({{asset('assets/img/ist2.png')}}) center / cover no-repeat;  
+        /*  */
      }
  </style>
 

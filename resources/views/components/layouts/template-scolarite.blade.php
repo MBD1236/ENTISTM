@@ -290,8 +290,8 @@
           </a>
           <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
             <li>
-              <a href="{{ route('scolarite.orientation') }}" wire:navigate>
-                <i class="fa fa-users"></i><span>Etudiants orientés</span>
+              <a href="{{ route('scolarite.orientation') }}">
+                <i class="fa fa-list"></i><span>Etudiants orientés</span>
               </a>
             </li>
             <li>
@@ -305,15 +305,15 @@
               </a>
             </li>
             <li>
-              <a href="{{ route('scolarite.reinscription') }}" wire:navigate>
-                <i class="fa fa-users"></i><span>Reinscription</span>
+              <a href="{{ route('inscriptionetreinscription.index') }}">
+                <i class="fa fa-list"></i><span>Etudiants inscrits & reinscrits</span>
               </a>
             </li>
             <li>
-              <a href="{{ route('inscriptionetreinscription.index') }}" wire:navigate>
-                <i class="fa fa-users"></i><span>Liste des inscrits & reinscrits</span>
+              <a href="{{ route('scolarite.reinscription') }}">
+                <i class="fa fa-users"></i><span>Reinscription</span>
               </a>
-          </li>
+            </li>
           </ul>
         </li><!-- End Components Nav -->
         
@@ -330,10 +330,16 @@
           </a>
           <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
             <li>
+              <a href="{{route('scolarite.releve.index')}}">
+                <i class="fa fa-list"></i><span>Les relevés</span>
+              </a>
+            </li>
+            <li>
               <a href="forms-elements.html">
                 <i class="fa fa-clone"></i><span>Semestriel</span>
               </a>
             </li>
+
             <li>
               <a href="forms-layouts.html">
                 <i class="fa fa-calendar"></i><span>Annuel</span>
@@ -359,10 +365,10 @@
             </li>
             
             <li>
-<<<<<<< HEAD
+
               <a href="{{route('scolarite.attestation.inscription')}}">
                 <i class="fa fa-print"></i><span>Impressions</span>
-=======
+
               <a href="{{route('scolarite.attestation.inscription')}}" wire:navigate>
                 <i class="fa fa-user-plus"></i><span>Imprimer les attestations</span>
               </a>
@@ -375,7 +381,6 @@
             <li>
               <a href="tables-data.html">
                 <i class="fa fa-university"></i><span>Niveau</span>
->>>>>>> 318bb8b (thd 4th commit)
               </a>
             </li>
           </ul>

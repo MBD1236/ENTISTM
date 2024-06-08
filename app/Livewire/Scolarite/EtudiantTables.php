@@ -118,6 +118,7 @@ class EtudiantTables extends Component
         $query->where('ine', 'LIKE', "%{$this->searchIne}%")
             ->orWhere('session', 'LIKE', "%{$this->searchIne}%")
             ->orWhere('nom', 'LIKE', "%{$this->searchIne}%")
+            ->orWhere('prenom', 'LIKE', "%{$this->searchIne}%")
             ->orWhere('programme', 'LIKE', "%{$this->searchIne}%");
 
         return view('livewire.scolarite.etudiant-tables',[

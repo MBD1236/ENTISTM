@@ -74,51 +74,49 @@
                             <th class="text-end">Action</th>
                         </tr>
                     </thead>
-                    {{-- @php
-                        $numero = 1
-                    @endphp --}}
+                   
                     <tbody>
                     @foreach ($attestations as $k => $attestation)
                             <tr>
-                            <td>{{$attestation->$k+1}} </td>
-                            <td>{{$attestation->reff}} </td>
-                            <td>{{$attestation->type}} </td>
-                            <td>{{$attestation->etudiant->ine}} </td>
-                            <td>{{$attestation->etudiant->prenom}} {{$attestation->etudiant->nom}} </td>
-                            <td>{{$attestation->niveau->niveau}} </td>
-                            <td>{{$attestation->annee_universitaire->session}} </td>
-                            <td class="p-1 d-flex gap-1 justify-content-end ">
-                                <a href="{{ route('scolarite.attestation.edit', $attestation) }}" ><i class="bi bi-pencil-square cprimary"></i></a>
-                                
-                                <!-- Bouton pour déclencher le modal de confirmation -->
-                                <a href="" type="button" data-bs-toggle="modal" data-bs-target="#verticalycentered{{$k}}">
-                                    <i class="bi bi-trash cdanger"></i>
-                                </a>
-                                <!-- Modale de confirmation -->
-                                <div class="modal fade" id="verticalycentered{{$k}}" tabindex="-1" aria-labelledby="confirmationModalLabel{{$k}}" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered">
-                                        <div class="modal-content">
-                                        <div class="modal-header bg-primary text-white p-2 px-4">
-                                            <h6 class="modal-title" id="confirmationModalLabel{{$k}}">Confirmez-vous cette suppression !</h6>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>       
+                                <td>{{$attestation->$k+1}} </td>
+                                <td>{{$attestation->reff}} </td>
+                                <td>{{$attestation->type}} </td>
+                                <td>{{$attestation->etudiant->ine}} </td>
+                                <td>{{$attestation->etudiant->prenom}} {{$attestation->etudiant->nom}} </td>
+                                <td>{{$attestation->niveau->niveau}} </td>
+                                <td>{{$attestation->annee_universitaire->session}} </td>
+                                <td class="p-1 d-flex gap-1 justify-content-end ">
+                                    <a href="{{ route('scolarite.attestation.edit', $attestation) }}" ><i class="bi bi-pencil-square cprimary"></i></a>
+                                    
+                                    <!-- Bouton pour déclencher le modal de confirmation -->
+                                    <a href="" type="button" data-bs-toggle="modal" data-bs-target="#verticalycentered{{$k}}">
+                                        <i class="bi bi-trash cdanger"></i>
+                                    </a>
+                                    <!-- Modale de confirmation -->
+                                    <div class="modal fade" id="verticalycentered{{$k}}" tabindex="-1" aria-labelledby="confirmationModalLabel{{$k}}" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content">
+                                            <div class="modal-header bg-primary text-white p-2 px-4">
+                                                <h6 class="modal-title" id="confirmationModalLabel{{$k}}">Confirmez-vous cette suppression !</h6>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>       
+                                            </div>
+                                            <div class="modal-body d-flex flex-column align-items-center gap-2">
+                                                <i class="fa fa-warning text-danger fs-1"></i>
+                                                <b>Etes-vous sûr de vouloir supprimer <i class="fa fa-trash cdanger"></i> cette attestation ???</b>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Non</button>
+                                                <!-- Formulaire de suppression -->
+                                                <form action="{{ route('scolarite.attestation.destroy', $attestation)}}" method="post">
+                                                    @method('delete')
+                                                    @csrf
+                                                    <button type="submit" class="btn btn-danger">Oui</button>
+                                                </form>
+                                            </div>
+                                            </div>
                                         </div>
-                                        <div class="modal-body d-flex flex-column align-items-center gap-2">
-                                            <i class="fa fa-warning text-danger fs-1"></i>
-                                            <b>Etes-vous sûr de vouloir supprimer <i class="fa fa-trash cdanger"></i> cette attestation ???</b>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Non</button>
-                                            <!-- Formulaire de suppression -->
-                                            <form action="{{ route('scolarite.attestation.destroy', $attestation)}}" method="post">
-                                                @method('delete')
-                                                @csrf
-                                                <button type="submit" class="btn btn-danger">Oui</button>
-                                            </form>
-                                        </div>
-                                        </div>
-                                    </div>
-                                </div><!-- End Vertically centered Modal-->
-                            </td>
+                                    </div><!-- End Vertically centered Modal-->
+                                </td>
                             </tr>
                     @endforeach
                     </tbody>

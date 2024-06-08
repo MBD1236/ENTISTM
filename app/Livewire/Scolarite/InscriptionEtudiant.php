@@ -121,7 +121,6 @@ class InscriptionEtudiant extends Component
         $data = $this->validate($this->rules());
         $recu = Recu::where('numerorecu', $this->recu_id)->first()->id;
         $verif = Inscription::where('recu_id', $recu)->first(); 
-
         if ($verif !== null) {
             $idrecu = $verif->id;
             if ($idrecu !== null) {
