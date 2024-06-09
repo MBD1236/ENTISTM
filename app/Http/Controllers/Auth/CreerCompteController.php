@@ -73,8 +73,12 @@ class CreerCompteController extends Controller
         // Tenter de connecter l'utilisateur
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
+            $role = Auth::user()->role->role ?? '';
+                if ($role === 'front') {
+                     return redirect()->route('front.admin')->with('info', 'Vous êtes maintenant connecté.');
+                }
 
-            return redirect()->route('front.admin')->with('info', 'Vous êtes maintenant connecté.');
+            return redirect()->route('front.accueil');
         }
 
         return back()->withErrors([

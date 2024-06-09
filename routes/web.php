@@ -192,7 +192,7 @@ Route::prefix('enseignant')->name("enseignant.")->group(function () {
 
 
 
-Route::prefix('front')->group(function () {
+Route::prefix('front')->middleware('auth.front')->group(function () {
     Route::get('/accueil', [AccueilController::class, 'accueil'])->name('front.accueil');
     Route::get('/admin', [FrontAdminController::class, 'index'])->name('front.admin');
 
