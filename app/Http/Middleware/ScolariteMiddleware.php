@@ -16,7 +16,7 @@ class ScolariteMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (Gate::allows("front")) {
+        if (Gate::allows("scolarite")) {
             return $next($request);
         }
         return redirect()->route("login");

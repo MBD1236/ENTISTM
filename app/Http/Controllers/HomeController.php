@@ -7,32 +7,34 @@ use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $role = Auth::user()->role->role ?? '';
-        if ($role === 'g_info')
-            return redirect()->route('genieinfo.etudiants');
-        elseif ($role === 'scolarite')
-            return redirect()->route('scolarite.dashboard');
-        elseif ($role === 'comptabilite')
-            return redirect()->route('dashboard');
-        elseif ($role === 's_energie')
-            return redirect()->route('scienceenergie.etudiants');
-        elseif ($role === 'cfm')
-            return redirect()->route('cfm.etudiants');
-        elseif ($role === 'imp')
-            return redirect()->route('imp.etudiants');
-        elseif ($role === 'teb')
-            return redirect()->route('teb.etudiants');
-        elseif ($role === 't_laboratoire')
-            return redirect()->route('tl.etudiants');
-        elseif ($role === 'scolarite')
-            return redirect()->route('scolarite.etudiant.index');
-        elseif ($role === 'admin')
-            return redirect()->route('admin.etudiant.index');
-    }
-    
-    public function deconnection() {
-        return redirect()->route('login');
+       
+        $roleRoutes = [
+            'admin' => 'admin.etudiant.index',
+            'scolarite' => 'scolarite.dashboard',
+            'comptabilite' => 'billeterie.dashboard',
+            'etudiant' => 'etudiant.accueil',
+            'enseignant' => 'enseignant.cours',
+            'front' => 'front.admin',
+            'g_info' => 'genieinfo.etudiants',
+            's_energie' => 'scienceenergie.etudiants',
+            'cfm' => 'cfm.etudiants',
+            'imp' => 'imp.etudiants',
+            'teb' => 'teb.etudiants',
+            't_laboratoire' => 'tl.etudiants',
+        ];
+
+        if (array_key_exists($role, $roleRoutes)) {
+            return redirect()->route($roleRoutes[$role]);
+        }
+
+        return redirect()->route('login'); // Replace 'default.route' with a route of your choice
     }
 
+    public function deconnection()
+    {
+        return redirect()->route('login');
+    }
 }

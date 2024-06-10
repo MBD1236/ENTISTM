@@ -271,7 +271,7 @@
 
     <aside id="sidebar" class="sidebar">
       <ul class="sidebar-nav" id="sidebar-nav">
-          {{-- @can('genie_info') --}}
+          @can('g_info')
           <li class="nav-heading">Génie Informatique</li>
           <li class="nav-item">
               <a class="nav-link collapsed" data-bs-target="#etudiants-nav" data-bs-toggle="collapse" href="#">
@@ -338,9 +338,9 @@
             </a>
           </li>
 
-          {{-- @endcan --}}
+          @endcan
 
-          {{-- @can('science_energie') --}}
+          @can('science_energie')
           <li class="nav-heading">Science des Energies</li>
           <li class="nav-item">
               <a class="nav-link collapsed" data-bs-target="#etudiants-nav" data-bs-toggle="collapse" href="#">
@@ -402,9 +402,9 @@
                     <i class="bi bi-info-circle-fill"></i><span>Infos département</span>
                 </a>
               </li>
-          {{-- @endcan --}}
+          @endcan
 
-          {{-- @can('imp') --}}
+          @can('imp')
           <li class="nav-heading">Instrumentation et Mesures Physiques</li>
           <li class="nav-item">
               <a class="nav-link collapsed" data-bs-target="#etudiants-nav" data-bs-toggle="collapse" href="#">
@@ -465,9 +465,9 @@
                     <i class="bi bi-info-circle-fill"></i><span>Infos département</span>
                 </a>
               </li>
-          {{-- @endcan --}}
+          @endcan
 
-          {{-- @can('genie_info') --}}
+          @can('cfm')
           <li class="nav-heading">Conception et Fabrication Mécanique</li>
           <li class="nav-item">
               <a class="nav-link collapsed" data-bs-target="#etudiants-nav" data-bs-toggle="collapse" href="#">
@@ -528,9 +528,9 @@
                     <i class="bi bi-info-circle-fill"></i><span>Infos département</span>
                 </a>
               </li>
-          {{-- @endcan --}}
+          @endcan
 
-          {{-- @can('genie_info') --}}
+          @can('teb')
           <li class="nav-heading">Technologie des Equipements Biomédicaux</li>
           <li class="nav-item">
               <a class="nav-link collapsed" data-bs-target="#etudiants-nav" data-bs-toggle="collapse" href="#">
@@ -591,9 +591,9 @@
                     <i class="bi bi-info-circle-fill"></i><span>Infos département</span>
                 </a>
               </li>
-          {{-- @endcan --}}
+          @endcan
 
-          {{-- @can('genie_info') --}}
+          @can('t_laboratoire')
           <li class="nav-heading">Techniques de Laboratoires</li>
           <li class="nav-item">
               <a class="nav-link collapsed" data-bs-target="#etudiants-nav" data-bs-toggle="collapse" href="#">
@@ -656,7 +656,7 @@
             </a>
           </li>
 
-          {{-- @endcan --}}
+          @endcan
 
       </ul>
 

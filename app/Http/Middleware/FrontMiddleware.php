@@ -19,6 +19,6 @@ class FrontMiddleware
         if (Gate::allows("front")) {
             return $next($request);
         }
-        return redirect()->route("login.index");
+        return redirect()->route("login");
     }
 }

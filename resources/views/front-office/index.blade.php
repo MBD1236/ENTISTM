@@ -120,7 +120,7 @@
                     </div>
                     <div class="col-lg-2 col-md-3 col-sm-3">
                         <div class="top-login">
-                            <a href="{{ route('login.index') }}">login</a>
+                            <a href="{{ route('login') }}">login</a>
                         </div>
                     </div>
                 </div>
