@@ -5,6 +5,7 @@ use App\Http\Controllers\AnneeUnivController;
 use App\Http\Controllers\ArticlesController;
 use App\Http\Controllers\AttestationController;
 use App\Http\Controllers\AttestationTypeController;
+use App\Http\Controllers\Auth\CreerCompteController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\ComptabiliteController;
 use App\Http\Controllers\ComptabiliteParametreController;
@@ -17,6 +18,7 @@ use App\Http\Controllers\FrontAdminController;
 use App\Http\Controllers\FrontenseignantController;
 use App\Http\Controllers\FrontProgrammeController;
 use App\Http\Controllers\FrontserviceController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\NiveauxetudesController;
 use App\Http\Controllers\PhotoController;
@@ -140,10 +142,10 @@ use App\Livewire\Departements\TL\TlMatieresTables;
 use App\Livewire\Departements\TL\TlNoteEtudiantsMatieres;
 use App\Livewire\Departements\TL\TlNotesEtudiantsSemestre;
 use App\Livewire\Departements\TL\TlPlanificationCoursTables;
-use App\Livewire\Enseignant\VoirCours;
 use App\Livewire\Enseignant\CoursTable;
 use App\Livewire\Enseignant\DevoirsTable;
 use App\Livewire\Enseignant\PublicationsTable;
+use App\Livewire\Enseignant\VoirCours;
 use App\Livewire\Enseignant\VoirDevoir;
 use App\Livewire\Enseignant\VoirEtudiants;
 use App\Livewire\Etudiant\CreateInscription;
@@ -160,13 +162,12 @@ use App\Livewire\Scolarite\ReinscriptionEtudiant;
 use App\Livewire\Scolarite\ReleveNote;
 use App\Livewire\Scolarite\ViewDocuments;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Auth\CreerCompteController;
 
-Route::get('/register', [CreerCompteController::class, 'showRegistrationForm'])->name('register.index');
-Route::post('/register', [CreerCompteController::class, 'register'])->name('register.store');
-Route::get('/login', [CreerCompteController::class, 'showLoginForm'])->name('login.index');
-Route::post('/login', [CreerCompteController::class, 'login'])->name('login.store');
-Route::post('/logout', [CreerCompteController::class, 'logout'])->name('logout');
+// Route::get('/register', [CreerCompteController::class, 'showRegistrationForm'])->name('register.index');
+// Route::post('/register', [CreerCompteController::class, 'register'])->name('register.store');
+// Route::get('/login', [CreerCompteController::class, 'showLoginForm'])->name('login.index');
+// Route::post('/login', [CreerCompteController::class, 'login'])->name('login.store');
+// Route::post('/logout', [CreerCompteController::class, 'logout'])->name('logout');
 
 
 /* Routes added by thd */
@@ -192,7 +193,7 @@ Route::prefix('enseignant')->name("enseignant.")->group(function () {
 
 
 
-Route::prefix('front')->middleware('auth.front')->group(function () {
+Route::prefix('front')->middleware('front')->group(function () {
     Route::get('/accueil', [AccueilController::class, 'accueil'])->name('front.accueil');
     Route::get('/admin', [FrontAdminController::class, 'index'])->name('front.admin');
 
@@ -261,7 +262,7 @@ Route::prefix('front')->middleware('auth.front')->group(function () {
 });
 
 // pour la billeterie
-Route::name('billeterie.')->group(function() {
+Route::name('billeterie.')->middleware('comptabilite')->group(function() {
     Route::get('billeterie/dashboard', [ ComptabiliteController::class, 'dashboard'])->name('dashboard');
     Route::resource("billeterie/parametre", ComptabiliteParametreController::class)->except(["show"]);
     // pour les details des departement
@@ -278,7 +279,7 @@ Route::name('billeterie.')->group(function() {
 
 
 
-Route::prefix('scolarite')->name("scolarite.")->group(function () {
+Route::prefix('scolarite')->middleware('scolarite')->name("scolarite.")->group(function () {
     Route::resource("attestation", AttestationController::class)->except(["show"]);
     Route::resource("attestationType", AttestationTypeController::class)->except(["show"]);
     Route::resource("service", ServiceController::class)->except(["show"]);
@@ -296,7 +297,7 @@ Route::prefix('scolarite')->name("scolarite.")->group(function () {
 /* fin */
 
 /* Routes de l'interface de la scolarité */
-Route::prefix('scolarite')->group(function () {
+Route::prefix('scolarite')->middleware('scolarite')->group(function () {
     Route::get('/', [ScolariteController::class, 'index'])->name('scolarite.dashboard');
     Route::get('/inscription', InscriptionEtudiant::class)->name('scolarite.inscription');
     Route::get('/inscription/nonOriente', InscriptionEtudiantNonOriente::class)->name('scolarite.inscriptionnonOriente');
@@ -395,7 +396,7 @@ Route::prefix('etudes')->group(function () {
 Route::get('/enseignants', [EnseignantsController::class, 'index'])->name('enseignant.dashboard');
 
 /* Routes des interfaces des departements */
-Route::prefix('genieinfo')->name("genieinfo.")->group(function(){
+Route::prefix('genieinfo')->middleware('g_info')->name("genieinfo.")->group(function(){
     Route::get("/etudiants", GiEtudiantsTables::class)->name('etudiants');
     Route::get("/matieres", GiMatieresTables::class)->name('matieres');
     Route::get("/matieres/ajout", GiAjoutMatieres::class)->name('matiere.ajout');
@@ -423,7 +424,7 @@ Route::prefix('genieinfo')->name("genieinfo.")->group(function(){
 
 });
 
-Route::prefix('scienceenergie')->name("scienceenergie.")->group(function(){
+Route::prefix('scienceenergie')->middleware('s_energie')->name("scienceenergie.")->group(function(){
     Route::get("/etudiants", SeEtudiantsTables::class)->name('etudiants');
     Route::get("/matieres", SeMatieresTables::class)->name('matieres');
     Route::get("/matieres/ajout", SeAjoutMatieres::class)->name('matiere.ajout');
@@ -448,7 +449,7 @@ Route::prefix('scienceenergie')->name("scienceenergie.")->group(function(){
 
 });
 
-Route::prefix('imp')->name("imp.")->group(function(){
+Route::prefix('imp')->middleware('imp')->name("imp.")->group(function(){
     Route::get("/etudiants", ImpEtudiantsTables::class)->name('etudiants');
     Route::get("/matieres", ImpMatieresTables::class)->name('matieres');
     Route::get("/matieres/ajout", ImpAjoutMatieres::class)->name('matiere.ajout');
@@ -473,7 +474,7 @@ Route::prefix('imp')->name("imp.")->group(function(){
     Route::get('/information/show/{information}', ImpInformationsShow::class)->name('information.show');
 });
 
-Route::prefix('teb')->name("teb.")->group(function(){
+Route::prefix('teb')->middleware('teb')->name("teb.")->group(function(){
     Route::get("/etudiants", TebEtudiantsTables::class)->name('etudiants');
     Route::get("/matieres", TebMatieresTables::class)->name('matieres');
     Route::get("/matieres/ajout", TebAjoutMatieres::class)->name('matiere.ajout');
@@ -498,7 +499,7 @@ Route::prefix('teb')->name("teb.")->group(function(){
 
 });
 
-Route::prefix('cfm')->name("cfm.")->group(function(){
+Route::prefix('cfm')->middleware('cfm')->name("cfm.")->group(function(){
     Route::get("/etudiants", CfmEtudiantsTables::class)->name('etudiants');
     Route::get("/matieres", CfmMatieresTables::class)->name('matieres');
     Route::get("/matieres/ajout", CfmAjoutMatieres::class)->name('matiere.ajout');
@@ -523,7 +524,7 @@ Route::prefix('cfm')->name("cfm.")->group(function(){
 
 });
 
-Route::prefix('techniquelaboratoire')->name("tl.")->group(function(){
+Route::prefix('techniquelaboratoire')->middleware('t_laboratoire')->name("tl.")->group(function(){
     Route::get("/etudiants", TlEtudiantsTables::class)->name('etudiants');
     Route::get("/matieres", TlMatieresTables::class)->name('matieres');
     Route::get("/matieres/ajout", TlAjoutMatieres::class)->name('matiere.ajout');
@@ -565,6 +566,9 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+
+Route::get('/home', [HomeController::class, 'index']);
+Route::get('/', [HomeController::class, 'deconnection']);
 
 
 
