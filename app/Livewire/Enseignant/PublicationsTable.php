@@ -9,6 +9,7 @@ use App\Models\Programme;
 use App\Models\Promotion;
 use App\Models\Publication;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -98,19 +99,14 @@ class PublicationsTable extends Component
     public function render()
     {
         // Récupère l'identifiant de l'enseignant connecté (remplacez par la méthode appropriée pour obtenir l'enseignant connecté)
-        $enseignantMatricule = 'E2024CFM';
+        $enseignant = Auth::user()->matricule;
 
-        // Récupère l'identifiant de l'enseignant à partir de son matricule
-        $enseignantIds = Cour::whereHas('enseignant', function ($query) use ($enseignantMatricule) {
-            $query->where('matricule', $enseignantMatricule);
-        })->pluck('enseignant_id')->unique();
-        
-        // Récupère les identifiants des cours enregistrés par cet enseignant
-        $coursIds = Cour::whereIn('enseignant_id', $enseignantIds)->pluck('id');
+        $publications = Publication::whereHas('cour', function($p) use($enseignant){
+            $p->whereHas('enseignant', function($p) use($enseignant){
+                $p->where('matricule', $enseignant);
+            });
+        })->get();
 
-        // Récupère toutes les publications associées à ces cours en une seule requête
-        $publications = Publication::whereIn('cour_id', $coursIds)->get();
-        
         return view('livewire.enseignant.publications-table', [
             'publications' => $publications,
             'promotions' => Promotion::all(),

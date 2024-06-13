@@ -111,7 +111,7 @@ class EtudiantTables extends Component
      *
      * @return view
      */
-    #[Layout("components.layouts.template-scolarite")]    
+    #[Layout("components.layouts.template-scolarite")]
     public function render()
     {
         $query = Etudiant::query();

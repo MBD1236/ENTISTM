@@ -143,6 +143,7 @@ use App\Livewire\Departements\TL\TlNoteEtudiantsMatieres;
 use App\Livewire\Departements\TL\TlNotesEtudiantsSemestre;
 use App\Livewire\Departements\TL\TlPlanificationCoursTables;
 use App\Livewire\Enseignant\CoursTable;
+use App\Livewire\Enseignant\DashboardEnseignant;
 use App\Livewire\Enseignant\DevoirsTable;
 use App\Livewire\Enseignant\PublicationsTable;
 use App\Livewire\Enseignant\VoirCours;
@@ -150,7 +151,11 @@ use App\Livewire\Enseignant\VoirDevoir;
 use App\Livewire\Enseignant\VoirEtudiants;
 use App\Livewire\Etudiant\CreateInscription;
 use App\Livewire\Etudiant\CreateReinscription;
+use App\Livewire\Etudiant\EtudiantCours;
+use App\Livewire\Etudiant\EtudiantCoursTable;
+use App\Livewire\Etudiant\EtudiantDevoirs;
 use App\Livewire\Etudiant\InformationsTable;
+use App\Livewire\Etudiant\ViewDocuments as EtudiantViewDocuments;
 use App\Livewire\Scolarite\EditEtudiant;
 use App\Livewire\Scolarite\EditInscription;
 use App\Livewire\Scolarite\EtudiantsNotes;
@@ -177,10 +182,16 @@ Route::prefix('etudiant')->middleware('etudiant')->name('etudiant.')->group(func
     Route::get('/accueil', InformationsTable::class)->name('accueil');
     Route::get('/inscription', CreateInscription::class)->name('inscription');
     Route::get('/reinscription', CreateReinscription::class)->name('reinscription');
+    Route::get('/documents/{etudiant}', EtudiantViewDocuments::class)->name('documents');
+    Route::get('/cours', EtudiantCoursTable::class)->name('cours');
+    Route::get('/cours/{cour}', EtudiantCours::class)->name('voir.cours');
+    Route::get('/devoir/{devoir}', EtudiantDevoirs::class)->name('voir.devoir');
+
 });
 
 /* Route de l'enseignant */
 Route::prefix('enseignant')->name("enseignant.")->group(function () {
+    Route::get('/', DashboardEnseignant::class)->name('accueil');
     Route::get('/cours', CoursTable::class)->name('cours');
     Route::get('/cours/{cour}', VoirCours::class)->name('cours.voir');
     Route::get('/publications', PublicationsTable::class)->name('publications');

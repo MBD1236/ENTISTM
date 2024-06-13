@@ -4,11 +4,13 @@ namespace App\Actions\Fortify;
 
 use App\Models\Team;
 use App\Models\User;
+use App\Models\Etudiant; // Importer le modèle Etudiant
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
 use Laravel\Jetstream\Jetstream;
+use Illuminate\Validation\ValidationException;
 
 class CreateNewUser implements CreatesNewUsers
 {
@@ -21,25 +23,30 @@ class CreateNewUser implements CreatesNewUsers
      */
     public function create(array $input): User
     {
-        Validator::make($input, [
+        $validator = Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
+            'matricule' => ['required', 'string', 'max:14'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => $this->passwordRules(),
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
-        ])->validate();
+        ]);
 
-        // return DB::transaction(function () use ($input) {
-        //     return tap(User::create([
-        //         'name' => $input['name'],
-        //         'email' => $input['email'],
-        //         'password' => Hash::make($input['password']),
-        //     ]), function (User $user) {
-        //         $this->createTeam($user);
-        //     });
-        // });
+        // Vérifier si le matricule existe dans la table des étudiants
+        $matricule = $input['matricule'];
+        $etudiant = Etudiant::where('ine', $matricule)->first();
+
+        if (!$etudiant) {
+            // Si le matricule n'existe pas, ajouter une erreur de validation
+            $validator->errors()->add('matricule', 'Ce matricule n\'existe pas dans la base de données.');
+            throw new ValidationException($validator);
+        }
+
+        $validator->validate();
+
         return User::create([
             'name' => $input['name'],
-            // 'matricule' => $input['matricule'],
+            'matricule' => $input['matricule'],
+            'role_id' => 2,
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
         ]);

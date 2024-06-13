@@ -384,7 +384,7 @@
 
     <!-- ======= Main ======= -->
     <main id="main" class="main">
-        @yield('content')
+      {{ $slot }}
     </main>
 
 

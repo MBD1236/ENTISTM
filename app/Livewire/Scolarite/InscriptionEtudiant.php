@@ -180,7 +180,7 @@ class InscriptionEtudiant extends Component
         }
 
         $this->reset();
-        return redirect()->route('inscriptionetreinscription.index')->with('success', 'Inscription effectuée avec succès!');
+        return redirect()->route('scolarite.inscriptionetreinscription.index')->with('success', 'Inscription effectuée avec succès!');
     }
     #[Layout("components.layouts.template-scolarite")]
     public function render() {
@@ -188,7 +188,7 @@ class InscriptionEtudiant extends Component
             'promotions' => Promotion::all(),
             'niveaux' => Niveau::where('niveau', 'Licence 1')->get(),
             'programmes' => Programme::all(),
-            'annee_universitaires' => AnneeUniversitaire::latest()->paginate(1),
+            'annee_universitaires' => AnneeUniversitaire::all(),
         ]);
     }
 }

@@ -298,7 +298,7 @@
             </a>
             <ul id="components-nav2" class="nav-content collapse " data-bs-parent="#sidebar-nav">
               <li>
-                <a href="" wire:navigate>
+                <a href="{{ route('etudiant.cours') }}" wire:navigate>
                   <i class="bi bi-book"></i><span>Cours</span>
                 </a>
               </li>

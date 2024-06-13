@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Scolarite;
+namespace App\Livewire\Etudiant;
 
 use App\Models\Etudiant;
 use Livewire\Attributes\Layout;
@@ -8,7 +8,6 @@ use Livewire\Component;
 
 class ViewDocuments extends Component
 {
-
     public $diplomeVisible = false;
     public $relevenotesVisible = false;
     public $certificatnationaliteVisible = false;
@@ -51,9 +50,9 @@ class ViewDocuments extends Component
 
     }
 
-    #[Layout("components.layouts.template-scolarite")]
+    #[Layout("components.layouts.template-etudiant")]
     public function render()
     {
-        return view('livewire.scolarite.view-documents');
+        return view('livewire.etudiant.view-documents');
     }
 }

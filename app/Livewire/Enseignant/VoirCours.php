@@ -8,7 +8,7 @@ use Livewire\Component;
 
 class VoirCours extends Component
 {
-   public Cour $cour;
+    public Cour $cour;
 
     public function mount($cour) {
         $this->cour = $cour;

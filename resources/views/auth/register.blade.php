@@ -53,6 +53,13 @@
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
+                                    <div class="col-12">
+                                        <label for="yourName" class="form-label">Votre matricule</label>
+                                        <input type="text" name="matricule" class="form-control @error('matricule') is-invalid @enderror" id="yourMatricule" value="{{ old('matricule') }}" required>
+                                        @error('matricule')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
                                     <!-- Champ Email -->
                                     <div class="col-12">
                                         <label for="yourEmail" class="form-label">Votre adresse e-mail</label>

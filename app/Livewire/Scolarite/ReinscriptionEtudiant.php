@@ -164,7 +164,7 @@ class ReinscriptionEtudiant extends Component
             }
         };
         if ($this->annee_universitaire_id === $this->infoEtudiantIns->annee_universitaire_id){
-            return redirect()->route('inscriptionetreinscription.index')->with("error", "L'étudiant est déjà inscrit au compte de cette année universitaire !");
+            return redirect()->route('scolarite.inscriptionetreinscription.index')->with("error", "L'étudiant est déjà inscrit au compte de cette année universitaire !");
         }
         Inscription::create([
             'annee_universitaire_id' => $this->annee_universitaire_id,

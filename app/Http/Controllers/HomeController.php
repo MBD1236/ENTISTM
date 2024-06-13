@@ -15,6 +15,7 @@ class HomeController extends Controller
             'admin' => 'admin.etudiant.index',
             'scolarite' => 'scolarite.dashboard',
             'comptabilite' => 'billeterie.dashboard',
+            's_etude' => 'etudes.index',
             'etudiant' => 'etudiant.accueil',
             'enseignant' => 'enseignant.cours',
             'front' => 'front.admin',

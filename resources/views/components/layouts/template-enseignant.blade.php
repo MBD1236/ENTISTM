@@ -260,7 +260,7 @@
       <ul class="sidebar-nav" id="sidebar-nav">
 
         <li class="nav-item">
-          <a class="nav-link" href="" wire:navigate>
+          <a class="nav-link" href="{{ route('enseignant.accueil') }}" wire:navigate>
             <i class="fa fa-home"></i>
             <span class="">Tableau de bord</span>
           </a>
@@ -273,12 +273,12 @@
           <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
             <li>
               <a href="{{ route('enseignant.cours') }}" wire:navigate>
-                <i class="fa fa-users"></i><span>Cours</span>
+                <i class="fa fa-book"></i><span>Cours</span>
               </a>
             </li>
             <li>
               <a href="{{ route('enseignant.publications') }}" wire:navigate>
-                <i class="fa fa-user-plus"></i><span>Publications</span>
+                <i class="fa fa-send"></i><span>Publications</span>
               </a>
             </li>
           </ul>
@@ -287,12 +287,12 @@
 
         <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#components-nav2" data-bs-toggle="collapse" href="#">
-              <i class="fa fa-graduation-cap"></i><span>Gestion des devoirs</span><i class="bi bi-chevron-down ms-auto"></i>
+              <i class="fa fa-book"></i><span>Gestion des devoirs</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
             <ul id="components-nav2" class="nav-content collapse " data-bs-parent="#sidebar-nav">
               <li>
                 <a href="{{ route('enseignant.devoirs') }}" wire:navigate>
-                  <i class="fa fa-users"></i><span>Devoirs</span>
+                  <i class="fa fa-book"></i><span>Devoirs</span>
                 </a>
               </li>
             </ul>
