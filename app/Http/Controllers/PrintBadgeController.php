@@ -20,7 +20,7 @@ class PrintBadgeController extends Controller
         if (!$request->filled('matricules')) {
             return redirect()->back()->with('error', 'Veuillez sélectionner au moins un numéro de matricule.');
         }
-
+        
         $services = Service::all();
         $etudiants = Etudiant::whereIn('ine', $request->matricules)->get();
         return view('scolarite.printBadge.index')->with('etudiants', $etudiants)

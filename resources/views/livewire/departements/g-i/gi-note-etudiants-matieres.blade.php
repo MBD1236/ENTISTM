@@ -73,7 +73,7 @@
                         @empty
                             <tr>
                             <td colspan="10">
-                                    <div class="alert alert-info text-center fw-bold">Aucune donnée à afficher !</div>
+                                <div class="alert alert-info text-center fw-bold">Aucune donnée à afficher !</div>
                             </td>
                             </tr>
                         @endforelse

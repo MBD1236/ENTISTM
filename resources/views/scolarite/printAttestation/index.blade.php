@@ -13,7 +13,7 @@
 
 @foreach($attestations as $attestation)
     <div class="container border border-5 border-primary my-5 text-dark attesta ">
-        <div class="container-fluid border border-5 border-primary pt-3 my-2">
+    <div class="container-fluid border border-5 border-primary pt-3 my-2">
             <div class="row text-center">
                 <h6 class="fw-bold mb-0">REPUBLIQUE DE GUINEE</h6>
                 <span class="devise mt-0">
@@ -60,7 +60,7 @@
             <div class="row px-2"><hr></div>
             <div class="d-flex flex-row justify-content-between ref">
                 <span>N° Ref : 
-                    {{ $attestation->reff }}  /ISTM/SC/{{ date('y') }}</span>
+                    {{ $attestation->reference->numero }}  /ISTM/SC/{{ date('y') }}</span>
                 <span>Mamou, le <span class="dateAffichee"></span></span>
                 <script>
                     document.querySelectorAll('.dateAffichee').forEach(function(element) {
@@ -85,7 +85,7 @@
                         {{$service->nom}} , {{$service->fonction}}
                         @endif
                     @endforeach
-                    de L'Institut Supérieur de Technologie de Mamou, atteste que l'étudiant.e : <strong class="text-uppercase">{{$attestation->etudiant->prenom}} {{$attestation->etudiant->nom}} </strong>, 
+                    de L'Institut Supérieur de Technologie de Mamou, atteste que l'étudiant.e : <strong>{{$attestation->etudiant->prenom}} </strong> <strong class="text-uppercase">{{$attestation->etudiant->nom}} </strong>, 
                     Matricule : <b>{{$attestation->etudiant->ine}} </b> a été insctit.e aux
                         <span class="afficherSemestre fw-bold">
                             <script>
@@ -127,12 +127,12 @@
                 <i class="fw-bold attestion-footer">Cette etudiant ne doit contenir ni rature, ni surcharge</i>
             </div>
             
-            <script>
+            {{-- <script>
                 window.onload = function() {
                     window.print();
                 }
             </script>
-        
+         --}}
         </div>   
     </div>
 @endforeach

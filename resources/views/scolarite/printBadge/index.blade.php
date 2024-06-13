@@ -9,9 +9,18 @@
         background: linear-gradient(to left, rgb(228, 227, 227), rgba(246, 244, 244, 0.9)), url({{asset('assets/img/ist2.png')}}) center / cover no-repeat;  
         /* background: linear-gradient(to left, rgba(199, 94, 94, 0.9), rgba(255, 255, 255, 0.9)), url({{asset('backend/assets/img/ist3.png')}}) center / cover no-repeat;   */
     }
+    @media print {
+        .carte {
+            overflow-x: hidden;
+            overflow-y: hidden;
+            background: linear-gradient(to left, rgba(228, 227, 227), rgba(246, 244, 244, 0.9)), url({{asset('assets/img/ist2.png')}}) center / cover no-repeat !important;
+            -webkit-print-color-adjust: exact; 
+        }
+    }
+    /*  */
 </style>
     @foreach($etudiants as $etudiant)
-        <div class="container">
+        <div class="container my-4">
             <div class="row px-0">
                 <div class="card col-sm-11 col-md-11 col-lg-6 p-0 carte text-dark" >
                     <div class="card-body border border-2 p-0">

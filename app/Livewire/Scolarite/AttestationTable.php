@@ -10,37 +10,34 @@ use Livewire\Component;
 class AttestationTable extends Component
 {
 
-    public $niveau = 0;
-    public $programme = 0;
-    public $annee_universitaire = 0;
+    public $niveau_id = 0;
+    public $semestre_id = 0;
+    public $annee_universitaire_id = 0;
         
     #[Layout("components.layouts.template-scolarite")]
     public function render()
     {
-        $query = Attestation::query()->with('niveau')->orderBy('created_at', 'desc');
+        $query = Attestation::query()->with(['niveau', 'programme', 'anneeUniversitaire'])->orderBy('created_at', 'desc');
 
-        if ($this->programme !== 0) {
-            $query->where('programme_id', $this->programme);
+        if ($this->annee_universitaire_id) {
+            $query->where('annee_universitaire_id', $this->annee_universitaire_id);
         }
 
-        if ($this->niveau !== 0) {
-            $query->whereHas('niveau', function ($q) {
-                $q->where('id', $this->niveau);
-            });
+        if ($this->programme_id) {
+            $query->where('programme_id', $this->programme_id);
         }
 
-        // Filtrage par année universitaire
-        if ($this->annee_universitaire !== 0) {
-            $query->where("annee_universitaire_id", $this->annee_universitaire);
+        if ($this->niveau_id) {
+            $query->where('niveau_id', $this->niveau_id);
         }
 
         $attestations = $query->paginate(20);
 
-        return view('livewire.scolarite.attestation-table' , [
-            'attestations'=> $attestations,
+        return view('livewire.scolarite.attestation-table', [
+            'attestations' => $attestations,
             'programmes' => Programme::all(),
-            'niveaux' => Niveau::orderBy('created_at', 'desc')->paginate(5),
-            'annee_universitaires' => AnneeUniversitaire::orderBy('created_at', 'desc')->paginate(5),
+            'niveaux' => Niveau::all(),
+            'annee_universitaires' => AnneeUniversitaire::all(),
         ]);
     }
 }

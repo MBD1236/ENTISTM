@@ -42,7 +42,6 @@ class GIEmploiImport extends Component
         try {
             $filePath = $this->fichier->path();
             // dd($filePath); // Vérifiez le chemin du fichier
-    
             Excel::import(new EmploiImport(
                 $this->programme_id, 
                 $this->annee_universitaire_id, 

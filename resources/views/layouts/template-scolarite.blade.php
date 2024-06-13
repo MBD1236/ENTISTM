@@ -61,12 +61,6 @@
     <nav class="header-nav ms-auto">
       <ul class="d-flex align-items-center">
 
-        <li class="nav-item d-block d-lg-none">
-          <a class="nav-link nav-icon search-bar-toggle " href="#">
-            <i class="bi bi-search"></i>
-          </a>
-        </li><!-- End Search Icon-->
-
         <li class="nav-item dropdown">
 
           <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
@@ -336,18 +330,13 @@
             </li>
             
             <li>
-              <a href="forms-elements.html">
-                <i class="fa fa-clone"></i><span>Semestriel</span>
+              <a href="{{route('scolarite.print.formreleve')}}">
+                <i class="fa fa-clone"></i><span>Relevé Semestriel</span>
               </a>
             </li>
             <li>
-              <a href="forms-layouts.html">
-                <i class="fa fa-calendar"></i><span>Annuel</span>
-              </a>
-            </li>
-            <li>
-              <a href="forms-editors.html">
-                <i class="fa fa-clipboard"></i><span>Bulletin de notes</span>
+              <a href="{{route('scolarite.print.releveAnnuelform')}}">
+                <i class="fa fa-calendar"></i><span>Relevé Annuel</span>
               </a>
             </li>
           </ul>
@@ -394,7 +383,7 @@
         </li><!-- End service Page Nav -->
       </ul>
 
-    </aside><!-- End Sidebar-->
+    </aside><!-- End Sidebar -->
 
 
     <!-- ======= Main ======= -->
@@ -427,14 +416,9 @@
 
   <!-- Template Main JS File -->
   <script src="{{ asset('assets/js/select2.js') }}"></script>
-  <script>
-    // $(document).ready(function() {
-    //     $('#matricules').select2(); // Initialiser Select2
-    // });
-  </script>
   <!-- Template Main JS File -->
   <script src="{{ asset('assets/js/main.js') }}"></script>
-
+  <script src="{{ asset('assets/js/custom.js') }}"></script>
 </body>
 
 </html>

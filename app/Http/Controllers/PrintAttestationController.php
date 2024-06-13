@@ -17,9 +17,7 @@ class PrintAttestationController extends Controller
     {
         $attestations = Attestation::orderBy('created_at', 'desc')->paginate(10);
         // Compter le nombre d'attestations d'inscription
-        $total = Attestation::whereHas('attestation_type', function ($query) {
-            $query->where('type', 'Inscription');
-        })->count();
+        $total = Attestation::count();
 
         // recuperer les matricules
         $matricules = $request->input('matricules', []);
@@ -97,53 +95,12 @@ class PrintAttestationController extends Controller
         $services = Service::all();
 
         return view('scolarite.printAttestation.index', [
-        'attestations' => $attestations,
-        'etudiants' => $etudiants,
-        'annee_universitaires' => $annee_universitaires,
-        'niveaux' => $niveaux,
-        'services' => $services,
+            'attestations' => $attestations,
+            'etudiants' => $etudiants,
+            'annee_universitaires' => $annee_universitaires,
+            'niveaux' => $niveaux,
+            'services' => $services,
         ]);
     }
 
 }
-
-
-
-// a ce niveau j'ai besoin d'imprimer l'attestation des etudiants mais en fonction des critere de selection voici la methode 
-// public function printAttestation(Request $request) {
-//         $request->validate([
-//             'matricules' => 'required|array',
-//             'matricules.*' => 'exists:etudiants,id', 
-//         ]);
-    
-//         $annee = $request->session()->get('annee_universitaire_id');
-//         $typeAttes = $request->session()->get('attestation_type_id');
-        
-//         $matricules = Attestation::where('annee_universitaire_id', $annee)
-//                                 ->where('attestation_type_id', $typeAttes)
-//                                 ->pluck('etudiant_id')
-//                                 ->toArray();
-    
-//         $selected_matricules = array_intersect($request->input('matricules'), $matricules);
-//         // dd($selected_matricules);
-//         $attestations = Attestation::whereIn('etudiant_id', $selected_matricules)->get();
-//         dd($attestations);
-//         $etudiants = Etudiant::whereIn('id', $selected_matricules)->get();
-//         // dd($etudiants);
-//         $annee_universitaires = AnneeUniversitaire::all();
-//         $niveaux = Niveau::all();
-//         $services = Service::all();
-    
-//         return view('scolarite.printAttestation.index', [
-//             'attestations' => $attestations,
-//             'etudiants' => $etudiants,
-//             'annee_universitaires' => $annee_universitaires,
-//             'niveaux' => $niveaux,
-//             'services' => $services,
-//         ]);
-//     }
-
-// seulement les etudiants se trouvant dans cette variable   $selected_matricules = array_intersect($request->input('matricules'), $matricules); doivent etre affecter a ceux ci 
-//  $attestations = Attestation::whereIn('etudiant_id', $selected_matricules)->get();
-//         dd($attestations);
-//  $etudiants = Etudiant::whereIn('id', $selected_matricules)->get();

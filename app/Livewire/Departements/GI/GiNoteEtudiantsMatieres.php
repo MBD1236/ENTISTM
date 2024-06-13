@@ -25,7 +25,7 @@ class GiNoteEtudiantsMatieres extends Component
             $i->whereHas('programme', function($i){
                 $i->where('programme', 'Génie Informatique');
             });
-        })->paginate(1);
+        })->paginate(25);
         if (!empty($this->matiere_id) && !empty($this->niveau_id) && !empty($this->promotion)) {
             $notes = Note::where('matiere_id', $this->matiere_id)
                     ->whereHas('inscription', function ($e) {

@@ -335,19 +335,13 @@
               </a>
             </li>
             <li>
-              <a href="forms-elements.html">
-                <i class="fa fa-clone"></i><span>Semestriel</span>
-              </a>
-            </li>
-
-            <li>
-              <a href="forms-layouts.html">
-                <i class="fa fa-calendar"></i><span>Annuel</span>
+              <a href="{{route('scolarite.print.formreleve')}}">
+                <i class="fa fa-clone"></i><span>Relevé Semestriel</span>
               </a>
             </li>
             <li>
-              <a href="forms-editors.html">
-                <i class="fa fa-clipboard"></i><span>Bulletin de notes</span>
+              <a href="{{route('scolarite.print.releveAnnuelform')}}">
+                <i class="fa fa-calendar"></i><span>Relevé Annuel</span>
               </a>
             </li>
           </ul>
@@ -367,16 +361,6 @@
             <li>
               <a href="{{route('scolarite.attestation.inscription')}}" wire:navigate>
                 <i class="fa fa-user-plus"></i><span>Imprimer les attestations</span>
-              </a>
-            </li>
-            <li>
-              <a href="tables-data.html">
-                <i class="fa fa-users"></i><span>Reinscription</span>
-              </a>
-            </li>
-            <li>
-              <a href="tables-data.html">
-                <i class="fa fa-university"></i><span>Niveau</span>
               </a>
             </li>
           </ul>

@@ -6,6 +6,13 @@
     <div class="row justify-content-center">
         <div class="col-md-10 bg-card">
             <div class="card mt-1">
+                @if(session()->has('error'))
+                    <div class="alert alert-danger bg-danger text-light border-0 alert-dismissible fade show" role="alert">
+                        <h5 class="text-center">{{ session('error') }}</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        <i class="fa fa-check icon-deleted text-white"></i>
+                    </div>
+                @endif
                 <div class="card-header">
                     <h4 class="fw-bold">Sélectionner le programme, l'année universitaire</h4>
                 </div>

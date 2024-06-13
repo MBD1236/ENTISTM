@@ -7,7 +7,7 @@
         <div class="col-md-10 bg-card">
             <div class="card">
                 <div class="card-header card-head">
-                    <h1 class="bg-card text-center text-white card-head"><i class="fa fa-book me-2"></i>Formulaire d'enregistrement des réléves</h1>
+                    <h1 class="bg-card text-center text-white card-head"><i class="fa fa-book me-2"></i>Formulaire de modification des réléves</h1>
                 </div>
                 <div class="card-body">
                     <form method="post" action="{{ $relevenote->exists ? route('scolarite.releve.update', $relevenote) : route('scolarite.releve.store') }}" enctype="multipart/form-data">
@@ -79,7 +79,7 @@
                                                 </button>
                                             </div>
                                             <div>
-                                                <button type="button" onclick="window.history.back()" class="btn btn-danger py-3 px-5"><i class="fa fa-times me-2"></i>Annuler</button>
+                                                <button type="button" onclick="window.history.back()" class="btn btn-danger py-3 px-5"><i class="fa fa-times me-2"></i>Annuler la modification</button>
                                             </div>
                                         </div>
                                     </div>

@@ -157,6 +157,7 @@ use App\Livewire\Scolarite\ReleveNote;
 use App\Livewire\Scolarite\ViewDocuments;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\CreerCompteController;
+use App\Http\Controllers\ScolaritePrintReleveController;
 
 Route::get('/register', [CreerCompteController::class, 'showRegistrationForm'])->name('register.index');
 Route::post('/register', [CreerCompteController::class, 'register'])->name('register.store');
@@ -276,7 +277,7 @@ Route::prefix('scolarite')->name("scolarite.")->group(function () {
     Route::post('/print-attestation', [PrintAttestationController::class, 'printAttestation'])->name('printAttestation');
     // badge
     Route::get('/indexBadge', [PrintBadgeController::class, 'index'])->name('print');
-    Route::post('/printBadge', [PrintBadgeController::class, 'printBadge'])->name('printBadge');
+    Route::post('/printBadge', [PrintBadgeController::class, 'printBadge'])->name('printBadge');    
 
 });
 
@@ -299,6 +300,11 @@ Route::prefix('scolarite')->group(function () {
 
     Route::get('/parametre', [ScolariteController::class, 'afficherParametre'])->name('scolarite.parametre');
     Route::get('/inscrits', [ScolariteController::class, 'inscrits'])->name('scolarite.inscrits');
+    // pour l'impression des releves de notes 
+    Route::get('/releve/notes', [ScolaritePrintReleveController::class, 'form'])->name('scolarite.print.formreleve');
+    Route::post('/releve/notes/index', [ScolaritePrintReleveController::class, 'index'])->name('scolarite.print.indexreleve');
+    Route::get('/releve/notesAnnuel', [ScolaritePrintReleveController::class, 'releveAnnuelform'])->name('scolarite.print.releveAnnuelform');
+    Route::post('/releve/notes/indexAnnuel', [ScolaritePrintReleveController::class, 'releveAnnuelindex'])->name('scolarite.print.releveAnnuelindex');
 
     // pour l'impression des etudiants inscrits et reinscrit
     Route::post('/print/index', [ScolaritePrintEtudiantListController::class, 'index'])->name('scolarite.print.index');

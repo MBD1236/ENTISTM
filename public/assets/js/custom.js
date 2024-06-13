@@ -1,3 +1,5 @@
+// Définition de la fonction noteLiteraire en JavaScript
+
 // pour afficher la date
 function afficherDate() {
     let date = new Date();
@@ -32,3 +34,38 @@ function afficherSemestre(niveau) {
     }
 }
 
+// code pour la recherche
+document.addEventListener("DOMContentLoaded", function() {
+    const searchInput = document.getElementById("searchInput");
+    searchInput.addEventListener("input", function() {
+        const searchTerm = searchInput.value.toLowerCase();
+        const tableBody = document.getElementById("tableBody");
+        const rows = tableBody.getElementsByTagName("tr");
+        for (let i = 0; i < rows.length; i++) {
+            const currentRow = rows[i];
+            let found = false;
+            for (let j = 0; j < currentRow.getElementsByTagName("td").length; j++) {
+                const cell = currentRow.getElementsByTagName("td")[j];
+                if (cell) {
+                    const cellText = cell.textContent || cell.innerText;
+                    if (cellText.toLowerCase().indexOf(searchTerm) > -1) {
+                        found = true;
+                        break;
+                    }
+                }
+            }
+            if (found) {
+                currentRow.style.display = "";
+            } else {
+                currentRow.style.display = "none";
+            }
+        }
+
+        const noResultsRow = document.getElementById("noResultsRow");
+        if (foundAtLeastOne) {
+            noResultsRow.style.display = "none";
+        } else {
+            noResultsRow.style.display = "";
+        }
+    });
+});
