@@ -52,6 +52,7 @@
 
     <div class="row">
         <div class="col">
+            
             <h3 class="d-none d-lg-block ms-3 mt-2 title-top-bar ">{{ auth()->user()->role->role}}</h3>
         </div>
     </div>
@@ -65,7 +66,7 @@
           </a>
         </li><!-- End Search Icon-->
 
-        <li class="nav-item dropdown">
+        {{-- <li class="nav-item dropdown">
 
           <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
             <i class="bi bi-bell"></i>
@@ -138,9 +139,9 @@
 
           </ul><!-- End Notification Dropdown Items -->
 
-        </li><!-- End Notification Nav -->
+        </li><!-- End Notification Nav --> --}}
 
-        <li class="nav-item dropdown">
+        {{-- <li class="nav-item dropdown">
 
           <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
             <i class="bi bi-chat-left-text"></i>
@@ -204,7 +205,7 @@
 
           </ul><!-- End Messages Dropdown Items -->
 
-        </li><!-- End Messages Nav -->
+        </li><!-- End Messages Nav --> --}}
 
         <li class="nav-item dropdown pe-3">
 

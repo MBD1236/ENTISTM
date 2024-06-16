@@ -57,6 +57,7 @@ class Kernel extends HttpKernel
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'auth.session' => \Illuminate\Session\Middleware\AuthenticateSession::class,
         'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
+        'admin' => \App\Http\Middleware\AdminMiddleware::class,
         'scolarite' => \App\Http\Middleware\ScolariteMiddleware::class,
         'g_info' => \App\Http\Middleware\GInfoMiddleware::class,
         'imp' => \App\Http\Middleware\ImpMiddleware::class,

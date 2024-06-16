@@ -33,6 +33,8 @@ use App\Http\Controllers\ScolariteReleveNoteController;
 use App\Http\Controllers\SemestresController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\TemoignagesController;
+use App\Livewire\Administrateur\RolesTables;
+use App\Livewire\Administrateur\UtilisateursTables;
 use App\Livewire\Billeterie\BilleterieCreate;
 use App\Livewire\Billeterie\BilleterieEdit;
 use App\Livewire\Billeterie\BilleterieList;
@@ -155,6 +157,7 @@ use App\Livewire\Etudiant\EtudiantCours;
 use App\Livewire\Etudiant\EtudiantCoursTable;
 use App\Livewire\Etudiant\EtudiantDevoirs;
 use App\Livewire\Etudiant\InformationsTable;
+use App\Livewire\Etudiant\NoteTable;
 use App\Livewire\Etudiant\ViewDocuments as EtudiantViewDocuments;
 use App\Livewire\Scolarite\EditEtudiant;
 use App\Livewire\Scolarite\EditInscription;
@@ -168,15 +171,13 @@ use App\Livewire\Scolarite\ReleveNote;
 use App\Livewire\Scolarite\ViewDocuments;
 use Illuminate\Support\Facades\Route;
 
-// Route::get('/register', [CreerCompteController::class, 'showRegistrationForm'])->name('register.index');
-// Route::post('/register', [CreerCompteController::class, 'register'])->name('register.store');
-// Route::get('/login', [CreerCompteController::class, 'showLoginForm'])->name('login.index');
-// Route::post('/login', [CreerCompteController::class, 'login'])->name('login.store');
-// Route::post('/logout', [CreerCompteController::class, 'logout'])->name('logout');
-
 
 /* Routes added by thd */
 
+Route::prefix('admin')->middleware('admin')->name('admin.')->group(function() {
+    Route::get('/roles', RolesTables::class)->name('roles');
+    Route::get('/utilisateurs', UtilisateursTables::class)->name('utilisateurs');
+});
 
 Route::prefix('etudiant')->middleware('etudiant')->name('etudiant.')->group(function () {
     Route::get('/accueil', InformationsTable::class)->name('accueil');
@@ -184,9 +185,9 @@ Route::prefix('etudiant')->middleware('etudiant')->name('etudiant.')->group(func
     Route::get('/reinscription', CreateReinscription::class)->name('reinscription');
     Route::get('/documents/{etudiant}', EtudiantViewDocuments::class)->name('documents');
     Route::get('/cours', EtudiantCoursTable::class)->name('cours');
+    Route::get('/note', NoteTable::class)->name('notes');
     Route::get('/cours/{cour}', EtudiantCours::class)->name('voir.cours');
     Route::get('/devoir/{devoir}', EtudiantDevoirs::class)->name('voir.devoir');
-
 });
 
 /* Route de l'enseignant */

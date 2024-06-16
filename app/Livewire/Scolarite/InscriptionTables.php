@@ -38,7 +38,7 @@ class InscriptionTables extends Component
     #[Layout("components.layouts.template-scolarite")]
     public function render()
     {
-        $query = Inscription::query()
+        $query = Inscription::query()->orderBy('created_at', 'desc')
             ->when($this->searchEtudiant, function ($query) {
                 $query->where(function ($query) {
                     $query->orWhereHas('etudiant', function ($query) {

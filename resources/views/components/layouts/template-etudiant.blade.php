@@ -67,7 +67,7 @@
           </a>
         </li><!-- End Search Icon-->
 
-        <li class="nav-item dropdown">
+        {{-- <li class="nav-item dropdown">
 
           <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
             <i class="bi bi-bell"></i>
@@ -206,7 +206,7 @@
 
           </ul><!-- End Messages Dropdown Items -->
 
-        </li><!-- End Messages Nav -->
+        </li><!-- End Messages Nav --> --}}
 
         <li class="nav-item dropdown pe-3">
 
@@ -286,7 +286,7 @@
         </li><!-- End Components Nav -->
        
         <li class="nav-item">
-            <a class="nav-link collapsed" href="" wire:navigate>
+            <a class="nav-link collapsed" href="{{ route('etudiant.notes') }}" wire:navigate>
               <i class="bi bi-journal"></i>
               <span>Notes</span>
             </a>

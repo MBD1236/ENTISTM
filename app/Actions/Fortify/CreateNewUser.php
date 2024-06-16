@@ -2,15 +2,16 @@
 
 namespace App\Actions\Fortify;
 
+use App\Models\Etudiant; // Importer le modèle Etudiant
+use App\Models\Role;
 use App\Models\Team;
 use App\Models\User;
-use App\Models\Etudiant; // Importer le modèle Etudiant
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\ValidationException;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
 use Laravel\Jetstream\Jetstream;
-use Illuminate\Validation\ValidationException;
 
 class CreateNewUser implements CreatesNewUsers
 {
@@ -40,13 +41,14 @@ class CreateNewUser implements CreatesNewUsers
             $validator->errors()->add('matricule', 'Ce matricule n\'existe pas dans la base de données.');
             throw new ValidationException($validator);
         }
+        $role = Role::where('role', 'etudiant')->pluck('id')->first();
 
         $validator->validate();
 
         return User::create([
             'name' => $input['name'],
             'matricule' => $input['matricule'],
-            'role_id' => 2,
+            'role_id' => $role,
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
         ]);

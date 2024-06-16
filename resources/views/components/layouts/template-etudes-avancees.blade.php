@@ -76,7 +76,7 @@
               <hr class="dropdown-divider">
             </li>
 
-            <li class="notification-item">
+            {{-- <li class="notification-item">
               <i class="bi bi-exclamation-circle text-warning"></i>
               <div>
                 <h4>Lorem Ipsum</h4>
@@ -87,7 +87,7 @@
 
             <li>
               <hr class="dropdown-divider">
-            </li>
+            </li> --}}
 
             <li class="notification-item">
               <i class="bi bi-x-circle text-danger"></i>

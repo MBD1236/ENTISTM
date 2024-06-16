@@ -71,7 +71,6 @@ class EditInscription extends Component
             "niveau_id" => ["required"],
             "annee_universitaire_id" => ["required"],
             "programme_id" => ["required"],
-            
         ];
     }
 

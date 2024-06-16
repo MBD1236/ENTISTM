@@ -116,9 +116,6 @@ class CreateInscription extends Component
         $this->resetErrorBag();
     }
 
-   
-
-
     public function store() {
         $data = $this->validate($this->rules());
 

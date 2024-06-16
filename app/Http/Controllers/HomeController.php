@@ -12,12 +12,12 @@ class HomeController extends Controller
         $role = Auth::user()->role->role ?? '';
        
         $roleRoutes = [
-            'admin' => 'admin.etudiant.index',
+            'admin' => 'admin.utilisateurs',
             'scolarite' => 'scolarite.dashboard',
             'comptabilite' => 'billeterie.dashboard',
             's_etude' => 'etudes.index',
             'etudiant' => 'etudiant.accueil',
-            'enseignant' => 'enseignant.cours',
+            'enseignant' => 'enseignant.accueil',
             'front' => 'front.admin',
             'g_info' => 'genieinfo.etudiants',
             's_energie' => 'scienceenergie.etudiants',
