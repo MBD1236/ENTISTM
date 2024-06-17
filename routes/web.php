@@ -33,7 +33,13 @@ use App\Http\Controllers\ScolariteReleveNoteController;
 use App\Http\Controllers\SemestresController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\TemoignagesController;
+use App\Livewire\Administrateur\AnneeUniversitairesTables;
+use App\Livewire\Administrateur\DepartementsTables;
+use App\Livewire\Administrateur\NiveauxTables;
+use App\Livewire\Administrateur\ProgrammesTables;
+use App\Livewire\Administrateur\PromotionsTables;
 use App\Livewire\Administrateur\RolesTables;
+use App\Livewire\Administrateur\SemestresTables;
 use App\Livewire\Administrateur\UtilisateursTables;
 use App\Livewire\Billeterie\BilleterieCreate;
 use App\Livewire\Billeterie\BilleterieEdit;
@@ -177,6 +183,12 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('admin')->middleware('admin')->name('admin.')->group(function() {
     Route::get('/roles', RolesTables::class)->name('roles');
     Route::get('/utilisateurs', UtilisateursTables::class)->name('utilisateurs');
+    Route::get('/departements', DepartementsTables::class)->name('departements');
+    Route::get('/programmes', ProgrammesTables::class)->name('programmes');
+    Route::get('/promotions', PromotionsTables::class)->name('promotions');
+    Route::get('/semestres', SemestresTables::class)->name('semestres');
+    Route::get('/niveaux', NiveauxTables::class)->name('niveaux');
+    Route::get('/anneeuniversitaires', AnneeUniversitairesTables::class)->name('anneeuniversitaires');
 });
 
 Route::prefix('etudiant')->middleware('etudiant')->name('etudiant.')->group(function () {

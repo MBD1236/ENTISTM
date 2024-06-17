@@ -135,6 +135,45 @@
           </ul>
         </li><!-- End Components Nav -->
       </ul>
+      <ul class="sidebar-nav" id="sidebar-nav">
+        <li class="nav-item">
+          <a class="nav-link collapsed" data-bs-target="#components-nav2" data-bs-toggle="collapse" href="#">
+            <i class="fa fa-cog"></i><span>Paramétrages</span><i class="bi bi-chevron-down ms-auto"></i>
+          </a>
+          <ul id="components-nav2" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+            <li>
+              <a href="{{ route('admin.departements') }}" wire:navigate>
+                <i class="fa fa-book"></i><span>Departements</span>
+              </a>
+            </li>
+            <li>
+              <a href="{{ route('admin.programmes') }}" wire:navigate>
+                <i class="fa fa-book"></i><span>Programmes</span>
+              </a>
+            </li>
+            <li>
+              <a href="{{ route('admin.promotions') }}" wire:navigate>
+                <i class="fa fa-book"></i><span>Promotions</span>
+              </a>
+            </li>
+            <li>
+              <a href="{{ route('admin.anneeuniversitaires') }}" wire:navigate>
+                <i class="bi bi-clock"></i><span>Année Universitaires</span>
+              </a>
+            </li>
+            <li>
+              <a href="{{ route('admin.niveaux') }}" wire:navigate>
+                <i class="bi bi-book"></i><span>Niveaux</span>
+              </a>
+            </li>
+            <li>
+              <a href="{{ route('admin.semestres') }}" wire:navigate>
+                <i class="bi bi-book"></i><span>Semestres</span>
+              </a>
+            </li>
+          </ul>
+        </li><!-- End Components Nav -->
+      </ul>
 
     </aside><!-- End Sidebar-->
 
