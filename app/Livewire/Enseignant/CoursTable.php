@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\Auth;
 
 class CoursTable extends Component
 {
@@ -90,7 +91,7 @@ class CoursTable extends Component
     public function store() {
 
         //je recupere le matricule de l'user connecté(enseignant)
-        $enseignant = 'E2024CFM';
+        $enseignant = Auth::user()->matricule;
         $this->enseignant_id = Enseignant::where('matricule', $enseignant)->pluck('id')->first();
         $data = $this->validate();
         $data['enseignant_id'] = $this->enseignant_id;
@@ -152,7 +153,7 @@ class CoursTable extends Component
     {
         /* je recupere l'identifiant de l'enseignant connecté, je recupère son matricule puis ses cours
         pour pouvoir afficher  */
-        $enseignant = 'E2024CFM';
+        $enseignant = Auth::user()->matricule;
         $cours = Cour::query()->whereHas('enseignant', function($e) use ($enseignant){
             $e->where('matricule', $enseignant);
         });

@@ -49,6 +49,7 @@
                         <a href="{{route('scolarite.print.form')}} " class="btn-modal"><i class="fa fa-print me-1" ></i>Imprimer la liste</a>
                     </div>
                 </div>
+
                 <div class="table-responsive-sm">
                     <table id="tableau" class="table table-hover table-centered table-bordered mb-0 mt-4">
                         <thead>
@@ -60,6 +61,7 @@
                                 <th>Promotion</th>
                                 <th>Programme</th>
                                 <th>Niveau</th>
+                                <th>Promotion</th>
                                 <th>Année Universitaire</th>
                                 <th>Photo</th>
                                 <th>Actions</th>
@@ -69,13 +71,14 @@
                             @forelse ($inscriptions as $k => $inscription)
                             <tr>
                                 <th>{{ $k+1 }}</th>
-                                <th>{{ $inscription->etudiant->ine }}</th>
-                                <td>{{ $inscription->etudiant->prenom }}</td>
-                                <td>{{ $inscription->etudiant->nom }}</td>
-                                <td>{{ $inscription->promotion->promotion }}</td>
-                                <td>{{ $inscription->programme->programme }}</td>
-                                <td>{{ $inscription->niveau->niveau }}</td>
-                                <td>{{ $inscription->annee_universitaire->session }}</td>
+                                <th>{{ $inscription->etudiant->ine}}</th>
+                                <td>{{ $inscription->etudiant->prenom}}</td>
+                                <td>{{ $inscription->etudiant->nom}}</td>
+                                <td>{{ $inscription->programme->departement->departement}}</td>
+                                <td>{{ $inscription->programme->programme}}</td>
+                                <td>{{ $inscription->niveau->niveau}}</td>
+                                <td>{{ $inscription->promotion->promotion}}</td>
+                                <td>{{ $inscription->annee_universitaire->session}}</td>
                                 <td><img style="object-fit: cover;" width="40px" height="40px" src="{{ asset('storage/'.$inscription->etudiant->photo) }}" alt=""></td>
                                 <td class="text-center">
                                     <a href="{{ route('scolarite.inscription.edit', $inscription) }}"><i class="fa fa-edit btn-color-primary"></i></a>

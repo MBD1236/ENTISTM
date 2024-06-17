@@ -6,6 +6,9 @@ use App\Models\Etudiant;
 use App\Models\Semestre;
 use App\Models\AnneeUniversitaire;
 use App\Models\AttestationType;
+use App\Models\Departement;
+use App\Models\Inscription;
+use App\Models\Programme;
 use App\Models\Promotion;
 use App\Models\Recu;
 use Illuminate\Http\Request;
@@ -15,7 +18,16 @@ class ScolariteController extends Controller
 {
     public function index () : View
     {
-        return view('scolarite.dashboard');
+        $etudiants = Etudiant::all()->count();
+        $inscrits = Inscription::all()->count();
+        $programmes = Programme::all()->count();
+        $departements = Departement::all()->count();
+        return view('scolarite.dashboard',[
+            'etudiants' => $etudiants,
+            'inscrits' => $inscrits,
+            'progs' => $programmes,
+            'deps' => $departements,
+        ]);
     }
 
     public function inscription () : View

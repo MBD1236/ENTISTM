@@ -4,14 +4,17 @@ namespace App\Livewire\Scolarite;
 
 use App\Models\PartageFile;
 use App\Models\Service;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Livewire\WithPagination;
 
 class PartargeFichier extends Component
 {
     use WithFileUploads;
+    use WithPagination;
     public PartageFile $partage;
 
     public $fichier;
@@ -88,7 +91,8 @@ class PartargeFichier extends Component
             $data['fichier'] = $nouveauNom;
         }
 
-        $data['user_id'] = 1;
+        $userId = Auth::user()->id;
+        $data['user_id'] = $userId;
         PartageFile::create($data);
         $this->reset();
         return redirect()->route('scolarite.partagefile')->with('success', 'Fichier partagé avec succès!');
@@ -143,12 +147,17 @@ class PartargeFichier extends Component
     #[Layout("components.layouts.template-scolarite")]    
     public function render()
     {
+        $userId = Auth::user()->id;
+        
         $services = Service::all();
-        $partages = $this->service_id == 0 ? PartageFile::all() : PartageFile::where('service_id', $this->service_id)->get();
+        $partages = PartageFile::query()->where('user_id', $userId);
+        if ($this->service_id)
+            $partages = PartageFile::query()->where('service_id', $this->service_id);
+
 
         return view('livewire.scolarite.partarge-fichier', [
             'services' => $services,
-            'partages' => $partages
+            'partages' => $partages->paginate(1)
         ]);
     }
 }

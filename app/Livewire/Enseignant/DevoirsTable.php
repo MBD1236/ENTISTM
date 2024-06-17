@@ -5,6 +5,7 @@ namespace App\Livewire\Enseignant;
 use App\Models\Devoir;
 use App\Models\Publication;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
@@ -73,18 +74,18 @@ class DevoirsTable extends Component
     public function render()
     {
         // Récupère l'identifiant de l'enseignant connecté (remplacez par la méthode appropriée pour obtenir l'enseignant connecté)
-        $enseignantMatricule = 'E2024CFM';
+        $enseignantMatricule = Auth::user()->matricule;
 
         // Récupère les publications de l'enseignant à partir de son matricule en exploitant
         //la relation (cour) de la table publication et la relation (enseignant) de la table cour
-        $publicationIds = Publication::whereHas('cour', function ($query) use ($enseignantMatricule) {
-            $query->whereHas('enseignant', function($query) use ($enseignantMatricule){
-                $query->where('matricule', $enseignantMatricule);
+        $devoirs = Devoir::whereHas('publication', function($d) use($enseignantMatricule){
+            $d->whereHas('cour', function($d) use($enseignantMatricule){
+                $d->whereHas('enseignant', function($d) use($enseignantMatricule){
+                    $d->where('matricule', $enseignantMatricule);
+                });
             });
-        })->pluck('id');
-
-        // Récupère tous les devoirs a partir des id des publications recuperés
-        $devoirs = Devoir::whereIn('publication_id', $publicationIds)->get();
+        })->get();
+       
        
         return view('livewire.enseignant.devoirs-table',[
             'devoirs' => $devoirs

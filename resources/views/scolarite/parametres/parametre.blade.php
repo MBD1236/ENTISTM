@@ -72,8 +72,8 @@
                                 <tr>
                                     <td class="text-center">{{ $anneeUniv->session }}</td>
                                     <td class="text-center">
-                                        <a href="{{ route('session.edit', $anneeUniv->id) }}"><i class="fa fa-edit btn-color-primary"></i></a>
-                                        <a href="{{ route('session.delete', $anneeUniv->id) }}" data-bs-toggle="modal" data-bs-target="#verticalycentered1{{ $anneeUniv->id }}"><i class="fa fa-trash text-danger"></i></a>
+                                        <a href="{{ route('scolarite.session.edit', $anneeUniv->id) }}"><i class="fa fa-edit btn-color-primary"></i></a>
+                                        <a href="{{ route('scolarite.session.delete', $anneeUniv->id) }}" data-bs-toggle="modal" data-bs-target="#verticalycentered1{{ $anneeUniv->id }}"><i class="fa fa-trash text-danger"></i></a>
                                     </td>
                                 </tr>
                             @empty
@@ -100,8 +100,8 @@
                                 <tr>
                                     <td class="text-center">{{ $promotion->promotion }}</td>
                                     <td class="text-center">
-                                        <a href="{{ route('promotion.edit', $promotion->id) }}"><i class="fa fa-edit btn-color-primary"></i></a>
-                                        <a href="{{ route('promotion.delete', $promotion->id) }}" data-bs-toggle="modal" data-bs-target="#verticalycentered2{{ $promotion->id }}"><i class="fa fa-trash text-danger"></i></a>
+                                        <a href="{{ route('scolarite.promotion.edit', $promotion->id) }}"><i class="fa fa-edit btn-color-primary"></i></a>
+                                        <a href="{{ route('scolarite.promotion.delete', $promotion->id) }}" data-bs-toggle="modal" data-bs-target="#verticalycentered2{{ $promotion->id }}"><i class="fa fa-trash text-danger"></i></a>
                                     </td>
                                 </tr>
                             @empty
@@ -128,8 +128,8 @@
                                 <tr>
                                     <td class="text-center">{{ $semestre->semestre }}</td>
                                     <td class="text-center">
-                                        <a href="{{ route('semestre.edit', $semestre->id) }}"><i class="fa fa-edit btn-color-primary"></i></a>
-                                        <a href="{{ route('semestre.delete', $semestre->id) }}" data-bs-toggle="modal" data-bs-target="#verticalycentered3{{ $semestre->id }}"><i class="fa fa-trash text-danger"></i></a>
+                                        <a href="{{ route('scolarite.semestre.edit', $semestre->id) }}"><i class="fa fa-edit btn-color-primary"></i></a>
+                                        <a href="{{ route('scolarite.semestre.delete', $semestre->id) }}" data-bs-toggle="modal" data-bs-target="#verticalycentered3{{ $semestre->id }}"><i class="fa fa-trash text-danger"></i></a>
                                     </td>
                                 </tr>
                             @empty
@@ -156,8 +156,8 @@
                                 <tr>
                                     <td class="">{{ ucwords(strtolower($attestationType->type)) }}</td>
                                     <td class="text-center">
-                                        <a href="{{ route('attestationType.edit', $attestationType->id) }}"><i class="fa fa-edit btn-color-primary"></i></a>
-                                        <a href="{{ route('attestationType.destroy', $attestationType->id) }}" data-bs-toggle="modal" data-bs-target="#verticalycentered4{{ $attestationType->id }}"><i class="fa fa-trash text-danger"></i></a>
+                                        <a href="{{ route('scolarite.attestationType.edit', $attestationType->id) }}"><i class="fa fa-edit btn-color-primary"></i></a>
+                                        <a href="{{ route('scolarite.attestationType.destroy', $attestationType->id) }}" data-bs-toggle="modal" data-bs-target="#verticalycentered4{{ $attestationType->id }}"><i class="fa fa-trash text-danger"></i></a>
                                     </td>
                                 </tr>
                             @empty
@@ -181,7 +181,7 @@
                             <button type="button" class="bg-btn-close-modal" data-bs-dismiss="modal" aria-label="Close"><i class="fa fa-times"></i></button>
                         </div>
                         <div class="modal-body">
-                            <form action="{{ route('session.store') }}" method="POST">
+                            <form action="{{ route('scolarite.session.store') }}" method="POST">
                                 @csrf
                                 @method('POST')
                                 <div class="row">
@@ -211,7 +211,7 @@
                             <button type="button" class="bg-btn-close-modal" data-bs-dismiss="modal" aria-label="Close"><i class="fa fa-times"></i></button>
                         </div>
                         <div class="modal-body">
-                            <form action="{{ route('promotion.store') }}" method="POST">
+                            <form action="{{ route('scolarite.promotion.store') }}" method="POST">
                                 @csrf
                                 @method('POST')
                                 <div class="row">
@@ -241,7 +241,7 @@
                             <button type="button" class="bg-btn-close-modal" data-bs-dismiss="modal" aria-label="Close"><i class="fa fa-times"></i></button>
                         </div>
                         <div class="modal-body">
-                            <form action="{{ route('semestre.store') }}" method="POST">
+                            <form action="{{ route('scolarite.semestre.store') }}" method="POST">
                                 @csrf
                                 @method('POST')
                                 <div class="row">
@@ -271,7 +271,7 @@
                             <button type="button" class="bg-btn-close-modal" data-bs-dismiss="modal" aria-label="Close"><i class="fa fa-times"></i></button>
                         </div>
                         <div class="modal-body">
-                            <form action="{{ route('attestationType.store') }}" method="POST">
+                            <form action="{{ route('scolarite.attestationType.store') }}" method="POST">
                                 @csrf
                                 @method('POST')
                                 <div class="row">
@@ -306,7 +306,7 @@
                                 <i class="fa fa-trash icon-deleted text-danger"></i>
                             </div>
                             <div class="modal-footer">
-                                <a href="{{ route('session.delete', $anneeUniv->id) }}" class="btn btn-danger">Oui</a>
+                                <a href="{{ route('scolarite.session.delete', $anneeUniv->id) }}" class="btn btn-danger">Oui</a>
                                 <button type="button" class="non-btn" data-bs-dismiss="modal">Non</button>
                             </div>
                         </div>
@@ -327,7 +327,7 @@
                                 <i class="fa fa-trash icon-deleted text-danger"></i>
                             </div>
                             <div class="modal-footer">
-                                <a href="{{ route('promotion.delete', $promotion->id) }}" class="btn btn-danger">Oui</a>
+                                <a href="{{ route('scolarite.promotion.delete', $promotion->id) }}" class="btn btn-danger">Oui</a>
                                 <button type="button" class="non-btn" data-bs-dismiss="modal">Non</button>
                             </div>
                         </div>
@@ -348,7 +348,7 @@
                                 <i class="fa fa-trash icon-deleted text-danger"></i>
                             </div>
                             <div class="modal-footer">
-                                <a href="{{ route('semestre.delete', $semestre->id) }}" class="btn btn-danger">Oui</a>
+                                <a href="{{ route('scolarite.semestre.delete', $semestre->id) }}" class="btn btn-danger">Oui</a>
                                 <button type="button" class="non-btn" data-bs-dismiss="modal">Non</button>
                             </div>
                         </div>
@@ -369,12 +369,12 @@
                                 <i class="fa fa-trash icon-deleted text-danger"></i>
                             </div>
                             <div class="modal-footer">
-                                <form action="{{ route('attestationType.destroy', $attestationType)}}" method="post">
+                                <form action="{{ route('scolarite.attestationType.destroy', $attestationType)}}" method="post">
                                     @method('delete')
                                     @csrf
                                     <button type="submit" class="btn btn-danger">Oui</button>
                                 </form>
-                                {{-- <a href="{{ route('attestationType.destroy', $attestationType->id) }}" class="btn btn-danger">Oui</a> --}}
+                                {{-- <a href="{{ route('scolarite.attestationType.destroy', $attestationType->id) }}" class="btn btn-danger">Oui</a> --}}
                                 <button type="button" class="non-btn" data-bs-dismiss="modal">Non</button>
                             </div>
                         </div>

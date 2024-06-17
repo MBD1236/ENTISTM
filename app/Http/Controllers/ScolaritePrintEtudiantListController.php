@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 
 class ScolaritePrintEtudiantListController extends Controller
 {
+
     // la form  pour les etudiants inscrits et reinscrits
     public function form() {
         return view('scolarite.printEtudiant.form', [
@@ -21,7 +22,7 @@ class ScolaritePrintEtudiantListController extends Controller
         ]);
     }
 
-    // la view  pour les etudiants inscrits et reinscrits
+   
     public function index(Request $request) {
         $request->validate([
             'programme' => ['required'],
@@ -36,8 +37,6 @@ class ScolaritePrintEtudiantListController extends Controller
         $programme = Programme::where('programme', $programme)->first();
         $annee_universitaire = AnneeUniversitaire::where('session', $annee_universitaire)->first();
         $promotion = Promotion::where('promotion', $promotion_id)->first();
-
-        
         // Construire la requête pour filtrer les inscriptions
         $query = Inscription::query()->whereHas('programme', function($q) use($programme) {
             $q->where('programme', $programme);
@@ -62,6 +61,7 @@ class ScolaritePrintEtudiantListController extends Controller
             'promotion' => $promotion,
         ]);
     }
+
 
     // la form  pour les etudiants orientes
     public function forms() {

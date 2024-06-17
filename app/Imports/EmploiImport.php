@@ -42,7 +42,6 @@ class EmploiImport implements ToModel, WithHeadingRow
             return null;
         }
 
-
         $matiere = Matiere::where('matiere', $row['matiere'])->first();
         if (!$matiere) {
             return null;

@@ -63,8 +63,8 @@ class GIEnseignantsCreate extends Component
         $data = $this->validate();
         $mat = $data['matricule'];
         $departement = $data['departement_id'];
-        $verify_enseignant = Enseignant::where('matricule', $mat)->where('departement_id', $departement)->get();
-        if ($verify_enseignant === 0) {
+        $verify_enseignant = Enseignant::where('matricule', $mat)->where('departement_id', $departement)->first();
+        if ($verify_enseignant == null) {
             /** @var \Illuminate\Http\UploadedFile|null $photo */
             $photo = $this->photo;
     

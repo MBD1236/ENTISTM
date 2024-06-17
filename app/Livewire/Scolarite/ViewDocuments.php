@@ -8,8 +8,7 @@ use Livewire\Component;
 
 class ViewDocuments extends Component
 {
-   
-    
+
     public $diplomeVisible = false;
     public $relevenotesVisible = false;
     public $certificatnationaliteVisible = false;

@@ -54,7 +54,7 @@
 
     <div class="row">
         <div class="col">
-            <h3 class="d-none d-lg-block ms-3 mt-2 title-top-bar ">Service Enseignant</h3>
+            <h3 class="d-none d-lg-block ms-3 mt-2 title-top-bar ">Espace Enseignant</h3>
         </div>
     </div>
 
@@ -67,7 +67,7 @@
           </a>
         </li><!-- End Search Icon-->
 
-        <li class="nav-item dropdown">
+        {{-- <li class="nav-item dropdown">
 
           <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
             <i class="bi bi-bell"></i>
@@ -206,60 +206,39 @@
 
           </ul><!-- End Messages Dropdown Items -->
 
-        </li><!-- End Messages Nav -->
+        </li><!-- End Messages Nav --> --}}
 
         <li class="nav-item dropdown pe-3">
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            <img src="{{ asset('assets/img/téléchargement.png') }}" alt="Profile" class="rounded-circle">
-            <span class="d-none d-md-block dropdown-toggle ps-2">Service Enseignant</span>
+            <img src="https://ui-avatars.com/api/?name={{ auth()->user()->name }}" alt="Profile" class="rounded-circle">
+            <span class="d-none d-md-block dropdown-toggle ps-2">{{ auth()->user()->name }}</span>
           </a><!-- End Profile Iamge Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
-              <h6>Service Enseignant</h6>
-              <span>Web Designer</span>
+              <h6>{{ auth()->user()->name }}</h6>
+              <span>{{ auth()->user()->email }}</span>
             </li>
             <li>
               <hr class="dropdown-divider">
             </li>
-
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+              <a class="dropdown-item d-flex align-items-center" href="{{ route('profile.show') }}">
                 <i class="bi bi-person"></i>
-                <span>My Profile</span>
+                <span>Mon Profil</span>
               </a>
             </li>
             <li>
-              <hr class="dropdown-divider">
-            </li>
+              <form action="{{ route('logout') }}" method="POST" style="display: inline;">
+                  @csrf
+                  <button type="submit" class="dropdown-item d-flex align-items-center" style="border: none; background: none; cursor: pointer;">
+                      <i class="bi bi-box-arrow-right"></i>
+                      <span>Déconnexion</span>
+                  </button>
+              </form>
+          </li>
 
-            <li>
-              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
-                <i class="bi bi-gear"></i>
-                <span>Account Settings</span>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li>
-              <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
-                <i class="bi bi-question-circle"></i>
-                <span>Need Help?</span>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li>
-              <a class="dropdown-item d-flex align-items-center" href="#">
-                <i class="bi bi-box-arrow-right"></i>
-                <span>Sign Out</span>
-              </a>
-            </li>
 
           </ul><!-- End Profile Dropdown Items -->
         </li><!-- End Profile Nav -->
@@ -278,7 +257,7 @@
       <ul class="sidebar-nav" id="sidebar-nav">
 
         <li class="nav-item">
-          <a class="nav-link" href="" wire:navigate>
+          <a class="nav-link" href="{{ route('enseignant.accueil') }}" wire:navigate>
             <i class="fa fa-home"></i>
             <span class="">Tableau de bord</span>
           </a>
@@ -291,43 +270,29 @@
           <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
             <li>
               <a href="{{ route('enseignant.cours') }}" wire:navigate>
-                <i class="fa fa-users"></i><span>Cours</span>
+                <i class="fa fa-book"></i><span>Cours</span>
               </a>
             </li>
             <li>
               <a href="{{ route('enseignant.publications') }}" wire:navigate>
-                <i class="fa fa-user-plus"></i><span>Publications</span>
+                <i class="fa fa-send"></i><span>Publications</span>
               </a>
             </li>
           </ul>
         </li><!-- End Components Nav -->
-       
 
         <li class="nav-item">
-          <a class="nav-link collapsed" data-bs-target="#components-nav2" data-bs-toggle="collapse" href="#">
-            <i class="fa fa-graduation-cap"></i><span>Gestion des devoirs</span><i class="bi bi-chevron-down ms-auto"></i>
-          </a>
-          <ul id="components-nav2" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-            <li>
-              <a href="{{ route('enseignant.devoirs') }}" wire:navigate>
-                <i class="fa fa-users"></i><span>Devoirs</span>
-              </a>
-            </li>
-            <li>
-              <a href="" wire:navigate>
-                <i class="fa fa-user-plus"></i><span>Correction et notation</span>
-              </a>
-            </li>
-          </ul>
+            <a class="nav-link collapsed" data-bs-target="#components-nav2" data-bs-toggle="collapse" href="#">
+              <i class="fa fa-book"></i><span>Gestion des devoirs</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="components-nav2" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+              <li>
+                <a href="{{ route('enseignant.devoirs') }}" wire:navigate>
+                  <i class="fa fa-book"></i><span>Devoirs</span>
+                </a>
+              </li>
+            </ul>
         </li>
-
-        <li class="nav-item">
-          <a class="nav-link collapsed" href="{{ route('scolarite.service.index') }}" wire:navigate>
-            <i class="fa fa-desktop"></i>
-            <span>Services</span>
-          </a>
-        </li>
-
         <li class="nav-item">
           <a class="nav-link collapsed" href="{{ route('enseignant.partagefile') }}" wire:navigate>
             <i class="fa fa-share-square"></i>
@@ -341,7 +306,6 @@
             <span>Chats</span>
           </a>
         </li>
-
       </ul>
 
     </aside><!-- End Sidebar-->

@@ -155,6 +155,7 @@
                         <a type="button" class=""  wire:click='setDevoir({{ $p->id }})' data-bs-toggle="modal" data-bs-target="#devoirs">
                             Associer a un devoir
                         </a>
+                        <a href="{{ route('enseignant.voir.etudiant', $p) }}">Voir la liste des etudiants</a>
                     </td>
                 </tr>
                 @empty
