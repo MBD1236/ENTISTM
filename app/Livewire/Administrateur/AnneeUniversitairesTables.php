@@ -6,9 +6,11 @@ use App\Models\AnneeUniversitaire;
 use Illuminate\Validation\Rule;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class AnneeUniversitairesTables extends Component
 {
+    use WithPagination;
     public AnneeUniversitaire $anneeuniversitaire;
     public $session;
 

@@ -286,6 +286,13 @@
         </li><!-- End Components Nav -->
        
         <li class="nav-item">
+          <a class="nav-link collapsed" href="{{ route('etudiant.matieres') }}" wire:navigate>
+            <i class="bi bi-book"></i>
+            <span>Matières</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
             <a class="nav-link collapsed" href="{{ route('etudiant.notes') }}" wire:navigate>
               <i class="bi bi-journal"></i>
               <span>Notes</span>
@@ -303,12 +310,20 @@
                 </a>
               </li>
               <li>
-                <a href="" wire:navigate>
+                <a href="http://istelearning.42web.io" wire:navigate>
                   <i class="bi bi-phone-flip"></i><span>E-learning</span>
                 </a>
               </li>
             </ul>
         </li>
+
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="{{ route('chatify') }}" wire:navigate>
+            <i class="fa fa-comment"></i>
+            <span>Chart</span>
+          </a>
+        </li>
+
       </ul>
 
     </aside><!-- End Sidebar-->

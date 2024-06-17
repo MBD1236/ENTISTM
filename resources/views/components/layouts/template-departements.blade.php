@@ -329,7 +329,7 @@
 
           @endcan
 
-          @can('science_energie')
+          @can('s_energie')
           <li class="nav-heading">Science des Energies</li>
           <li class="nav-item">
               <a class="nav-link collapsed" data-bs-target="#etudiants-nav" data-bs-toggle="collapse" href="#">

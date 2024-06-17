@@ -190,5 +190,15 @@
                 </table>
             </div>
         </div>
+
+        <div class="card-footer mt-1">
+            <div class="row">
+                <div class="col-sm-12 col-md-12">
+                    <ul class="pagination-rounded">
+                        {{$partages->links('vendor.livewire.bootstrap')}}
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

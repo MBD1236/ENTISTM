@@ -6,9 +6,12 @@ use App\Models\Promotion;
 use Illuminate\Validation\Rule;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class PromotionsTables extends Component
 {
+    use WithPagination;
+    
     public Promotion $promotions;
     public $promotion;
 

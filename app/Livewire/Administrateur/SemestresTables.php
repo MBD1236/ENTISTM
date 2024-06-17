@@ -6,9 +6,12 @@ use App\Models\Semestre;
 use Illuminate\Validation\Rule;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class SemestresTables extends Component
 {
+    use WithPagination;
+    
     public Semestre $semestres;
     public $semestre;
 

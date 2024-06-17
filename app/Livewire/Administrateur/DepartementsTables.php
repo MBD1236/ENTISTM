@@ -6,9 +6,12 @@ use App\Models\Departement;
 use Illuminate\Validation\Rule;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class DepartementsTables extends Component
 {
+    use WithPagination;
+    
     public Departement $departements;
     public $departement;
 

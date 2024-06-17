@@ -6,9 +6,11 @@ use App\Models\Niveau;
 use Illuminate\Validation\Rule;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class NiveauxTables extends Component
 {
+    use WithPagination;
     public Niveau $niveaux;
     public $niveau;
 

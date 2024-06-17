@@ -7,9 +7,12 @@ use App\Models\Programme;
 use Illuminate\Validation\Rule;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class ProgrammesTables extends Component
 {
+    use WithPagination;
+    
     public Programme $programmes;
     public $programme;
     public $departement_id;

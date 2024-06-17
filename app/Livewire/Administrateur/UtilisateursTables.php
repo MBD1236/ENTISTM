@@ -9,9 +9,12 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class UtilisateursTables extends Component
 {
+    use WithPagination;
+    
     public User $user;
     public $name;
     public $matricule;
@@ -83,7 +86,7 @@ class UtilisateursTables extends Component
     public function render()
     {
         $roles = Role::all();
-        $users = User::orderBy('created_at', 'desc')->get();
+        $users = User::orderBy('created_at', 'desc')->paginate(15);
         return view('livewire.administrateur.utilisateurs-tables',[
             'users' => $users,
             'roles' => $roles

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Departement;
+use App\Models\Inscription;
 use App\Models\Niveau;
 use App\Models\Programme;
 use Illuminate\Contracts\View\View;
@@ -12,7 +13,16 @@ class EtudesController extends Controller
 {
     public function index () : View
     {
-        return view('etudes.index');
+        $departements = Departement::all()->count();
+        $programmes = Programme::all()->count();
+        $niveaux = Niveau::all()->count();
+        $etudiants = Inscription::all()->count();
+        return view('etudes.index',[
+            'departements' => $departements,
+            'programmes' => $programmes,
+            'niveaux' => $niveaux,
+            'etudiants' => $etudiants,
+        ]);
     }
 
     public function afficherParametre (Departement $departement, Programme $programme, Niveau $niveau) : View
