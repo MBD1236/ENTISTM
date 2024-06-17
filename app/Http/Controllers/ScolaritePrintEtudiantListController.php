@@ -90,11 +90,15 @@ class ScolaritePrintEtudiantListController extends Controller
                         ->whereIn('session', $annee_universitaire);
 
         $etudiants = $query->get();
+        if($etudiants->isEmpty()) {
+            return redirect()->route('scolarite.print.forms')->with('error', "Aucun etudiant inscrit au compte de ce programme et de cette année universitaire selectionnés, veuillez verifier bien avant de lancer l'impression ! ");
+        } else {
+            return view('scolarite.printEtudiantOriente.index', [
+                'etudiants' => $etudiants,
+                'programme' => $programme,
+                'annee_universitaire' => $annee_universitaire,
+            ]);
+        }
 
-        return view('scolarite.printEtudiantOriente.index', [
-            'etudiants' => $etudiants,
-            'programme' => $programme,
-            'annee_universitaire' => $annee_universitaire,
-        ]);
     }
 }

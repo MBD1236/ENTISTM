@@ -6,7 +6,7 @@
             </h1>
             <div class="row mt-5">
                 <div class="col-md-1"></div>
-                <div class="col-md-2">
+                <div class="col-md-2 my-2">
                     <select wire:model.live="departement_id" id="departement_id" class="form-select border-input @error('departement_id') is-invalid @enderror">
                         <option value="">Departement</option>
                         @foreach ($departements as $departement)
@@ -14,7 +14,7 @@
                         @endforeach
                     </select>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-2 my-2">
                     <select wire:model.live="programme_id" id="programme_id" class="form-select border-input @error('programme_id') is-invalid @enderror">
                         <option value="">Programme</option>
                         @foreach ($programmes as $programme)
@@ -22,7 +22,7 @@
                         @endforeach
                     </select>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-2 my-2">
                     <select wire:model.live="niveau_id" id="niveau_id" class="form-select border-input @error('niveau_id') is-invalid @enderror">
                         <option value="">Niveau</option>
                         @foreach ($niveaux as $niveau)
@@ -30,7 +30,7 @@
                         @endforeach
                     </select>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-2 my-2">
                     <select wire:model.live="semestre_id" id="semestre_id" class="form-select border-input @error('semestre_id') is-invalid @enderror">
                         <option value="">Semestre</option>
                         @foreach ($semestres as $semestre)
@@ -38,16 +38,14 @@
                         @endforeach
                     </select>
                 </div>
-    
-                <div class="col-md-2">
+                <div class="col-md-2 my-2">
                     <input type="text" wire:model.live.debounce.500ms='promotion' class="form-control border-input" placeholder="Entrer la promotion">
                 </div>
                 <div class="col-md-1"></div>
-
             </div>
            <div class="row">
                 <div class="col-md-6 me-2"></div>
-                <div class="col-md-5">
+                <div class="col-md-5 my-2">
                     <div class="mt-3 me-2 d-flex flex-row">
                         <input class="form-control border-input" type="search" wire:model.live.debounce.200ms='searchE' id="searchE" placeholder="Filtrer la liste par l'INE, le nom et le prenom">
                     </div>

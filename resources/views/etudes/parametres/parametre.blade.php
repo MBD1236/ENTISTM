@@ -2,7 +2,7 @@
 @section('content')
     <div class="card">
         <div class="card-header card-head">
-            <h1 class="bg-card text-center text-white card-head"><i class="fa fa-cog me-1"></i>Paramètres</h1>
+            <h1 class="bg-card text-center text-white card-head"><i class="fa fa-cog me-3"></i>Paramètres</h1>
         </div>
         <div class="card-body">
             <div class="row">
@@ -125,7 +125,7 @@
             </div>
             <!-- Ajout départements -->
             <div class="modal fade" id="smallModal1" tabindex="-1">
-                <div class="modal-dialog modal-sm">
+                <div class="modal-dialog modal-md">
                     <div class="modal-content">
                         <div class="modal-header bg-card-modal">
                             <h3 class="modal-title">Ajout d'un département</h3>
@@ -155,7 +155,7 @@
             </div> <!-- Fin ajout département-->
             <!-- Ajout programme -->
             <div class="modal fade" id="smallModal2" tabindex="-1">
-                <div class="modal-dialog modal-sm">
+                <div class="modal-dialog modal-md">
                     <div class="modal-content">
                         <div class="modal-header bg-card-modal">
                             <h3 class="modal-title">Ajout d'un programme</h3>
@@ -191,7 +191,7 @@
             </div><!-- Fin ajout programme-->
             <!-- Ajout niveaux -->
             <div class="modal fade" id="smallModal3" tabindex="-1">
-                <div class="modal-dialog modal-sm">
+                <div class="modal-dialog modal-md">
                     <div class="modal-content">
                         <div class="modal-header bg-card-modal">
                             <h3 class="modal-title">Ajout d'un niveau</h3>

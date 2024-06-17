@@ -176,7 +176,9 @@ use App\Livewire\Scolarite\ReinscriptionEtudiant;
 use App\Livewire\Scolarite\ReleveNote;
 use App\Livewire\Scolarite\ViewDocuments;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\ScolaritePrintReleveController;
+use App\Livewire\Enseignant\PartargeFichier as EnseignantPartargeFichier;
+use App\Livewire\Scolarite\PartargeFichier;
 
 /* Routes added by thd */
 
@@ -211,6 +213,10 @@ Route::prefix('enseignant')->name("enseignant.")->group(function () {
     Route::get('/publication/{publication}', VoirEtudiants::class)->name('voir.etudiant');
     Route::get('/devoirs', DevoirsTable::class)->name('devoirs');
     Route::get('/devoir/{devoir}', VoirDevoir::class)->name('voir.devoir');
+
+    // pour le partage de fichier
+    Route::get('/partagefile', EnseignantPartargeFichier::class)->name('partagefile');
+    Route::delete('/scolarite/partagefile/{id}', [EnseignantPartargeFichier::class, 'destroy'])->name('partagefile.destroy');
 
 });
 
@@ -339,7 +345,6 @@ Route::prefix('scolarite')->middleware('scolarite')->name('scolarite.')->group(f
     Route::get('/indexBadge', [PrintBadgeController::class, 'index'])->name('print');
     Route::post('/printBadge', [PrintBadgeController::class, 'printBadge'])->name('printBadge');
     Route::resource("releve", ScolariteReleveNoteController::class)->except(["show"]);
-
 
     Route::prefix('parametres')->group(function () {
         Route::prefix('session')->group(function () {

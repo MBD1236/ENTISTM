@@ -223,15 +223,12 @@
             <li>
               <hr class="dropdown-divider">
             </li>
-
             <li>
               <a class="dropdown-item d-flex align-items-center" href="{{ route('profile.show') }}">
                 <i class="bi bi-person"></i>
                 <span>Mon Profil</span>
               </a>
             </li>
-            
-            
             <li>
               <form action="{{ route('logout') }}" method="POST" style="display: inline;">
                   @csrf
@@ -283,7 +280,6 @@
             </li>
           </ul>
         </li><!-- End Components Nav -->
-       
 
         <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#components-nav2" data-bs-toggle="collapse" href="#">
@@ -296,6 +292,19 @@
                 </a>
               </li>
             </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="{{ route('enseignant.partagefile') }}" wire:navigate>
+            <i class="fa fa-share-square"></i>
+            <span>Partage de Fichier</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="{{ route('chatify') }}" wire:navigate>
+            <i class="fa fa-comment"></i>
+            <span>Chats</span>
+          </a>
         </li>
       </ul>
 

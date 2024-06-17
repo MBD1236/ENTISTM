@@ -138,7 +138,6 @@ class ScolariteReleveNoteController extends Controller
             'telephone' => ['required'],
             'programme' => ['required'],
         ]);
-        dd($request);
        
         $relevenote->update($data);
         return redirect()->route('scolarite.releve.index')->with('success', 'Relevé de note modifié avec succès.');

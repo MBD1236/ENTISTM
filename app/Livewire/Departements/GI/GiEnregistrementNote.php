@@ -30,16 +30,14 @@ class GiEnregistrementNote extends Component
     public function importer() {
         $this->validate();
         try {
-            if($this->fichier) {
-                Excel::import(new NoteImport($this->matiere_id), $this->fichier);
-                $this->reset('fichier');
-                session()->flash('success', 'Import effectué avec succès!');
+            $filePath = $this->fichier->path();
+            $e = Excel::import(new NoteImport($this->matiere_id), $filePath);
+            $this->reset('fichier');
+            session()->flash('success', 'Import effectué avec succès!');
 
-            }
         } catch (\Throwable $th) {
-            session()->flash('danger', "Echec de l'import !");
+            session()->flash('danger', "Echec de l'import ! " . $th->getMessage());
         }
-
     }
 
     public function clearStatus()

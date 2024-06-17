@@ -6,7 +6,7 @@
     <div class="row justify-content-center">
         <div class="col-md-10 bg-card">
             <div class="card mt-1">
-                <div class="card-header">Sélectionner le ou les étudiants</div>
+                <div class="card-header fs-4">Sélectionner le ou les étudiants</div>
 
                 <div class="card-body">
                     @if (session('error'))
@@ -17,9 +17,9 @@
                     <form method="POST" action="{{ route('scolarite.printBadge') }}">
                         @csrf
                         <div class="form-group row">
-                            <label for="matricules" class="col-md-4 col-form-label text-md-right">Matricules des étudiants</label>
+                            <label for="matricules" class="col-md-4 col-form-label fs-5 text-md-right">Matricules des étudiants</label>
                             <div class="col-md-7">
-                                <select id="matricules" class="select2 custom-select2 form-control @error('matricules') is-invalid @enderror" name="matricules[]" multiple style="height: 100px;">
+                                <select id="matricules" class="select2 custom-select2 form-control @error('matricules') is-invalid @enderror" name="matricules[]" multiple>
                                     <option value="">Sélectionner les matricules</option>
                                     @foreach($etudiants as $etudiant)
                                         <option value="{{ $etudiant->ine }}">{{ $etudiant->ine }}</option>

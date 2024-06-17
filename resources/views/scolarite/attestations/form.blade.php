@@ -25,75 +25,73 @@
                     <div class="row">
                         <div class="col-md-6 form-floating mt-2">
                             <div class="form-floating">
-                                <input class="form-control border-input @error('reference_id') is-invalid @enderror" type="text" name="reference_id" id="reference_id" placeholder="N° de réfference" value="{{ old('reference_id', $reff)}}" readonly>
+                                <input class="form-control border-input  @error('reference_id') is-invalid @enderror" type="text" name="reference_id" id="reference_id" placeholder="N° de réfference" value="{{ old('reference_id', $reff)}}" readonly style="border: 0.2em solid #120a5c">
                                 <label for="reference_id" class="label-control label-text">N° de réfference</label>
-                                <div class="invalid-feedback">@error('reference_id') {{ $message }} @enderror</div>
+                                <div class="invalid-feedback">@error('reference_id') <strong>{{ $message }}</strong> @enderror</div>
                             </div>
                         </div>
-
                         <div class="col-md-6 form-floating mt-2">
                             <div class="form-floating">
-                                <select class="form-select border-input @error('etudiant_id') is-invalid @enderror" name="etudiant_id" id="etudiant_id">
-                                    <option value="">Sélectioner L'INE</option>
-                                    @foreach($etudiants as $etudiant)
-                                        <option @selected(old('etudiant_id', $attestation->etudiant_id == $etudiant->id)) value="{{$etudiant->id}}">{{ $etudiant->ine}} - {{ $etudiant->prenom}} {{ $etudiant->nom}}</option>
-                                    @endforeach
-                                </select>
-                                <label for="floatingetudiant_id" class="label-control label-text">INE</label>
-                                <div class="invalid-feedback">@error('etudiant_id') {{ $message }} @enderror</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6 form-floating mt-2">
-                            <div class="form-floating">
-                                <select id="floatingtype" name="attestation_type_id" id="attestation_type_id" class="form-select border-input @error('attestation_type_id') is-invalid @enderror">
+                                <select id="floatingtype" name="attestation_type_id" id="attestation_type_id" class="form-select border-input @error('attestation_type_id') is-invalid @enderror" style="border: 0.2em solid #120a5c">
                                     <option value="">Sélectionner un type</option>
                                     @foreach($attestation_types as $attestation_type)
                                         <option @selected(old('attestation_type_id', $attestation->attestation_type_id == $attestation_type->id)) value="{{$attestation_type->id}}">{{ ucwords(strtolower($attestation_type->type))}}</option>
                                     @endforeach
                                 </select>
                                 <label for="floatingtype" class="label-control label-text">Type d'attestation</label>
-                                <div class="invalid-feedback">@error('attestation_type_id') {{ $message }} @enderror</div>
+                                <div class="invalid-feedback">@error('attestation_type_id')<strong>{{ $message }}</strong> @enderror</div>
                             </div>
-                        </div>  
+                        </div> 
+                    </div>
+                    
+                    <div class="row">
                         <div class="col-md-6 form-floating mt-2">
                             <div class="form-floating">
-                                <select class="form-select border-input @error('niveau_id') is-invalid @enderror" name="niveau_id" id="niveau_id">
+                                <select class="form-select border-input @error('niveau_id') is-invalid @enderror" name="niveau_id" id="niveau_id" style="border: 0.2em solid #120a5c">
                                     <option value="">Sélectioner un niveau</option>
                                     @foreach($niveaux as $niveau)
                                         <option @selected(old('niveau_id', $attestation->niveau_id == $niveau->id)) value="{{$niveau->id}}">{{ $niveau->niveau}}</option>
                                     @endforeach
                                 </select>
                                 <label for="floatingniveau_id" class="label-control label-text">Niveaux</label>
-                                <div class="invalid-feedback">@error('niveau_id') {{ $message }} @enderror</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6 form-floating mt-2">
-                            <div class="form-floating">
-                                <select class="form-select border-input @error('annee_universitaire_id') is-invalid @enderror" name="annee_universitaire_id" id="annee_universitaire_id">
-                                    <option value="">Sélectioner une session</option>
-                                    @foreach($annee_universitaires as $annee_universitaire)
-                                    <option @selected(old('annee_universitaire_id', $attestation->annee_universitaire_id == $annee_universitaire->id)) value="{{$annee_universitaire->id}}">{{ $annee_universitaire->session}}</option>
-                                @endforeach
-                                </select>
-                                <label for="floatingannee_universitaire_id" class="label-control label-text">Année Universitaire</label>
-                                <div class="invalid-feedback">@error('annee_universitaire_id') {{ $message }} @enderror</div>
+                                <div class="invalid-feedback">@error('niveau_id') <strong>{{ $message }}</strong> @enderror</div>
                             </div>
                         </div>
                         <div class="col-md-6 form-floating mt-2">
                             <div class="form-floating">
-                                <select name="programme_id" id="programme_id" class="form-select border-input @error('programme_id') is-invalid @enderror">
+                                <select name="programme_id" id="programme_id" class="form-select border-input @error('programme_id') is-invalid @enderror" style="border: 0.2em solid #120a5c">
                                     <option value="">Sélectionner un programme</option>
                                     @foreach($programmes as $programme)
                                         <option @selected(old('programme_id', $attestation->programme_id == $programme->id)) value="{{$programme->id}}">{{ $programme->programme}}</option>
                                     @endforeach
                                 </select>
                                 <label for="floatingprogramme_id" class="label-control label-text">Programme</label>
-                                <div class="invalid-feedback">@error('programme_id') {{ $message }} @enderror</div>
+                                <div class="invalid-feedback">@error('programme_id')<strong>{{ $message }}</strong> @enderror</div>
                             </div>
+                        </div>
+                    </div>
+                    <div class="row">                        
+                        <div class="col-md-6 my-1">
+                            <select id="etudiant_id" class="select2 custom-select2 form-control @error('etudiant_id') is-invalid @enderror" name="etudiant_id">
+                                <option value="">Selectionner une année universitaire</option>
+                                @foreach($etudiants as $etudiant)
+                                    <option @selected(old('etudiant_id', $attestation->etudiant_id == $etudiant->id)) value="{{$etudiant->id}}">{{ $etudiant->ine}} - {{ $etudiant->prenom}} {{ $etudiant->nom}}</option>
+                                @endforeach
+                            </select>
+                            @error('etudiant_id')
+                                <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                            @enderror
+                        </div>
+                        <div class="col-md-6 my-1">
+                            <select id="annee_universitaire_id" class="select2 custom-select2 form-control @error('annee_universitaire_id') is-invalid @enderror" name="annee_universitaire_id">
+                                <option value="">Selectionner une année universitaire</option>
+                                @foreach($annee_universitaires as $annee_universitaire)
+                                    <option  @selected(old('annee_universitaire_id', $attestation->annee_universitaire_id == $annee_universitaire->id)) value="{{ $annee_universitaire->id }}">{{ $annee_universitaire->session  }}</option>
+                                @endforeach
+                            </select>
+                            @error('annee_universitaire_id')
+                                <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                            @enderror
                         </div>
                     </div>
                     <div class="row">
@@ -113,4 +111,15 @@
             </form>
         </div>
     </div>
+    
+<script>
+    // pour l'initialisation de select2
+    $(document).ready(function() {
+        $('.select2').select2({
+            //placeholder: 'Sélectionner les matricules',
+            allowClear: true 
+        });
+    });
+</script>
+
 @endsection

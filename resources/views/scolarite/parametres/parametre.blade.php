@@ -174,7 +174,7 @@
             </div>
             <!-- Ajout sesion -->
             <div class="modal fade" id="smallModal1" tabindex="-1">
-                <div class="modal-dialog modal-sm">
+                <div class="modal-dialog modal-md">
                     <div class="modal-content row">
                         <div class="modal-header bg-card-modal">
                             <h4 class="modal-title">Ajout d'une session</h4>
@@ -204,7 +204,7 @@
             </div> <!-- Fin ajout session-->
             <!-- Ajout promotion -->
             <div class="modal fade" id="smallModal2" tabindex="-1">
-                <div class="modal-dialog modal-sm">
+                <div class="modal-dialog modal-md">
                     <div class="modal-content">
                         <div class="modal-header bg-card-modal">
                             <h4 class="modal-title">Ajout d'une promotion</h4>
@@ -234,7 +234,7 @@
             </div> <!-- Fin ajout promotion-->
             <!-- Ajout semestre -->
             <div class="modal fade" id="smallModal3" tabindex="-1">
-                <div class="modal-dialog modal-sm">
+                <div class="modal-dialog modal-md">
                     <div class="modal-content">
                         <div class="modal-header bg-card-modal">
                             <h4 class="modal-title">Ajout d'un semestre</h4>
@@ -264,7 +264,7 @@
             </div> <!-- Fin ajout semestre-->
              <!-- Ajout type d'attestation -->
             <div class="modal fade" id="smallModal4" tabindex="-1">
-                <div class="modal-dialog modal-sm">
+                <div class="modal-dialog modal-md">
                     <div class="modal-content">
                         <div class="modal-header bg-card-modal">
                             <h4 class="modal-title">Ajout d'un autre type</h4>

@@ -23,11 +23,11 @@
             <div class="row">
                 <div class="row mt-3">
                     <div class="col-md-5">
-                        <h4 class="label-text"><i class="fa fa-filter me-1"></i>Filtrer la liste par</h4>
+                        <h4 class="label-text"><i class="fa fa-filter me-1 my-2"></i>Filtrer la liste par</h4>
                         <input class="form-control border-input" wire:model.live.debounce.200ms="searchEtudiant" type="search" id="searchEtudiant" placeholder="INE, prenom, nom" style="width: 460px" >
                     </div>
                     <div class="col-md-3">
-                        <h4 class="label-text"><i class="fa fa-filter me-1"></i>Filtrer par</h4>
+                        <h4 class="label-text"><i class="fa fa-filter me-1 my-2"></i>Filtrer par</h4>
                         <select class="form-select border-input @error('promotion_id') is-invalid @enderror" wire:model.live="promotion_id" id="promotion_id">
                             <option value="">Promotion</option>
                             @foreach ($promotions as $promotion)
@@ -36,7 +36,7 @@
                         </select>
                     </div>
                     <div class="col-md-2 d-flex flex-column align-items-start">
-                        <h4 class="label-text"><i class="fa fa-filter me-1"></i>Filtrer par</h4>
+                        <h4 class="label-text"><i class="fa fa-filter me-1 my-2"></i>Filtrer par</h4>
                         <select class="form-select border-input @error('annee_universitaire_id') is-invalid @enderror" wire:model.live="annee_universitaire_id" id="annee_universitaire_id">
                             <option value="">Année Univ</option>
                             @foreach ($annee_universitaires as $annee_universitaire)
@@ -45,12 +45,13 @@
                         </select>
                     </div>
                     
-                    <div class="col-md-2 py-5 mb-3">
+                    <div class="col-md-2 py-5 mt-2">
                         <a href="{{route('scolarite.print.form')}} " class="btn-modal"><i class="fa fa-print me-1" ></i>Imprimer la liste</a>
                     </div>
                 </div>
-                <div class="row mt-4 table-responsive">
-                    <table class="table table-bordered table-hover">
+
+                <div class="table-responsive-sm">
+                    <table id="tableau" class="table table-hover table-centered table-bordered mb-0 mt-4">
                         <thead>
                             <tr>
                                 <th>N°</th>

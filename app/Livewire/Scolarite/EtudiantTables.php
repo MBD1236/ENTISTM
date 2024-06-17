@@ -114,7 +114,7 @@ class EtudiantTables extends Component
     #[Layout("components.layouts.template-scolarite")]
     public function render()
     {
-        $query = Etudiant::query();
+        $query = Etudiant::query()->orderBy('created_at', 'desc');
         $query->where('ine', 'LIKE', "%{$this->searchIne}%")
             ->orWhere('session', 'LIKE', "%{$this->searchIne}%")
             ->orWhere('nom', 'LIKE', "%{$this->searchIne}%")

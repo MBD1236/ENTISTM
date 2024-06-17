@@ -15,18 +15,22 @@
             </div>
         @endif
     </div>
-    <div class="row">
-        <div class="col-5"></div>
-        <div class="col-7">
+    <div class="row px-2">
+        <div class="col-md-4 col-ms-12 my-3">
+            <h4 class="label-text"><i class="fa fa-filter me-1 my-2"></i>Filtrer les relevés de notes par</h4>
+            <input type="search" class="border-input form-control" id="searchInput" name="searchInput" class="form-control" placeholder="ine, prenom, nom, n° reference, programme" style="height: 40px; border:0.2em solid #120a5c">
+        </div>
+        <div class="col-md-8 col-ms-12">
             <form method="get" action="{{ route('scolarite.releve.create') }}">
                 @csrf
-                <div class="row">
-                    <div class="col-md-6 my-4">
+                <div class="row mx-2 ">
+                    <div class="col-md-8 col-sm-12 my-3">
+                        <h4 class="label-text"><i class="fa fa-filter me-1 my-2"></i>Rechercher le matricule et cliquer générer </h4>
                         <div class="form-group">
                             <select id="etudiant" class="select2 custom-select2 form-control @error('etudiant') is-invalid @enderror" name="etudiant">
-                                <option value="">Rechercher le matricule et verifier </option>
+                                <option value="">Rechercher le matricule et cliquer sur générer un relevé </option>
                                 @foreach($etudiants as $etudiant)
-                                    <option value="{{ $etudiant->id }}">{{ $etudiant->ine }}</option>
+                                    <option value="{{ $etudiant->id }}">{{ $etudiant->ine }} - {{$etudiant->prenom}} {{$etudiant->nom}} </option>
                                 @endforeach
                             </select>
                             @error('etudiant')
@@ -34,8 +38,9 @@
                             @enderror
                         </div>
                     </div>
-                    <div class="col-md-6 mt-3">
-                        <button type="submit" class="text-white fs-5 px-4 py-2 rounded" style="background: #120a5c">
+                    <div class="col-md-4 col-sm-12 my-3">
+                        <h4 class="label-text"><i class="fa fa-plus me-1 my-1"></i>Bouton d'ajout</h4>
+                        <button type="submit" class="text-white fs-5 px-3 py-2 rounded" style="background: #120a5c">
                             <i class="fa fa-plus me-2" ></i>
                             Générer un relevé
                         </button>
@@ -44,13 +49,13 @@
             </form> 
         </div> 
     </div>
-    <div class="card-body">
-        <div class="row mt-3">
-            <table class="table table-bordered table-hover">
+    <div class="card-body mt-3">
+        <div class="table-responsive-sm">
+            <table id="tableau" class="table table-hover table-centered table-bordered mb-0 mt-4">
                 <thead>
                     <tr>
                         <th>N°</th>
-                        <th>N° Reff</th>
+                        <th>N° Reference</th>
                         <th>INE</th>
                         <th>Prénoms</th>
                         <th>Nom</th>
@@ -59,7 +64,7 @@
                         <th class="text-end">Action</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="tableBody">
                     @forelse ($relevenotes as $k => $relevenote)
                     <tr>
                         <td>{{ $k+1 }}</td>
@@ -105,8 +110,8 @@
                     </tr>
                     @empty
                     <tr>
-                        <td colspan="5">
-                            <div class="alert bg-card text-center fw-bold text-white fs-4">Aucune donnée ne correspond à cette recherche !</div>
+                        <td colspan="8">
+                            <div class="alert bg-card text-center text-white fw-bold fs-4" style="background: #120a5c">Aucune donnée ne se trouve dans la table !</div>
                         </td>
                     </tr>
                     @endforelse

@@ -178,27 +178,28 @@ class ReinscriptionEtudiant extends Component
             /*vérifier si une nouvelle photo est chargée, car si c'est le cas la propriété $this->photo
             sera de type UploadedFile si c'est le contraire il sera de type string */
         if (!is_string($this->photo)) {
-                if ($this->etudiant && $this->etudiant->photo) {
-                        Storage::disk('public')->delete($this->etudiant->photo);
-                }
-                $nouveau_nom= $this->photo->getClientOriginalName();
-                $photoPath = $this->photo->storeAs('etudiants/etudiant', $nouveau_nom, 'public');
-                if ($this->etudiant) {
-                        $this->etudiant->update(['photo' => $photoPath]);
-                }
+            if ($this->etudiant && $this->etudiant->photo) {
+                    Storage::disk('public')->delete($this->etudiant->photo);
+            }
+            $nouveau_nom= $this->photo->getClientOriginalName();
+            $photoPath = $this->photo->storeAs('etudiants/etudiant', $nouveau_nom, 'public');
+            if ($this->etudiant) {
+                    $this->etudiant->update(['photo' => $photoPath]);
+            }
         }
-                // Vérifier si l'étudiant existe
-                if ($this->etudiant) {
-                    $this->etudiant->update([
-                        'telephone' => $this->telephone,
-                        'email' => $this->email,
-                        'nom_tuteur' => $this->nom_tuteur,
-                        'telephone_tuteur' => $this->telephone_tuteur,
-                        'adresse' => $this->adresse
-                    ]);
-                }
-                $this->reset();
-                return redirect()->route('inscriptionetreinscription.index')->with('success', 'Inscription effectuée avec succès!');
+            // Vérifier si l'étudiant existe
+            if ($this->etudiant) {
+                $this->etudiant->update([
+                    'telephone' => $this->telephone,
+                    'email' => $this->email,
+                    'nom_tuteur' => $this->nom_tuteur,
+                    'telephone_tuteur' => $this->telephone_tuteur,
+                    'adresse' => $this->adresse
+                ]);
+            }
+
+            $this->reset();
+            return redirect()->route('inscriptionetreinscription.index')->with('success', 'Inscription effectuée avec succès!');
     }
 
 
@@ -208,8 +209,8 @@ class ReinscriptionEtudiant extends Component
         return view('livewire.scolarite.reinscription-etudiant',[
             'promotions' => Promotion::all(),
             'niveaux' => Niveau::where('niveau','Licence 2')->orWhere('niveau', 'Licence 3')->orWhere('niveau', 'Licence 4')->get(),
-            'programmes'=> Programme::all(),
-            'annee_universitaires'=> AnneeUniversitaire::orderBy('created_at','desc')->paginate(1),
+            'programmes' => Programme::all(),
+            'annee_universitaires' => AnneeUniversitaire::orderBy('created_at','desc')->paginate(1),
         ]);
     }
 }

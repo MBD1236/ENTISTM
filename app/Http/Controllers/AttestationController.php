@@ -39,13 +39,16 @@ class AttestationController extends Controller
         $total = Attestation::count();
         $attestation = new Attestation();
 
-        if (!$request->session()->has('reff')) {  // Générer un nouveau numéro de référence si non existant en session
-            $totalreff = Reference::count();
-            $reff = str_pad($totalreff + 1, 3, '0', STR_PAD_LEFT);
-            $request->session()->put('reff', $reff);
+        $lastReference = Reference::orderBy('id', 'desc')->first();
+
+        if ($lastReference) {
+            $lastReff = $lastReference->numero;
+            $reff = str_pad($lastReff + 1, 3, '0', STR_PAD_LEFT);
         } else {
-            $reff = $request->session()->get('reff');
+            $reff = '001';
         }
+
+        $request->session()->put('reff', $reff);
 
         return view('scolarite.attestations.form', [
             'attestation' => $attestation,
@@ -54,10 +57,8 @@ class AttestationController extends Controller
             'annee_universitaires'=> AnneeUniversitaire::orderBy('created_at', 'desc')->paginate(10),
             'etudiants' => Etudiant::all(),
             'attestation_types'=> AttestationType::all(),
-            // le nombre total des attestation
             'total' => $total,
             'reff' => $reff 
-
         ]);
     }
     
@@ -109,13 +110,21 @@ class AttestationController extends Controller
     public function edit(Attestation $attestation, Request $request)
     {
         $total = Attestation::count();
-        if (!$request->session()->has('reff')) {  // Générer un nouveau numéro de référence si non existant en session
-            $totalreff = Reference::count();
-            $reff = str_pad($totalreff + 1, 3, '0', STR_PAD_LEFT);
-            $request->session()->put('reff', $reff);
+        if ($attestation->reference_id) {
+            $reff = $attestation->reference->numero; // Supposant que 'reference_id' est la clé étrangère et 'reference' est la relation définie
         } else {
-            $reff = $request->session()->get('reff');
+            $lastReference = Reference::orderBy('id', 'desc')->first();
+
+            if ($lastReference) {
+                $lastReff = $lastReference->numero;
+                $reff = str_pad($lastReff + 1, 3, '0', STR_PAD_LEFT);
+            } else {
+                $reff = '001';
+            }
+
+            $request->session()->put('reff', $reff);
         }
+
         return view('scolarite.attestations.form', [
             'attestation' => $attestation,
             'programmes'=> Programme::all(),
@@ -123,11 +132,11 @@ class AttestationController extends Controller
             'annee_universitaires'=> AnneeUniversitaire::orderBy('created_at', 'desc')->paginate(10),
             'etudiants' => Etudiant::all(),
             'attestation_types'=> AttestationType::all(),
-            // le nombre total des attestation
             'total' => $total,
             'reff' => $reff,
         ]);
     }
+
 
     /**
      * Update the specified resource in storage.

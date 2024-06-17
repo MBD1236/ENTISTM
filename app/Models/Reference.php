@@ -12,4 +12,10 @@ class Reference extends Model
     protected $fillable = [
         'numero',
     ];
+
+    // pour les attestation
+    public function attestations() {
+        return $this->hasMany(Attestation::class);
+    }
+
 }
