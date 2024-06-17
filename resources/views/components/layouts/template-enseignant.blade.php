@@ -304,27 +304,41 @@
        
 
         <li class="nav-item">
-            <a class="nav-link collapsed" data-bs-target="#components-nav2" data-bs-toggle="collapse" href="#">
-              <i class="fa fa-graduation-cap"></i><span>Gestion des devoirs</span><i class="bi bi-chevron-down ms-auto"></i>
-            </a>
-            <ul id="components-nav2" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-              <li>
-                <a href="{{ route('enseignant.devoirs') }}" wire:navigate>
-                  <i class="fa fa-users"></i><span>Devoirs</span>
-                </a>
-              </li>
-              <li>
-                <a href="" wire:navigate>
-                  <i class="fa fa-user-plus"></i><span>Correction et notation</span>
-                </a>
-              </li>
-            </ul>
-          </li>
+          <a class="nav-link collapsed" data-bs-target="#components-nav2" data-bs-toggle="collapse" href="#">
+            <i class="fa fa-graduation-cap"></i><span>Gestion des devoirs</span><i class="bi bi-chevron-down ms-auto"></i>
+          </a>
+          <ul id="components-nav2" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+            <li>
+              <a href="{{ route('enseignant.devoirs') }}" wire:navigate>
+                <i class="fa fa-users"></i><span>Devoirs</span>
+              </a>
+            </li>
+            <li>
+              <a href="" wire:navigate>
+                <i class="fa fa-user-plus"></i><span>Correction et notation</span>
+              </a>
+            </li>
+          </ul>
+        </li>
 
         <li class="nav-item">
           <a class="nav-link collapsed" href="{{ route('scolarite.service.index') }}" wire:navigate>
             <i class="fa fa-desktop"></i>
             <span>Services</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="{{ route('enseignant.partagefile') }}" wire:navigate>
+            <i class="fa fa-share-square"></i>
+            <span>Partage de Fichier</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="{{ route('chatify') }}" wire:navigate>
+            <i class="fa fa-comment"></i>
+            <span>Chats</span>
           </a>
         </li>
 

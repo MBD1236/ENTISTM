@@ -47,7 +47,7 @@
                         <td>{{ $service->telephone }}</td>
                         <td>{{ $service->nomservice }}</td>
                         <td class="d-flex gap-1 justify-content-end align-items-center ">
-                            <a href="{{ route('scolarite.service.edit', $service) }}" class="btn btn-modal p-1 px-2"><i class="bi bi-pencil-square cprimary"></i></a>
+                            <a href="{{ route('scolarite.service.edit', $service) }}" class="btn btn-modal p-1 px-2"><i class="bi bi-pencil-square fs-5"></i></a>
                             <!-- Bouton pour déclencher le modal de confirmation -->
                             <a href="" type="button" data-bs-toggle="modal" data-bs-target="#verticalycentered{{$k}}">
                                 <i class="bi bi-trash cdanger"></i>

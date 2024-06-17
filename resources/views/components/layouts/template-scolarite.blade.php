@@ -387,6 +387,20 @@
           </a>
         </li>
 
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="{{ route('scolarite.partagefile') }}" wire:navigate>
+            <i class="fa fa-share-square"></i>
+            <span>Partage de Fichier</span>
+          </a>
+        </li>
+        
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="{{ route('chatify') }}" wire:navigate>
+            <i class="fa fa-comment"></i>
+            <span>Chats</span>
+          </a>
+        </li>
+
       </ul>
 
     </aside><!-- End Sidebar-->

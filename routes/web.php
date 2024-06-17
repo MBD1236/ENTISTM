@@ -158,13 +158,8 @@ use App\Livewire\Scolarite\ViewDocuments;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\CreerCompteController;
 use App\Http\Controllers\ScolaritePrintReleveController;
-
-Route::get('/register', [CreerCompteController::class, 'showRegistrationForm'])->name('register.index');
-Route::post('/register', [CreerCompteController::class, 'register'])->name('register.store');
-Route::get('/login', [CreerCompteController::class, 'showLoginForm'])->name('login.index');
-Route::post('/login', [CreerCompteController::class, 'login'])->name('login.store');
-Route::post('/logout', [CreerCompteController::class, 'logout'])->name('logout');
-
+use App\Livewire\Enseignant\PartargeFichier as EnseignantPartargeFichier;
+use App\Livewire\Scolarite\PartargeFichier;
 
 /* Routes added by thd */
 
@@ -176,6 +171,10 @@ Route::prefix('enseignant')->name("enseignant.")->group(function () {
     Route::get('/publications', PublicationsTable::class)->name('publications');
     Route::get('/devoirs', DevoirsTable::class)->name('devoirs');
     Route::get('/devoir/{devoir}', VoirDevoir::class)->name('voir.devoir');
+
+    // pour le partage de fichier
+    Route::get('/partagefile', EnseignantPartargeFichier::class)->name('partagefile');
+    Route::delete('/scolarite/partagefile/{id}', [EnseignantPartargeFichier::class, 'destroy'])->name('partagefile.destroy');
 
 });
 
@@ -305,6 +304,9 @@ Route::prefix('scolarite')->group(function () {
     Route::post('/releve/notes/index', [ScolaritePrintReleveController::class, 'index'])->name('scolarite.print.indexreleve');
     Route::get('/releve/notesAnnuel', [ScolaritePrintReleveController::class, 'releveAnnuelform'])->name('scolarite.print.releveAnnuelform');
     Route::post('/releve/notes/indexAnnuel', [ScolaritePrintReleveController::class, 'releveAnnuelindex'])->name('scolarite.print.releveAnnuelindex');
+    // pour le partage de fichier
+    Route::get('/partagefile', PartargeFichier::class)->name('scolarite.partagefile');
+    Route::delete('/scolarite/partagefile/{id}', [PartargeFichier::class, 'destroy'])->name('scolarite.partagefile.destroy');    
 
     // pour l'impression des etudiants inscrits et reinscrit
     Route::post('/print/index', [ScolaritePrintEtudiantListController::class, 'index'])->name('scolarite.print.index');
@@ -313,9 +315,6 @@ Route::prefix('scolarite')->group(function () {
     Route::post('/etudiant/oriente', [ScolaritePrintEtudiantListController::class, 'oriente'])->name('scolarite.print.oriente');
     Route::get('/etudiant/forms', [ScolaritePrintEtudiantListController::class, 'forms'])->name('scolarite.print.forms');
     // pour les releves de notes
-    // Route::get('/releve/index', [ReleveNote::class])->name('scolarite.releve.index');
-    // Route::get('/releve/create', [ReleveNote::class])->name('scolarite.releve.create');
-
     Route::name("scolarite.")->group(function () {
         Route::resource("releve", ScolariteReleveNoteController::class)->except(["show"]);
     });
