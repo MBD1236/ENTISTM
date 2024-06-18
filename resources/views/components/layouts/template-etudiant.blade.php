@@ -310,10 +310,11 @@
                 </a>
               </li>
               <li>
-                <a href="http://istelearning.42web.io" wire:navigate>
-                  <i class="bi bi-phone-flip"></i><span>E-learning</span>
+                <a href="http://istelearning.42web.io" target="_blank">
+                    <i class="bi bi-phone-flip"></i><span>E-learning</span>
                 </a>
               </li>
+            
             </ul>
         </li>
 

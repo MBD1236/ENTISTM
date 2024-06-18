@@ -19,9 +19,9 @@
     }
     /*  */
 </style>
-@foreach($etudiants as $etudiant)
+    @foreach($etudiants as $etudiant)
         <div class="container my-4">
-            <div class="row py-0">
+            <div class="row px-0">
                 <div class="card col-sm-11 col-md-11 col-lg-6 p-0 carte text-dark" >
                     <div class="card-body border border-2 p-0">
                         <div class="pt-0 row px-2">
@@ -85,23 +85,23 @@
                     </div>
                 </div>
                 
-                @foreach ($services as $service)
                 <div class="card col-sm-11 col-md-11 col-lg-6 carte border border-2 text-dark">
+                    @foreach ($services as $service)
                     <div class="card-body d-flex flex-column justify-content-center align-items-center">
-                        @if ($service->sigle === "SC" || $service->nomservice ==="Service Scolarite")
+                        @if ($service->sigle === "SC" || $service->nomservice =="Service Scolarite")
                             <h6 class="mb-5 fw-bold">{{$service->fonction}}</h6>
                             <strong class="mt-5">{{$service->nom}} </strong>                        
                         @endif
                     </div>
+                    @endforeach
                 </div>
-                @endforeach
             </div>
         
-            {{-- <script>
+            <script>
                 window.onload = function() {
                     window.print();
                 }
-            </script> --}}
+            </script>
         </div>
     @endforeach
 
