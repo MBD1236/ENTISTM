@@ -70,7 +70,7 @@ class InscriptionEtudiant extends Component
             'certificat_nationalite' => ['required', 'mimes:jpg,jpeg,svg,png,gif,ico,pdf','max:10240'],
             'certificat_medical' => ['required', 'mimes:jpg,jpeg,png,svg,gif,ico,pdf','max:10240'],
             'extrait_naissance' => ['required', 'mimes:jpg,jpeg,png,gif,svg,ico,pdf','max:10240'],
-            'photo' => ['required', 'image', 'mimes:jpg,jpeg,png,gif,svg', 'max:10240'],
+            'photo' => ['required', 'image', 'mimes:jpg,jpeg,png,gif,svg','max:10240'],
             'nom_tuteur' => ['string', 'min:2'],
             'telephone_tuteur' => ['regex:/^([0-9\s\-\+\(\)]*)$/', 'between:9,18', 'unique:etudiants'],      
         ];
@@ -188,7 +188,7 @@ class InscriptionEtudiant extends Component
             'promotions' => Promotion::all(),
             'niveaux' => Niveau::where('niveau', 'Licence 1')->get(),
             'programmes' => Programme::all(),
-            'annee_universitaires' => AnneeUniversitaire::all(),
+            'annee_universitaires' => AnneeUniversitaire::orderBy('created_at', 'desc')->paginate(1),
         ]);
     }
 }

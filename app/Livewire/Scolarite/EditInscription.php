@@ -94,7 +94,7 @@ class EditInscription extends Component
      */
     public function cancel() {
         $this->clearStatus();
-        return to_route('inscriptionetreinscription.index');
+        return to_route('scolarite.inscriptionetreinscription.index');
     }
 
     /**
@@ -170,7 +170,7 @@ class EditInscription extends Component
             ]);
         }
         $this->reset();
-        return redirect()->route('inscriptionetreinscription.index')->with('success', 'Enregistrement modifiée avec succès!');
+        return redirect()->route('scolarite.inscriptionetreinscription.index')->with('success', 'Enregistrement modifiée avec succès!');
     }
 
     public function clearStatus()

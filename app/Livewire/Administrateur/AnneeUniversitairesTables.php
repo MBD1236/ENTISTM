@@ -16,12 +16,12 @@ class AnneeUniversitairesTables extends Component
 
     public function rules() {
         return [
-            'session' => ['required','string', 'regex:([a-z])', 'unique:anneeuniversitaires'],
+            'session' => ['required','string', 'unique:annee_universitaires'],
         ];
     }
     public function rulesEdit() {
         return [
-            'session' => ['required','string', 'regex:([a-z])', Rule::unique('anneeuniversitaires')->ignore($this->anneeuniversitaire->id, 'id')],
+            'session' => ['required','string', Rule::unique('annee_universitaires')->ignore($this->anneeuniversitaire->id, 'id')],
         ];
     }
 
@@ -47,7 +47,7 @@ class AnneeUniversitairesTables extends Component
     }
     public function update() {
         $data = $this->validate($this->rulesEdit());
-        $this->anneeuniversitaires->update($data);
+        $this->annee_universitaires->update($data);
         $this->reset();
         session()->flash('successUpdate', 'Modification effectuée avec succès!');
     }

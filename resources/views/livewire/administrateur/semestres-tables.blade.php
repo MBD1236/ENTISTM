@@ -30,7 +30,7 @@
 
                 {{-- Modal pour l'ajout d'un departement --}}
                 <div class="modal fade" id="ajoutDepartements" tabindex="-1" wire:ignore.self>
-                    <div class="modal-dialog modal-sm">
+                    <div class="modal-dialog modal-md">
                         <div class="modal-content">
                             <div class="modal-header bg-card-modal">
                                 <h3 class="modal-title">Ajout d'un semestre</h3>
@@ -64,7 +64,7 @@
 
                 {{-- Modal pour la modification d'un cours --}}
                 <div class="modal fade" id="modifDepartements" tabindex="-1" wire:ignore.self>
-                    <div class="modal-dialog modal-sm">
+                    <div class="modal-dialog modal-md">
                         <div class="modal-content">
                             <div class="modal-header bg-card-modal">
                                 <h3 class="modal-title">Modification d'un semestre</h3>

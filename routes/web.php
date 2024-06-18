@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AccueilController;
+use App\Http\Controllers\AdminServiceController;
 use App\Http\Controllers\AnneeUnivController;
 use App\Http\Controllers\ArticlesController;
 use App\Http\Controllers\AttestationController;
@@ -178,6 +179,8 @@ use App\Livewire\Scolarite\ViewDocuments;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ScolaritePrintReleveController;
 use App\Livewire\Enseignant\PartargeFichier as EnseignantPartargeFichier;
+use App\Livewire\Etude\PartargeFichier as EtudePartargeFichier;
+use App\Livewire\Etude\PartargeFichierRecu;
 use App\Livewire\Etudiant\EtudiantsMatiere;
 use App\Livewire\Scolarite\PartargeFichier;
 
@@ -192,6 +195,11 @@ Route::prefix('admin')->middleware('admin')->name('admin.')->group(function() {
     Route::get('/semestres', SemestresTables::class)->name('semestres');
     Route::get('/niveaux', NiveauxTables::class)->name('niveaux');
     Route::get('/anneeuniversitaires', AnneeUniversitairesTables::class)->name('anneeuniversitaires');
+
+    // thd
+    Route::get('dashboard', [ AdminServiceController::class, 'dashboard'])->name('dashboard');
+    Route::resource("service", AdminServiceController::class)->except(["show"]);
+
 });
 
 Route::prefix('etudiant')->middleware('etudiant')->name('etudiant.')->group(function () {
@@ -346,14 +354,14 @@ Route::prefix('scolarite')->middleware('scolarite')->name('scolarite.')->group(f
     Route::post('/printBadge', [PrintBadgeController::class, 'printBadge'])->name('printBadge');
     Route::resource("releve", ScolariteReleveNoteController::class)->except(["show"]);
 
-     // pour l'impression des releves de notes 
-     Route::get('/releve/notes', [ScolaritePrintReleveController::class, 'form'])->name('print.formreleve');
-     Route::post('/releve/notes/index', [ScolaritePrintReleveController::class, 'index'])->name('print.indexreleve');
-     Route::get('/releve/notesAnnuel', [ScolaritePrintReleveController::class, 'releveAnnuelform'])->name('print.releveAnnuelform');
-     Route::post('/releve/notes/indexAnnuel', [ScolaritePrintReleveController::class, 'releveAnnuelindex'])->name('print.releveAnnuelindex');
-     // pour le partage de fichier
-     Route::get('/partagefile', PartargeFichier::class)->name('partagefile');
-     Route::delete('/scolarite/partagefile/{id}', [PartargeFichier::class, 'destroy'])->name('partagefile.destroy');    
+    // pour l'impression des releves de notes 
+    Route::get('/releve/notes', [ScolaritePrintReleveController::class, 'form'])->name('print.formreleve');
+    Route::post('/releve/notes/index', [ScolaritePrintReleveController::class, 'index'])->name('print.indexreleve');
+    Route::get('/releve/notesAnnuel', [ScolaritePrintReleveController::class, 'releveAnnuelform'])->name('print.releveAnnuelform');
+    Route::post('/releve/notes/indexAnnuel', [ScolaritePrintReleveController::class, 'releveAnnuelindex'])->name('print.releveAnnuelindex');
+    // pour le partage de fichier
+    Route::get('/partagefile', PartargeFichier::class)->name('partagefile');
+    Route::delete('/scolarite/partagefile/{id}', [PartargeFichier::class, 'destroy'])->name('partagefile.destroy');    
  
 
     Route::prefix('parametres')->group(function () {
@@ -381,9 +389,11 @@ Route::prefix('scolarite')->middleware('scolarite')->name('scolarite.')->group(f
     });
 });
 
-Route::prefix('etudes')->group(function () {
+Route::prefix('etudes')->middleware('s_etude')->group(function () {
     Route::get('/', [EtudesController::class, 'index'])->name('etudes.index');
     Route::get('/parametre', [EtudesController::class, 'afficherParametre'])->name('etudes.parametre');
+    Route::get('/partageFichier', EtudePartargeFichier::class)->name('etudes.partagefile');
+    Route::get('/partageFichier/recu', PartargeFichierRecu::class)->name('etudes.partagefile.recu');
 
     Route::prefix('emplois')->group(function () {
         Route::prefix('cours')->group(function () {

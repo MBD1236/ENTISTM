@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Dashboard - NiceAdmin Bootstrap Template</title>
+  <title>entistmamou</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -135,7 +135,7 @@
           <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
             <li>
                 <a href="{{ route('scolarite.orientation') }}">
-                  <i class="fa fa-list"></i><span>Etudiants orientés</span>
+                  <i class="fa fa-list"></i><span>List Etudiants orientés</span>
                 </a>
             </li>
             <li>
@@ -150,7 +150,7 @@
             </li>
             <li>
               <a href="{{ route('scolarite.inscriptionetreinscription.index') }}">
-                <i class="fa fa-list"></i><span>Etudiants inscrits & reinscrits</span>
+                <i class="fa fa-list"></i><span>List inscrits & reinscrits</span>
               </a>
             </li>
             <li>

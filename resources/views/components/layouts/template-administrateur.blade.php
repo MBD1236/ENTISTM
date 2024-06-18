@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Administrateur Dahasbord</title>
+  <title>entistmamou</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -118,6 +118,13 @@
 
       <ul class="sidebar-nav" id="sidebar-nav">
         <li class="nav-item">
+          <a class="nav-link collapsed" href="{{ route('admin.dashboard') }}">
+            <i class="fa fa-home"></i>
+            <span>Tableau de bord</span>
+          </a>
+        </li><!-- End service Page Nav -->
+
+        <li class="nav-item">
           <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
             <i class="fa fa-users"></i><span>Gestion des utilisateurs</span><i class="bi bi-chevron-down ms-auto"></i>
           </a>
@@ -173,6 +180,27 @@
             </li>
           </ul>
         </li><!-- End Components Nav -->
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="{{ route('admin.service.index') }}">
+            <i class="fa fa-desktop"></i>
+            <span>Services</span>
+          </a>
+        </li><!-- End service Page Nav -->
+
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="{{ route('scolarite.partagefile') }}" wire:navigate>
+            <i class="fa fa-share-square"></i>
+            <span>Partage de Fichier</span>
+          </a>
+        </li>
+        
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="{{ route('chatify') }}" wire:navigate>
+            <i class="fa fa-comment"></i>
+            <span>Chats</span>
+          </a>
+        </li>
+        
       </ul>
 
     </aside><!-- End Sidebar-->

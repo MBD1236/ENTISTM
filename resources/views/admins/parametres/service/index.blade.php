@@ -1,4 +1,4 @@
-@extends('layouts.template-scolarite')
+@extends('layouts.template-administrateur')
 
 @section('title', 'Liste des services')
 
@@ -18,7 +18,7 @@
     <div class="card-body py-4 px-2">
         <div class="d-flex flex-row justify-content-end mb-2">
             <div class="mb-3">
-                <a href="{{ route('scolarite.service.create') }}" class="btn-modal">
+                <a href="{{ route('admin.service.create') }}" class="btn-modal">
                     <i class="bi bi-plus fs-6 fw-bold"></i>
                     <span>Ajouter un nouveau service</span>
                 </a>
@@ -47,7 +47,7 @@
                         <td>{{ $service->telephone }}</td>
                         <td>{{ $service->nomservice }}</td>
                         <td class="d-flex gap-1 justify-content-end align-items-center ">
-                            <a href="{{ route('scolarite.service.edit', $service) }}" class="btn p-1 px-2"><i class="bi bi-pencil-square fs-5" style="color: #120a5c"></i></a>
+                            <a href="{{ route('scolarite.service.edit', $service) }}" class="p-1 px-2"><i class="bi bi-pencil-square fs-5" style="color: #120a5c"></i></a>
                             <!-- Bouton pour déclencher le modal de confirmation -->
                             <a href="" type="button" data-bs-toggle="modal" data-bs-target="#verticalycentered{{$k}}">
                                 <i class="bi bi-trash cdanger"></i>

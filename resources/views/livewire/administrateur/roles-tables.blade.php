@@ -31,7 +31,7 @@
 
                 {{-- Modal pour l'ajout d'un role --}}
                 <div class="modal fade" id="ajoutRoles" tabindex="-1" wire:ignore.self>
-                    <div class="modal-dialog modal-sm">
+                    <div class="modal-dialog modal-md">
                         <div class="modal-content">
                             <div class="modal-header bg-card-modal">
                                 <h3 class="modal-title">Ajout d'un role</h3>
@@ -65,7 +65,7 @@
 
                 {{-- Modal pour la modification d'un cours --}}
                 <div class="modal fade" id="modifRoles" tabindex="-1" wire:ignore.self>
-                    <div class="modal-dialog modal-sm">
+                    <div class="modal-dialog modal-md">
                         <div class="modal-content">
                             <div class="modal-header bg-card-modal">
                                 <h3 class="modal-title">Modification d'un role</h3>

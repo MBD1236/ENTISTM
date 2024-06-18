@@ -59,6 +59,7 @@ class Kernel extends HttpKernel
         'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
         'admin' => \App\Http\Middleware\AdminMiddleware::class,
         'scolarite' => \App\Http\Middleware\ScolariteMiddleware::class,
+        's_etude' => \App\Http\Middleware\SEtudeMiddleware::class,
         'g_info' => \App\Http\Middleware\GInfoMiddleware::class,
         'imp' => \App\Http\Middleware\ImpMiddleware::class,
         'teb' => \App\Http\Middleware\TebMiddleware::class,

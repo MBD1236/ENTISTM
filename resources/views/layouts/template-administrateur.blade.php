@@ -5,9 +5,16 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>entistmamou</title>
+  <title>Administrateur Dahasbord</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
+
+  <!-- pour le select2 -->
+  <link href="{{ asset('assets/css/select2.min.css') }}" rel="stylesheet">
+  <script src="{{asset('assets/js/jquery-3.6.0.js')}}"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{{ asset('assets/js/select2.min.js') }}"></script>
 
   <!-- Favicons -->
   <link href="{{ asset('assets/img/logo-ent-trans.png') }}" rel="icon">
@@ -29,6 +36,7 @@
 
   <!-- Template Main CSS File -->
   <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
+
 </head>
 
 <body>
@@ -46,7 +54,7 @@
 
     <div class="row">
         <div class="col">
-            <h3 class="d-none d-lg-block ms-3 mt-2 title-top-bar ">Service études</h3>
+            <h3 class="d-none d-lg-block ms-3 mt-2 title-top-bar ">Espace Administration</h3>
         </div>
     </div>
 
@@ -64,7 +72,7 @@
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
             <img src="https://ui-avatars.com/api/?name={{ auth()->user()->name }}" alt="Profile" class="rounded-circle">
             <span class="d-none d-md-block dropdown-toggle ps-2">{{ auth()->user()->name }}</span>
-          </a>
+          </a><!-- End Profile Iamge Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
@@ -81,19 +89,18 @@
                 <span>Mon Profil</span>
               </a>
             </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
+            
+            
             <li>
               <form action="{{ route('logout') }}" method="POST" style="display: inline;">
-                @csrf
-                <button type="submit" class="dropdown-item d-flex align-items-center" style="border: none; background: none; cursor: pointer;">
-                    <i class="bi bi-box-arrow-right"></i>
-                    <span>Déconnexion</span>
-                </button>
+                  @csrf
+                  <button type="submit" class="dropdown-item d-flex align-items-center" style="border: none; background: none; cursor: pointer;">
+                      <i class="bi bi-box-arrow-right"></i>
+                      <span>Déconnexion</span>
+                  </button>
               </form>
-            </li>
+          </li>
+
 
           </ul><!-- End Profile Dropdown Items -->
         </li><!-- End Profile Nav -->
@@ -110,73 +117,91 @@
     <aside id="sidebar" class="sidebar">
 
       <ul class="sidebar-nav" id="sidebar-nav">
-
         <li class="nav-item">
-          <a class="nav-link" href="{{ route('etudes.index') }}">
+          <a class="nav-link collapsed" href="{{ route('admin.dashboard') }}">
             <i class="fa fa-home"></i>
-            <span class="">Tableau de bord</span>
+            <span>Tableau de bord</span>
           </a>
-        </li><!-- End Dashboard Nav -->
+        </li><!-- End service Page Nav -->
 
         <li class="nav-item">
           <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
-            <i class="fa fa-calendar"></i><span>Emploi du temps</span><i class="bi bi-chevron-down ms-auto"></i>
+            <i class="fa fa-users"></i><span>Gestion des utilisateurs</span><i class="bi bi-chevron-down ms-auto"></i>
           </a>
           <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
             <li>
-              <a href="{{ route('cours.index') }}">
-                <i class="fa fa-user-plus"></i><span>Cours</span>
+              <a href="{{ route('admin.roles') }}" wire:navigate>
+                <i class="fa fa-book"></i><span>Roles</span>
               </a>
             </li>
             <li>
-              <a href="{{ route('composition.index') }}">
-                <i class="fa fa-users"></i><span>Composition</span>
+              <a href="{{ route('admin.utilisateurs') }}" wire:navigate>
+                <i class="fa fa-user"></i><span>Utilisateurs</span>
               </a>
             </li>
           </ul>
         </li><!-- End Components Nav -->
-
+      </ul>
+      <ul class="sidebar-nav" id="sidebar-nav">
         <li class="nav-item">
-          <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
-            <i class="bi bi-layout-text-window-reverse"></i><span>Cours</span><i class="bi bi-chevron-down ms-auto"></i>
+          <a class="nav-link collapsed" data-bs-target="#components-nav2" data-bs-toggle="collapse" href="#">
+            <i class="fa fa-cog"></i><span>Paramétrages</span><i class="bi bi-chevron-down ms-auto"></i>
           </a>
-          <ul id="tables-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+          <ul id="components-nav2" class="nav-content collapse " data-bs-parent="#sidebar-nav">
             <li>
-              <a href="tables-general.html">
-                <i class="fa fa-user-plus"></i><span>Normaux</span>
+              <a href="{{ route('admin.departements') }}" wire:navigate>
+                <i class="fa fa-book"></i><span>Departements</span>
               </a>
             </li>
             <li>
-              <a href="tables-data.html">
-                <i class="fa fa-users"></i><span>Mission d'enseignements</span>
+              <a href="{{ route('admin.programmes') }}" wire:navigate>
+                <i class="fa fa-book"></i><span>Programmes</span>
+              </a>
+            </li>
+            <li>
+              <a href="{{ route('admin.promotions') }}" wire:navigate>
+                <i class="fa fa-book"></i><span>Promotions</span>
+              </a>
+            </li>
+            <li>
+              <a href="{{ route('admin.anneeuniversitaires') }}" wire:navigate>
+                <i class="bi bi-clock"></i><span>Année Universitaires</span>
+              </a>
+            </li>
+            <li>
+              <a href="{{ route('admin.niveaux') }}" wire:navigate>
+                <i class="bi bi-book"></i><span>Niveaux</span>
+              </a>
+            </li>
+            <li>
+              <a href="{{ route('admin.semestres') }}" wire:navigate>
+                <i class="bi bi-book"></i><span>Semestres</span>
               </a>
             </li>
           </ul>
-        </li><!-- End Tables Nav -->
+        </li><!-- End Components Nav -->
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="{{ route('admin.service.index') }}">
+            <i class="fa fa-desktop"></i>
+            <span>Services</span>
+          </a>
+        </li><!-- End service Page Nav -->
 
         <li class="nav-item">
-          <a class="nav-link collapsed" href="{{ route('etudes.partagefile') }}">
-            <i class="fa fa-share"></i>
+          <a class="nav-link collapsed" href="{{ route('scolarite.partagefile') }}" wire:navigate>
+            <i class="fa fa-share-square"></i>
             <span>Partage de Fichier</span>
           </a>
-        </li><!-- End F.A.Q Page Nav -->
-
+        </li>
+        
         <li class="nav-item">
-          <a class="nav-link collapsed" href="{{ route('chatify') }}">
+          <a class="nav-link collapsed" href="{{ route('chatify') }}" wire:navigate>
             <i class="fa fa-comment"></i>
             <span>Chats</span>
           </a>
-        </li><!-- End F.A.Q Page Nav -->
-
-        <li class="nav-item">
-          <a class="nav-link collapsed" href="{{ route('etudes.parametre') }}">
-            <i class="fa fa-cog"></i>
-            <span>Paramètres</span>
-          </a>
-        </li><!-- End F.A.Q Page Nav -->
-
+        </li>
       </ul>
-
+      
     </aside><!-- End Sidebar-->
 
 

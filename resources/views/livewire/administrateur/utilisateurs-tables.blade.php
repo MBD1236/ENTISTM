@@ -47,23 +47,23 @@
                                         @endif
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-12">
-                                            <label for="type" class="label-control label-text">Nom<span class="text-danger">*</span></label>
+                                        <div class="col-md-12 my-1">
+                                            <label for="type" class="label-control label-text my-1">Nom<span class="text-danger">*</span></label>
                                             <input type="text" id="name"  class="form-control border-input @error('name') is-invalid @enderror" placeholder="Nom du user" wire:model='name' wire:click='resetError'>
                                             <div class="invalid-feedback">@error('name') {{ $message }} @enderror</div>
                                         </div>
-                                        <div class="col-md-12">
-                                            <label for="type" class="label-control label-text">Matricule<span class="text-danger">*</span></label>
+                                        <div class="col-md-12 my-1">
+                                            <label for="type" class="label-control label-text my-1">Matricule<span class="text-danger">*</span></label>
                                             <input type="text" id="matricule"  class="form-control border-input @error('matricule') is-invalid @enderror" placeholder="Matricule du user" wire:model='matricule' wire:click='resetError'>
                                             <div class="invalid-feedback">@error('matricule') {{ $message }} @enderror</div>
                                         </div>
-                                        <div class="col-md-12">
-                                            <label for="type" class="label-control label-text">Email<span class="text-danger">*</span></label>
+                                        <div class="col-md-12 my-1">
+                                            <label for="type" class="label-control label-text my-1">Email<span class="text-danger">*</span></label>
                                             <input type="email" id="email"  class="form-control border-input @error('email') is-invalid @enderror" placeholder="Email du user" wire:model='email' wire:click='resetError'>
                                             <div class="invalid-feedback">@error('email') {{ $message }} @enderror</div>
                                         </div>
-                                        <div class="col-md-12">
-                                            <label for="role_id" class="select-control label-text">Role<span class="text-danger">*</span></label>
+                                        <div class="col-md-12 my-1">
+                                            <label for="role_id" class="select-control label-text my-1">Role<span class="text-danger">*</span></label>
                                             <select class="form-select border-input @error('role_id') is-invalid @enderror" wire:model="role_id" id="role_id" wire:click='resetError'>
                                                 <option value="0">Sélectioner un role</option>
                                                 @foreach ($roles as $role)
@@ -72,12 +72,12 @@
                                             </select>
                                             <div class="invalid-feedback">@error('role_id') {{ $message }} @enderror</div>
                                         </div>
-                                        <div class="col-md-12">
-                                            <label for="type" class="label-control label-text">Password<span class="text-danger">*</span></label>
+                                        <div class="col-md-12 my-1">
+                                            <label for="type" class="label-control label-text my-1">Password<span class="text-danger">*</span></label>
                                             <input type="password" id="password"  class="form-control border-input @error('password') is-invalid @enderror" placeholder="Mot de passe du user" wire:model='password' wire:click='resetError'>
                                             <div class="invalid-feedback">@error('password') {{ $message }} @enderror</div>
                                         </div>
-                                        <div class="modal-footer">
+                                        <div class="modal-footer my-1">
                                             <button type="submit" wire:click.prevent='store' class="btn-modal"><i class="fa fa-check me-1"></i>Enregistrer</button>
                                             <button type="button" class="btn-fermer bg-danger text-white" data-bs-dismiss="modal"><i class="fa fa-times me-1"></i>Fermer</button>
                                         </div>
@@ -106,23 +106,23 @@
                                         @endif
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-12">
-                                            <label for="type" class="label-control label-text">Nom<span class="text-danger">*</span></label>
+                                        <div class="col-md-12 my-1">
+                                            <label for="type" class="label-control label-text mt-1">Nom<span class="text-danger">*</span></label>
                                             <input type="text" id="name"  class="form-control border-input @error('name') is-invalid @enderror" placeholder="Nom du user" wire:model='name' wire:click='resetError'>
                                             <div class="invalid-feedback">@error('name') {{ $message }} @enderror</div>
                                         </div>
-                                        <div class="col-md-12">
-                                            <label for="type" class="label-control label-text">Matricule<span class="text-danger">*</span></label>
+                                        <div class="col-md-12 my-1">
+                                            <label for="type" class="label-control label-text mt-1">Matricule<span class="text-danger">*</span></label>
                                             <input type="text" id="matricule"  class="form-control border-input @error('matricule') is-invalid @enderror" placeholder="Matricule du user" wire:model='matricule' wire:click='resetError'>
                                             <div class="invalid-feedback">@error('matricule') {{ $message }} @enderror</div>
                                         </div>
-                                        <div class="col-md-12">
-                                            <label for="type" class="label-control label-text">Email<span class="text-danger">*</span></label>
+                                        <div class="col-md-12 my-1">
+                                            <label for="type" class="label-control label-text mt-1">Email<span class="text-danger">*</span></label>
                                             <input type="email" id="email"  class="form-control border-input @error('email') is-invalid @enderror" placeholder="Email du user" wire:model='email' wire:click='resetError'>
                                             <div class="invalid-feedback">@error('email') {{ $message }} @enderror</div>
                                         </div>
-                                        <div class="col-md-12">
-                                            <label for="role_id" class="select-control label-text">Role<span class="text-danger">*</span></label>
+                                        <div class="col-md-12 my-1">
+                                            <label for="role_id" class="select-control label-text mt-1">Role<span class="text-danger">*</span></label>
                                             <select class="form-select border-input @error('role_id') is-invalid @enderror" wire:model="role_id" id="role_id" wire:click='resetError'>
                                                 <option value="0">Sélectioner un role</option>
                                                 @foreach ($roles as $role)
@@ -131,8 +131,8 @@
                                             </select>
                                             <div class="invalid-feedback">@error('role_id') {{ $message }} @enderror</div>
                                         </div>
-                                        <div class="col-md-12">
-                                            <label for="type" class="label-control label-text">Password<span class="text-danger">*</span></label>
+                                        <div class="col-md-12 my-1">
+                                            <label for="type" class="label-control label-text mt-1">Password<span class="text-danger">*</span></label>
                                             <input type="password" id="password"  class="form-control border-input @error('password') is-invalid @enderror" placeholder="Mot de passe du user" wire:model='password' wire:click='resetError'>
                                             <div class="invalid-feedback">@error('password') {{ $message }} @enderror</div>
                                         </div>

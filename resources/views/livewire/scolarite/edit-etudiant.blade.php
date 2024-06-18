@@ -1,11 +1,11 @@
 <div class="card">
-    @if($errors->any())
+    {{-- @if($errors->any())
         <ul>
             @foreach ($errors->all() as $item)
                 <li>{{ $item }}</li>
             @endforeach
         </ul>
-    @endif
+    @endif --}}
     <div class="card-header card-head">
         <h1 class="bg-card text-center text-white card-head"><i class="fa fa-graduation-cap me-1"></i>Modification de cet enregistrement</h1>
     </div>

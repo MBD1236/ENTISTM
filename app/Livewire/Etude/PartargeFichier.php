@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Scolarite;
+namespace App\Livewire\Etude;
 
 use App\Models\PartageFile;
 use App\Models\Service;
@@ -63,7 +63,7 @@ class PartargeFichier extends Component
     */
     public function cancel() {
         $this->clearStatus();
-        return to_route('scolarite.partagefile');
+        return to_route('etudes.partagefile');
     }
 
     public function edit(PartageFile $partage) {
@@ -95,7 +95,7 @@ class PartargeFichier extends Component
         $data['user_id'] = $userId;
         PartageFile::create($data);
         $this->reset();
-        return redirect()->route('scolarite.partagefile')->with('success', 'Fichier partagé avec succès!');
+        return redirect()->route('etudes.partagefile')->with('success', 'Fichier partagé avec succès!');
     }
 
     /**
@@ -125,7 +125,7 @@ class PartargeFichier extends Component
 
         $this->partage->update($data);
         $this->reset();
-        return redirect()->route('scolarite.partagefile')->with('success', 'Fichier partagé modifier avec succès!');
+        return redirect()->route('etudes.partagefile')->with('success', 'Fichier partagé modifier avec succès!');
     }
 
     /**
@@ -141,24 +141,22 @@ class PartargeFichier extends Component
             Storage::disk('public')->delete('partagefiles/'.$partage->fichier);
         }
         $partage->delete();
-        return redirect()->route('scolarite.partagefile')->with('success','Suppression du fichier effectuée avec succès');
+        return redirect()->route('etudes.partagefile')->with('success','Suppression du fichier effectuée avec succès');
     }
     
-    #[Layout("components.layouts.template-scolarite")]    
+    #[Layout("components.layouts.template-etudes")]    
     public function render()
     {
         $userId = Auth::user()->id;
         
         $services = Service::all();
-
-        $partages = PartageFile::query()->where('user_id', $userId);
+        $partages = PartageFile::query()->where('user_id', $userId); //fichier partagés
         if ($this->service_id)
-            $partages = PartageFile::query()->where('service_id', $this->service_id);
+            $partages = $partages->where('service_id', $this->service_id);
 
-
-        return view('livewire.scolarite.partarge-fichier', [
+        return view('livewire.etude.partarge-fichier', [
             'services' => $services,
-            'partages' => $partages->paginate(10)
+            'partages' => $partages->paginate(15)
         ]);
     }
 }

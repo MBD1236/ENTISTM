@@ -187,7 +187,7 @@ class InscriptionEtudiantNonOriente extends Component
         ]);
 
         $this->reset();
-        return redirect()->route('inscriptionetreinscription.index')->with('success', 'Inscription effectuée avec succès!');
+        return redirect()->route('scolarite.inscriptionetreinscription.index')->with('success', 'Inscription effectuée avec succès!');
     }
     
     #[Layout("components.layouts.template-scolarite")]
