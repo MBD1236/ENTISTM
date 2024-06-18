@@ -178,12 +178,20 @@ use App\Livewire\Scolarite\ReleveNote;
 use App\Livewire\Scolarite\ViewDocuments;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ScolaritePrintReleveController;
+use App\Livewire\Administrateur\PartargeFichier as AdministrateurPartargeFichier;
+use App\Livewire\Administrateur\PartargeFichierRecu as AdministrateurPartargeFichierRecu;
+use App\Livewire\Billeterie\PartargeFichier as BilleteriePartargeFichier;
+use App\Livewire\Billeterie\PartargeFichierRecu as BilleteriePartargeFichierRecu;
 use App\Livewire\Enseignant\PartargeFichier as EnseignantPartargeFichier;
+use App\Livewire\Enseignant\PartargeFichierRecu as EnseignantPartargeFichierRecu;
 use App\Livewire\Etude\PartargeFichier as EtudePartargeFichier;
 use App\Livewire\Etude\PartargeFichierRecu;
 use App\Livewire\Etudiant\EtudiantsMatiere;
 use App\Livewire\Scolarite\PartargeFichier;
-
+use App\Livewire\Scolarite\PartargeFichier as ScolaritePartargeFichier;
+use App\Livewire\Scolarite\PartargeFichierRecu as ScolaritePartargeFichierRecu;
+use App\Livewire\Departements\Gi\PartargeFichier as GIPartargeFichier;
+use App\Livewire\Departements\Gi\PartargeFichierRecu as GIPartargeFichierRecu;
 /* Routes added by thd */
 
 Route::prefix('admin')->middleware('admin')->name('admin.')->group(function() {
@@ -199,7 +207,10 @@ Route::prefix('admin')->middleware('admin')->name('admin.')->group(function() {
     // thd
     Route::get('dashboard', [ AdminServiceController::class, 'dashboard'])->name('dashboard');
     Route::resource("service", AdminServiceController::class)->except(["show"]);
-
+    // pour le partage de fichier
+    Route::get('/partageFichier', AdministrateurPartargeFichier::class)->name('partagefile');
+    Route::get('/partageFichier/recu', AdministrateurPartargeFichierRecu::class)->name('partagefile.recu');
+   
 });
 
 Route::prefix('etudiant')->middleware('etudiant')->name('etudiant.')->group(function () {
@@ -225,13 +236,10 @@ Route::prefix('enseignant')->name("enseignant.")->group(function () {
     Route::get('/devoir/{devoir}', VoirDevoir::class)->name('voir.devoir');
 
     // pour le partage de fichier
-    Route::get('/partagefile', EnseignantPartargeFichier::class)->name('partagefile');
-    Route::delete('/scolarite/partagefile/{id}', [EnseignantPartargeFichier::class, 'destroy'])->name('partagefile.destroy');
+    Route::get('/partageFichier', EnseignantPartargeFichier::class)->name('partagefile');
+    Route::get('/partageFichier/recu', EnseignantPartargeFichierRecu::class)->name('partagefile.recu');
 
 });
-
-
-
 
 Route::prefix('front')->group(function () {
     Route::get('/accueil', [AccueilController::class, 'accueil'])->name('front.accueil');
@@ -315,8 +323,10 @@ Route::name('billeterie.')->middleware('comptabilite')->group(function() {
     Route::get('/billeterie/form', [ComptabiliteRecuController::class, 'form'])->name('form');
     Route::post('/billeterie/index', [ComptabiliteRecuController::class, 'index'])->name('index');
 
-});
+    Route::get('/billeterie/partageFichier', BilleteriePartargeFichier::class)->name('partagefile');
+    Route::get('/billeterie/partageFichier/recu', BilleteriePartargeFichierRecu ::class)->name('partagefile.recu');
 
+});
 
 /* fin */
 
@@ -360,8 +370,8 @@ Route::prefix('scolarite')->middleware('scolarite')->name('scolarite.')->group(f
     Route::get('/releve/notesAnnuel', [ScolaritePrintReleveController::class, 'releveAnnuelform'])->name('print.releveAnnuelform');
     Route::post('/releve/notes/indexAnnuel', [ScolaritePrintReleveController::class, 'releveAnnuelindex'])->name('print.releveAnnuelindex');
     // pour le partage de fichier
-    Route::get('/partagefile', PartargeFichier::class)->name('partagefile');
-    Route::delete('/scolarite/partagefile/{id}', [PartargeFichier::class, 'destroy'])->name('partagefile.destroy');    
+    Route::get('/partageFichier', ScolaritePartargeFichier::class)->name('partagefile');
+    Route::get('/partageFichier/recu', ScolaritePartargeFichierRecu::class)->name('partagefile.recu');
  
 
     Route::prefix('parametres')->group(function () {
@@ -392,6 +402,7 @@ Route::prefix('scolarite')->middleware('scolarite')->name('scolarite.')->group(f
 Route::prefix('etudes')->middleware('s_etude')->group(function () {
     Route::get('/', [EtudesController::class, 'index'])->name('etudes.index');
     Route::get('/parametre', [EtudesController::class, 'afficherParametre'])->name('etudes.parametre');
+    // thd
     Route::get('/partageFichier', EtudePartargeFichier::class)->name('etudes.partagefile');
     Route::get('/partageFichier/recu', PartargeFichierRecu::class)->name('etudes.partagefile.recu');
 
@@ -458,6 +469,9 @@ Route::prefix('genieinfo')->middleware('g_info')->name("genieinfo.")->group(func
     Route::get('/enseignant/edit/{enseignant}', GIEnseignantsEdit::class)->name('enseignant.edit');
     Route::get('/enseignant/show/{enseignant}', GIEnseignantsShow::class)->name('enseignant.show');
     Route::delete('/enseignant/destroy/{enseignant}', [GIEnseignantsShow::class, 'destroy'])->name('enseignant.destroy');
+    // thd
+    Route::get('/partageFichier', GIPartargeFichier::class)->name('partagefile');
+    Route::get('/partageFichier/recu', GIPartargeFichierRecu::class)->name('partagefile.recu');
 
 });
 

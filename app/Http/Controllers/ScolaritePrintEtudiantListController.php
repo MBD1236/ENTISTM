@@ -24,43 +24,50 @@ class ScolaritePrintEtudiantListController extends Controller
 
    
     public function index(Request $request) {
+        // Validation des inputs
         $request->validate([
             'programme' => ['required'],
             'annee_universitaire' => ['required'],
             'promotion_id' => ['nullable'],
         ]);
-
+    
+        // Récupération des inputs
         $programme = $request->input('programme');
         $annee_universitaire = $request->input('annee_universitaire');
         $promotion_id = $request->input('promotion_id');
-       
+    
+        // Recherche des enregistrements correspondants dans les tables liées
         $programme = Programme::where('programme', $programme)->first();
         $annee_universitaire = AnneeUniversitaire::where('session', $annee_universitaire)->first();
         $promotion = Promotion::where('promotion', $promotion_id)->first();
-        // Construire la requête pour filtrer les inscriptions
-        $query = Inscription::query()->whereHas('programme', function($q) use($programme) {
-            $q->where('programme', $programme);
-        })->whereHas('annee_universitaire', function($q) use($annee_universitaire) {
-            $q->where('session', $annee_universitaire);
-        });
-
-        
-        if ($promotion_id !== null) {
-            $query->whereHas('promotion', function($q) use ($promotion_id){
-                $q->where('promotion', $promotion_id);
-            });
+    
+        if (!$programme || !$annee_universitaire) {
+            return redirect()->back()->withErrors('Programme ou année universitaire invalide');
         }
-
+    
+        // Construction de la requête
+        $query = Inscription::query()
+            ->where('programme_id', $programme->id)
+            ->where('annee_universitaire_id', $annee_universitaire->id);
+    
+        if ($promotion) {
+            $query->where('promotion_id', $promotion->id);
+        }
+    
+        // Récupération des inscriptions
         $etudiants = $query->get();
-        // dd($etudiants);
-
-        return view('scolarite.printEtudiant.index', [
-            'etudiants' => $etudiants,
-            'programme' => $programme,
-            'annee_universitaire' => $annee_universitaire,
-            'promotion' => $promotion,
-        ]);
+        if($etudiants->isEmpty()) {
+            return redirect()->route('scolarite.print.form')->with('error', "Aucun etudiant inscrit au compte de ce programme et de cette année universitaire selectionnés, veuillez verifier bien avant de lancer l'impression ! ");
+        } else {
+            return view('scolarite.printEtudiant.index', [
+                'etudiants' => $etudiants,
+                'programme' => $programme,
+                'annee_universitaire' => $annee_universitaire,
+                'promotion' => $promotion,
+            ]);
+        }
     }
+    
 
 
     // la form  pour les etudiants orientes

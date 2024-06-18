@@ -188,19 +188,32 @@
         </li><!-- End service Page Nav -->
 
         <li class="nav-item">
-          <a class="nav-link collapsed" href="{{ route('scolarite.partagefile') }}" wire:navigate>
-            <i class="fa fa-share-square"></i>
-            <span>Partage de Fichier</span>
+          <a class="nav-link collapsed" data-bs-target="#partages-nav" data-bs-toggle="collapse" href="#">
+            <i class="fa fa-share"></i><span>Partage de Fichier</span><i class="bi bi-chevron-down ms-auto"></i>
           </a>
-        </li>
-        
+          <ul id="partages-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+            <li>
+              <a href="{{route('etudes.partagefile.recu')}}">
+                <i class="fa fa-list"></i>
+                <span>Fichiers Reçus</span>
+              </a>
+            </li>
+            <li>
+              <a href="{{ route('etudes.partagefile') }}">
+                <i class="fa fa-share-alt"></i>
+                <span>Partage de Fichier</span>
+              </a>
+            </li>
+          </ul>
+        </li><!-- End Tables Nav -->
+
         <li class="nav-item">
-          <a class="nav-link collapsed" href="{{ route('chatify') }}" wire:navigate>
+          <a class="nav-link collapsed" href="{{ route('chatify') }}">
             <i class="fa fa-comment"></i>
             <span>Chats</span>
           </a>
-        </li>
-        
+        </li><!-- End F.A.Q Page Nav -->
+
       </ul>
 
     </aside><!-- End Sidebar-->

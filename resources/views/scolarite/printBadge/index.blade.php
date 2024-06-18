@@ -19,9 +19,9 @@
     }
     /*  */
 </style>
-    @foreach($etudiants as $etudiant)
+@foreach($etudiants as $etudiant)
         <div class="container my-4">
-            <div class="row px-0">
+            <div class="row py-0">
                 <div class="card col-sm-11 col-md-11 col-lg-6 p-0 carte text-dark" >
                     <div class="card-body border border-2 p-0">
                         <div class="pt-0 row px-2">
@@ -97,11 +97,11 @@
                 @endforeach
             </div>
         
-            <script>
+            {{-- <script>
                 window.onload = function() {
                     window.print();
                 }
-            </script>
+            </script> --}}
         </div>
     @endforeach
 

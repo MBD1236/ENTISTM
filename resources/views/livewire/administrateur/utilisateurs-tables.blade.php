@@ -73,6 +73,16 @@
                                             <div class="invalid-feedback">@error('role_id') {{ $message }} @enderror</div>
                                         </div>
                                         <div class="col-md-12 my-1">
+                                            <label for="service_id" class="select-control label-text my-1">Nom du service d'appartenance<span class="text-danger">*</span></label>
+                                            <select class="form-select border-input @error('service_id') is-invalid @enderror" wire:model="service_id" id="service_id" wire:click='resetError'>
+                                                <option value="0">Sélectioner un service</option>
+                                                @foreach ($services as $service)
+                                                    <option value="{{ $service->id }}" wire:key="{{ $service->id }}">{{ $service->nomservice }}</option>
+                                                @endforeach
+                                            </select>
+                                            <div class="invalid-feedback">@error('service_id') {{ $message }} @enderror</div>
+                                        </div>
+                                        <div class="col-md-12 my-1">
                                             <label for="type" class="label-control label-text my-1">Password<span class="text-danger">*</span></label>
                                             <input type="password" id="password"  class="form-control border-input @error('password') is-invalid @enderror" placeholder="Mot de passe du user" wire:model='password' wire:click='resetError'>
                                             <div class="invalid-feedback">@error('password') {{ $message }} @enderror</div>
@@ -130,6 +140,16 @@
                                                 @endforeach
                                             </select>
                                             <div class="invalid-feedback">@error('role_id') {{ $message }} @enderror</div>
+                                        </div>
+                                        <div class="col-md-12 my-1">
+                                            <label for="service_id" class="select-control label-text my-1">Nom du service d'appartenance<span class="text-danger">*</span></label>
+                                            <select class="form-select border-input @error('service_id') is-invalid @enderror" wire:model="service_id" id="service_id" wire:click='resetError'>
+                                                <option value="0">Sélectioner un service</option>
+                                                @foreach ($services as $service)
+                                                    <option value="{{ $service->id }}" wire:key="{{ $service->id }}">{{ $service->nomservice }}</option>
+                                                @endforeach
+                                            </select>
+                                            <div class="invalid-feedback">@error('service_id') {{ $message }} @enderror</div>
                                         </div>
                                         <div class="col-md-12 my-1">
                                             <label for="type" class="label-control label-text mt-1">Password<span class="text-danger">*</span></label>

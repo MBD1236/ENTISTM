@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Etude;
+namespace App\Livewire\Scolarite;
 
 use App\Models\PartageFile;
 use App\Models\Service;
@@ -19,7 +19,7 @@ class PartargeFichierRecu extends Component
     public $fichier;
     public $service_id;
 
-    #[Layout("components.layouts.template-etudes")]    
+    #[Layout("components.layouts.template-scolarite")]    
     public function render()
     {
         $userId = Auth::user()->id;
@@ -30,7 +30,7 @@ class PartargeFichierRecu extends Component
         if ($this->service_id)
             $partages = $partages->where('service_id', $this->service_id);
 
-        return view('livewire.etude.partarge-fichier-recu', [
+        return view('livewire.scolarite.partarge-fichier-recu', [
             'services' => $services,
             'partages' => $partages->paginate(15)
         ]);

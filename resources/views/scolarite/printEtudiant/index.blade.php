@@ -43,11 +43,7 @@
                             @empty
                             <tr>
                                 <td colspan="10">
-<<<<<<< HEAD
-                                    <div class="alert alert-primary">Aucune donnée ne correspond à cette recherche !</div>
-=======
                                     <div class="alert bg-card text-center fw-bold text-white fs-4">Aucune donnée ne correspond à cette recherche !</div>
->>>>>>> 7965f09aedf7d1ed46d7f383a9e0d5b9f83c2861
                                 </td>
                             </tr>
                             @endforelse

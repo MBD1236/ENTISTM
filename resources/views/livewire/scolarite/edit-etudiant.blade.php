@@ -146,8 +146,9 @@
                     <div class="row mt-3">
                         <div class="col-md-4 form-floating">
                             <div class="form-floating">
-                                <input class="form-control border-input" type="text" wire:model.defer="adresse" id="floatingadresse" placeholder="Adresse">
+                                <input class="form-control border-input @error('adresse') is-invalid @enderror" type="text" wire:model.defer="adresse" id="floatingadresse" placeholder="Adresse">
                                 <label for="floatingadresse" class="label-control label-text">Adresse</label>
+                                <div class="invalid-feedback">@error('adresse') {{ $message }} @enderror</div>
                             </div>
                         </div>
                         <div class="col-md-4 form-floating">

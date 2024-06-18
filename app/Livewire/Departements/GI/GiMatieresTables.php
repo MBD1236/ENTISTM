@@ -32,7 +32,7 @@ class GiMatieresTables extends Component
         }
 
         return view('livewire.departements.g-i.gi-matieres-tables',[
-            'matieres' =>  $matieres->paginate(5),
+            'matieres' =>  $matieres->paginate(10),
             'semestres' => Semestre::all()
         ]);
     }

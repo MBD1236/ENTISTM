@@ -47,7 +47,7 @@
                         <td>{{ $service->telephone }}</td>
                         <td>{{ $service->nomservice }}</td>
                         <td class="d-flex gap-1 justify-content-end align-items-center ">
-                            <a href="{{ route('scolarite.service.edit', $service) }}" class="p-1 px-2"><i class="bi bi-pencil-square fs-5" style="color: #120a5c"></i></a>
+                            <a href="{{ route('admin.service.edit', $service) }}" class="p-1 px-2"><i class="bi bi-pencil-square fs-5" style="color: #120a5c"></i></a>
                             <!-- Bouton pour déclencher le modal de confirmation -->
                             <a href="" type="button" data-bs-toggle="modal" data-bs-target="#verticalycentered{{$k}}">
                                 <i class="bi bi-trash cdanger"></i>
@@ -67,7 +67,7 @@
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-primary" data-bs-dismiss="modal" style="background: #120a5c">Non</button>
                                         <!-- Formulaire de suppression -->
-                                        <form action="{{ route('scolarite.service.destroy', $service)}}" method="post">
+                                        <form action="{{ route('admin.service.destroy', $service)}}" method="post">
                                             @method('delete')
                                             @csrf
                                             <button type="submit" class="btn btn-danger">Oui</button>

@@ -39,7 +39,7 @@
 
     .bottom-line {
         position: fixed;
-        bottom: 20px;
+        bottom: 18px;
         left: 0;
         width: 100%;
     }
@@ -68,7 +68,7 @@
         </div>
         <div>
             <div class="row fw-bold mt-1 mb-0">
-                <div class="col-3 text-start"><span>BT : 63 Mamou</span></div>
+                <div class="col-3 text-start"><span>BT: 63 Mamou</span></div>
                 <div class="col-6 text-center">
                     <span>Email : 
                         @foreach ($services as $service)

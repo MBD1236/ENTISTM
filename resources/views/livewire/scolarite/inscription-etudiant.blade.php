@@ -1,5 +1,11 @@
 <div class="card">
-
+    @if($errors->any())
+        <ul>
+            @foreach ($errors->all() as $item)
+                <li>{{ $item }}</li>
+            @endforeach
+        </ul>
+    @endif
     <div class="card-header card-head">
         <h1 class="bg-card text-center text-white card-head"><i class="fa fa-graduation-cap me-1"></i>Inscription des étudiants</h1>
     </div>
@@ -37,8 +43,9 @@
                                     <div class="row">
                                         <div class="col-md-4 form-floating">
                                             <div class="form-floating">
-                                                <input class="form-control border-input" type="text" wire:model.defer="ine" id="floatingine" placeholder="ine" disabled>
+                                                <input class="form-control border-input @error('ine') is-invalid @enderror" wire:click='clearStatus' type="text" wire:model.defer="ine"  id="floatingine" placeholder="ine" disabled>
                                                 <label for="floatingine" class="label-control label-text">INE</label>
+                                                <div class="invalid-feedback">@error('ine') {{ $message }} @enderror</div>
                                             </div>
                                         </div>
                                         <div class="col-md-4 form-floating">
@@ -84,34 +91,39 @@
                                         </div>
                                         <div class="col-md-4 form-floating">
                                             <div class="form-floating">
-                                                <input class="form-control border-input" type="tel" wire:model.defer="telephone" id="floatingtelephone" placeholder="Téléphone">
+                                                <input class="form-control border-input @error('telephone') is-invalid @enderror" wire:click='clearStatus' type="tel" wire:model.defer="telephone" id="floatingtelephone" placeholder="Téléphone">
                                                 <label for="floatingtelephone" class="label-control label-text">Téléphone</label>
+                                                <div class="invalid-feedback">@error('telephone') {{ $message }} @enderror</div>
                                             </div>
                                         </div>  
                                         <div class="col-md-4 form-floating">
                                             <div class="form-floating">
-                                                <input class="form-control border-input" type="email" wire:model.defer="email" id="floatingemail" placeholder="Email">
+                                                <input class="form-control border-input @error('email') is-invalid @enderror" wire:click='clearStatus' type="email" wire:model.defer="email" id="floatingemail" placeholder="Email">
                                                 <label for="floatingemail" class="label-control label-text">Email</label>
+                                                <div class="invalid-feedback">@error('email') {{ $message }} @enderror</div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row mt-3">
                                         <div class="col-md-4 form-floating">
                                             <div class="form-floating">
-                                                <input class="form-control border-input" type="text" wire:model.defer="adresse" id="floatingadresse" placeholder="Adresse">
+                                                <input class="form-control border-input @error('adresse') is-invalid @enderror" wire:click='clearStatus' type="text" wire:model.defer="adresse" id="floatingadresse" placeholder="Adresse">
                                                 <label for="floatingadresse" class="label-control label-text">Adresse</label>
+                                                <div class="invalid-feedback">@error('adresse') {{ $message }} @enderror</div>
                                             </div>
                                         </div>
                                         <div class="col-md-4 form-floating">
                                             <div class="form-floating">
-                                                <input class="form-control border-input" type="tel" wire:model.defer="nom_tuteur" id="floatingnomtuteur" placeholder="Nom du tuteur">
+                                                <input class="form-control border-input @error('nom_tuteur') is-invalid @enderror" wire:click='clearStatus' type="tel" wire:model.defer="nom_tuteur" id="floatingnomtuteur" placeholder="Nom du tuteur">
                                                 <label for="floatingnomtuteur" class="label-control label-text">Nom du tuteur</label>
+                                                <div class="invalid-feedback">@error('nom_tuteur') {{ $message }} @enderror</div>
                                             </div>
                                         </div>
                                         <div class="col-md-4 form-floating">
                                             <div class="form-floating">
-                                                <input class="form-control border-input" type="tel" wire:model.defer="telephone_tuteur" id="floatingteltuteur" placeholder="Téléphone du tuteur">
+                                                <input class="form-control border- @error('telephone_tuteur') is-invalid @enderror" wire:click='clearStatus' type="tel" wire:model.defer="telephone_tuteur" id="floatingteltuteur" placeholder="Téléphone du tuteur">
                                                 <label for="floatingteltuteur" class="label-control label-text">Téléphone du tuteur</label>
+                                                <div class="invalid-feedback">@error('telephone_tuteur') {{ $message }} @enderror</div>
                                             </div>
                                         </div>
                                     </div>

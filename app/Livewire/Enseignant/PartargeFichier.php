@@ -4,6 +4,7 @@ namespace App\Livewire\Enseignant;
 
 use App\Models\PartageFile;
 use App\Models\Service;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
@@ -143,12 +144,16 @@ class PartargeFichier extends Component
     #[Layout("components.layouts.template-enseignant")]
     public function render()
     {
+        $userId = Auth::user()->id;
+        
         $services = Service::all();
-        $partages = $this->service_id == 0 ? PartageFile::all() : PartageFile::where('service_id', $this->service_id)->get();
+        $partages = PartageFile::query()->where('user_id', $userId); //fichier partagés
+        if ($this->service_id)
+            $partages = $partages->where('service_id', $this->service_id);
 
         return view('livewire.enseignant.partarge-fichier', [
             'services' => $services,
-            'partages' => $partages
+            'partages' => $partages->paginate(15)
         ]);
     }
 }

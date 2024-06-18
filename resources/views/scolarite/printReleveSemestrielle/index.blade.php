@@ -207,7 +207,7 @@
                 <p>Appréciation : <span class="fw-bold">{{ $appreciation }}</span></p>
             </div>
 
-            <div class="row mt-5">
+            <div class="row mt-4">
                 <div class="col-6"></div>
                 <div class="col-6 text-center">
                     @foreach ($services as $service)
@@ -219,7 +219,7 @@
                 </div>
             </div>
             <div class="bottom-line">
-                <div class="row mx-5 my-1 mt-5" style="border: 1.8px solid #120a5c"></div>
+                <div class="row mx-5 my-1 mt-4" style="border: 1.8px solid #120a5c"></div>
                 <div class="row mb-t text-center fw-bold"><span style="font-size: 10px">Ce relevé ne doit comporter ni surcharge ni rature</span></div>
             </div>
         </div>

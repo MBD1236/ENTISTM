@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Etude;
+namespace App\Livewire\Administrateur;
 
 use App\Models\PartageFile;
 use App\Models\Service;
@@ -19,20 +19,21 @@ class PartargeFichierRecu extends Component
     public $fichier;
     public $service_id;
 
-    #[Layout("components.layouts.template-etudes")]    
+    #[Layout("components.layouts.template-administrateur")]
     public function render()
     {
-        $userId = Auth::user()->id;
-        $serviceId =  Auth::user()->service_id;
+        $serviceId = Auth::user()->service_id;
         $partages = PartageFile::query()->where('service_id', $serviceId); //fichier partagés
         
         $services = Service::all();
         if ($this->service_id)
             $partages = $partages->where('service_id', $this->service_id);
 
-        return view('livewire.etude.partarge-fichier-recu', [
+        return view('livewire.administrateur.partarge-fichier-recu', [
             'services' => $services,
             'partages' => $partages->paginate(15)
         ]);
     }
+
 }
+

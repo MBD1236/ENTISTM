@@ -83,11 +83,8 @@
                             <td>{{ $etudiant->telephone_tuteur }}</td>
                         </tr>
                         <tr>
-                            @php
-                                $d = $etudiant->inscriptions->first();
-                            @endphp
-                            <td class="fw-bold">Departement</td>
-                            <td>{{ $d->programme->departement->departement }}</td>
+                            <td class="fw-bold">Département</td>
+                            <td>{{ $departement ? $departement->departement : 'N/A' }}</td>
                         </tr>
                         <tr>
                             <td class="fw-bold">Programme</td>
@@ -95,7 +92,7 @@
                         </tr>
                         <tr>
                             <td colspan="2" class="text-center">
-                                <a href="{{ route('etudiant.documents', $etudiant) }}">Je visualise mes documents</a>
+                                <a href="{{ route('etudiant.documents', $etudiant) }}" class="btn btn-modal">Je visualise mes documents</a>
                             </td>
                         </tr>
                     </tbody>

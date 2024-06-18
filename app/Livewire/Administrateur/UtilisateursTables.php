@@ -4,6 +4,7 @@ namespace App\Livewire\Administrateur;
 
 use App\Actions\Fortify\PasswordValidationRules;
 use App\Models\Role;
+use App\Models\Service;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
@@ -21,6 +22,7 @@ class UtilisateursTables extends Component
     public $email;
     public $password;
     public $role_id;
+    public $service_id;
 
     public function rules() {
         return [
@@ -29,6 +31,7 @@ class UtilisateursTables extends Component
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8'],
             'role_id' => ['required'],
+            'service_id' => ['required'],
         ];
     }
     public function rulesEdit() {
@@ -36,8 +39,9 @@ class UtilisateursTables extends Component
             'name' => ['required', 'string', 'max:255'],
             'matricule' => ['required','string', 'max:14', Rule::unique('users')->ignore($this->user->id, 'id')],
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($this->user->id, 'id')],
-            'password' => ['required', 'string', 'min:8'],
+            'password' => ['nullable','string', 'min:8'],
             'role_id' => ['required'],
+            'service_id' => ['required'],
         ];
     }
 
@@ -55,6 +59,7 @@ class UtilisateursTables extends Component
         $this->name = $user->name;
         $this->matricule = $user->matricule;
         $this->role_id = $user->role_id;
+        $this->service_id = $user->service_id;
         $this->email = $user->email; 
     }
 
@@ -86,10 +91,12 @@ class UtilisateursTables extends Component
     public function render()
     {
         $roles = Role::all();
+        $services = Service::all();
         $users = User::orderBy('created_at', 'desc')->paginate(15);
         return view('livewire.administrateur.utilisateurs-tables',[
             'users' => $users,
-            'roles' => $roles
+            'roles' => $roles,
+            'services' => $services
         ]);
     }
 }

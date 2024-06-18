@@ -199,7 +199,7 @@
             
             <li>
               <a href="{{route('scolarite.attestation.inscription')}}">
-                <i class="fa fa-user-plus"></i><span>Imprimer les attestations</span>
+                <i class="fa fa-print"></i><span>Imprimer les attestations</span>
               </a>
             </li>
           </ul>
@@ -212,33 +212,47 @@
           </a>
         </li><!-- End badge Nav -->
 
+        {{-- <li class="nav-item">
+          <a class="nav-link collapsed" href="{{ route('scolarite.service.index') }}">
+            <i class="fa fa-desktop"></i>
+            <span>Services</span>
+          </a>
+        </li><!-- End service Page Nav --> --}}
+        
+        <li class="nav-item">
+          <a class="nav-link collapsed" data-bs-target="#partages-nav" data-bs-toggle="collapse" href="#">
+            <i class="fa fa-share"></i><span>Partage de Fichier</span><i class="bi bi-chevron-down ms-auto"></i>
+          </a>
+          <ul id="partages-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+            <li>
+              <a href="{{route('scolarite.partagefile.recu')}}">
+                <i class="fa fa-list"></i>
+                <span>Fichiers Reçus</span>
+              </a>
+            </li>
+            <li>
+              <a href="{{ route('scolarite.partagefile') }}">
+                <i class="fa fa-share-alt"></i>
+                <span>Partage de Fichier</span>
+              </a>
+            </li>
+          </ul>
+        </li><!-- End Tables Nav -->
+
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="{{ route('chatify') }}">
+            <i class="fa fa-comment"></i>
+            <span>Chats</span>
+          </a>
+        </li><!-- End F.A.Q Page Nav -->
+
         <li class="nav-item">
           <a class="nav-link collapsed" href="{{ route('scolarite.parametre') }}">
             <i class="fa fa-cog"></i>
             <span>Paramètres</span>
           </a>
         </li><!-- End params Page Nav -->
-
-        <li class="nav-item">
-          <a class="nav-link collapsed" href="{{ route('scolarite.service.index') }}">
-            <i class="fa fa-desktop"></i>
-            <span>Services</span>
-          </a>
-        </li><!-- End service Page Nav -->
         
-        <li class="nav-item">
-          <a class="nav-link collapsed" href="{{ route('scolarite.partagefile') }}" wire:navigate>
-            <i class="fa fa-share-square"></i>
-            <span>Partage de Fichier</span>
-          </a>
-        </li>
-        
-        <li class="nav-item">
-          <a class="nav-link collapsed" href="{{ route('chatify') }}" wire:navigate>
-            <i class="fa fa-comment"></i>
-            <span>Chats</span>
-          </a>
-        </li>
       </ul>
 
     </aside><!-- End Sidebar -->

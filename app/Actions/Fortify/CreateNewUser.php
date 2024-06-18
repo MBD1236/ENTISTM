@@ -42,9 +42,9 @@ class CreateNewUser implements CreatesNewUsers
             throw new ValidationException($validator);
         }
         $role = Role::where('role', 'etudiant')->pluck('id')->first();
-
         $validator->validate();
 
+        // dd($validator->validate());
         return User::create([
             'name' => $input['name'],
             'matricule' => $input['matricule'],
